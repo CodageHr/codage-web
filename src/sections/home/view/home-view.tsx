@@ -74,7 +74,7 @@ export default function HomeView() {
           <StyledPolygon anchor="bottom" />
         </Box>
 
-        {/*<HomeDarkMode />
+        {/* <HomeDarkMode />
 
         <HomeColorPresets />
 
@@ -84,7 +84,7 @@ export default function HomeView() {
 
         <HomeLookingFor />
 
-        <HomeAdvertisement />*/}
+        <HomeAdvertisement /> */ }
       </Box>
     </MainLayout>
   );
