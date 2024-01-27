@@ -4,6 +4,13 @@ import 'src/global.css';
 // i18n
 import 'src/locales/i18n';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { SpeedInsights } from "@vercel/speed-insights/next"
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Analytics } from '@vercel/analytics/react';
+
+
+
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
@@ -84,6 +91,8 @@ export default function RootLayout({ children }: Props) {
             </SettingsProvider>
           </LocalizationProvider>
         </AuthProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

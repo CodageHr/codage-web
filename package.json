@@ -41,6 +41,8 @@
     "@mui/x-date-pickers": "^6.18.4",
     "@react-pdf/renderer": "^3.1.14",
     "@supabase/supabase-js": "^2.39.0",
+    "@vercel/analytics": "^1.1.2",
+    "@vercel/speed-insights": "^1.0.8",
     "apexcharts": "^3.44.2",
     "autosuggest-highlight": "^3.3.4",
     "aws-amplify": "^6.0.6",
