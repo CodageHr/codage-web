@@ -18,4 +18,14 @@ module.exports = {
     });
     return config;
   },
+  async redirects() {
+    return [
+      // Wildcard path matching
+      {
+        source: '/:slug',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
 };
