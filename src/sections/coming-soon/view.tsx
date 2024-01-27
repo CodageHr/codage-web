@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 
 import { m } from 'framer-motion';
 
-import { varFade, MotionViewport } from '@components/animate';
+import { varFade, MotionViewport, MotionContainer } from '@components/animate';
 
 import { useCountdownDate } from '@hooks/use-countdown';
 import { ComingSoonIllustration } from '@assets/illustrations';
@@ -41,20 +41,27 @@ export default function ComingSoonView() {
       </Typography>
 
       <ComingSoonIllustration sx={{ my: 2, height: 240 }} />
-      <Stack
-        direction="row"
-        justifyContent="center"
-        divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
-        sx={{ typography: 'h2' }}
-      >
-        <TimeBlock label={parseInt(days, 10) > 1 ? "Dana" : "Dan"} value={days} />
-
-        <TimeBlock label={parseInt(hours, 10) > 1 ? "Sati" : "Sat"} value={hours} />
-
-        <TimeBlock label={"Minuta"} value={minutes} />
-
-        <TimeBlock label="Sekunda" value={seconds} />
-      </Stack>
+      <MotionContainer action animate={!!parseInt(seconds, 10) || !!parseInt(minutes,10) || !!parseInt(hours,10) || !!parseInt(days,10)} sx={{ position: 'relative' }}>
+        <m.div variants={varFade().inDown}><Stack
+          direction="row"
+          justifyContent="center"
+          divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
+          sx={{ typography: 'h2' }}
+        >
+          <m.div variants={varFade().inDown}>
+            <TimeBlock label={parseInt(days, 10) > 1 ? 'Dana' : 'Dan'} value={days} />
+          </m.div>
+          <m.div variants={varFade().inDown}>
+            <TimeBlock label={parseInt(hours, 10) > 1 ? 'Sati' : 'Sat'} value={hours} />
+          </m.div>
+          <m.div variants={varFade().inDown}>
+            <TimeBlock label={'Minuta'} value={minutes} />
+          </m.div>
+          <m.div variants={varFade().inDown}>
+            <TimeBlock label="Sekunda" value={seconds} />
+          </m.div>
+        </Stack></m.div>
+      </MotionContainer>
       <Typography sx={{ color: 'text.secondary' }}>
         Vrijedno radimo na novoj stranici!
       </Typography>
