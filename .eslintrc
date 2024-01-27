@@ -47,11 +47,13 @@
     "no-promise-executor-return": 0,
     "react/require-default-props": 0,
     "react/jsx-props-no-spreading": 0,
+    "react/jsx-curly-brace-presence": 0,
     "import/prefer-default-export": 0,
     "react/function-component-definition": 0,
     "@typescript-eslint/naming-convention": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "import/no-duplicates": "off",
     "react/jsx-no-useless-fragment": [
       1,
       {

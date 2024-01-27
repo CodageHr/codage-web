@@ -33,7 +33,7 @@ export const grey = {
   900: '#161C24',
 };
 
-export const primary = {
+export const secondary = {
   lighter: '#C8FAD6',
   light: '#5BE49B',
   main: '#00A76F',
@@ -42,12 +42,12 @@ export const primary = {
   contrastText: '#FFFFFF',
 };
 
-export const secondary = {
-  lighter: '#EFD6FF',
-  light: '#C684FF',
-  main: '#8E33FF',
-  dark: '#5119B7',
-  darker: '#27097A',
+export const primary = {
+  lighter: '#d0c5e5',
+  light: '#9278c3',
+  main: '#5C3BA4',
+  dark: '#452d92',
+  darker: '#342282',
   contrastText: '#FFFFFF',
 };
 

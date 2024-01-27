@@ -9,6 +9,7 @@ import { ImageProps } from './types';
 
 // ----------------------------------------------------------------------
 
+// eslint-disable-next-line react/display-name
 const Image = forwardRef<HTMLSpanElement, ImageProps>(
   (
     {
@@ -31,10 +32,12 @@ const Image = forwardRef<HTMLSpanElement, ImageProps>(
       wrapperClassName,
       useIntersectionObserver,
       sx,
+      imageWrapperSx,
       ...other
     },
     ref
   ) => {
+
     const theme = useTheme();
 
     const overlayStyles = !!overlay && {
@@ -75,6 +78,7 @@ const Image = forwardRef<HTMLSpanElement, ImageProps>(
           height: 1,
           objectFit: 'cover',
           verticalAlign: 'bottom',
+          ...imageWrapperSx,
           ...(!!ratio && {
             top: 0,
             left: 0,
@@ -114,6 +118,7 @@ const Image = forwardRef<HTMLSpanElement, ImageProps>(
         {content}
       </Box>
     );
+
   }
 );
 

@@ -18,6 +18,7 @@ import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 import { CheckoutProvider } from 'src/sections/checkout/context';
 
 import { AuthProvider } from 'src/auth/context/jwt';
+import { APP_NAME } from '@base/config-global';
 // import { AuthProvider } from 'src/auth/context/auth0';
 // import { AuthProvider } from 'src/auth/context/amplify';
 // import { AuthProvider } from 'src/auth/context/firebase';
@@ -33,7 +34,10 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'Codage',
+  title: {
+    template: `%s | ${APP_NAME}`,
+    default: `${APP_NAME}`, // a default is required when creating a template
+  },
   description:
     'Codage je IT tvrtka koja se bavi izradom web stranica, web aplikacija, mobilnih aplikacija, desktop aplikacija, dizajnom i marketingom.',
   keywords: 'codage, it, startup, web, aplikacije, mobilne, desktop, dizajn, marketing, Split, Hrvatska, web stranice, web aplikacije, mobilne aplikacije, desktop aplikacije',
@@ -52,7 +56,7 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en" className={primaryFont.className}>
+    <html lang="hr" className={primaryFont.className}>
       <body>
         <AuthProvider>
           <LocalizationProvider>

@@ -45,9 +45,9 @@ export default function ContactMap({ contacts }: Props) {
     <StyledRoot>
       <Map
         initialViewState={{
-          latitude: 12,
-          longitude: 42,
-          zoom: 2,
+          latitude: 43.483192,
+          longitude:  16.6157913,
+          zoom: 12,
         }}
         mapStyle={`mapbox://styles/mapbox/${lightMode ? 'light' : 'dark'}-v10`}
         mapboxAccessToken={MAPBOX_API}

@@ -1,3 +1,5 @@
+'use client';
+
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
@@ -48,19 +50,6 @@ export default function HeaderSimple() {
         }}
       >
         <Logo />
-
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <SettingsButton />
-
-          <Link
-            href={paths.faqs}
-            component={RouterLink}
-            color="inherit"
-            sx={{ typography: 'subtitle2' }}
-          >
-            Need help?
-          </Link>
-        </Stack>
       </Toolbar>
 
       {offsetTop && <HeaderShadow />}

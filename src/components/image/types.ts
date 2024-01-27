@@ -1,6 +1,7 @@
 import { LazyLoadImageProps } from 'react-lazy-load-image-component';
 
 import { BoxProps } from '@mui/material/Box';
+import { SxProps } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 
@@ -11,4 +12,5 @@ export type ImageProps = BoxProps &
     overlay?: string;
     ratio?: ImageRatio;
     disabledEffect?: boolean;
+    imageWrapperSx?: SxProps;
   };

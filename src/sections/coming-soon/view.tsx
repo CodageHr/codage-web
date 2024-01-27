@@ -4,97 +4,185 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { alpha } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import InputAdornment from '@mui/material/InputAdornment';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 
-import { useCountdownDate } from 'src/hooks/use-countdown';
+import { m } from 'framer-motion';
 
-import { _socials } from 'src/_mock';
-import { ComingSoonIllustration } from 'src/assets/illustrations';
+import { varFade, MotionViewport } from '@components/animate';
 
-import Iconify from 'src/components/iconify';
+import { useCountdownDate } from '@hooks/use-countdown';
+import { ComingSoonIllustration } from '@assets/illustrations';
+
+import Iconify from '@components/iconify';
+import ContactMap from '@sections/contact/contact-map';
+import Container from '@mui/material/Container';
 
 // ----------------------------------------------------------------------
 
+const _mapContacts = [
+  {
+    latlng: [ 43.483192,16.6157913 ],
+    address: 'Put Gaja 6, 21292 Srinjine',
+    phoneNumber: '+385 98 403 330',
+  }
+];
+// ----------------------------------------------------------------------
+
 export default function ComingSoonView() {
-  const { days, hours, minutes, seconds } = useCountdownDate(new Date('07/07/2024 21:30'));
+
+  const { days, hours, minutes, seconds } = useCountdownDate(new Date('02/07/2024 21:30'));
 
   return (
     <>
       <Typography variant="h3" sx={{ mb: 2 }}>
-        Coming Soon!
+        Stižemo uskoro!
       </Typography>
 
-      <Typography sx={{ color: 'text.secondary' }}>
-        We are currently working hard on this page!
-      </Typography>
-
-      <ComingSoonIllustration sx={{ my: 10, height: 240 }} />
-
+      <ComingSoonIllustration sx={{ my: 2, height: 240 }} />
       <Stack
         direction="row"
         justifyContent="center"
         divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
         sx={{ typography: 'h2' }}
       >
-        <TimeBlock label="Days" value={days} />
+        <TimeBlock label={parseInt(days, 10) > 1 ? "Dana" : "Dan"} value={days} />
 
-        <TimeBlock label="Hours" value={hours} />
+        <TimeBlock label={parseInt(hours, 10) > 1 ? "Sati" : "Sat"} value={hours} />
 
-        <TimeBlock label="Minutes" value={minutes} />
+        <TimeBlock label={"Minuta"} value={minutes} />
 
-        <TimeBlock label="Seconds" value={seconds} />
+        <TimeBlock label="Sekunda" value={seconds} />
       </Stack>
+      <Typography sx={{ color: 'text.secondary' }}>
+        Vrijedno radimo na novoj stranici!
+      </Typography>
 
-      <TextField
-        fullWidth
-        placeholder="Enter your email"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <Button variant="contained" size="large">
-                Notify Me
-              </Button>
-            </InputAdornment>
-          ),
-          sx: {
-            pr: 0.5,
-            [`&.${outlinedInputClasses.focused}`]: {
-              boxShadow: (theme) => theme.customShadows.z20,
-              transition: (theme) =>
-                theme.transitions.create(['box-shadow'], {
-                  duration: theme.transitions.duration.shorter,
-                }),
-              [`& .${outlinedInputClasses.notchedOutline}`]: {
-                border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.32)}`,
-              },
-            },
-          },
-        }}
-        sx={{ my: 5 }}
-      />
+      <Typography sx={{ color: 'text.secondary' }}>
+        Za sva pitanja i informacije kontaktirajte nas putem <Button
+        disableRipple
+        variant={'text'}
+        component={Link}
+        href={'mailto:kontakt@codage.hr'}
+        sx={{
+          color:'text.primary',
+          textTransform:'unset',
+          '&:hover': {
+            color: 'primary.main',
+            backgroundColor:'unset'
+          }}}
+        startIcon={<Iconify width={'1rem'} icon={'fa6-solid:envelope'} sx={{ color:'primary.main' }}  />}
+      >
+        maila
+      </Button> i <Button
+        disableRipple
+        variant={'text'}
+        component={Link}
+        href={'tel:+38598403330'}
+        sx={{
+          color:'text.primary',
+          textTransform:'unset',
+          '&:hover': {
+            color: 'primary.main',
+            backgroundColor:'unset'
+          }}}
+        startIcon={<Iconify width={'1rem'} icon={'ic:round-phone'} sx={{ color:'primary.main' }}  />}
+      >
+        telefona
+      </Button>.
+      </Typography>
 
-      <Stack spacing={1} alignItems="center" justifyContent="center" direction="row">
-        {_socials.map((social) => (
-          <IconButton
-            key={social.name}
-            sx={{
-              color: social.color,
-              '&:hover': {
-                bgcolor: alpha(social.color, 0.08),
-              },
-            }}
-          >
-            <Iconify icon={social.icon} />
-          </IconButton>
-        ))}
-      </Stack>
+      <Container component={MotionViewport} sx={{ mt: 2 }}>
+
+        <m.div variants={varFade().inUp}>
+          <Grid container my={3} justifyContent={'space-between'} textAlign={'left'} spacing={2}>
+            <Grid item xs={12} md={6} lg={5} sx={{ overflowX: 'hidden' }}>
+              <m.div variants={varFade().inLeft}>
+                <Typography variant="h5" >
+                  Kontakt podaci i adresa
+                </Typography>
+                <Stack justifyContent={'flex-start'} alignItems={'flex-start'}>
+                  <Button
+                    disableRipple
+                    variant={'text'}
+                    sx={{
+                      color:'text.primary',
+                      textTransform:'unset',
+                      '&:hover': {
+                        color: 'primary.main',
+                        backgroundColor:'unset'
+                      }}}
+                    startIcon={<Iconify width={'1rem'} icon={'mdi:map-marker'} sx={{ color:'primary.main' }}  />}
+                  >
+                     Put Gaja 6, Srinjine
+                  </Button>
+                  <Button
+                    disableRipple
+                    variant={'text'}
+                    component={Link}
+                    href={'mailto:kontakt@codage.hr'}
+                    sx={{
+                      color:'text.primary',
+                      textTransform:'unset',
+                      '&:hover': {
+                        color: 'primary.main',
+                        backgroundColor:'unset'
+                      }}}
+                    startIcon={<Iconify width={'1rem'} icon={'fa6-solid:envelope'} sx={{ color:'primary.main' }}  />}
+                  >
+                    kontakt@codage.hr
+                  </Button>
+                  <Button
+                    disableRipple
+                    variant={'text'}
+                    component={Link}
+                    href={'tel:+38598403330'}
+                    sx={{
+                      color:'text.primary',
+                      textTransform:'unset',
+                      '&:hover': {
+                        color: 'primary.main',
+                        backgroundColor:'unset'
+                      }}}
+                    startIcon={<Iconify width={'1rem'} icon={'ic:round-phone'} sx={{ color:'primary.main' }}  />}
+                  >
+                    +385 98 403 330
+                  </Button>
+                </Stack>
+                <Divider sx={{ my:3 }} />
+                <Typography variant="h5" >
+                  Osnovni podaci
+                </Typography>
+                <Typography variant="subtitle1" >
+                  Codage d.o.o
+                </Typography>
+                <Typography variant="subtitle2" >
+                  Put Gaja 6
+                </Typography>
+                <Typography variant="subtitle2" >
+                  21292 Srinjine, Republika Hrvatska
+                </Typography>
+                <Typography variant="subtitle2" >
+                  OIB: 49369795577
+                </Typography>
+              </m.div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={5} sx={{ overflowX: 'hidden' }}>
+              <m.div variants={varFade().inRight}>
+                <ContactMap contacts={_mapContacts} />
+              </m.div>
+            </Grid>
+          </Grid>
+        </m.div>
+      </Container>
     </>
   );
+
 }
+
 
 // ----------------------------------------------------------------------
 
