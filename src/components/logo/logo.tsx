@@ -51,7 +51,6 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
           viewBox="0 0 373.70414 101.24999"
           preserveAspectRatio="xMidYMid"
           version="1.0"
-          width="100%"
           height="100%"
           id="svg2607"
           xmlns="http://www.w3.org/2000/svg">
