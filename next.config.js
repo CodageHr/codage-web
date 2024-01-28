@@ -22,7 +22,7 @@ module.exports = {
     return [
       // Wildcard path matching
       {
-        source: '/:slug',
+        source: "/((?!sitemap).*)/:slug",
         destination: '/',
         permanent: true,
       },
