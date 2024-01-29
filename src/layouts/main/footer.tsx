@@ -1,50 +1,54 @@
+import { TFunction } from 'i18next';
+
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
-import { usePathname } from 'src/routes/hooks';
-import { RouterLink } from 'src/routes/components';
+import { paths } from '@routes/paths';
+import { usePathname } from '@routes/hooks';
+import { RouterLink } from '@routes/components';
 
-import { _socials } from 'src/_mock';
+import { _socials } from '@base/_mock';
+import { useTranslate } from '@base/locales';
 
-import Logo from 'src/components/logo';
-import Iconify from 'src/components/iconify';
+import Logo from '@components/logo';
+import Iconify from '@components/iconify';
+import WorkingHoursSchedule from '@components/working-hours-schedule';
 
 // ----------------------------------------------------------------------
 
-const LINKS = [
+const LINKS = (translate: TFunction) => ([
   {
-    headline: 'Minimal',
+    headline: translate('appMenu'),
     children: [
-      { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
-      { name: 'FAQs', href: paths.faqs },
+      { name: translate('newHome'), href: paths.home, icon:undefined },
+      { name: translate('services'), href: paths.services, icon:undefined },
+      { name: translate('aboutUs'), href: paths.about, icon:undefined },
+      { name: translate('contact'), href: paths.contact, icon:undefined },
     ],
   },
   {
-    headline: 'Legal',
+    headline: translate('contact'),
     children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
-    ],
+      { name: 'kontakt@codage.hr', href: 'mailto:kontakt@codage.hr', icon: 'fa6-solid:envelope' },
+      { name: '+385 98 403 330', href: 'tel:+38598403330', icon: 'ic:round-phone' }
+    ]
   },
-  {
-    headline: 'Contact',
-    children: [{ name: 'support@minimals.cc', href: '#' }],
-  },
-];
+]);
 
 // ----------------------------------------------------------------------
 
 export default function Footer() {
+
   const pathname = usePathname();
+
+  const { translate } = useTranslate();
+
+  const currentYear = new Date().getFullYear();
 
   const homePage = pathname === '/';
 
@@ -59,7 +63,20 @@ export default function Footer() {
       }}
     >
       <Container>
-        <Logo sx={{ mb: 1, mx: 'auto' }} />
+        <Grid container alignItems={'center'}  spacing={2}>
+          <Grid >
+            <Logo />
+          </Grid>
+          <Grid >
+            <Typography variant={'h5'} color={'primary.main'}>
+              Vertebra
+            </Typography>
+            <Typography variant={'subtitle2'}>
+              Centar za kralježnicu i masažu
+            </Typography>
+          </Grid>
+
+        </Grid>
 
         <Typography variant="caption" component="div">
           © All rights reserved
@@ -87,7 +104,28 @@ export default function Footer() {
           textAlign: { xs: 'center', md: 'unset' },
         }}
       >
-        <Logo sx={{ mb: 3 }} />
+        <Grid
+          container
+          alignItems={'center'}
+          justifyContent={{
+            xs: 'center',
+            md:'flex-start'
+          }}
+          spacing={2}
+        >
+          <Grid >
+            <Logo />
+          </Grid>
+          <Grid >
+            <Typography textAlign={'left'} variant={'h5'} color={'primary.main'}>
+              Vertebra
+            </Typography>
+            <Typography variant={'subtitle2'}>
+              Centar za kralježnicu i masažu
+            </Typography>
+          </Grid>
+
+        </Grid>
 
         <Grid
           container
@@ -96,44 +134,44 @@ export default function Footer() {
             md: 'space-between',
           }}
         >
-          <Grid xs={8} md={3}>
-            <Typography
-              variant="body2"
-              sx={{
-                maxWidth: 270,
-                mx: { xs: 'auto', md: 'unset' },
-              }}
-            >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
-            </Typography>
-
-            <Stack
-              direction="row"
-              justifyContent={{ xs: 'center', md: 'flex-start' }}
-              sx={{
-                mt: 3,
-                mb: { xs: 5, md: 0 },
-              }}
-            >
-              {_socials.map((social) => (
-                <IconButton
-                  key={social.name}
-                  sx={{
-                    '&:hover': {
-                      bgcolor: alpha(social.color, 0.08),
-                    },
-                  }}
-                >
-                  <Iconify color={social.color} icon={social.icon} />
-                </IconButton>
-              ))}
+          {/* <Grid xs={8} md={3} mt={4}>
+            <Stack>
+              <Typography variant={'subtitle1'}>{translate('socialNetworks')}</Typography>
+              <Stack
+                direction="row"
+                justifyContent={{ xs: 'center', md: 'flex-start' }}
+                sx={{
+                  mb: { xs: 5, md: 0 },
+                }}
+              >
+                {_socials.map((social) => (
+                  <IconButton
+                    key={social.name}
+                    href={social.path}
+                    target="_blank"
+                    rel="noopener"
+                    component={Link}
+                    aria-label={`${social.name} stranica`}
+                    sx={{
+                      '&:hover': {
+                        bgcolor: alpha(social.color, 0.08),
+                      },
+                    }}
+                  >
+                    <Iconify color={social.color} icon={social.icon} />
+                  </IconButton>
+                ))}
+              </Stack>
             </Stack>
+
+          </Grid> */}
+          <Grid xs={8} md={3} mt={4}>
+            <WorkingHoursSchedule />
           </Grid>
 
           <Grid xs={12} md={6}>
             <Stack spacing={5} direction={{ xs: 'column', md: 'row' }}>
-              {LINKS.map((list) => (
+              {LINKS(translate).map((list) => (
                 <Stack
                   key={list.headline}
                   spacing={2}
@@ -151,7 +189,14 @@ export default function Footer() {
                       href={link.href}
                       color="inherit"
                       variant="body2"
+                      sx={{
+                        display: 'flex',
+                        columnGap: 2,
+                        alignItems: 'center'
+                      }}
+
                     >
+                      {link.icon && <Iconify width={'1rem'} icon={link?.icon} sx={{ color:'primary.main' }}  />}
                       {link.name}
                     </Link>
                   ))}
@@ -162,11 +207,12 @@ export default function Footer() {
         </Grid>
 
         <Typography variant="body2" sx={{ mt: 10 }}>
-          © 2021. All rights reserved
+          © {currentYear}. {translate('allRightsReserved')}
         </Typography>
       </Container>
     </Box>
   );
 
   return homePage ? simpleFooter : mainFooter;
+
 }

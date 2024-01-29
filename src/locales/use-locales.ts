@@ -3,9 +3,9 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { localStorageGetItem } from 'src/utils/storage-available';
+import { localStorageGetItem } from '@utils/storage-available';
 
-import { useSettingsContext } from 'src/components/settings';
+import { useSettingsContext } from '@components/settings';
 
 import { allLangs, defaultLang } from './config-lang';
 
@@ -39,6 +39,7 @@ export function useTranslate() {
 
   return {
     t,
+    translate: t,
     i18n,
     ready,
     onChangeLang,

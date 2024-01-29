@@ -138,6 +138,8 @@
           "internal",
           "custom-components",
           "custom-sections",
+          "custom-theme",
+          "custom-assets",
           "custom-types",
           [
             "parent",
@@ -150,16 +152,19 @@
         "custom-groups": {
           "value": {
             "custom-mui": "@mui/**",
-            "custom-routes": "src/routes/**",
-            "custom-hooks": "src/hooks/**",
-            "custom-utils": "src/utils/**",
-            "custom-components": "src/components/**",
-            "custom-sections": "src/sections/**",
-            "custom-types": "src/types/**"
+            "custom-assets": ["src/assets/**","@assets/**"],
+            "custom-routes": ["src/routes/**","@routes/**"],
+            "custom-hooks": ["src/hooks/**","@hooks/**"],
+            "custom-utils": ["src/utils/**","@utils/**"],
+            "custom-components": ["src/components/**","@components/**"],
+            "custom-sections": ["src/sections/**", "@sections/**"],
+            "custom-theme": ["src/theme/**", "@theme/**"],
+            "custom-types": ["src/types/**"]
           }
         },
         "internal-pattern": [
-          "src/**"
+          "src/**",
+          "@base/**"
         ]
       }
     ]

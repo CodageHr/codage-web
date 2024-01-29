@@ -1,3 +1,5 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   trailingSlash: true,
   modularizeImports: {
@@ -19,13 +21,27 @@ module.exports = {
     return config;
   },
   async redirects() {
-    return [
-      // Wildcard path matching
+
+    const redirects = [
       {
-        source: "/((?!sitemap).*)/:slug",
+        source: "/((?!sitemap|robots|$).*)",
         destination: '/',
         permanent: true,
       },
-    ]
+    ];
+
+    // Ako niste u produkciji, uklonite redirekciju
+    if (!isProd) {
+      return [
+        {
+          source: "/",
+          destination: '/home',
+          permanent: true,
+        },
+
+      ];
+    }
+
+    return redirects;
   },
 };

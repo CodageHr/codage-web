@@ -22,6 +22,8 @@ export const paths = {
   pricing: '/pricing',
   payment: '/payment',
   about: '/about-us',
+  home: '/home',
+  services: '/services',
   contact: '/contact-us',
   faqs: '/faqs',
   page403: '/error/403',

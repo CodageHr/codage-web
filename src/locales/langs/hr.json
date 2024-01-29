@@ -51,5 +51,11 @@
   "demo": {
     "title": "English"
   },
-  "coming_soon": "Stižemo uskoro"
+  "coming_soon": "Stižemo uskoro",
+  "home_hero_title": "Vaša vizija, naš zadatak",
+  "home_hero_caption": "Razvoj web i mobilnih aplikacija za unaprijeđenje vašeg poslovanja",
+  "allRightsReserved": "Sva prava pridržana",
+  "contact": "Kontakt",
+  "aboutUs": "O nama",
+  "services": "Usluge"
 }
