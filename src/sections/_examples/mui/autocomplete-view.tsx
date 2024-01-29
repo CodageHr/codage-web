@@ -12,12 +12,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import { paths } from 'src/routes/paths';
 
-import { countries } from 'src/assets/data';
-
 import CountrySelect from 'src/components/country-select';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 import ComponentHero from 'src/sections/_examples/component-hero';
+
+import { countries } from 'src/assets/data';
 
 import ComponentBlock from '../component-block';
 

@@ -11,9 +11,9 @@ import { alpha, styled } from '@mui/material/styles';
 import { StepIconProps } from '@mui/material/StepIcon';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 
-import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

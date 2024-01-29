@@ -15,8 +15,6 @@ import { useMockedUser } from 'src/hooks/use-mocked-user';
 
 import { fData } from 'src/utils/format-number';
 
-import { countries } from 'src/assets/data';
-
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFSwitch,
@@ -24,6 +22,8 @@ import FormProvider, {
   RHFUploadAvatar,
   RHFAutocomplete,
 } from 'src/components/hook-form';
+
+import { countries } from 'src/assets/data';
 
 // ----------------------------------------------------------------------
 

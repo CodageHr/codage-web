@@ -11,10 +11,10 @@ import CardHeader from '@mui/material/CardHeader';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from 'src/assets/icons';
-
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
+
+import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from 'src/assets/icons';
 
 import { IPaymentCard } from 'src/types/payment';
 import { IAddressItem } from 'src/types/address';

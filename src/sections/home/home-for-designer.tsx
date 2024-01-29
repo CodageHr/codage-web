@@ -11,10 +11,10 @@ import { paths } from 'src/routes/paths';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { bgGradient, textGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
+
+import { bgGradient, textGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

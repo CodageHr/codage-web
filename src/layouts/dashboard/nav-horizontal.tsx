@@ -6,10 +6,10 @@ import { useTheme } from '@mui/material/styles';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import { bgBlur } from 'src/theme/css';
-
 import Scrollbar from 'src/components/scrollbar';
 import { NavSectionHorizontal } from 'src/components/nav-section';
+
+import { bgBlur } from 'src/theme/css';
 
 import { HEADER } from '../config-layout';
 import { useNavData } from './config-navigation';

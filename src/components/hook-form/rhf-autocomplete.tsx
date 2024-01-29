@@ -5,9 +5,9 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
 
-import { countries } from 'src/assets/data';
-
 import Iconify from 'src/components/iconify';
+
+import { countries } from 'src/assets/data';
 
 // ----------------------------------------------------------------------
 

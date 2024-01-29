@@ -16,10 +16,10 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { SentIcon } from 'src/assets/icons';
-
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFCode, RHFTextField } from 'src/components/hook-form';
+
+import { SentIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

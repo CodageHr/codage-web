@@ -16,8 +16,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { countries } from 'src/assets/data';
-
 import Iconify from 'src/components/iconify';
 import FormProvider, {
   RHFEditor,
@@ -32,6 +30,8 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from 'src/components/hook-form';
+
+import { countries } from 'src/assets/data';
 
 import { FormSchema } from './schema';
 import ValuesPreview from './values-preview';

@@ -17,10 +17,11 @@ import { useRouter, useSearchParams } from 'src/routes/hooks';
 import { useCountdownSeconds } from 'src/hooks/use-countdown';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { EmailInboxIcon } from 'src/assets/icons';
 
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFCode, RHFTextField } from 'src/components/hook-form';
+
+import { EmailInboxIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

@@ -17,10 +17,11 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { fDate } from 'src/utils/format-time';
 
 import { _testimonials } from 'src/_mock';
-import { bgBlur, bgGradient, hideScroll } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
+
+import { bgBlur, bgGradient, hideScroll } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

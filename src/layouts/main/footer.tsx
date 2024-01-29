@@ -12,7 +12,6 @@ import { paths } from '@routes/paths';
 import { usePathname } from '@routes/hooks';
 import { RouterLink } from '@routes/components';
 
-import { _socials } from '@base/_mock';
 import { useTranslate } from '@base/locales';
 
 import Logo from '@components/logo';

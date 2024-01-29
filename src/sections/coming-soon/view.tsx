@@ -1,23 +1,24 @@
 'use client';
 
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Divider from '@mui/material/Divider';
-
 import { m } from 'framer-motion';
 
-import { varFade, MotionViewport, MotionContainer } from '@components/animate';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 import { useCountdownDate } from '@hooks/use-countdown';
-import { ComingSoonIllustration } from '@assets/illustrations';
 
 import Iconify from '@components/iconify';
+import { varFade, MotionViewport, MotionContainer } from '@components/animate';
+
 import ContactMap from '@sections/contact/contact-map';
-import Container from '@mui/material/Container';
+
+import { ComingSoonIllustration } from '@assets/illustrations';
 
 // ----------------------------------------------------------------------
 

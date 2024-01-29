@@ -13,7 +13,6 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { countries } from 'src/assets/data';
 import {
   _jobs,
   _roles,
@@ -27,6 +26,8 @@ import Iconify from 'src/components/iconify';
 import EmptyContent from 'src/components/empty-content';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+
+import { countries } from 'src/assets/data';
 
 import { IJobItem, IJobFilters, IJobFilterValue } from 'src/types/job';
 

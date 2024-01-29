@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { bgBlur } from 'src/theme/css';
-
 import { fileData } from 'src/components/file-thumbnail';
+
+import { bgBlur } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

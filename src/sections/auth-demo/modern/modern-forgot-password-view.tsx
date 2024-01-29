@@ -12,10 +12,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
-import { PasswordIcon } from 'src/assets/icons';
-
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+
+import { PasswordIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

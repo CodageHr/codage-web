@@ -5,13 +5,14 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
 import { _bookings, _bookingNew, _bookingReview, _bookingsOverview } from 'src/_mock';
+
+import { useSettingsContext } from 'src/components/settings';
+
 import {
   BookingIllustration,
   CheckInIllustration,
   CheckoutIllustration,
 } from 'src/assets/illustrations';
-
-import { useSettingsContext } from 'src/components/settings';
 
 import BookingBooked from '../booking-booked';
 import BookingNewest from '../booking-newest';

@@ -16,7 +16,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import { paths } from 'src/routes/paths';
 
-import { MotivationIllustration } from 'src/assets/illustrations';
 import {
   _mock,
   _ecommerceNewProducts,
@@ -39,6 +38,8 @@ import EcommerceSalesOverview from 'src/sections/overview/e-commerce/ecommerce-s
 import EcommerceWidgetSummary from 'src/sections/overview/e-commerce/ecommerce-widget-summary';
 import EcommerceLatestProducts from 'src/sections/overview/e-commerce/ecommerce-latest-products';
 import EcommerceCurrentBalance from 'src/sections/overview/e-commerce/ecommerce-current-balance';
+
+import { MotivationIllustration } from 'src/assets/illustrations';
 
 // ----------------------------------------------------------------------
 

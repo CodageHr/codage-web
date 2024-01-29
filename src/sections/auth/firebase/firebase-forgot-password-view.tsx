@@ -14,10 +14,11 @@ import { useRouter } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 
 import { useAuthContext } from 'src/auth/hooks';
-import { PasswordIcon } from 'src/assets/icons';
 
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+
+import { PasswordIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

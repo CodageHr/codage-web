@@ -8,11 +8,11 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 import { fPercent, fCurrency } from 'src/utils/format-number';
 
-import { bgGradient } from 'src/theme/css';
-import { ColorSchema } from 'src/theme/palette';
-
 import Iconify from 'src/components/iconify';
 import Chart, { useChart } from 'src/components/chart';
+
+import { bgGradient } from 'src/theme/css';
+import { ColorSchema } from 'src/theme/palette';
 
 // ----------------------------------------------------------------------
 

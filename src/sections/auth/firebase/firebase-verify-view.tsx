@@ -9,9 +9,9 @@ import { paths } from 'src/routes/paths';
 import { useSearchParams } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 
-import { EmailInboxIcon } from 'src/assets/icons';
-
 import Iconify from 'src/components/iconify';
+
+import { EmailInboxIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

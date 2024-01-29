@@ -1,7 +1,7 @@
 // import { HomeView } from 'src/sections/home/view';
-import ComingSoonView from 'src/sections/coming-soon/view';
-
 import CompactLayout from 'src/layouts/compact';
+
+import ComingSoonView from 'src/sections/coming-soon/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {

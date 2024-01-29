@@ -3,10 +3,10 @@ import Stack from '@mui/material/Stack';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import { hideScroll } from 'src/theme/css';
-
 import Logo from 'src/components/logo';
 import { NavSectionMini } from 'src/components/nav-section';
+
+import { hideScroll } from 'src/theme/css';
 
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';

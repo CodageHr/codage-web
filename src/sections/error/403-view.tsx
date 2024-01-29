@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography';
 import { RouterLink } from 'src/routes/components';
 
 import CompactLayout from 'src/layouts/compact';
-import { ForbiddenIllustration } from 'src/assets/illustrations';
 
 import { varBounce, MotionContainer } from 'src/components/animate';
+
+import { ForbiddenIllustration } from 'src/assets/illustrations';
 
 // ----------------------------------------------------------------------
 

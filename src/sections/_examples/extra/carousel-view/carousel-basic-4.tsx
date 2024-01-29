@@ -4,11 +4,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 
-import { bgBlur } from 'src/theme/css';
-
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
+
+import { bgBlur } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

@@ -7,7 +7,6 @@ import {
   enUS as enUSAdapter
 } from 'date-fns/locale';
 
-
 // core (MUI)
 import {
   hrHR as hrHRCore,
@@ -16,8 +15,6 @@ import {
 // data grid (MUI)
 
 import { setDefaultOptions } from 'date-fns';
-import hrDataGrid from '@theme/locale/hr-data-grid';
-import hrHrDate from '@theme/locale/hr-x-date-pickers';
 
 import {
   enUS as enUSDate,
@@ -25,6 +22,9 @@ import {
 import {
   enUS as enUSDataGrid,
 } from '@mui/x-data-grid';
+
+import hrDataGrid from '@theme/locale/hr-data-grid';
+import hrHrDate from '@theme/locale/hr-x-date-pickers';
 
 
 // PLEASE REMOVE `LOCAL STORAGE` WHEN YOU CHANGE SETTINGS.

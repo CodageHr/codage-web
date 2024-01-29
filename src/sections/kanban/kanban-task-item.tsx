@@ -10,9 +10,9 @@ import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { bgBlur } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
+
+import { bgBlur } from 'src/theme/css';
 
 import { IKanbanTask } from 'src/types/kanban';
 

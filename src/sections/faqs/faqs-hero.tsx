@@ -8,10 +8,10 @@ import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 import { varFade, MotionContainer } from 'src/components/animate';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

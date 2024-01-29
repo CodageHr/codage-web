@@ -8,11 +8,11 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { bgGradient } from 'src/theme/css';
-
 import Image from 'src/components/image';
 import { varFade, MotionContainer } from 'src/components/animate';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

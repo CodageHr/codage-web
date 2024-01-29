@@ -4,12 +4,12 @@ import Paper from '@mui/material/Paper';
 import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { bgGradient } from 'src/theme/css';
-
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

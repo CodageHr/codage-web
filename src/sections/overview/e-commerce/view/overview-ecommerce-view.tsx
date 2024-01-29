@@ -7,7 +7,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import { MotivationIllustration } from 'src/assets/illustrations';
 import {
   _ecommerceNewProducts,
   _ecommerceBestSalesman,
@@ -16,6 +15,8 @@ import {
 } from 'src/_mock';
 
 import { useSettingsContext } from 'src/components/settings';
+
+import { MotivationIllustration } from 'src/assets/illustrations';
 
 import EcommerceWelcome from '../ecommerce-welcome';
 import EcommerceNewProducts from '../ecommerce-new-products';

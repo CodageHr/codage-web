@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
-import { bgGradient } from 'src/theme/css';
-
 import Image from 'src/components/image';
 import Lightbox, { useLightBox } from 'src/components/lightbox';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+
+import { bgGradient } from 'src/theme/css';
 
 import { IProductItem } from 'src/types/product';
 

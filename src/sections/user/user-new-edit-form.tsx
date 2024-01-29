@@ -18,8 +18,6 @@ import { useRouter } from 'src/routes/hooks';
 
 import { fData } from 'src/utils/format-number';
 
-import { countries } from 'src/assets/data';
-
 import Label from 'src/components/label';
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
@@ -28,6 +26,8 @@ import FormProvider, {
   RHFUploadAvatar,
   RHFAutocomplete,
 } from 'src/components/hook-form';
+
+import { countries } from 'src/assets/data';
 
 import { IUserItem } from 'src/types/user';
 

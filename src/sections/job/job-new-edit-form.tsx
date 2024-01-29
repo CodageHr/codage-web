@@ -23,7 +23,6 @@ import { useRouter } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { countries } from 'src/assets/data';
 import {
   _roles,
   JOB_SKILL_OPTIONS,
@@ -43,6 +42,8 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from 'src/components/hook-form';
+
+import { countries } from 'src/assets/data';
 
 import { IJobItem } from 'src/types/job';
 

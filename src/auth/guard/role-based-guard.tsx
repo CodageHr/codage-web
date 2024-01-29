@@ -6,9 +6,9 @@ import { Theme, SxProps } from '@mui/material/styles';
 
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import { ForbiddenIllustration } from 'src/assets/illustrations';
-
 import { varBounce, MotionContainer } from 'src/components/animate';
+
+import { ForbiddenIllustration } from 'src/assets/illustrations';
 
 // ----------------------------------------------------------------------
 

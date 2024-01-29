@@ -8,10 +8,10 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
-import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

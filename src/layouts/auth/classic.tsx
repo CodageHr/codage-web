@@ -10,10 +10,11 @@ import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
 
 import Logo from 'src/components/logo';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

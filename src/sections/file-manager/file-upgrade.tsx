@@ -4,6 +4,7 @@ import { alpha, useTheme } from '@mui/material/styles';
 import Stack, { StackProps } from '@mui/material/Stack';
 
 import { bgGradient } from 'src/theme/css';
+
 import { UpgradeStorageIllustration } from 'src/assets/illustrations';
 
 // ----------------------------------------------------------------------

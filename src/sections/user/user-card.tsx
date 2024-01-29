@@ -11,10 +11,11 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { fShortenNumber } from 'src/utils/format-number';
 
 import { _socials } from 'src/_mock';
-import { AvatarShape } from 'src/assets/illustrations';
 
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+
+import { AvatarShape } from 'src/assets/illustrations';
 
 import { IUserCard } from 'src/types/user';
 

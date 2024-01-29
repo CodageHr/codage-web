@@ -20,7 +20,6 @@ import { useRouter } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { countries } from 'src/assets/data';
 import { _tags, _tourGuides, TOUR_SERVICE_OPTIONS } from 'src/_mock';
 
 import { useSnackbar } from 'src/components/snackbar';
@@ -31,6 +30,8 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from 'src/components/hook-form';
+
+import { countries } from 'src/assets/data';
 
 import { ITourItem, ITourGuide } from 'src/types/tour';
 

@@ -7,10 +7,10 @@ import { alpha } from '@mui/material/styles';
 import { CardProps } from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from 'src/assets/icons';
-
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
+
+import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 

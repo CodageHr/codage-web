@@ -11,11 +11,11 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { fCurrency } from 'src/utils/format-number';
 
-import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import Carousel, { useCarousel, CarouselDots } from 'src/components/carousel';
+
+import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 

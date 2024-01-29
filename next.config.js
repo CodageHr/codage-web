@@ -24,7 +24,7 @@ module.exports = {
 
     const redirects = [
       {
-        source: "/((?!sitemap|robots|$).*)",
+        source: "/((?!sitemap|robots|_next|assets|manifest|script|favicon|$).*)",
         destination: '/',
         permanent: true,
       },
@@ -32,14 +32,7 @@ module.exports = {
 
     // Ako niste u produkciji, uklonite redirekciju
     if (!isProd) {
-      return [
-        {
-          source: "/",
-          destination: '/home',
-          permanent: true,
-        },
-
-      ];
+      return [];
     }
 
     return redirects;

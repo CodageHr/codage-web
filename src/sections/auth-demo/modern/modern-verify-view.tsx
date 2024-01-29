@@ -12,10 +12,10 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
-import { EmailInboxIcon } from 'src/assets/icons';
-
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFCode, RHFTextField } from 'src/components/hook-form';
+
+import { EmailInboxIcon } from 'src/assets/icons';
 
 // ----------------------------------------------------------------------
 
