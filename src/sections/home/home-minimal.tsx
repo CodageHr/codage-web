@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
@@ -7,32 +8,37 @@ import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useTranslate } from '@base/locales';
+
 import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
-const CARDS = [
-  {
-    icon: ' /assets/icons/home/ic_make_brand.svg',
-    title: 'Branding',
-    description: 'Consistent design makes it easy to brand your own.',
-  },
-  {
-    icon: ' /assets/icons/home/ic_design.svg',
-    title: 'UI & UX Design',
-    description:
-      'The kit is built on the principles of the atomic design system. It helps you to create projects fastest and easily customized packages for your projects.',
-  },
-  {
-    icon: ' /assets/icons/home/ic_development.svg',
-    title: 'Development',
-    description: 'Easy to customize and extend, saving you time and money.',
-  },
-];
-
-// ----------------------------------------------------------------------
-
 export default function HomeMinimal() {
+
+
+  const { translate } = useTranslate();
+
+  const CARDS = useMemo(() => {
+    return [
+      {
+        icon: '/assets/icons/home/ic_design.svg',
+        title: translate('ui_ux_design'),
+        description: translate('ui_ux_design_description'),
+      },
+      {
+        icon: '/assets/icons/home/ic_development.svg',
+        title: translate('web_development'),
+        description: translate('web_development_description'),
+      },
+      {
+        icon: '/assets/icons/home/ic_make_brand.svg',
+        title: translate('consultation_and_custom_solutions'),
+        description: translate('consultation_and_custom_solutions_description'),
+      },
+    ];
+  }, [translate]);
+
   return (
     <Container
       component={MotionViewport}
@@ -49,13 +55,14 @@ export default function HomeMinimal() {
       >
         <m.div variants={varFade().inUp}>
           <Typography component="div" variant="overline" sx={{ color: 'text.disabled' }}>
-            Minimal UI
+            {translate('experience')}
           </Typography>
         </m.div>
 
         <m.div variants={varFade().inDown}>
           <Typography variant="h2">
-            What Minimal <br /> helps you?
+            {translate('digital_experience_title_1')}<br/>
+            {translate('digital_experience_title_2')}
           </Typography>
         </m.div>
       </Stack>

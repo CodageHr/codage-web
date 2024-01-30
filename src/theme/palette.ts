@@ -7,6 +7,7 @@ export type ColorSchema = 'primary' | 'secondary' | 'info' | 'success' | 'warnin
 declare module '@mui/material/styles/createPalette' {
   interface TypeBackground {
     neutral: string;
+    dropdown: string;
   }
   interface SimplePaletteColorOptions {
     lighter: string;
@@ -129,6 +130,7 @@ export function palette(mode: 'light' | 'dark') {
     background: {
       paper: '#FFFFFF',
       default: '#FFFFFF',
+      dropdown: grey[800],
       neutral: grey[200],
     },
     action: {
@@ -148,6 +150,7 @@ export function palette(mode: 'light' | 'dark') {
     background: {
       paper: grey[800],
       default: grey[900],
+      dropdown: grey[800],
       neutral: alpha(grey[500], 0.12),
     },
     action: {

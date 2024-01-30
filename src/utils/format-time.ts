@@ -1,8 +1,9 @@
-import { format, getTime, formatDistanceToNow } from 'date-fns';
+import { format, getTime, formatDistanceToNow, setHours, setMinutes } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
 type InputValue = Date | string | number | null | undefined;
+type HourOrMinuteValue = number | undefined;
 
 export function fDate(date: InputValue, newFormat?: string) {
   const fm = newFormat || 'dd MMM yyyy';
@@ -14,6 +15,11 @@ export function fTime(date: InputValue, newFormat?: string) {
   const fm = newFormat || 'p';
 
   return date ? format(new Date(date), fm) : '';
+}
+export function fTimeOnly(hour: HourOrMinuteValue = 1, minutes: HourOrMinuteValue = 0, newFormat?: string) {
+  const fm = newFormat || 'HH:mm';
+
+  return hour ? format(setMinutes(setHours(new Date(),hour),minutes), fm) : '';
 }
 
 export function fDateTime(date: InputValue, newFormat?: string) {

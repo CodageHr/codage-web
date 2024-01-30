@@ -66,21 +66,11 @@ export default function Footer() {
           <Grid >
             <Logo />
           </Grid>
-          <Grid >
-            <Typography variant={'h5'} color={'primary.main'}>
-              Vertebra
-            </Typography>
-            <Typography variant={'subtitle2'}>
-              Centar za kralježnicu i masažu
-            </Typography>
-          </Grid>
 
         </Grid>
 
         <Typography variant="caption" component="div">
-          © All rights reserved
-          <br /> made by
-          <Link href="https://minimals.cc/"> minimals.cc </Link>
+          © {currentYear}. {translate('allRightsReserved')} by Codage d.o.o.
         </Typography>
       </Container>
     </Box>
@@ -114,14 +104,6 @@ export default function Footer() {
         >
           <Grid >
             <Logo />
-          </Grid>
-          <Grid >
-            <Typography textAlign={'left'} variant={'h5'} color={'primary.main'}>
-              Vertebra
-            </Typography>
-            <Typography variant={'subtitle2'}>
-              Centar za kralježnicu i masažu
-            </Typography>
           </Grid>
 
         </Grid>

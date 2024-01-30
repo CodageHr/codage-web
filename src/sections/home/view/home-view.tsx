@@ -11,7 +11,8 @@ import ScrollProgress from 'src/components/scroll-progress';
 
 import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
-import HomeForDesigner from '../home-for-designer';
+import HomeHowItWorks from '../home-how-it-works';
+import HomeAdvertisement from '../home-advertisement';
 import HomeHugePackElements from '../home-hugepack-elements';
 
 // ----------------------------------------------------------------------
@@ -59,14 +60,9 @@ export default function HomeView() {
         }}
       >
         <HomeMinimal />
+        <HomeHowItWorks />
+        <HomeAdvertisement />
 
-        <HomeHugePackElements />
-
-        <Box sx={{ position: 'relative' }}>
-          <StyledPolygon />
-          <HomeForDesigner />
-          <StyledPolygon anchor="bottom" />
-        </Box>
 
         {/* <HomeDarkMode />
 
