@@ -19,8 +19,7 @@ export default function HomeMinimal() {
 
   const { translate } = useTranslate();
 
-  const CARDS = useMemo(() => {
-    return [
+  const CARDS = useMemo(() => [
       {
         icon: '/assets/icons/home/ic_design.svg',
         title: translate('ui_ux_design'),
@@ -36,8 +35,7 @@ export default function HomeMinimal() {
         title: translate('consultation_and_custom_solutions'),
         description: translate('consultation_and_custom_solutions_description'),
       },
-    ];
-  }, [translate]);
+    ], [translate]);
 
   return (
     <Container

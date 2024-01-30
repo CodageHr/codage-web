@@ -1,18 +1,15 @@
 
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
+import { fTimeOnly } from 'src/utils/format-time';
 
 import { useTranslate } from '@base/locales';
 
-import { fTimeOnly } from 'src/utils/format-time';
 import Iconify from '@components/iconify';
 // ----------------------------------------------------------------------
 
-export interface LogoProps extends BoxProps {
-  disabledLink?: boolean;
-  useSmall?: boolean;
-}
 
 // eslint-disable-next-line react/display-name
 const WorkingHoursSchedule = () => {

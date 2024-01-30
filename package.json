@@ -8,8 +8,8 @@
     "dev": "next dev -p 8082",
     "start": "next start -p 8082",
     "build": "next build",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint  --no-error-on-unmatched-pattern --quiet \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint  --no-error-on-unmatched-pattern --quiet --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "rm:all": "rm -rf node_modules .next out dist build",
     "re:start": "yarn rm:all && yarn install && yarn dev",
@@ -19,6 +19,9 @@
     "ts": "tsc --noEmit --incremental",
     "ts:watch": "yarn ts --watch"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "@auth0/auth0-react": "^2.2.3",
     "@emotion/cache": "^11.10.5",
@@ -109,6 +112,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^3.1.0",
     "typescript": "^5.3.3"
   }
