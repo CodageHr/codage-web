@@ -8,7 +8,7 @@ import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { useTranslate } from '@base/locales';
+import { useTranslate } from "@base/locales";
 
 import { varFade, MotionViewport } from 'src/components/animate';
 
