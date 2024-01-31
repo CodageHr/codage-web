@@ -29,176 +29,176 @@ import { SentIcon } from 'src/assets/icons';
 // ----------------------------------------------------------------------
 
 export default function AmplifyNewPasswordView() {
-  const { newPassword, forgotPassword } = useAuthContext();
+    const { newPassword, forgotPassword } = useAuthContext();
 
-  const router = useRouter();
+    const router = useRouter();
 
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
-  const email = searchParams.get('email');
+    const email = searchParams.get('email');
 
-  const password = useBoolean();
+    const password = useBoolean();
 
-  const { countdown, counting, startCountdown } = useCountdownSeconds(60);
+    const { countdown, counting, startCountdown } = useCountdownSeconds(60);
 
-  const VerifySchema = Yup.object().shape({
-    code: Yup.string().min(6, 'Code must be at least 6 characters').required('Code is required'),
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
-    confirmPassword: Yup.string()
-      .required('Confirm password is required')
-      .oneOf([Yup.ref('password')], 'Passwords must match'),
-  });
+    const VerifySchema = Yup.object().shape({
+        code: Yup.string().min(6, 'Code must be at least 6 characters').required('Code is required'),
+        email: Yup.string().required('Email is required').email('Email must be a valid email address'),
+        password: Yup.string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+        confirmPassword: Yup.string()
+            .required('Confirm password is required')
+            .oneOf([Yup.ref('password')], 'Passwords must match'),
+    });
 
-  const defaultValues = {
-    code: '',
-    email: email || '',
-    password: '',
-    confirmPassword: '',
-  };
+    const defaultValues = {
+        code: '',
+        email: email || '',
+        password: '',
+        confirmPassword: '',
+    };
 
-  const methods = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(VerifySchema),
-    defaultValues,
-  });
+    const methods = useForm({
+        mode: 'onChange',
+        resolver: yupResolver(VerifySchema),
+        defaultValues,
+    });
 
-  const {
-    watch,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+    const {
+        watch,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = methods;
 
-  const values = watch();
+    const values = watch();
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await newPassword?.(data.email, data.code, data.password);
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            await newPassword?.(data.email, data.code, data.password);
 
-      router.push(paths.auth.amplify.login);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+            router.push(paths.auth.amplify.login);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
-  const handleResendCode = useCallback(async () => {
-    try {
-      startCountdown();
-      await forgotPassword?.(values.email);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [forgotPassword, startCountdown, values.email]);
+    const handleResendCode = useCallback(async () => {
+        try {
+            startCountdown();
+            await forgotPassword?.(values.email);
+        } catch (error) {
+            console.error(error);
+        }
+    }, [forgotPassword, startCountdown, values.email]);
 
-  const renderForm = (
-    <Stack spacing={3} alignItems="center">
-      <RHFTextField
-        name="email"
-        label="Email"
-        placeholder="example@gmail.com"
-        InputLabelProps={{ shrink: true }}
-      />
+    const renderForm = (
+        <Stack spacing={3} alignItems="center">
+            <RHFTextField
+                name="email"
+                label="Email"
+                placeholder="example@gmail.com"
+                InputLabelProps={{ shrink: true }}
+            />
 
-      <RHFCode name="code" />
+            <RHFCode name="code" />
 
-      <RHFTextField
-        name="password"
-        label="Password"
-        type={password.value ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={password.onToggle} edge="end">
-                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+            <RHFTextField
+                name="password"
+                label="Password"
+                type={password.value ? 'text' : 'password'}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton onClick={password.onToggle} edge="end">
+                                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+            />
 
-      <RHFTextField
-        name="confirmPassword"
-        label="Confirm New Password"
-        type={password.value ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={password.onToggle} edge="end">
-                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+            <RHFTextField
+                name="confirmPassword"
+                label="Confirm New Password"
+                type={password.value ? 'text' : 'password'}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton onClick={password.onToggle} edge="end">
+                                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+            />
 
-      <LoadingButton
-        fullWidth
-        size="large"
-        type="submit"
-        variant="contained"
-        loading={isSubmitting}
-      >
+            <LoadingButton
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+            >
         Update Password
-      </LoadingButton>
+            </LoadingButton>
 
-      <Typography variant="body2">
-        {`Don’t have a code? `}
-        <Link
-          variant="subtitle2"
-          onClick={handleResendCode}
-          sx={{
-            cursor: 'pointer',
-            ...(counting && {
-              color: 'text.disabled',
-              pointerEvents: 'none',
-            }),
-          }}
-        >
+            <Typography variant="body2">
+                {'Don’t have a code? '}
+                <Link
+                    variant="subtitle2"
+                    onClick={handleResendCode}
+                    sx={{
+                        cursor: 'pointer',
+                        ...(counting && {
+                            color: 'text.disabled',
+                            pointerEvents: 'none',
+                        }),
+                    }}
+                >
           Resend code {counting && `(${countdown}s)`}
-        </Link>
-      </Typography>
+                </Link>
+            </Typography>
 
-      <Link
-        component={RouterLink}
-        href={paths.auth.amplify.login}
-        color="inherit"
-        variant="subtitle2"
-        sx={{
-          alignItems: 'center',
-          display: 'inline-flex',
-        }}
-      >
-        <Iconify icon="eva:arrow-ios-back-fill" width={16} />
+            <Link
+                component={RouterLink}
+                href={paths.auth.amplify.login}
+                color="inherit"
+                variant="subtitle2"
+                sx={{
+                    alignItems: 'center',
+                    display: 'inline-flex',
+                }}
+            >
+                <Iconify icon="eva:arrow-ios-back-fill" width={16} />
         Return to sign in
-      </Link>
-    </Stack>
-  );
+            </Link>
+        </Stack>
+    );
 
-  const renderHead = (
-    <>
-      <SentIcon sx={{ height: 96 }} />
+    const renderHead = (
+        <>
+            <SentIcon sx={{ height: 96 }} />
 
-      <Stack spacing={1} sx={{ mt: 3, mb: 5 }}>
-        <Typography variant="h3">Request sent successfully!</Typography>
+            <Stack spacing={1} sx={{ mt: 3, mb: 5 }}>
+                <Typography variant="h3">Request sent successfully!</Typography>
 
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           We&apos;ve sent a 6-digit confirmation email to your email.
-          <br />
+                    <br />
           Please enter the code in below box to verify your email.
-        </Typography>
-      </Stack>
-    </>
-  );
+                </Typography>
+            </Stack>
+        </>
+    );
 
-  return (
-    <>
-      {renderHead}
+    return (
+        <>
+            {renderHead}
 
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        {renderForm}
-      </FormProvider>
-    </>
-  );
+            <FormProvider methods={methods} onSubmit={onSubmit}>
+                {renderForm}
+            </FormProvider>
+        </>
+    );
 }

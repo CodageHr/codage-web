@@ -12,65 +12,65 @@ import StyledProgressBar from './styles';
 type PushStateInput = [data: any, unused: string, url?: string | URL | null | undefined];
 
 export default function ProgressBar() {
-  useEffect(() => {
-    NProgress.configure({ showSpinner: false });
+    useEffect(() => {
+        NProgress.configure({ showSpinner: false });
 
-    const handleAnchorClick = (event: MouseEvent) => {
-      const targetUrl = (event.currentTarget as HTMLAnchorElement).href;
+        const handleAnchorClick = (event: MouseEvent) => {
+            const targetUrl = (event.currentTarget as HTMLAnchorElement).href;
 
-      const currentUrl = window.location.href;
+            const currentUrl = window.location.href;
 
-      if (targetUrl !== currentUrl) {
-        NProgress.start();
-      }
-    };
+            if (targetUrl !== currentUrl) {
+                NProgress.start();
+            }
+        };
 
-    const handleMutation = () => {
-      const anchorElements: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href]');
+        const handleMutation = () => {
+            const anchorElements: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href]');
 
-      const filteredAnchors = Array.from(anchorElements).filter((element) => {
-        const href = element.getAttribute('href');
-        return href && href.startsWith('/');
-      });
+            const filteredAnchors = Array.from(anchorElements).filter((element) => {
+                const href = element.getAttribute('href');
+                return href && href.startsWith('/');
+            });
 
-      filteredAnchors.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick));
-    };
+            filteredAnchors.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick));
+        };
 
-    const mutationObserver = new MutationObserver(handleMutation);
+        const mutationObserver = new MutationObserver(handleMutation);
 
-    mutationObserver.observe(document, { childList: true, subtree: true });
+        mutationObserver.observe(document, { childList: true, subtree: true });
 
-    window.history.pushState = new Proxy(window.history.pushState, {
-      apply: (target, thisArg, argArray: PushStateInput) => {
-        NProgress.done();
-        return target.apply(thisArg, argArray);
-      },
+        window.history.pushState = new Proxy(window.history.pushState, {
+            apply: (target, thisArg, argArray: PushStateInput) => {
+                NProgress.done();
+                return target.apply(thisArg, argArray);
+            },
+        });
     });
-  });
 
-  return (
-    <>
-      <StyledProgressBar />
+    return (
+        <>
+            <StyledProgressBar />
 
-      <Suspense fallback={null}>
-        <NProgressDone />
-      </Suspense>
-    </>
-  );
+            <Suspense fallback={null}>
+                <NProgressDone />
+            </Suspense>
+        </>
+    );
 }
 
 // ----------------------------------------------------------------------
 
 function NProgressDone() {
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  const router = useRouter();
+    const router = useRouter();
 
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
-  useEffect(() => {
-    NProgress.done();
-  }, [pathname, router, searchParams]);
+    useEffect(() => {
+        NProgress.done();
+    }, [pathname, router, searchParams]);
 
-  return null;
+    return null;
 }

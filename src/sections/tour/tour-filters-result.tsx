@@ -23,105 +23,105 @@ type Props = StackProps & {
 };
 
 export default function TourFiltersResult({
-  filters,
-  onFilters,
-  //
-  canReset,
-  onResetFilters,
-  //
-  results,
-  ...other
+    filters,
+    onFilters,
+    //
+    canReset,
+    onResetFilters,
+    //
+    results,
+    ...other
 }: Props) {
-  const shortLabel = shortDateLabel(filters.startDate, filters.endDate);
+    const shortLabel = shortDateLabel(filters.startDate, filters.endDate);
 
-  const handleRemoveServices = (inputValue: string) => {
-    const newValue = filters.services.filter((item) => item !== inputValue);
-    onFilters('services', newValue);
-  };
+    const handleRemoveServices = (inputValue: string) => {
+        const newValue = filters.services.filter((item) => item !== inputValue);
+        onFilters('services', newValue);
+    };
 
-  const handleRemoveAvailable = () => {
-    onFilters('startDate', null);
-    onFilters('endDate', null);
-  };
+    const handleRemoveAvailable = () => {
+        onFilters('startDate', null);
+        onFilters('endDate', null);
+    };
 
-  const handleRemoveTourGuide = (inputValue: ITourGuide) => {
-    const newValue = filters.tourGuides.filter((item) => item.name !== inputValue.name);
-    onFilters('tourGuides', newValue);
-  };
+    const handleRemoveTourGuide = (inputValue: ITourGuide) => {
+        const newValue = filters.tourGuides.filter((item) => item.name !== inputValue.name);
+        onFilters('tourGuides', newValue);
+    };
 
-  const handleRemoveDestination = (inputValue: string) => {
-    const newValue = filters.destination.filter((item) => item !== inputValue);
-    onFilters('destination', newValue);
-  };
+    const handleRemoveDestination = (inputValue: string) => {
+        const newValue = filters.destination.filter((item) => item !== inputValue);
+        onFilters('destination', newValue);
+    };
 
-  return (
-    <Stack spacing={1.5} {...other}>
-      <Box sx={{ typography: 'body2' }}>
-        <strong>{results}</strong>
-        <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
+    return (
+        <Stack spacing={1.5} {...other}>
+            <Box sx={{ typography: 'body2' }}>
+                <strong>{results}</strong>
+                <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
           results found
-        </Box>
-      </Box>
+                </Box>
+            </Box>
 
-      <Stack flexGrow={1} spacing={1} direction="row" flexWrap="wrap" alignItems="center">
-        {filters.startDate && filters.endDate && (
-          <Block label="Available:">
-            <Chip size="small" label={shortLabel} onDelete={handleRemoveAvailable} />
-          </Block>
-        )}
+            <Stack flexGrow={1} spacing={1} direction="row" flexWrap="wrap" alignItems="center">
+                {filters.startDate && filters.endDate && (
+                    <Block label="Available:">
+                        <Chip size="small" label={shortLabel} onDelete={handleRemoveAvailable} />
+                    </Block>
+                )}
 
-        {!!filters.services.length && (
-          <Block label="Services:">
-            {filters.services.map((item) => (
-              <Chip
-                key={item}
-                label={item}
-                size="small"
-                onDelete={() => handleRemoveServices(item)}
-              />
-            ))}
-          </Block>
-        )}
+                {!!filters.services.length && (
+                    <Block label="Services:">
+                        {filters.services.map((item) => (
+                            <Chip
+                                key={item}
+                                label={item}
+                                size="small"
+                                onDelete={() => handleRemoveServices(item)}
+                            />
+                        ))}
+                    </Block>
+                )}
 
-        {!!filters.tourGuides.length && (
-          <Block label="Tour guide:">
-            {filters.tourGuides.map((item) => (
-              <Chip
-                key={item.id}
-                size="small"
-                avatar={<Avatar alt={item.name} src={item.avatarUrl} />}
-                label={item.name}
-                onDelete={() => handleRemoveTourGuide(item)}
-              />
-            ))}
-          </Block>
-        )}
+                {!!filters.tourGuides.length && (
+                    <Block label="Tour guide:">
+                        {filters.tourGuides.map((item) => (
+                            <Chip
+                                key={item.id}
+                                size="small"
+                                avatar={<Avatar alt={item.name} src={item.avatarUrl} />}
+                                label={item.name}
+                                onDelete={() => handleRemoveTourGuide(item)}
+                            />
+                        ))}
+                    </Block>
+                )}
 
-        {!!filters.destination.length && (
-          <Block label="Destination:">
-            {filters.destination.map((item) => (
-              <Chip
-                key={item}
-                label={item}
-                size="small"
-                onDelete={() => handleRemoveDestination(item)}
-              />
-            ))}
-          </Block>
-        )}
+                {!!filters.destination.length && (
+                    <Block label="Destination:">
+                        {filters.destination.map((item) => (
+                            <Chip
+                                key={item}
+                                label={item}
+                                size="small"
+                                onDelete={() => handleRemoveDestination(item)}
+                            />
+                        ))}
+                    </Block>
+                )}
 
-        {canReset && (
-          <Button
-            color="error"
-            onClick={onResetFilters}
-            startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
-          >
+                {canReset && (
+                    <Button
+                        color="error"
+                        onClick={onResetFilters}
+                        startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
+                    >
             Clear
-          </Button>
-        )}
-      </Stack>
-    </Stack>
-  );
+                    </Button>
+                )}
+            </Stack>
+        </Stack>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -131,28 +131,28 @@ type BlockProps = StackProps & {
 };
 
 function Block({ label, children, sx, ...other }: BlockProps) {
-  return (
-    <Stack
-      component={Paper}
-      variant="outlined"
-      spacing={1}
-      direction="row"
-      sx={{
-        p: 1,
-        borderRadius: 1,
-        overflow: 'hidden',
-        borderStyle: 'dashed',
-        ...sx,
-      }}
-      {...other}
-    >
-      <Box component="span" sx={{ typography: 'subtitle2' }}>
-        {label}
-      </Box>
+    return (
+        <Stack
+            component={Paper}
+            variant="outlined"
+            spacing={1}
+            direction="row"
+            sx={{
+                p: 1,
+                borderRadius: 1,
+                overflow: 'hidden',
+                borderStyle: 'dashed',
+                ...sx,
+            }}
+            {...other}
+        >
+            <Box component="span" sx={{ typography: 'subtitle2' }}>
+                {label}
+            </Box>
 
-      <Stack spacing={1} direction="row" flexWrap="wrap">
-        {children}
-      </Stack>
-    </Stack>
-  );
+            <Stack spacing={1} direction="row" flexWrap="wrap">
+                {children}
+            </Stack>
+        </Stack>
+    );
 }

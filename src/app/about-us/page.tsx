@@ -3,9 +3,9 @@ import { AboutView } from 'src/sections/about/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'O nama',
+    title: 'O nama',
 };
 
 export default function AboutPage() {
-  return <AboutView />;
+    return <AboutView />;
 }

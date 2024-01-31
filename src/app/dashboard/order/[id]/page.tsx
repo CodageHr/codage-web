@@ -5,7 +5,7 @@ import { OrderDetailsView } from 'src/sections/order/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Order Details',
+    title: 'Dashboard: Order Details',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function OrderDetailsPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <OrderDetailsView id={id} />;
+    return <OrderDetailsView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _orders.map((order) => ({
-    id: order.id,
-  }));
+    return _orders.map((order) => ({
+        id: order.id,
+    }));
 }

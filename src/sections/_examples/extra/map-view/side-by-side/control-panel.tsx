@@ -15,15 +15,15 @@ type Props = {
 };
 
 function ControlPanel({ mode, onModeChange }: Props) {
-  return (
-    <StyledControlPanel>
-      <ToggleButtonGroup color="primary" value={mode} exclusive onChange={onModeChange}>
-        <ToggleButton value="side-by-side">Side by side</ToggleButton>
+    return (
+        <StyledControlPanel>
+            <ToggleButtonGroup color="primary" value={mode} exclusive onChange={onModeChange}>
+                <ToggleButton value="side-by-side">Side by side</ToggleButton>
 
-        <ToggleButton value="split-screen">Split screen</ToggleButton>
-      </ToggleButtonGroup>
-    </StyledControlPanel>
-  );
+                <ToggleButton value="split-screen">Split screen</ToggleButton>
+            </ToggleButtonGroup>
+        </StyledControlPanel>
+    );
 }
 
 export default memo(ControlPanel);

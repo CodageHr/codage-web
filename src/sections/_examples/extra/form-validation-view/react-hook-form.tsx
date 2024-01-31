@@ -18,17 +18,17 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import Iconify from 'src/components/iconify';
 import FormProvider, {
-  RHFEditor,
-  RHFSelect,
-  RHFUpload,
-  RHFSwitch,
-  RHFSlider,
-  RHFCheckbox,
-  RHFTextField,
-  RHFRadioGroup,
-  RHFMultiSelect,
-  RHFAutocomplete,
-  RHFMultiCheckbox,
+    RHFEditor,
+    RHFSelect,
+    RHFUpload,
+    RHFSwitch,
+    RHFSlider,
+    RHFCheckbox,
+    RHFTextField,
+    RHFRadioGroup,
+    RHFMultiSelect,
+    RHFAutocomplete,
+    RHFMultiCheckbox,
 } from 'src/components/hook-form';
 
 import { countries } from 'src/assets/data';
@@ -39,14 +39,14 @@ import ValuesPreview from './values-preview';
 // ----------------------------------------------------------------------
 
 const OPTIONS = [
-  { value: 'option 1', label: 'Option 1' },
-  { value: 'option 2', label: 'Option 2' },
-  { value: 'option 3', label: 'Option 3' },
-  { value: 'option 4', label: 'Option 4' },
-  { value: 'option 5', label: 'Option 5' },
-  { value: 'option 6', label: 'Option 6' },
-  { value: 'option 7', label: 'Option 7' },
-  { value: 'option 8', label: 'Option 8' },
+    { value: 'option 1', label: 'Option 1' },
+    { value: 'option 2', label: 'Option 2' },
+    { value: 'option 3', label: 'Option 3' },
+    { value: 'option 4', label: 'Option 4' },
+    { value: 'option 5', label: 'Option 5' },
+    { value: 'option 6', label: 'Option 6' },
+    { value: 'option 7', label: 'Option 7' },
+    { value: 'option 8', label: 'Option 8' },
 ];
 
 type OptionType = {
@@ -55,35 +55,35 @@ type OptionType = {
 };
 
 export const defaultValues = {
-  age: 0,
-  email: '',
-  fullName: '',
-  //
-  editor: '',
-  switch: false,
-  radioGroup: '',
-  autocomplete: null,
-  //
-  password: '',
-  confirmPassword: '',
-  //
-  startDate: null,
-  endDate: null,
-  //
-  singleUpload: null,
-  multiUpload: [],
-  //
-  singleSelect: '',
-  multiSelect: [],
-  //
-  singleCountry: '',
-  multiCountry: [],
-  //
-  checkbox: false,
-  multiCheckbox: [],
-  //
-  slider: 8,
-  sliderRange: [15, 80],
+    age: 0,
+    email: '',
+    fullName: '',
+    //
+    editor: '',
+    switch: false,
+    radioGroup: '',
+    autocomplete: null,
+    //
+    password: '',
+    confirmPassword: '',
+    //
+    startDate: null,
+    endDate: null,
+    //
+    singleUpload: null,
+    multiUpload: [],
+    //
+    singleSelect: '',
+    multiSelect: [],
+    //
+    singleCountry: '',
+    multiCountry: [],
+    //
+    checkbox: false,
+    multiCheckbox: [],
+    //
+    slider: 8,
+    sliderRange: [15, 80],
 };
 
 type Props = {
@@ -91,326 +91,326 @@ type Props = {
 };
 
 export default function ReactHookForm({ debug }: Props) {
-  const password = useBoolean();
+    const password = useBoolean();
 
-  const methods = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
+    const methods = useForm({
+        resolver: yupResolver(FormSchema),
+        defaultValues,
+    });
 
-  const {
-    watch,
-    reset,
-    control,
-    setValue,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+    const {
+        watch,
+        reset,
+        control,
+        setValue,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = methods;
 
-  const values = watch();
+    const values = watch();
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      reset();
-      console.info('DATA', data);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            reset();
+            console.info('DATA', data);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
-  const handleDropSingleFile = useCallback(
-    (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0];
+    const handleDropSingleFile = useCallback(
+        (acceptedFiles: File[]) => {
+            const file = acceptedFiles[0];
 
-      const newFile = Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      });
+            const newFile = Object.assign(file, {
+                preview: URL.createObjectURL(file),
+            });
 
-      if (newFile) {
-        setValue('singleUpload', newFile, { shouldValidate: true });
-      }
-    },
-    [setValue]
-  );
+            if (newFile) {
+                setValue('singleUpload', newFile, { shouldValidate: true });
+            }
+        },
+        [setValue]
+    );
 
-  const handleDropMultiFile = useCallback(
-    (acceptedFiles: File[]) => {
-      const files = values.multiUpload || [];
+    const handleDropMultiFile = useCallback(
+        (acceptedFiles: File[]) => {
+            const files = values.multiUpload || [];
 
-      const newFiles = acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      );
+            const newFiles = acceptedFiles.map((file) =>
+                Object.assign(file, {
+                    preview: URL.createObjectURL(file),
+                })
+            );
 
-      setValue('multiUpload', [...files, ...newFiles], {
-        shouldValidate: true,
-      });
-    },
-    [setValue, values.multiUpload]
-  );
+            setValue('multiUpload', [...files, ...newFiles], {
+                shouldValidate: true,
+            });
+        },
+        [setValue, values.multiUpload]
+    );
 
-  return (
-    <>
-      {isSubmitting && (
-        <Backdrop open sx={{ zIndex: (theme) => theme.zIndex.modal + 1 }}>
-          <CircularProgress color="primary" />
-        </Backdrop>
-      )}
+    return (
+        <>
+            {isSubmitting && (
+                <Backdrop open sx={{ zIndex: (theme) => theme.zIndex.modal + 1 }}>
+                    <CircularProgress color="primary" />
+                </Backdrop>
+            )}
 
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        <Box
-          gap={5}
-          display="grid"
-          gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
-            sm: 'repeat(2, 1fr)',
-          }}
-        >
-          <Stack spacing={2}>
-            <Block>
-              <RHFTextField name="fullName" label="Full Name" />
-            </Block>
-
-            <Block>
-              <RHFTextField name="email" label="Email address" />
-            </Block>
-
-            <Block>
-              <RHFTextField name="age" label="Age" type="number" />
-            </Block>
-
-            <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="startDate"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DatePicker
-                    {...field}
-                    label="Start date"
-                    format="dd/MM/yyyy"
-                    slotProps={{
-                      textField: {
-                        fullWidth: true,
-                        error: !!error,
-                        helperText: error?.message,
-                      },
+            <FormProvider methods={methods} onSubmit={onSubmit}>
+                <Box
+                    gap={5}
+                    display="grid"
+                    gridTemplateColumns={{
+                        xs: 'repeat(1, 1fr)',
+                        sm: 'repeat(2, 1fr)',
                     }}
-                  />
-                )}
-              />
+                >
+                    <Stack spacing={2}>
+                        <Block>
+                            <RHFTextField name="fullName" label="Full Name" />
+                        </Block>
 
-              <Controller
-                name="endDate"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DatePicker
-                    {...field}
-                    label="End date"
-                    format="dd/MM/yyyy"
-                    slotProps={{
-                      textField: {
-                        fullWidth: true,
-                        error: !!error,
-                        helperText: error?.message,
-                      },
-                    }}
-                  />
-                )}
-              />
-            </Stack>
+                        <Block>
+                            <RHFTextField name="email" label="Email address" />
+                        </Block>
 
-            <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Block>
-                <RHFTextField
-                  name="password"
-                  label="Password"
-                  type={password.value ? 'text' : 'password'}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={password.onToggle} edge="end">
-                          <Iconify
-                            icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
-                          />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Block>
+                        <Block>
+                            <RHFTextField name="age" label="Age" type="number" />
+                        </Block>
 
-              <Block>
-                <RHFTextField
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type={password.value ? 'text' : 'password'}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={password.onToggle} edge="end">
-                          <Iconify
-                            icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
-                          />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Block>
-            </Stack>
+                        <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
+                            <Controller
+                                name="startDate"
+                                control={control}
+                                render={({ field, fieldState: { error } }) => (
+                                    <DatePicker
+                                        {...field}
+                                        label="Start date"
+                                        format="dd/MM/yyyy"
+                                        slotProps={{
+                                            textField: {
+                                                fullWidth: true,
+                                                error: !!error,
+                                                helperText: error?.message,
+                                            },
+                                        }}
+                                    />
+                                )}
+                            />
 
-            <Block label="RHFAutocomplete">
-              <RHFAutocomplete
-                name="autocomplete"
-                label="Autocomplete"
-                options={OPTIONS}
-                getOptionLabel={(option: OptionType | string) => (option as OptionType).label}
-                isOptionEqualToValue={(option, value) => option.value === value.value}
-                renderOption={(props, option) => (
-                  <li {...props} key={option.value}>
-                    {option.label}
-                  </li>
-                )}
-              />
-            </Block>
+                            <Controller
+                                name="endDate"
+                                control={control}
+                                render={({ field, fieldState: { error } }) => (
+                                    <DatePicker
+                                        {...field}
+                                        label="End date"
+                                        format="dd/MM/yyyy"
+                                        slotProps={{
+                                            textField: {
+                                                fullWidth: true,
+                                                error: !!error,
+                                                helperText: error?.message,
+                                            },
+                                        }}
+                                    />
+                                )}
+                            />
+                        </Stack>
 
-            <Block label="RHFAutocomplete">
-              <RHFAutocomplete
-                name="singleCountry"
-                type="country"
-                label="Single country"
-                placeholder="Choose a country"
-                fullWidth
-                options={countries.map((option) => option.label)}
-                getOptionLabel={(option) => option}
-              />
-            </Block>
+                        <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
+                            <Block>
+                                <RHFTextField
+                                    name="password"
+                                    label="Password"
+                                    type={password.value ? 'text' : 'password'}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton onClick={password.onToggle} edge="end">
+                                                    <Iconify
+                                                        icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
+                                                    />
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Block>
 
-            <Block label="RHFAutocomplete">
-              <RHFAutocomplete
-                name="multiCountry"
-                type="country"
-                label="Multi country"
-                placeholder="Choose a country"
-                multiple
-                fullWidth
-                limitTags={3}
-                options={countries.map((option) => option.label)}
-                getOptionLabel={(option) => option}
-              />
-            </Block>
+                            <Block>
+                                <RHFTextField
+                                    name="confirmPassword"
+                                    label="Confirm Password"
+                                    type={password.value ? 'text' : 'password'}
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton onClick={password.onToggle} edge="end">
+                                                    <Iconify
+                                                        icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'}
+                                                    />
+                                                </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            </Block>
+                        </Stack>
 
-            <Block label="RHFSelect">
-              <RHFSelect name="singleSelect" label="Single select">
-                <MenuItem value="">None</MenuItem>
-                <Divider sx={{ borderStyle: 'dashed' }} />
-                {OPTIONS.map((option) => (
-                  <MenuItem key={option.value} value={option.label}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </RHFSelect>
-            </Block>
+                        <Block label="RHFAutocomplete">
+                            <RHFAutocomplete
+                                name="autocomplete"
+                                label="Autocomplete"
+                                options={OPTIONS}
+                                getOptionLabel={(option: OptionType | string) => (option as OptionType).label}
+                                isOptionEqualToValue={(option, value) => option.value === value.value}
+                                renderOption={(props, option) => (
+                                    <li {...props} key={option.value}>
+                                        {option.label}
+                                    </li>
+                                )}
+                            />
+                        </Block>
 
-            <Block label="RHFMultiSelect">
-              <RHFMultiSelect
-                chip
-                checkbox
-                name="multiSelect"
-                label="Multi select"
-                options={OPTIONS}
-              />
-            </Block>
+                        <Block label="RHFAutocomplete">
+                            <RHFAutocomplete
+                                name="singleCountry"
+                                type="country"
+                                label="Single country"
+                                placeholder="Choose a country"
+                                fullWidth
+                                options={countries.map((option) => option.label)}
+                                getOptionLabel={(option) => option}
+                            />
+                        </Block>
 
-            <Block label="RHFEditor">
-              <RHFEditor simple name="editor" sx={{ height: 200 }} />
-            </Block>
-          </Stack>
+                        <Block label="RHFAutocomplete">
+                            <RHFAutocomplete
+                                name="multiCountry"
+                                type="country"
+                                label="Multi country"
+                                placeholder="Choose a country"
+                                multiple
+                                fullWidth
+                                limitTags={3}
+                                options={countries.map((option) => option.label)}
+                                getOptionLabel={(option) => option}
+                            />
+                        </Block>
 
-          <Stack spacing={2}>
-            <Block label="RHFUpload">
-              <RHFUpload
-                name="singleUpload"
-                maxSize={3145728}
-                onDrop={handleDropSingleFile}
-                onDelete={() => setValue('singleUpload', null, { shouldValidate: true })}
-              />
-            </Block>
+                        <Block label="RHFSelect">
+                            <RHFSelect name="singleSelect" label="Single select">
+                                <MenuItem value="">None</MenuItem>
+                                <Divider sx={{ borderStyle: 'dashed' }} />
+                                {OPTIONS.map((option) => (
+                                    <MenuItem key={option.value} value={option.label}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </RHFSelect>
+                        </Block>
 
-            <Block label="RHFUpload">
-              <RHFUpload
-                multiple
-                thumbnail
-                name="multiUpload"
-                maxSize={3145728}
-                onDrop={handleDropMultiFile}
-                onRemove={(inputFile) =>
-                  setValue(
-                    'multiUpload',
-                    values.multiUpload && values.multiUpload?.filter((file) => file !== inputFile),
-                    { shouldValidate: true }
-                  )
-                }
-                onRemoveAll={() => setValue('multiUpload', [], { shouldValidate: true })}
-                onUpload={() => console.info('ON UPLOAD')}
-              />
-            </Block>
+                        <Block label="RHFMultiSelect">
+                            <RHFMultiSelect
+                                chip
+                                checkbox
+                                name="multiSelect"
+                                label="Multi select"
+                                options={OPTIONS}
+                            />
+                        </Block>
 
-            <RHFCheckbox name="checkbox" label="RHFCheckbox" />
+                        <Block label="RHFEditor">
+                            <RHFEditor simple name="editor" sx={{ height: 200 }} />
+                        </Block>
+                    </Stack>
 
-            <RHFSwitch name="switch" label="RHFSwitch" />
+                    <Stack spacing={2}>
+                        <Block label="RHFUpload">
+                            <RHFUpload
+                                name="singleUpload"
+                                maxSize={3145728}
+                                onDrop={handleDropSingleFile}
+                                onDelete={() => setValue('singleUpload', null, { shouldValidate: true })}
+                            />
+                        </Block>
 
-            <RHFRadioGroup
-              row
-              name="radioGroup"
-              label="RHFRadioGroup"
-              spacing={4}
-              options={[
-                { value: 'option 1', label: 'Radio 1' },
-                { value: 'option 2', label: 'Radio 2' },
-                { value: 'option 3', label: 'Radio 3' },
-              ]}
-            />
+                        <Block label="RHFUpload">
+                            <RHFUpload
+                                multiple
+                                thumbnail
+                                name="multiUpload"
+                                maxSize={3145728}
+                                onDrop={handleDropMultiFile}
+                                onRemove={(inputFile) =>
+                                    setValue(
+                                        'multiUpload',
+                                        values.multiUpload && values.multiUpload?.filter((file) => file !== inputFile),
+                                        { shouldValidate: true }
+                                    )
+                                }
+                                onRemoveAll={() => setValue('multiUpload', [], { shouldValidate: true })}
+                                onUpload={() => console.info('ON UPLOAD')}
+                            />
+                        </Block>
 
-            <RHFMultiCheckbox
-              row
-              name="multiCheckbox"
-              label="RHFMultiCheckbox"
-              spacing={4}
-              options={[
-                { value: 'option 1', label: 'Checkbox 1' },
-                { value: 'option 2', label: 'Checkbox 2' },
-                { value: 'option 3', label: 'Checkbox 3' },
-              ]}
-            />
+                        <RHFCheckbox name="checkbox" label="RHFCheckbox" />
 
-            <Block label="RHFSlider">
-              <RHFSlider name="slider" />
-            </Block>
+                        <RHFSwitch name="switch" label="RHFSwitch" />
 
-            <Block label="RHFSlider">
-              <RHFSlider name="sliderRange" />
-            </Block>
+                        <RHFRadioGroup
+                            row
+                            name="radioGroup"
+                            label="RHFRadioGroup"
+                            spacing={4}
+                            options={[
+                                { value: 'option 1', label: 'Radio 1' },
+                                { value: 'option 2', label: 'Radio 2' },
+                                { value: 'option 3', label: 'Radio 3' },
+                            ]}
+                        />
 
-            <LoadingButton
-              fullWidth
-              color="info"
-              size="large"
-              type="submit"
-              variant="soft"
-              loading={isSubmitting}
-            >
+                        <RHFMultiCheckbox
+                            row
+                            name="multiCheckbox"
+                            label="RHFMultiCheckbox"
+                            spacing={4}
+                            options={[
+                                { value: 'option 1', label: 'Checkbox 1' },
+                                { value: 'option 2', label: 'Checkbox 2' },
+                                { value: 'option 3', label: 'Checkbox 3' },
+                            ]}
+                        />
+
+                        <Block label="RHFSlider">
+                            <RHFSlider name="slider" />
+                        </Block>
+
+                        <Block label="RHFSlider">
+                            <RHFSlider name="sliderRange" />
+                        </Block>
+
+                        <LoadingButton
+                            fullWidth
+                            color="info"
+                            size="large"
+                            type="submit"
+                            variant="soft"
+                            loading={isSubmitting}
+                        >
               Submit to Check
-            </LoadingButton>
-          </Stack>
-        </Box>
+                        </LoadingButton>
+                    </Stack>
+                </Box>
 
-        {debug && <ValuesPreview />}
-      </FormProvider>
-    </>
-  );
+                {debug && <ValuesPreview />}
+            </FormProvider>
+        </>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -421,19 +421,19 @@ interface BlockProps extends StackProps {
 }
 
 function Block({ label = 'RHFTextField', sx, children }: BlockProps) {
-  return (
-    <Stack spacing={1} sx={{ width: 1, ...sx }}>
-      <Typography
-        variant="caption"
-        sx={{
-          textAlign: 'right',
-          fontStyle: 'italic',
-          color: 'text.disabled',
-        }}
-      >
-        {label}
-      </Typography>
-      {children}
-    </Stack>
-  );
+    return (
+        <Stack spacing={1} sx={{ width: 1, ...sx }}>
+            <Typography
+                variant="caption"
+                sx={{
+                    textAlign: 'right',
+                    fontStyle: 'italic',
+                    color: 'text.disabled',
+                }}
+            >
+                {label}
+            </Typography>
+            {children}
+        </Stack>
+    );
 }

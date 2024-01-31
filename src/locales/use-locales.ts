@@ -12,36 +12,36 @@ import { allLangs, defaultLang } from './config-lang';
 // ----------------------------------------------------------------------
 
 export function useLocales() {
-  const langStorage = localStorageGetItem('i18nextLng');
+    const langStorage = localStorageGetItem('i18nextLng');
 
-  const currentLang = allLangs.find((lang) => lang.value === langStorage) || defaultLang;
+    const currentLang = allLangs.find((lang) => lang.value === langStorage) || defaultLang;
 
-  return {
-    allLangs,
-    currentLang,
-  };
+    return {
+        allLangs,
+        currentLang,
+    };
 }
 
 // ----------------------------------------------------------------------
 
 export function useTranslate() {
-  const { t, i18n, ready } = useTranslation();
+    const { t, i18n, ready } = useTranslation();
 
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const onChangeLang = useCallback(
-    (newlang: string) => {
-      i18n.changeLanguage(newlang);
-      settings.onChangeDirectionByLang(newlang);
-    },
-    [i18n, settings]
-  );
+    const onChangeLang = useCallback(
+        (newlang: string) => {
+            i18n.changeLanguage(newlang);
+            settings.onChangeDirectionByLang(newlang);
+        },
+        [i18n, settings]
+    );
 
-  return {
-    t,
-    translate: t,
-    i18n,
-    ready,
-    onChangeLang,
-  };
+    return {
+        t,
+        translate: t,
+        i18n,
+        ready,
+        onChangeLang,
+    };
 }

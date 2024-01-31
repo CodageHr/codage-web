@@ -15,21 +15,21 @@ import translationHr from './langs/hr.json';
 const lng = localStorageGetItem('i18nextLng', defaultLang.value);
 
 i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      hr: { translations: translationHr },
-      en: { translations: translationEn },
-    },
-    lng,
-    fallbackLng: 'en',
-    debug: false,
-    ns: ['translations'],
-    defaultNS: 'translations',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        resources: {
+            hr: { translations: translationHr },
+            en: { translations: translationEn },
+        },
+        lng,
+        fallbackLng: 'en',
+        debug: false,
+        ns: ['translations'],
+        defaultNS: 'translations',
+        interpolation: {
+            escapeValue: false,
+        },
+    });
 
 export default i18n;

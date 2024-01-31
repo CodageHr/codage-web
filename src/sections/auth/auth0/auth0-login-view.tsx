@@ -15,108 +15,108 @@ import { PATH_AFTER_LOGIN } from 'src/config-global';
 // ----------------------------------------------------------------------
 
 export default function Auth0LoginView() {
-  const { loginWithRedirect, loginWithPopup } = useAuthContext();
+    const { loginWithRedirect, loginWithPopup } = useAuthContext();
 
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
-  const returnTo = searchParams.get('returnTo');
+    const returnTo = searchParams.get('returnTo');
 
-  const handleLoginWithPopup = useCallback(async () => {
-    try {
-      await loginWithPopup?.();
-    } catch (error) {
-      console.error(error);
-    }
-  }, [loginWithPopup]);
+    const handleLoginWithPopup = useCallback(async () => {
+        try {
+            await loginWithPopup?.();
+        } catch (error) {
+            console.error(error);
+        }
+    }, [loginWithPopup]);
 
-  const handleRegisterWithPopup = useCallback(async () => {
-    try {
-      await loginWithPopup?.({
-        authorizationParams: {
-          screen_hint: 'signup',
-        },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [loginWithPopup]);
+    const handleRegisterWithPopup = useCallback(async () => {
+        try {
+            await loginWithPopup?.({
+                authorizationParams: {
+                    screen_hint: 'signup',
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [loginWithPopup]);
 
-  const handleLoginWithRedirect = useCallback(async () => {
-    try {
-      await loginWithRedirect?.({
-        appState: {
-          returnTo: returnTo || PATH_AFTER_LOGIN,
-        },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [loginWithRedirect, returnTo]);
+    const handleLoginWithRedirect = useCallback(async () => {
+        try {
+            await loginWithRedirect?.({
+                appState: {
+                    returnTo: returnTo || PATH_AFTER_LOGIN,
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [loginWithRedirect, returnTo]);
 
-  const handleRegisterWithRedirect = useCallback(async () => {
-    try {
-      await loginWithRedirect?.({
-        appState: {
-          returnTo: returnTo || PATH_AFTER_LOGIN,
-        },
-        authorizationParams: {
-          screen_hint: 'signup',
-        },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [loginWithRedirect, returnTo]);
+    const handleRegisterWithRedirect = useCallback(async () => {
+        try {
+            await loginWithRedirect?.({
+                appState: {
+                    returnTo: returnTo || PATH_AFTER_LOGIN,
+                },
+                authorizationParams: {
+                    screen_hint: 'signup',
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [loginWithRedirect, returnTo]);
 
-  return (
-    <>
-      <Typography variant="h4" sx={{ mb: 5 }}>
+    return (
+        <>
+            <Typography variant="h4" sx={{ mb: 5 }}>
         Sign in to Minimal
-      </Typography>
+            </Typography>
 
-      <Stack spacing={2}>
-        <Button
-          fullWidth
-          color="primary"
-          size="large"
-          variant="contained"
-          onClick={handleLoginWithRedirect}
-        >
+            <Stack spacing={2}>
+                <Button
+                    fullWidth
+                    color="primary"
+                    size="large"
+                    variant="contained"
+                    onClick={handleLoginWithRedirect}
+                >
           Login with Redirect
-        </Button>
+                </Button>
 
-        <Button
-          fullWidth
-          color="primary"
-          size="large"
-          variant="soft"
-          onClick={handleRegisterWithRedirect}
-        >
+                <Button
+                    fullWidth
+                    color="primary"
+                    size="large"
+                    variant="soft"
+                    onClick={handleRegisterWithRedirect}
+                >
           Register with Redirect
-        </Button>
+                </Button>
 
-        <Divider />
+                <Divider />
 
-        <Button
-          fullWidth
-          color="inherit"
-          size="large"
-          variant="contained"
-          onClick={handleLoginWithPopup}
-        >
+                <Button
+                    fullWidth
+                    color="inherit"
+                    size="large"
+                    variant="contained"
+                    onClick={handleLoginWithPopup}
+                >
           Login With Popup
-        </Button>
+                </Button>
 
-        <Button
-          fullWidth
-          color="inherit"
-          size="large"
-          variant="soft"
-          onClick={handleRegisterWithPopup}
-        >
+                <Button
+                    fullWidth
+                    color="inherit"
+                    size="large"
+                    variant="soft"
+                    onClick={handleRegisterWithPopup}
+                >
           Register With Popup
-        </Button>
-      </Stack>
-    </>
-  );
+                </Button>
+            </Stack>
+        </>
+    );
 }

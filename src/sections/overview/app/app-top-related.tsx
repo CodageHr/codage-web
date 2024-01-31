@@ -31,19 +31,19 @@ interface Props extends CardProps {
 }
 
 export default function AppTopRelated({ title, subheader, list, ...other }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} />
 
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, minWidth: 360 }}>
-          {list.map((app) => (
-            <ApplicationItem key={app.id} app={app} />
-          ))}
-        </Stack>
-      </Scrollbar>
-    </Card>
-  );
+            <Scrollbar>
+                <Stack spacing={3} sx={{ p: 3, minWidth: 360 }}>
+                    {list.map((app) => (
+                        <ApplicationItem key={app.id} app={app} />
+                    ))}
+                </Stack>
+            </Scrollbar>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -53,48 +53,48 @@ type ApplicationItemProps = {
 };
 
 function ApplicationItem({ app }: ApplicationItemProps) {
-  const { shortcut, system, price, ratingNumber, totalReviews, name } = app;
+    const { shortcut, system, price, ratingNumber, totalReviews, name } = app;
 
-  return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <Avatar
-        variant="rounded"
-        sx={{
-          width: 48,
-          height: 48,
-          bgcolor: 'background.neutral',
-        }}
-      >
-        <Box component="img" src={shortcut} sx={{ width: 24, height: 24 }} />
-      </Avatar>
+    return (
+        <Stack direction="row" alignItems="center" spacing={2}>
+            <Avatar
+                variant="rounded"
+                sx={{
+                    width: 48,
+                    height: 48,
+                    bgcolor: 'background.neutral',
+                }}
+            >
+                <Box component="img" src={shortcut} sx={{ width: 24, height: 24 }} />
+            </Avatar>
 
-      <Box sx={{ flexGrow: 1, minWidth: 0 }}>
-        <Typography variant="subtitle2" noWrap>
-          {name}
-        </Typography>
+            <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+                <Typography variant="subtitle2" noWrap>
+                    {name}
+                </Typography>
 
-        <Stack direction="row" alignItems="center" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          <Iconify
-            width={14}
-            icon={system === 'Mac' ? 'mingcute:apple-fill' : 'mingcute:windows-fill'}
-          />
+                <Stack direction="row" alignItems="center" sx={{ mt: 0.5, color: 'text.secondary' }}>
+                    <Iconify
+                        width={14}
+                        icon={system === 'Mac' ? 'mingcute:apple-fill' : 'mingcute:windows-fill'}
+                    />
 
-          <Typography variant="caption" sx={{ ml: 0.5, mr: 1 }}>
-            {system}
-          </Typography>
+                    <Typography variant="caption" sx={{ ml: 0.5, mr: 1 }}>
+                        {system}
+                    </Typography>
 
-          <Label color={price === 0 ? 'success' : 'error'}>
-            {price === 0 ? 'Free' : fCurrency(price)}
-          </Label>
+                    <Label color={price === 0 ? 'success' : 'error'}>
+                        {price === 0 ? 'Free' : fCurrency(price)}
+                    </Label>
+                </Stack>
+            </Box>
+
+            <Stack alignItems="flex-end">
+                <Rating readOnly size="small" precision={0.5} name="reviews" value={ratingNumber} />
+                <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
+                    {fShortenNumber(totalReviews)} reviews
+                </Typography>
+            </Stack>
         </Stack>
-      </Box>
-
-      <Stack alignItems="flex-end">
-        <Rating readOnly size="small" precision={0.5} name="reviews" value={ratingNumber} />
-        <Typography variant="caption" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          {fShortenNumber(totalReviews)} reviews
-        </Typography>
-      </Stack>
-    </Stack>
-  );
+    );
 }

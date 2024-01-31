@@ -3,9 +3,9 @@ import { FaqsView } from 'src/sections/faqs/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Faqs',
+    title: 'Faqs',
 };
 
 export default function FaqsPage() {
-  return <FaqsView />;
+    return <FaqsView />;
 }

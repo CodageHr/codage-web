@@ -28,121 +28,121 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export default function AmplifyLoginView() {
-  const { login } = useAuthContext();
+    const { login } = useAuthContext();
 
-  const router = useRouter();
+    const router = useRouter();
 
-  const [errorMsg, setErrorMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
-  const returnTo = searchParams.get('returnTo');
+    const returnTo = searchParams.get('returnTo');
 
-  const password = useBoolean();
+    const password = useBoolean();
 
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string().required('Password is required'),
-  });
+    const LoginSchema = Yup.object().shape({
+        email: Yup.string().required('Email is required').email('Email must be a valid email address'),
+        password: Yup.string().required('Password is required'),
+    });
 
-  const defaultValues = {
-    email: '',
-    password: '',
-  };
+    const defaultValues = {
+        email: '',
+        password: '',
+    };
 
-  const methods = useForm({
-    resolver: yupResolver(LoginSchema),
-    defaultValues,
-  });
+    const methods = useForm({
+        resolver: yupResolver(LoginSchema),
+        defaultValues,
+    });
 
-  const {
-    reset,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+    const {
+        reset,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await login?.(data.email, data.password);
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            await login?.(data.email, data.password);
 
-      router.push(returnTo || PATH_AFTER_LOGIN);
-    } catch (error) {
-      console.error(error);
-      reset();
-      setErrorMsg(typeof error === 'string' ? error : error.message);
-    }
-  });
+            router.push(returnTo || PATH_AFTER_LOGIN);
+        } catch (error) {
+            console.error(error);
+            reset();
+            setErrorMsg(typeof error === 'string' ? error : error.message);
+        }
+    });
 
-  const renderHead = (
-    <Stack spacing={2} sx={{ mb: 5 }}>
-      <Typography variant="h4">Sign in to Minimal</Typography>
+    const renderHead = (
+        <Stack spacing={2} sx={{ mb: 5 }}>
+            <Typography variant="h4">Sign in to Minimal</Typography>
 
-      <Stack direction="row" spacing={0.5}>
-        <Typography variant="body2">New user?</Typography>
+            <Stack direction="row" spacing={0.5}>
+                <Typography variant="body2">New user?</Typography>
 
-        <Link component={RouterLink} href={paths.auth.amplify.register} variant="subtitle2">
+                <Link component={RouterLink} href={paths.auth.amplify.register} variant="subtitle2">
           Create an account
-        </Link>
-      </Stack>
-    </Stack>
-  );
+                </Link>
+            </Stack>
+        </Stack>
+    );
 
-  const renderForm = (
-    <Stack spacing={2.5}>
-      <RHFTextField name="email" label="Email address" />
+    const renderForm = (
+        <Stack spacing={2.5}>
+            <RHFTextField name="email" label="Email address" />
 
-      <RHFTextField
-        name="password"
-        label="Password"
-        type={password.value ? 'text' : 'password'}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton onClick={password.onToggle} edge="end">
-                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+            <RHFTextField
+                name="password"
+                label="Password"
+                type={password.value ? 'text' : 'password'}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton onClick={password.onToggle} edge="end">
+                                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+            />
 
-      <Link
-        component={RouterLink}
-        href={paths.auth.amplify.forgotPassword}
-        variant="body2"
-        color="inherit"
-        underline="always"
-        sx={{ alignSelf: 'flex-end' }}
-      >
+            <Link
+                component={RouterLink}
+                href={paths.auth.amplify.forgotPassword}
+                variant="body2"
+                color="inherit"
+                underline="always"
+                sx={{ alignSelf: 'flex-end' }}
+            >
         Forgot password?
-      </Link>
+            </Link>
 
-      <LoadingButton
-        fullWidth
-        color="inherit"
-        size="large"
-        type="submit"
-        variant="contained"
-        loading={isSubmitting}
-      >
+            <LoadingButton
+                fullWidth
+                color="inherit"
+                size="large"
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+            >
         Login
-      </LoadingButton>
-    </Stack>
-  );
+            </LoadingButton>
+        </Stack>
+    );
 
-  return (
-    <>
-      {renderHead}
+    return (
+        <>
+            {renderHead}
 
-      {!!errorMsg && (
-        <Alert severity="error" sx={{ mb: 3 }}>
-          {errorMsg}
-        </Alert>
-      )}
+            {!!errorMsg && (
+                <Alert severity="error" sx={{ mb: 3 }}>
+                    {errorMsg}
+                </Alert>
+            )}
 
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        {renderForm}
-      </FormProvider>
-    </>
-  );
+            <FormProvider methods={methods} onSubmit={onSubmit}>
+                {renderForm}
+            </FormProvider>
+        </>
+    );
 }

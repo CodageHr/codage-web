@@ -20,52 +20,52 @@ import GroupingFixedHeaderTable from './grouping-fixed-header-table';
 // ----------------------------------------------------------------------
 
 export default function TableView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Table"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Table' },
-          ]}
-          moreLink={['https://mui.com/components/tables']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Table"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Table' },
+                    ]}
+                    moreLink={['https://mui.com/components/tables']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={3}>
-          <ComponentBlock>
-            <Card sx={{ width: 1 }}>
-              <CardHeader title="Basic Table" />
-              <BasicTable />
-            </Card>
-          </ComponentBlock>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={3}>
+                    <ComponentBlock>
+                        <Card sx={{ width: 1 }}>
+                            <CardHeader title="Basic Table" />
+                            <BasicTable />
+                        </Card>
+                    </ComponentBlock>
 
-          <ComponentBlock>
-            <Card sx={{ width: 1 }}>
-              <SortingSelectingTable />
-            </Card>
-          </ComponentBlock>
+                    <ComponentBlock>
+                        <Card sx={{ width: 1 }}>
+                            <SortingSelectingTable />
+                        </Card>
+                    </ComponentBlock>
 
-          <ComponentBlock>
-            <Card sx={{ width: 1 }}>
-              <CardHeader title="Grouping & FixedHeader" />
-              <GroupingFixedHeaderTable />
-            </Card>
-          </ComponentBlock>
+                    <ComponentBlock>
+                        <Card sx={{ width: 1 }}>
+                            <CardHeader title="Grouping & FixedHeader" />
+                            <GroupingFixedHeaderTable />
+                        </Card>
+                    </ComponentBlock>
 
-          <ComponentBlock>
-            <Card sx={{ width: 1 }}>
-              <CardHeader title="Collapsible Table" />
-              <CollapsibleTable />
-            </Card>
-          </ComponentBlock>
-        </Stack>
-      </Container>
-    </>
-  );
+                    <ComponentBlock>
+                        <Card sx={{ width: 1 }}>
+                            <CardHeader title="Collapsible Table" />
+                            <CollapsibleTable />
+                        </Card>
+                    </ComponentBlock>
+                </Stack>
+            </Container>
+        </>
+    );
 }

@@ -20,123 +20,123 @@ type Props = {
 };
 
 export default function ButtonVariant({ variant = 'text' }: Props) {
-  return (
-    <Masonry
-      columns={2}
-      spacing={3}
-      sx={{
-        [`& .${buttonClasses.root}`]: {
-          textTransform: 'capitalize',
-        },
-      }}
-    >
-      <ComponentBlock title="Base" spacing={1}>
-        <Button variant={variant} color="inherit">
+    return (
+        <Masonry
+            columns={2}
+            spacing={3}
+            sx={{
+                [`& .${buttonClasses.root}`]: {
+                    textTransform: 'capitalize',
+                },
+            }}
+        >
+            <ComponentBlock title="Base" spacing={1}>
+                <Button variant={variant} color="inherit">
           Default
-        </Button>
+                </Button>
 
-        <Button variant={variant} color="primary">
+                <Button variant={variant} color="primary">
           Primary
-        </Button>
+                </Button>
 
-        <Button variant={variant} color="secondary">
+                <Button variant={variant} color="secondary">
           Secondary
-        </Button>
+                </Button>
 
-        <Button variant={variant} disabled>
+                <Button variant={variant} disabled>
           Disabled
-        </Button>
+                </Button>
 
-        <Button variant={variant}>Link</Button>
-      </ComponentBlock>
+                <Button variant={variant}>Link</Button>
+            </ComponentBlock>
 
-      <ComponentBlock title="Colors" spacing={1}>
-        {COLORS.map((color) => (
-          <Button key={color} variant={variant} color={color}>
-            {color === 'inherit' ? 'default' : color}
-          </Button>
-        ))}
-      </ComponentBlock>
+            <ComponentBlock title="Colors" spacing={1}>
+                {COLORS.map((color) => (
+                    <Button key={color} variant={variant} color={color}>
+                        {color === 'inherit' ? 'default' : color}
+                    </Button>
+                ))}
+            </ComponentBlock>
 
-      <ComponentBlock title="With Icon & Loading" spacing={1}>
-        <Button
-          variant={variant}
-          color="error"
-          startIcon={<Iconify icon="ic:round-access-alarm" />}
-        >
+            <ComponentBlock title="With Icon & Loading" spacing={1}>
+                <Button
+                    variant={variant}
+                    color="error"
+                    startIcon={<Iconify icon="ic:round-access-alarm" />}
+                >
           Icon Left
-        </Button>
+                </Button>
 
-        <Button variant={variant} color="error" endIcon={<Iconify icon="ic:round-access-alarm" />}>
+                <Button variant={variant} color="error" endIcon={<Iconify icon="ic:round-access-alarm" />}>
           Icon Right
-        </Button>
+                </Button>
 
-        <LoadingButton loading variant={variant}>
+                <LoadingButton loading variant={variant}>
           Submit
-        </LoadingButton>
+                </LoadingButton>
 
-        <LoadingButton loading loadingIndicator="Loading..." variant={variant}>
+                <LoadingButton loading loadingIndicator="Loading..." variant={variant}>
           Fetch data
-        </LoadingButton>
+                </LoadingButton>
 
-        <LoadingButton
-          loading
-          size="large"
-          loadingPosition="start"
-          startIcon={<Iconify icon="ic:round-access-alarm" />}
-          variant={variant}
-        >
+                <LoadingButton
+                    loading
+                    size="large"
+                    loadingPosition="start"
+                    startIcon={<Iconify icon="ic:round-access-alarm" />}
+                    variant={variant}
+                >
           Start
-        </LoadingButton>
+                </LoadingButton>
 
-        <LoadingButton
-          loading
-          size="large"
-          loadingPosition="end"
-          endIcon={<Iconify icon="ic:round-access-alarm" />}
-          variant={variant}
-        >
+                <LoadingButton
+                    loading
+                    size="large"
+                    loadingPosition="end"
+                    endIcon={<Iconify icon="ic:round-access-alarm" />}
+                    variant={variant}
+                >
           End
-        </LoadingButton>
-      </ComponentBlock>
+                </LoadingButton>
+            </ComponentBlock>
 
-      <ComponentBlock title="Sizes" spacing={1}>
-        {SIZES.map((size) => (
-          <Button key={size} variant={variant} color="info" size={size}>
-            {size}
-          </Button>
-        ))}
+            <ComponentBlock title="Sizes" spacing={1}>
+                {SIZES.map((size) => (
+                    <Button key={size} variant={variant} color="info" size={size}>
+                        {size}
+                    </Button>
+                ))}
 
-        <Box sx={{ width: 1, height: 16 }} />
+                <Box sx={{ width: 1, height: 16 }} />
 
-        {SIZES.map((size) => (
-          <LoadingButton
-            key={size}
-            loading
-            size={size}
-            loadingPosition="start"
-            startIcon={<Iconify icon="ic:round-access-alarm" />}
-            variant={variant}
-          >
-            {size}
-          </LoadingButton>
-        ))}
+                {SIZES.map((size) => (
+                    <LoadingButton
+                        key={size}
+                        loading
+                        size={size}
+                        loadingPosition="start"
+                        startIcon={<Iconify icon="ic:round-access-alarm" />}
+                        variant={variant}
+                    >
+                        {size}
+                    </LoadingButton>
+                ))}
 
-        <Box sx={{ width: 1, height: 16 }} />
+                <Box sx={{ width: 1, height: 16 }} />
 
-        {SIZES.map((size) => (
-          <LoadingButton
-            key={size}
-            loading
-            size={size}
-            loadingPosition="end"
-            endIcon={<Iconify icon="ic:round-access-alarm" />}
-            variant={variant}
-          >
-            {size}
-          </LoadingButton>
-        ))}
-      </ComponentBlock>
-    </Masonry>
-  );
+                {SIZES.map((size) => (
+                    <LoadingButton
+                        key={size}
+                        loading
+                        size={size}
+                        loadingPosition="end"
+                        endIcon={<Iconify icon="ic:round-access-alarm" />}
+                        variant={variant}
+                    >
+                        {size}
+                    </LoadingButton>
+                ))}
+            </ComponentBlock>
+        </Masonry>
+    );
 }

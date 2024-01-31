@@ -20,57 +20,57 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 const Transition = forwardRef(
-  (
-    props: TransitionProps & {
+    (
+        props: TransitionProps & {
       children: React.ReactElement;
     },
-    ref: React.Ref<unknown>
-  ) => <Slide direction="up" ref={ref} {...props} />
+        ref: React.Ref<unknown>
+    ) => <Slide direction="up" ref={ref} {...props} />
 );
 
 export default function FullScreenDialog() {
-  const dialog = useBoolean();
+    const dialog = useBoolean();
 
-  return (
-    <>
-      <Button variant="outlined" color="error" onClick={dialog.onTrue}>
+    return (
+        <>
+            <Button variant="outlined" color="error" onClick={dialog.onTrue}>
         Full Screen Dialogs
-      </Button>
-
-      <Dialog
-        fullScreen
-        open={dialog.value}
-        onClose={dialog.onFalse}
-        TransitionComponent={Transition}
-      >
-        <AppBar position="relative" color="default">
-          <Toolbar>
-            <IconButton color="inherit" edge="start" onClick={dialog.onFalse}>
-              <Iconify icon="mingcute:close-line" />
-            </IconButton>
-
-            <Typography variant="h6" sx={{ flex: 1, ml: 2 }}>
-              Sound
-            </Typography>
-
-            <Button autoFocus color="inherit" variant="contained" onClick={dialog.onFalse}>
-              Save
             </Button>
-          </Toolbar>
-        </AppBar>
 
-        <List>
-          <ListItemButton>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItemButton>
+            <Dialog
+                fullScreen
+                open={dialog.value}
+                onClose={dialog.onFalse}
+                TransitionComponent={Transition}
+            >
+                <AppBar position="relative" color="default">
+                    <Toolbar>
+                        <IconButton color="inherit" edge="start" onClick={dialog.onFalse}>
+                            <Iconify icon="mingcute:close-line" />
+                        </IconButton>
 
-          <Divider />
+                        <Typography variant="h6" sx={{ flex: 1, ml: 2 }}>
+              Sound
+                        </Typography>
 
-          <ListItemButton>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItemButton>
-        </List>
-      </Dialog>
-    </>
-  );
+                        <Button autoFocus color="inherit" variant="contained" onClick={dialog.onFalse}>
+              Save
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+
+                <List>
+                    <ListItemButton>
+                        <ListItemText primary="Phone ringtone" secondary="Titania" />
+                    </ListItemButton>
+
+                    <Divider />
+
+                    <ListItemButton>
+                        <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+                    </ListItemButton>
+                </List>
+            </Dialog>
+        </>
+    );
 }

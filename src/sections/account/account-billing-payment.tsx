@@ -19,42 +19,42 @@ type Props = {
 };
 
 export default function AccountBillingPayment({ cards }: Props) {
-  const newCard = useBoolean();
+    const newCard = useBoolean();
 
-  return (
-    <>
-      <Card sx={{ my: 3 }}>
-        <CardHeader
-          title="Payment Method"
-          action={
-            <Button
-              size="small"
-              color="primary"
-              startIcon={<Iconify icon="mingcute:add-line" />}
-              onClick={newCard.onTrue}
-            >
+    return (
+        <>
+            <Card sx={{ my: 3 }}>
+                <CardHeader
+                    title="Payment Method"
+                    action={
+                        <Button
+                            size="small"
+                            color="primary"
+                            startIcon={<Iconify icon="mingcute:add-line" />}
+                            onClick={newCard.onTrue}
+                        >
               New Card
-            </Button>
-          }
-        />
+                        </Button>
+                    }
+                />
 
-        <Box
-          rowGap={2.5}
-          columnGap={2}
-          display="grid"
-          gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
-            md: 'repeat(2, 1fr)',
-          }}
-          sx={{ p: 3 }}
-        >
-          {cards.map((card) => (
-            <PaymentCardItem key={card.id} card={card} />
-          ))}
-        </Box>
-      </Card>
+                <Box
+                    rowGap={2.5}
+                    columnGap={2}
+                    display="grid"
+                    gridTemplateColumns={{
+                        xs: 'repeat(1, 1fr)',
+                        md: 'repeat(2, 1fr)',
+                    }}
+                    sx={{ p: 3 }}
+                >
+                    {cards.map((card) => (
+                        <PaymentCardItem key={card.id} card={card} />
+                    ))}
+                </Box>
+            </Card>
 
-      <PaymentNewCardDialog open={newCard.value} onClose={newCard.onFalse} />
-    </>
-  );
+            <PaymentNewCardDialog open={newCard.value} onClose={newCard.onFalse} />
+        </>
+    );
 }

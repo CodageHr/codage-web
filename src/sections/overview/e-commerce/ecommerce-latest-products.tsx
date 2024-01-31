@@ -29,19 +29,19 @@ interface Props extends CardProps {
 }
 
 export default function EcommerceLatestProducts({ title, subheader, list, ...other }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} />
 
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, minWidth: 360 }}>
-          {list.map((product) => (
-            <ProductItem key={product.id} product={product} />
-          ))}
-        </Stack>
-      </Scrollbar>
-    </Card>
-  );
+            <Scrollbar>
+                <Stack spacing={3} sx={{ p: 3, minWidth: 360 }}>
+                    {list.map((product) => (
+                        <ProductItem key={product.id} product={product} />
+                    ))}
+                </Stack>
+            </Scrollbar>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -51,41 +51,41 @@ type ProductItemProps = {
 };
 
 function ProductItem({ product }: ProductItemProps) {
-  const { name, coverUrl, price, priceSale } = product;
+    const { name, coverUrl, price, priceSale } = product;
 
-  return (
-    <Stack direction="row" spacing={2}>
-      <Avatar
-        variant="rounded"
-        alt={name}
-        src={coverUrl}
-        sx={{ width: 48, height: 48, flexShrink: 0 }}
-      />
+    return (
+        <Stack direction="row" spacing={2}>
+            <Avatar
+                variant="rounded"
+                alt={name}
+                src={coverUrl}
+                sx={{ width: 48, height: 48, flexShrink: 0 }}
+            />
 
-      <ListItemText
-        primary={<Link sx={{ color: 'text.primary', typography: 'subtitle2' }}>{name}</Link>}
-        secondary={
-          <>
-            {!!priceSale && (
-              <Box component="span" sx={{ textDecoration: 'line-through', mr: 0.5 }}>
-                {fCurrency(priceSale)}
-              </Box>
-            )}
+            <ListItemText
+                primary={<Link sx={{ color: 'text.primary', typography: 'subtitle2' }}>{name}</Link>}
+                secondary={
+                    <>
+                        {!!priceSale && (
+                            <Box component="span" sx={{ textDecoration: 'line-through', mr: 0.5 }}>
+                                {fCurrency(priceSale)}
+                            </Box>
+                        )}
 
-            <Box component="span" sx={{ color: priceSale ? 'error.main' : 'text.secondary' }}>
-              {fCurrency(price)}
-            </Box>
-          </>
-        }
-        primaryTypographyProps={{
-          noWrap: true,
-        }}
-        secondaryTypographyProps={{
-          mt: 0.5,
-        }}
-      />
+                        <Box component="span" sx={{ color: priceSale ? 'error.main' : 'text.secondary' }}>
+                            {fCurrency(price)}
+                        </Box>
+                    </>
+                }
+                primaryTypographyProps={{
+                    noWrap: true,
+                }}
+                secondaryTypographyProps={{
+                    mt: 0.5,
+                }}
+            />
 
-      <ColorPreview limit={3} colors={product.colors} />
-    </Stack>
-  );
+            <ColorPreview limit={3} colors={product.colors} />
+        </Stack>
+    );
 }

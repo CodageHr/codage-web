@@ -22,54 +22,54 @@ import BackgroundView from './background';
 // ----------------------------------------------------------------------
 
 const TABS = [
-  { value: 'inview', label: 'In View', component: <Inview /> },
-  { value: 'scroll', label: 'Scroll', component: <ScrollView /> },
-  { value: 'dialog', label: 'Dialog', component: <DialogView /> },
-  { value: 'background', label: 'Background', component: <BackgroundView /> },
-  { value: 'other', label: 'Other', component: <OtherView /> },
+    { value: 'inview', label: 'In View', component: <Inview /> },
+    { value: 'scroll', label: 'Scroll', component: <ScrollView /> },
+    { value: 'dialog', label: 'Dialog', component: <DialogView /> },
+    { value: 'background', label: 'Background', component: <BackgroundView /> },
+    { value: 'other', label: 'Other', component: <OtherView /> },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function AnimateView() {
-  const [currentTab, setCurrentTab] = useState('inview');
+    const [currentTab, setCurrentTab] = useState('inview');
 
-  const handleChangeTab = useCallback((event: React.SyntheticEvent, newValue: string) => {
-    setCurrentTab(newValue);
-  }, []);
+    const handleChangeTab = useCallback((event: React.SyntheticEvent, newValue: string) => {
+        setCurrentTab(newValue);
+    }, []);
 
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Animate"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Animate' },
-          ]}
-          moreLink={['https://www.framer.com/api/motion']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Animate"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Animate' },
+                    ]}
+                    moreLink={['https://www.framer.com/api/motion']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Tabs value={currentTab} onChange={handleChangeTab}>
-          {TABS.map((tab) => (
-            <Tab key={tab.value} value={tab.value} label={tab.label} />
-          ))}
-        </Tabs>
+            <Container sx={{ my: 10 }}>
+                <Tabs value={currentTab} onChange={handleChangeTab}>
+                    {TABS.map((tab) => (
+                        <Tab key={tab.value} value={tab.value} label={tab.label} />
+                    ))}
+                </Tabs>
 
-        {TABS.map(
-          (tab) =>
-            tab.value === currentTab && (
-              <Box key={tab.value} sx={{ mt: 5 }}>
-                {tab.component}
-              </Box>
-            )
-        )}
-      </Container>
-    </>
-  );
+                {TABS.map(
+                    (tab) =>
+                        tab.value === currentTab && (
+                            <Box key={tab.value} sx={{ mt: 5 }}>
+                                {tab.component}
+                            </Box>
+                        )
+                )}
+            </Container>
+        </>
+    );
 }

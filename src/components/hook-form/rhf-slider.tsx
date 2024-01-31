@@ -11,21 +11,21 @@ type Props = SliderProps & {
 };
 
 export default function RHFSlider({ name, helperText, ...other }: Props) {
-  const { control } = useFormContext();
+    const { control } = useFormContext();
 
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState: { error } }) => (
-        <>
-          <Slider {...field} valueLabelDisplay="auto" {...other} />
+    return (
+        <Controller
+            name={name}
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+                <>
+                    <Slider {...field} valueLabelDisplay="auto" {...other} />
 
-          {(!!error || helperText) && (
-            <FormHelperText error={!!error}>{error ? error?.message : helperText}</FormHelperText>
-          )}
-        </>
-      )}
-    />
-  );
+                    {(!!error || helperText) && (
+                        <FormHelperText error={!!error}>{error ? error?.message : helperText}</FormHelperText>
+                    )}
+                </>
+            )}
+        />
+    );
 }

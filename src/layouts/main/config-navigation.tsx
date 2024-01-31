@@ -8,23 +8,18 @@ import Iconify from 'src/components/iconify';
 
 export const navConfig = (translate:TFunction) => [
     {
-      title: translate('home'),
-      icon: <Iconify icon="material-symbols:home-rounded" />,
-      path: paths.home,
+        title: translate('home'),
+        icon: <Iconify icon="material-symbols:home-rounded" />,
+        path: paths.home,
     },
     {
-      title: translate('services'),
-      icon: <Iconify icon="map:physiotherapist" />,
-      path: paths.services,
+        title: translate('services'),
+        icon: <Iconify icon="map:physiotherapist" />,
+        path: paths.services,
     },
     {
-      title: translate('aboutUs'),
-      icon: <Iconify icon="mingcute:user-info-fill" />,
-      path: paths.about,
-    },
-    {
-      title: translate('contact'),
-      icon: <Iconify icon="material-symbols:contact-support-outline-rounded" />,
-      path: paths.contact,
+        title: translate('aboutUs'),
+        icon: <Iconify icon="mingcute:user-info-fill" />,
+        path: paths.about,
     }
-  ]
+]

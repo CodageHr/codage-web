@@ -12,24 +12,24 @@ type Props = {
 };
 
 export default function MapControl({
-  hideScaleControl,
-  hideGeolocateControl,
-  hideFullscreenControl,
-  hideNavigationnControl,
+    hideScaleControl,
+    hideGeolocateControl,
+    hideFullscreenControl,
+    hideNavigationnControl,
 }: Props) {
-  return (
-    <>
-      <StyledMapControls />
+    return (
+        <>
+            <StyledMapControls />
 
-      {!hideGeolocateControl && (
-        <GeolocateControl position="top-left" positionOptions={{ enableHighAccuracy: true }} />
-      )}
+            {!hideGeolocateControl && (
+                <GeolocateControl position="top-left" positionOptions={{ enableHighAccuracy: true }} />
+            )}
 
-      {!hideFullscreenControl && <FullscreenControl position="top-left" />}
+            {!hideFullscreenControl && <FullscreenControl position="top-left" />}
 
-      {!hideScaleControl && <ScaleControl position="bottom-left" />}
+            {!hideScaleControl && <ScaleControl position="bottom-left" />}
 
-      {!hideNavigationnControl && <NavigationControl position="bottom-left" />}
-    </>
-  );
+            {!hideNavigationnControl && <NavigationControl position="bottom-left" />}
+        </>
+    );
 }

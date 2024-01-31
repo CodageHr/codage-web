@@ -10,18 +10,18 @@ type ToolbarProps = {
 };
 
 export default function Toolbar({ onRefresh, ...other }: ToolbarProps) {
-  return (
-    <Paper
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-      }}
-      {...other}
-    >
-      <IconButton onClick={onRefresh}>
-        <Iconify icon="eva:refresh-fill" />
-      </IconButton>
-    </Paper>
-  );
+    return (
+        <Paper
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+            }}
+            {...other}
+        >
+            <IconButton onClick={onRefresh}>
+                <Iconify icon="eva:refresh-fill" />
+            </IconButton>
+        </Paper>
+    );
 }

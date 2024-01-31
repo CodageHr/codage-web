@@ -29,127 +29,127 @@ type Props = {
 };
 
 export default function ProductTableToolbar({
-  filters,
-  onFilters,
-  //
-  stockOptions,
-  publishOptions,
+    filters,
+    onFilters,
+    //
+    stockOptions,
+    publishOptions,
 }: Props) {
-  const popover = usePopover();
+    const popover = usePopover();
 
-  const [stock, setStock] = useState<string[]>(filters.stock);
+    const [stock, setStock] = useState<string[]>(filters.stock);
 
-  const [publish, setPublish] = useState<string[]>(filters.publish);
+    const [publish, setPublish] = useState<string[]>(filters.publish);
 
-  const handleChangeStock = useCallback((event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setStock(typeof value === 'string' ? value.split(',') : value);
-  }, []);
+    const handleChangeStock = useCallback((event: SelectChangeEvent<string[]>) => {
+        const {
+            target: { value },
+        } = event;
+        setStock(typeof value === 'string' ? value.split(',') : value);
+    }, []);
 
-  const handleChangePublish = useCallback((event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setPublish(typeof value === 'string' ? value.split(',') : value);
-  }, []);
+    const handleChangePublish = useCallback((event: SelectChangeEvent<string[]>) => {
+        const {
+            target: { value },
+        } = event;
+        setPublish(typeof value === 'string' ? value.split(',') : value);
+    }, []);
 
-  const handleCloseStock = useCallback(() => {
-    onFilters('stock', stock);
-  }, [onFilters, stock]);
+    const handleCloseStock = useCallback(() => {
+        onFilters('stock', stock);
+    }, [onFilters, stock]);
 
-  const handleClosePublish = useCallback(() => {
-    onFilters('publish', publish);
-  }, [onFilters, publish]);
+    const handleClosePublish = useCallback(() => {
+        onFilters('publish', publish);
+    }, [onFilters, publish]);
 
-  return (
-    <>
-      <FormControl
-        sx={{
-          flexShrink: 0,
-          width: { xs: 1, md: 200 },
-        }}
-      >
-        <InputLabel>Stock</InputLabel>
+    return (
+        <>
+            <FormControl
+                sx={{
+                    flexShrink: 0,
+                    width: { xs: 1, md: 200 },
+                }}
+            >
+                <InputLabel>Stock</InputLabel>
 
-        <Select
-          multiple
-          value={stock}
-          onChange={handleChangeStock}
-          input={<OutlinedInput label="Stock" />}
-          renderValue={(selected) => selected.map((value) => value).join(', ')}
-          onClose={handleCloseStock}
-          sx={{ textTransform: 'capitalize' }}
-        >
-          {stockOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              <Checkbox disableRipple size="small" checked={stock.includes(option.value)} />
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+                <Select
+                    multiple
+                    value={stock}
+                    onChange={handleChangeStock}
+                    input={<OutlinedInput label="Stock" />}
+                    renderValue={(selected) => selected.map((value) => value).join(', ')}
+                    onClose={handleCloseStock}
+                    sx={{ textTransform: 'capitalize' }}
+                >
+                    {stockOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            <Checkbox disableRipple size="small" checked={stock.includes(option.value)} />
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
-      <FormControl
-        sx={{
-          flexShrink: 0,
-          width: { xs: 1, md: 200 },
-        }}
-      >
-        <InputLabel>Publish</InputLabel>
+            <FormControl
+                sx={{
+                    flexShrink: 0,
+                    width: { xs: 1, md: 200 },
+                }}
+            >
+                <InputLabel>Publish</InputLabel>
 
-        <Select
-          multiple
-          value={publish}
-          onChange={handleChangePublish}
-          input={<OutlinedInput label="Publish" />}
-          renderValue={(selected) => selected.map((value) => value).join(', ')}
-          onClose={handleClosePublish}
-          sx={{ textTransform: 'capitalize' }}
-        >
-          {publishOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              <Checkbox disableRipple size="small" checked={publish.includes(option.value)} />
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+                <Select
+                    multiple
+                    value={publish}
+                    onChange={handleChangePublish}
+                    input={<OutlinedInput label="Publish" />}
+                    renderValue={(selected) => selected.map((value) => value).join(', ')}
+                    onClose={handleClosePublish}
+                    sx={{ textTransform: 'capitalize' }}
+                >
+                    {publishOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            <Checkbox disableRipple size="small" checked={publish.includes(option.value)} />
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="right-top"
-        sx={{ width: 140 }}
-      >
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:printer-minimalistic-bold" />
+            <CustomPopover
+                open={popover.open}
+                onClose={popover.onClose}
+                arrow="right-top"
+                sx={{ width: 140 }}
+            >
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                    }}
+                >
+                    <Iconify icon="solar:printer-minimalistic-bold" />
           Print
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:import-bold" />
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                    }}
+                >
+                    <Iconify icon="solar:import-bold" />
           Import
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:export-bold" />
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                    }}
+                >
+                    <Iconify icon="solar:export-bold" />
           Export
-        </MenuItem>
-      </CustomPopover>
-    </>
-  );
+                </MenuItem>
+            </CustomPopover>
+        </>
+    );
 }

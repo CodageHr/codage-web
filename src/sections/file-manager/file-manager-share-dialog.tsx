@@ -27,70 +27,70 @@ type Props = DialogProps & {
 };
 
 export default function FileManagerShareDialog({
-  shared,
-  inviteEmail,
-  onCopyLink,
-  onChangeInvite,
-  //
-  open,
-  onClose,
-  ...other
+    shared,
+    inviteEmail,
+    onCopyLink,
+    onChangeInvite,
+    //
+    open,
+    onClose,
+    ...other
 }: Props) {
-  const hasShared = shared && !!shared.length;
+    const hasShared = shared && !!shared.length;
 
-  return (
-    <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose} {...other}>
-      <DialogTitle> Invite </DialogTitle>
+    return (
+        <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose} {...other}>
+            <DialogTitle> Invite </DialogTitle>
 
-      <DialogContent sx={{ overflow: 'unset' }}>
-        {onChangeInvite && (
-          <TextField
-            fullWidth
-            value={inviteEmail}
-            placeholder="Email"
-            onChange={onChangeInvite}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Button
-                    color="inherit"
-                    variant="contained"
-                    disabled={!inviteEmail}
-                    sx={{ mr: -0.75 }}
-                  >
+            <DialogContent sx={{ overflow: 'unset' }}>
+                {onChangeInvite && (
+                    <TextField
+                        fullWidth
+                        value={inviteEmail}
+                        placeholder="Email"
+                        onChange={onChangeInvite}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <Button
+                                        color="inherit"
+                                        variant="contained"
+                                        disabled={!inviteEmail}
+                                        sx={{ mr: -0.75 }}
+                                    >
                     Send Invite
-                  </Button>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ mb: 2 }}
-          />
-        )}
+                                    </Button>
+                                </InputAdornment>
+                            ),
+                        }}
+                        sx={{ mb: 2 }}
+                    />
+                )}
 
-        {hasShared && (
-          <Scrollbar sx={{ maxHeight: 60 * 6 }}>
-            <List disablePadding>
-              {shared.map((person) => (
-                <FileManagerInvitedItem key={person.id} person={person} />
-              ))}
-            </List>
-          </Scrollbar>
-        )}
-      </DialogContent>
+                {hasShared && (
+                    <Scrollbar sx={{ maxHeight: 60 * 6 }}>
+                        <List disablePadding>
+                            {shared.map((person) => (
+                                <FileManagerInvitedItem key={person.id} person={person} />
+                            ))}
+                        </List>
+                    </Scrollbar>
+                )}
+            </DialogContent>
 
-      <DialogActions sx={{ justifyContent: 'space-between' }}>
-        {onCopyLink && (
-          <Button startIcon={<Iconify icon="eva:link-2-fill" />} onClick={onCopyLink}>
+            <DialogActions sx={{ justifyContent: 'space-between' }}>
+                {onCopyLink && (
+                    <Button startIcon={<Iconify icon="eva:link-2-fill" />} onClick={onCopyLink}>
             Copy link
-          </Button>
-        )}
+                    </Button>
+                )}
 
-        {onClose && (
-          <Button variant="outlined" color="inherit" onClick={onClose}>
+                {onClose && (
+                    <Button variant="outlined" color="inherit" onClick={onClose}>
             Close
-          </Button>
-        )}
-      </DialogActions>
-    </Dialog>
-  );
+                    </Button>
+                )}
+            </DialogActions>
+        </Dialog>
+    );
 }

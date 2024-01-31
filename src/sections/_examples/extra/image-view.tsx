@@ -21,71 +21,71 @@ import ComponentHero from 'src/sections/_examples/component-hero';
 const RATIO = ['4/3', '3/4', '6/4', '4/6', '16/9', '9/16', '21/9', '9/21', '1/1'] as const;
 
 const IMAGES = RATIO.map((ratio, index) => ({
-  ratio,
-  url: _mock.image.cover(index + 1),
+    ratio,
+    url: _mock.image.cover(index + 1),
 }));
 
 export default function ImageView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Image"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Image' },
-          ]}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Image"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Image' },
+                    ]}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={5}>
-          <Card>
-            <CardHeader title="List" />
-            <Box
-              gap={3}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(2, 1fr)',
-                sm: 'repeat(3, 1fr)',
-                md: 'repeat(4, 1fr)',
-              }}
-              sx={{ p: 3 }}
-            >
-              {IMAGES.map((img) => (
-                <Image key={img.ratio} alt={img.ratio} src={img.url} sx={{ borderRadius: 2 }} />
-              ))}
-            </Box>
-          </Card>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={5}>
+                    <Card>
+                        <CardHeader title="List" />
+                        <Box
+                            gap={3}
+                            display="grid"
+                            gridTemplateColumns={{
+                                xs: 'repeat(2, 1fr)',
+                                sm: 'repeat(3, 1fr)',
+                                md: 'repeat(4, 1fr)',
+                            }}
+                            sx={{ p: 3 }}
+                        >
+                            {IMAGES.map((img) => (
+                                <Image key={img.ratio} alt={img.ratio} src={img.url} sx={{ borderRadius: 2 }} />
+                            ))}
+                        </Box>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Aspect Ratio" />
-            <Box
-              gap={3}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(2, 1fr)',
-                sm: 'repeat(3, 1fr)',
-                md: 'repeat(4, 1fr)',
-              }}
-              sx={{ p: 3 }}
-            >
-              {IMAGES.map((img) => (
-                <Stack key={img.ratio} spacing={1}>
-                  <Typography variant="overline" sx={{ color: 'text.secondary' }}>
-                    {img.ratio}
-                  </Typography>
+                    <Card>
+                        <CardHeader title="Aspect Ratio" />
+                        <Box
+                            gap={3}
+                            display="grid"
+                            gridTemplateColumns={{
+                                xs: 'repeat(2, 1fr)',
+                                sm: 'repeat(3, 1fr)',
+                                md: 'repeat(4, 1fr)',
+                            }}
+                            sx={{ p: 3 }}
+                        >
+                            {IMAGES.map((img) => (
+                                <Stack key={img.ratio} spacing={1}>
+                                    <Typography variant="overline" sx={{ color: 'text.secondary' }}>
+                                        {img.ratio}
+                                    </Typography>
 
-                  <Image alt={img.ratio} src={img.url} ratio={img.ratio} sx={{ borderRadius: 2 }} />
+                                    <Image alt={img.ratio} src={img.url} ratio={img.ratio} sx={{ borderRadius: 2 }} />
+                                </Stack>
+                            ))}
+                        </Box>
+                    </Card>
                 </Stack>
-              ))}
-            </Box>
-          </Card>
-        </Stack>
-      </Container>
-    </>
-  );
+            </Container>
+        </>
+    );
 }

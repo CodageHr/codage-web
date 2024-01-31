@@ -8,13 +8,13 @@ import { NavProps } from '../types';
 // ----------------------------------------------------------------------
 
 function NavBasicMobile({ data, slotProps, ...other }: NavProps) {
-  return (
-    <Stack component="nav" id="nav-basic-mobile" {...other}>
-      {data.map((list) => (
-        <NavList key={list.title} data={list} depth={1} slotProps={slotProps} />
-      ))}
-    </Stack>
-  );
+    return (
+        <Stack component="nav" id="nav-basic-mobile" {...other}>
+            {data.map((list) => (
+                <NavList key={list.title} data={list} depth={1} slotProps={slotProps} />
+            ))}
+        </Stack>
+    );
 }
 
 export default memo(NavBasicMobile);

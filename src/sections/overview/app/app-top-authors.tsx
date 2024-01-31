@@ -28,17 +28,17 @@ interface Props extends CardProps {
 }
 
 export default function AppTopAuthors({ title, subheader, list, ...other }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} />
 
-      <Stack spacing={3} sx={{ p: 3 }}>
-        {orderBy(list, ['totalFavorites'], ['desc']).map((author, index) => (
-          <AuthorItem key={author.id} author={author} index={index} />
-        ))}
-      </Stack>
-    </Card>
-  );
+            <Stack spacing={3} sx={{ p: 3 }}>
+                {orderBy(list, ['totalFavorites'], ['desc']).map((author, index) => (
+                    <AuthorItem key={author.id} author={author} index={index} />
+                ))}
+            </Stack>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -49,46 +49,46 @@ type AuthorItemProps = {
 };
 
 function AuthorItem({ author, index }: AuthorItemProps) {
-  return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <Avatar alt={author.name} src={author.avatarUrl} />
+    return (
+        <Stack direction="row" alignItems="center" spacing={2}>
+            <Avatar alt={author.name} src={author.avatarUrl} />
 
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="subtitle2">{author.name}</Typography>
+            <Box sx={{ flexGrow: 1 }}>
+                <Typography variant="subtitle2">{author.name}</Typography>
 
-        <Typography
-          variant="caption"
-          sx={{
-            mt: 0.5,
-            display: 'flex',
-            alignItems: 'center',
-            color: 'text.secondary',
-          }}
-        >
-          <Iconify icon="solar:heart-bold" width={14} sx={{ mr: 0.5 }} />
-          {fShortenNumber(author.totalFavorites)}
-        </Typography>
-      </Box>
+                <Typography
+                    variant="caption"
+                    sx={{
+                        mt: 0.5,
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'text.secondary',
+                    }}
+                >
+                    <Iconify icon="solar:heart-bold" width={14} sx={{ mr: 0.5 }} />
+                    {fShortenNumber(author.totalFavorites)}
+                </Typography>
+            </Box>
 
-      <Iconify
-        icon="solar:cup-star-bold"
-        sx={{
-          p: 1,
-          width: 40,
-          height: 40,
-          borderRadius: '50%',
-          color: 'primary.main',
-          bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
-          ...(index === 1 && {
-            color: 'info.main',
-            bgcolor: (theme) => alpha(theme.palette.info.main, 0.08),
-          }),
-          ...(index === 2 && {
-            color: 'error.main',
-            bgcolor: (theme) => alpha(theme.palette.error.main, 0.08),
-          }),
-        }}
-      />
-    </Stack>
-  );
+            <Iconify
+                icon="solar:cup-star-bold"
+                sx={{
+                    p: 1,
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    color: 'primary.main',
+                    bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
+                    ...(index === 1 && {
+                        color: 'info.main',
+                        bgcolor: (theme) => alpha(theme.palette.info.main, 0.08),
+                    }),
+                    ...(index === 2 && {
+                        color: 'error.main',
+                        bgcolor: (theme) => alpha(theme.palette.error.main, 0.08),
+                    }),
+                }}
+            />
+        </Stack>
+    );
 }

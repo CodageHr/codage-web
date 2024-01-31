@@ -18,31 +18,31 @@ type Props = {
 };
 
 export default function TourEditView({ id }: Props) {
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const currentTour = _tours.find((tour) => tour.id === id);
+    const currentTour = _tours.find((tour) => tour.id === id);
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          {
-            name: 'Dashboard',
-            href: paths.dashboard.root,
-          },
-          {
-            name: 'Tour',
-            href: paths.dashboard.tour.root,
-          },
-          { name: currentTour?.name },
-        ]}
-        sx={{
-          mb: { xs: 3, md: 5 },
-        }}
-      />
+    return (
+        <Container maxWidth={settings.themeStretch ? false : 'lg'}>
+            <CustomBreadcrumbs
+                heading="Edit"
+                links={[
+                    {
+                        name: 'Dashboard',
+                        href: paths.dashboard.root,
+                    },
+                    {
+                        name: 'Tour',
+                        href: paths.dashboard.tour.root,
+                    },
+                    { name: currentTour?.name },
+                ]}
+                sx={{
+                    mb: { xs: 3, md: 5 },
+                }}
+            />
 
-      <TourNewEditForm currentTour={currentTour} />
-    </Container>
-  );
+            <TourNewEditForm currentTour={currentTour} />
+        </Container>
+    );
 }

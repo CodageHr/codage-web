@@ -12,11 +12,11 @@ type Props = {
 };
 
 export default function LocalizationProvider({ children }: Props) {
-  const { currentLang } = useLocales();
+    const { currentLang } = useLocales();
 
-  return (
-    <MuiLocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentLang.adapterLocale}>
-      {children}
-    </MuiLocalizationProvider>
-  );
+    return (
+        <MuiLocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={currentLang.adapterLocale}>
+            {children}
+        </MuiLocalizationProvider>
+    );
 }

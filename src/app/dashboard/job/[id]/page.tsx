@@ -5,7 +5,7 @@ import { JobDetailsView } from 'src/sections/job/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Job Details',
+    title: 'Dashboard: Job Details',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function JobDetailsPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <JobDetailsView id={id} />;
+    return <JobDetailsView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _jobs.map((job) => ({
-    id: job.id,
-  }));
+    return _jobs.map((job) => ({
+        id: job.id,
+    }));
 }

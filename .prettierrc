@@ -2,5 +2,22 @@
   "printWidth": 100,
   "singleQuote": true,
   "trailingComma": "es5",
-  "tabWidth": 4
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "options": {
+        "tabWidth": 2,
+        "overrides": [
+          {
+            "files": ["*.js"],
+            "options": {
+              "tabWidth": 4,
+              "singleQuote": true
+            }
+          }
+        ]
+      }
+    }
+  ]
 }

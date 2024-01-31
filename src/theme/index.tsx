@@ -29,56 +29,56 @@ type Props = {
 };
 
 export default function ThemeProvider({ children }: Props) {
-  const { currentLang } = useLocales();
+    const { currentLang } = useLocales();
 
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const presets = createPresets(settings.themeColorPresets);
+    const presets = createPresets(settings.themeColorPresets);
 
-  const contrast = createContrast(settings.themeContrast, settings.themeMode);
+    const contrast = createContrast(settings.themeContrast, settings.themeMode);
 
-  const memoizedValue = useMemo(
-    () => ({
-      palette: {
-        ...palette(settings.themeMode),
-        ...presets.palette,
-        ...contrast.palette,
-      },
-      customShadows: {
-        ...customShadows(settings.themeMode),
-        ...presets.customShadows,
-      },
-      direction: settings.themeDirection,
-      shadows: shadows(settings.themeMode),
-      shape: { borderRadius: 8 },
-      typography,
-    }),
-    [
-      settings.themeMode,
-      settings.themeDirection,
-      presets.palette,
-      presets.customShadows,
-      contrast.palette,
-    ]
-  );
+    const memoizedValue = useMemo(
+        () => ({
+            palette: {
+                ...palette(settings.themeMode),
+                ...presets.palette,
+                ...contrast.palette,
+            },
+            customShadows: {
+                ...customShadows(settings.themeMode),
+                ...presets.customShadows,
+            },
+            direction: settings.themeDirection,
+            shadows: shadows(settings.themeMode),
+            shape: { borderRadius: 8 },
+            typography,
+        }),
+        [
+            settings.themeMode,
+            settings.themeDirection,
+            presets.palette,
+            presets.customShadows,
+            contrast.palette,
+        ]
+    );
 
-  const theme = createTheme(memoizedValue as ThemeOptions);
+    const theme = createTheme(memoizedValue as ThemeOptions);
 
-  theme.components = merge(componentsOverrides(theme), contrast.components);
+    theme.components = merge(componentsOverrides(theme), contrast.components);
 
-  const themeWithLocale = useMemo(
-    () => createTheme(theme, currentLang.systemValue),
-    [currentLang.systemValue, theme]
-  );
+    const themeWithLocale = useMemo(
+        () => createTheme(theme, currentLang.systemValue),
+        [currentLang.systemValue, theme]
+    );
 
-  return (
-    <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-      <MuiThemeProvider theme={themeWithLocale}>
-        <RTL themeDirection={settings.themeDirection}>
-          <CssBaseline />
-          {children}
-        </RTL>
-      </MuiThemeProvider>
-    </NextAppDirEmotionCacheProvider>
-  );
+    return (
+        <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
+            <MuiThemeProvider theme={themeWithLocale}>
+                <RTL themeDirection={settings.themeDirection}>
+                    <CssBaseline />
+                    {children}
+                </RTL>
+            </MuiThemeProvider>
+        </NextAppDirEmotionCacheProvider>
+    );
 }

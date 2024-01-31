@@ -5,7 +5,7 @@ import { UserEditView } from 'src/sections/user/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: User Edit',
+    title: 'Dashboard: User Edit',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function UserEditPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <UserEditView id={id} />;
+    return <UserEditView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _userList.map((user) => ({
-    id: user.id,
-  }));
+    return _userList.map((user) => ({
+        id: user.id,
+    }));
 }

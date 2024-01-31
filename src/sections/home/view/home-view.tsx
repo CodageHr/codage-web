@@ -13,58 +13,35 @@ import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
 import HomeHowItWorks from '../home-how-it-works';
 import HomeAdvertisement from '../home-advertisement';
-import HomeHugePackElements from '../home-hugepack-elements';
+import HomeTestimonals from '../home-testimonials';
 
 // ----------------------------------------------------------------------
-
-type StyledPolygonProps = {
-  anchor?: 'top' | 'bottom';
-};
-
-const StyledPolygon = styled('div')<StyledPolygonProps>(({ anchor = 'top', theme }) => ({
-  left: 0,
-  zIndex: 9,
-  height: 80,
-  width: '100%',
-  position: 'absolute',
-  clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
-  backgroundColor: theme.palette.background.default,
-  display: 'block',
-  lineHeight: 0,
-  ...(anchor === 'top' && {
-    top: -1,
-    transform: 'scale(-1, -1)',
-  }),
-  ...(anchor === 'bottom' && {
-    bottom: -1,
-    backgroundColor: theme.palette.grey[900],
-  }),
-}));
 
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
-  const { scrollYProgress } = useScroll();
+    const { scrollYProgress } = useScroll();
 
-  return (
-    <MainLayout>
-      <ScrollProgress scrollYProgress={scrollYProgress} />
+    return (
+        <MainLayout>
+            <ScrollProgress scrollYProgress={scrollYProgress} />
 
-      <HomeHero />
+            <HomeHero />
 
-      <Box
-        sx={{
-          overflow: 'hidden',
-          position: 'relative',
-          bgcolor: 'background.default',
-        }}
-      >
-        <HomeMinimal />
-        <HomeHowItWorks />
-        <HomeAdvertisement />
+            <Box
+                sx={{
+                    overflow: 'hidden',
+                    position: 'relative',
+                    bgcolor: 'background.default',
+                }}
+            >
+                <HomeMinimal />
+                <HomeHowItWorks />
+                <HomeTestimonals />
+                <HomeAdvertisement />
 
 
-        {/* <HomeDarkMode />
+                {/* <HomeDarkMode />
 
         <HomeColorPresets />
 
@@ -75,7 +52,7 @@ export default function HomeView() {
         <HomeLookingFor />
 
         <HomeAdvertisement /> */ }
-      </Box>
-    </MainLayout>
-  );
+            </Box>
+        </MainLayout>
+    );
 }

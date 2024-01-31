@@ -7,13 +7,13 @@ export { default as RejectionFiles } from './errors-rejection-files';
 export { default as SingleFilePreview } from './preview-single-file';
 
 export const Upload = dynamic(() => import('./upload'), {
-  ssr: false,
+    ssr: false,
 });
 
 export const UploadBox = dynamic(() => import('./upload-box'), {
-  ssr: false,
+    ssr: false,
 });
 
 export const UploadAvatar = dynamic(() => import('./upload-avatar'), {
-  ssr: false,
+    ssr: false,
 });

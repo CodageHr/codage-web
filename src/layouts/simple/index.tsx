@@ -7,11 +7,11 @@ type Props = {
 };
 
 export default function SimpleLayout({ children }: Props) {
-  return (
-    <>
-      <Header />
+    return (
+        <>
+            <Header />
 
-      {children}
-    </>
-  );
+            {children}
+        </>
+    );
 }

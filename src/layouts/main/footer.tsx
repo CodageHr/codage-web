@@ -21,101 +21,101 @@ import WorkingHoursSchedule from '@components/working-hours-schedule';
 // ----------------------------------------------------------------------
 
 const LINKS = (translate: TFunction) => ([
-  {
-    headline: translate('appMenu'),
-    children: [
-      { name: translate('newHome'), href: paths.home, icon:undefined },
-      { name: translate('services'), href: paths.services, icon:undefined },
-      { name: translate('aboutUs'), href: paths.about, icon:undefined },
-      { name: translate('contact'), href: paths.contact, icon:undefined },
-    ],
-  },
-  {
-    headline: translate('contact'),
-    children: [
-      { name: 'kontakt@codage.hr', href: 'mailto:kontakt@codage.hr', icon: 'fa6-solid:envelope' },
-      { name: '+385 98 403 330', href: 'tel:+38598403330', icon: 'ic:round-phone' }
-    ]
-  },
+    {
+        headline: translate('appMenu'),
+        children: [
+            { name: translate('newHome'), href: paths.home, icon:undefined },
+            { name: translate('services'), href: paths.services, icon:undefined },
+            { name: translate('aboutUs'), href: paths.about, icon:undefined },
+            { name: translate('contact'), href: paths.contact, icon:undefined },
+        ],
+    },
+    {
+        headline: translate('contact'),
+        children: [
+            { name: 'kontakt@codage.hr', href: 'mailto:kontakt@codage.hr', icon: 'fa6-solid:envelope' },
+            { name: '+385 98 403 330', href: 'tel:+38598403330', icon: 'ic:round-phone' }
+        ]
+    },
 ]);
 
 // ----------------------------------------------------------------------
 
 export default function Footer() {
 
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  const { translate } = useTranslate();
+    const { translate } = useTranslate();
 
-  const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
 
-  const homePage = pathname === '/';
+    const homePage = pathname === '/';
 
-  const simpleFooter = (
-    <Box
-      component="footer"
-      sx={{
-        py: 5,
-        textAlign: 'center',
-        position: 'relative',
-        bgcolor: 'background.default',
-      }}
-    >
-      <Container>
-        <Grid container alignItems={'center'}  spacing={2}>
-          <Grid >
-            <Logo />
-          </Grid>
+    const simpleFooter = (
+        <Box
+            component="footer"
+            sx={{
+                py: 5,
+                textAlign: 'center',
+                position: 'relative',
+                bgcolor: 'background.default',
+            }}
+        >
+            <Container>
+                <Grid container alignItems={'center'}  spacing={2}>
+                    <Grid >
+                        <Logo />
+                    </Grid>
 
-        </Grid>
+                </Grid>
 
-        <Typography variant="caption" component="div">
+                <Typography variant="caption" component="div">
           © {currentYear}. {translate('allRightsReserved')} by Codage d.o.o.
-        </Typography>
-      </Container>
-    </Box>
-  );
+                </Typography>
+            </Container>
+        </Box>
+    );
 
-  const mainFooter = (
-    <Box
-      component="footer"
-      sx={{
-        position: 'relative',
-        bgcolor: 'background.default',
-      }}
-    >
-      <Divider />
-
-      <Container
-        sx={{
-          pt: 10,
-          pb: 5,
-          textAlign: { xs: 'center', md: 'unset' },
-        }}
-      >
-        <Grid
-          container
-          alignItems={'center'}
-          justifyContent={{
-            xs: 'center',
-            md:'flex-start'
-          }}
-          spacing={2}
+    const mainFooter = (
+        <Box
+            component="footer"
+            sx={{
+                position: 'relative',
+                bgcolor: 'background.default',
+            }}
         >
-          <Grid >
-            <Logo />
-          </Grid>
+            <Divider />
 
-        </Grid>
+            <Container
+                sx={{
+                    pt: 10,
+                    pb: 5,
+                    textAlign: { xs: 'center', md: 'unset' },
+                }}
+            >
+                <Grid
+                    container
+                    alignItems={'center'}
+                    justifyContent={{
+                        xs: 'center',
+                        md:'flex-start'
+                    }}
+                    spacing={2}
+                >
+                    <Grid >
+                        <Logo />
+                    </Grid>
 
-        <Grid
-          container
-          justifyContent={{
-            xs: 'center',
-            md: 'space-between',
-          }}
-        >
-          {/* <Grid xs={8} md={3} mt={4}>
+                </Grid>
+
+                <Grid
+                    container
+                    justifyContent={{
+                        xs: 'center',
+                        md: 'space-between',
+                    }}
+                >
+                    {/* <Grid xs={8} md={3} mt={4}>
             <Stack>
               <Typography variant={'subtitle1'}>{translate('socialNetworks')}</Typography>
               <Stack
@@ -146,54 +146,54 @@ export default function Footer() {
             </Stack>
 
           </Grid> */}
-          <Grid xs={8} md={3} mt={4}>
-            <WorkingHoursSchedule />
-          </Grid>
+                    <Grid xs={8} md={3} mt={4}>
+                        <WorkingHoursSchedule />
+                    </Grid>
 
-          <Grid xs={12} md={6}>
-            <Stack spacing={5} direction={{ xs: 'column', md: 'row' }}>
-              {LINKS(translate).map((list) => (
-                <Stack
-                  key={list.headline}
-                  spacing={2}
-                  alignItems={{ xs: 'center', md: 'flex-start' }}
-                  sx={{ width: 1 }}
-                >
-                  <Typography component="div" variant="overline">
-                    {list.headline}
-                  </Typography>
+                    <Grid xs={12} md={6}>
+                        <Stack spacing={5} direction={{ xs: 'column', md: 'row' }}>
+                            {LINKS(translate).map((list) => (
+                                <Stack
+                                    key={list.headline}
+                                    spacing={2}
+                                    alignItems={{ xs: 'center', md: 'flex-start' }}
+                                    sx={{ width: 1 }}
+                                >
+                                    <Typography component="div" variant="overline">
+                                        {list.headline}
+                                    </Typography>
 
-                  {list.children.map((link) => (
-                    <Link
-                      key={link.name}
-                      component={RouterLink}
-                      href={link.href}
-                      color="inherit"
-                      variant="body2"
-                      sx={{
-                        display: 'flex',
-                        columnGap: 2,
-                        alignItems: 'center'
-                      }}
+                                    {list.children.map((link) => (
+                                        <Link
+                                            key={link.name}
+                                            component={RouterLink}
+                                            href={link.href}
+                                            color="inherit"
+                                            variant="body2"
+                                            sx={{
+                                                display: 'flex',
+                                                columnGap: 2,
+                                                alignItems: 'center'
+                                            }}
 
-                    >
-                      {link.icon && <Iconify width={'1rem'} icon={link?.icon} sx={{ color:'primary.main' }}  />}
-                      {link.name}
-                    </Link>
-                  ))}
-                </Stack>
-              ))}
-            </Stack>
-          </Grid>
-        </Grid>
+                                        >
+                                            {link.icon && <Iconify width={'1rem'} icon={link?.icon} sx={{ color:'primary.main' }}  />}
+                                            {link.name}
+                                        </Link>
+                                    ))}
+                                </Stack>
+                            ))}
+                        </Stack>
+                    </Grid>
+                </Grid>
 
-        <Typography variant="body2" sx={{ mt: 10 }}>
+                <Typography variant="body2" sx={{ mt: 10 }}>
           © {currentYear}. {translate('allRightsReserved')}
-        </Typography>
-      </Container>
-    </Box>
-  );
+                </Typography>
+            </Container>
+        </Box>
+    );
 
-  return homePage ? simpleFooter : mainFooter;
+    return homePage ? simpleFooter : mainFooter;
 
 }

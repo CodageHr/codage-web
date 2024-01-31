@@ -11,18 +11,18 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 const StepConnector = styled(MuiStepConnector)(({ theme }) => ({
-  top: 10,
-  left: 'calc(-50% + 20px)',
-  right: 'calc(50% + 20px)',
-  [`& .${stepConnectorClasses.line}`]: {
-    borderTopWidth: 2,
-    borderColor: theme.palette.divider,
-  },
-  [`&.${stepConnectorClasses.active}, &.${stepConnectorClasses.completed}`]: {
+    top: 10,
+    left: 'calc(-50% + 20px)',
+    right: 'calc(50% + 20px)',
     [`& .${stepConnectorClasses.line}`]: {
-      borderColor: theme.palette.primary.main,
+        borderTopWidth: 2,
+        borderColor: theme.palette.divider,
     },
-  },
+    [`&.${stepConnectorClasses.active}, &.${stepConnectorClasses.completed}`]: {
+        [`& .${stepConnectorClasses.line}`]: {
+            borderColor: theme.palette.primary.main,
+        },
+    },
 }));
 
 // ----------------------------------------------------------------------
@@ -33,33 +33,33 @@ interface Props extends StepperProps {
 }
 
 export default function CheckoutSteps({ steps, activeStep, sx, ...other }: Props) {
-  return (
-    <Stepper
-      alternativeLabel
-      activeStep={activeStep}
-      connector={<StepConnector />}
-      sx={{
-        mb: { xs: 3, md: 5 },
-        ...sx,
-      }}
-      {...other}
-    >
-      {steps.map((label) => (
-        <Step key={label}>
-          <StepLabel
-            StepIconComponent={StepIcon}
+    return (
+        <Stepper
+            alternativeLabel
+            activeStep={activeStep}
+            connector={<StepConnector />}
             sx={{
-              [`& .${stepLabelClasses.label}`]: {
-                fontWeight: 'fontWeightSemiBold',
-              },
+                mb: { xs: 3, md: 5 },
+                ...sx,
             }}
-          >
-            {label}
-          </StepLabel>
-        </Step>
-      ))}
-    </Stepper>
-  );
+            {...other}
+        >
+            {steps.map((label) => (
+                <Step key={label}>
+                    <StepLabel
+                        StepIconComponent={StepIcon}
+                        sx={{
+                            [`& .${stepLabelClasses.label}`]: {
+                                fontWeight: 'fontWeightSemiBold',
+                            },
+                        }}
+                    >
+                        {label}
+                    </StepLabel>
+                </Step>
+            ))}
+        </Stepper>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -70,31 +70,31 @@ type StepIconProps = {
 };
 
 function StepIcon({ active, completed }: StepIconProps) {
-  return (
-    <Stack
-      alignItems="center"
-      justifyContent="center"
-      sx={{
-        width: 24,
-        height: 24,
-        color: 'text.disabled',
-        ...(active && {
-          color: 'primary.main',
-        }),
-      }}
-    >
-      {completed ? (
-        <Iconify icon="eva:checkmark-fill" sx={{ color: 'primary.main' }} />
-      ) : (
-        <Box
-          sx={{
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            backgroundColor: 'currentColor',
-          }}
-        />
-      )}
-    </Stack>
-  );
+    return (
+        <Stack
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+                width: 24,
+                height: 24,
+                color: 'text.disabled',
+                ...(active && {
+                    color: 'primary.main',
+                }),
+            }}
+        >
+            {completed ? (
+                <Iconify icon="eva:checkmark-fill" sx={{ color: 'primary.main' }} />
+            ) : (
+                <Box
+                    sx={{
+                        width: 8,
+                        height: 8,
+                        borderRadius: '50%',
+                        backgroundColor: 'currentColor',
+                    }}
+                />
+            )}
+        </Stack>
+    );
 }

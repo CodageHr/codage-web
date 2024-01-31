@@ -24,63 +24,63 @@ type Props = {
 };
 
 export default function TourDetailsView({ id }: Props) {
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const currentTour = _tours.filter((tour) => tour.id === id)[0];
+    const currentTour = _tours.filter((tour) => tour.id === id)[0];
 
-  const [publish, setPublish] = useState(currentTour?.publish);
+    const [publish, setPublish] = useState(currentTour?.publish);
 
-  const [currentTab, setCurrentTab] = useState('content');
+    const [currentTab, setCurrentTab] = useState('content');
 
-  const handleChangeTab = useCallback((event: React.SyntheticEvent, newValue: string) => {
-    setCurrentTab(newValue);
-  }, []);
+    const handleChangeTab = useCallback((event: React.SyntheticEvent, newValue: string) => {
+        setCurrentTab(newValue);
+    }, []);
 
-  const handleChangePublish = useCallback((newValue: string) => {
-    setPublish(newValue);
-  }, []);
+    const handleChangePublish = useCallback((newValue: string) => {
+        setPublish(newValue);
+    }, []);
 
-  const renderTabs = (
-    <Tabs
-      value={currentTab}
-      onChange={handleChangeTab}
-      sx={{
-        mb: { xs: 3, md: 5 },
-      }}
-    >
-      {TOUR_DETAILS_TABS.map((tab) => (
-        <Tab
-          key={tab.value}
-          iconPosition="end"
-          value={tab.value}
-          label={tab.label}
-          icon={
-            tab.value === 'bookers' ? (
-              <Label variant="filled">{currentTour?.bookers.length}</Label>
-            ) : (
-              ''
-            )
-          }
-        />
-      ))}
-    </Tabs>
-  );
+    const renderTabs = (
+        <Tabs
+            value={currentTab}
+            onChange={handleChangeTab}
+            sx={{
+                mb: { xs: 3, md: 5 },
+            }}
+        >
+            {TOUR_DETAILS_TABS.map((tab) => (
+                <Tab
+                    key={tab.value}
+                    iconPosition="end"
+                    value={tab.value}
+                    label={tab.label}
+                    icon={
+                        tab.value === 'bookers' ? (
+                            <Label variant="filled">{currentTour?.bookers.length}</Label>
+                        ) : (
+                            ''
+                        )
+                    }
+                />
+            ))}
+        </Tabs>
+    );
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <TourDetailsToolbar
-        backLink={paths.dashboard.tour.root}
-        editLink={paths.dashboard.tour.edit(`${currentTour?.id}`)}
-        liveLink="#"
-        publish={publish || ''}
-        onChangePublish={handleChangePublish}
-        publishOptions={TOUR_PUBLISH_OPTIONS}
-      />
-      {renderTabs}
+    return (
+        <Container maxWidth={settings.themeStretch ? false : 'lg'}>
+            <TourDetailsToolbar
+                backLink={paths.dashboard.tour.root}
+                editLink={paths.dashboard.tour.edit(`${currentTour?.id}`)}
+                liveLink="#"
+                publish={publish || ''}
+                onChangePublish={handleChangePublish}
+                publishOptions={TOUR_PUBLISH_OPTIONS}
+            />
+            {renderTabs}
 
-      {currentTab === 'content' && <TourDetailsContent tour={currentTour} />}
+            {currentTab === 'content' && <TourDetailsContent tour={currentTour} />}
 
-      {currentTab === 'bookers' && <TourDetailsBookers bookers={currentTour?.bookers} />}
-    </Container>
-  );
+            {currentTab === 'bookers' && <TourDetailsBookers bookers={currentTour?.bookers} />}
+        </Container>
+    );
 }

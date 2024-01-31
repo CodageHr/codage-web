@@ -36,34 +36,34 @@ export function useEventListener<
   KH extends keyof HTMLElementEventMap,
   T extends HTMLElement | void = void,
 >(
-  eventName: KW | KH,
-  handler: (event: WindowEventMap[KW] | HTMLElementEventMap[KH] | Event) => void,
-  element?: RefObject<T>,
-  options?: boolean | AddEventListenerOptions
+    eventName: KW | KH,
+    handler: (event: WindowEventMap[KW] | HTMLElementEventMap[KH] | Event) => void,
+    element?: RefObject<T>,
+    options?: boolean | AddEventListenerOptions
 ) {
-  // Create a ref that stores handler
-  const savedHandler = useRef(handler);
+    // Create a ref that stores handler
+    const savedHandler = useRef(handler);
 
-  useIsomorphicLayoutEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
+    useIsomorphicLayoutEffect(() => {
+        savedHandler.current = handler;
+    }, [handler]);
 
-  useEffect(() => {
+    useEffect(() => {
     // Define the listening target
-    const targetElement: T | Window = element?.current || window;
-    if (!(targetElement && targetElement.addEventListener)) {
-      return;
-    }
+        const targetElement: T | Window = element?.current || window;
+        if (!(targetElement && targetElement.addEventListener)) {
+            return;
+        }
 
-    // Create event listener that calls handler function stored in ref
-    const eventListener: typeof handler = (event) => savedHandler.current(event);
+        // Create event listener that calls handler function stored in ref
+        const eventListener: typeof handler = (event) => savedHandler.current(event);
 
-    targetElement.addEventListener(eventName, eventListener, options);
+        targetElement.addEventListener(eventName, eventListener, options);
 
-    // Remove event listener on cleanup
-    // eslint-disable-next-line consistent-return
-    return () => {
-      targetElement.removeEventListener(eventName, eventListener);
-    };
-  }, [eventName, element, options]);
+        // Remove event listener on cleanup
+        // eslint-disable-next-line consistent-return
+        return () => {
+            targetElement.removeEventListener(eventName, eventListener);
+        };
+    }, [eventName, element, options]);
 }

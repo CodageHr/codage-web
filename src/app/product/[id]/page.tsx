@@ -5,7 +5,7 @@ import { ProductShopDetailsView } from 'src/sections/product/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Product: Details',
+    title: 'Product: Details',
 };
 
 type Props = {
@@ -15,15 +15,15 @@ type Props = {
 };
 
 export default function ProductShopDetailsPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <ProductShopDetailsView id={id} />;
+    return <ProductShopDetailsView id={id} />;
 }
 
 export async function generateStaticParams() {
-  const res = await axios.get(endpoints.product.list);
+    const res = await axios.get(endpoints.product.list);
 
-  return res.data.products.map((product: { id: string }) => ({
-    id: product.id,
-  }));
+    return res.data.products.map((product: { id: string }) => ({
+        id: product.id,
+    }));
 }

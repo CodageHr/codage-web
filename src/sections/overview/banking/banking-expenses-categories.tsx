@@ -27,96 +27,96 @@ interface Props extends CardProps {
 }
 
 export default function BankingExpensesCategories({ title, subheader, chart, ...other }: Props) {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const smUp = useResponsive('up', 'sm');
+    const smUp = useResponsive('up', 'sm');
 
-  const { colors, series, options } = chart;
+    const { colors, series, options } = chart;
 
-  const chartSeries = series.map((i) => i.value);
+    const chartSeries = series.map((i) => i.value);
 
-  const chartOptions = useChart({
-    colors,
-    labels: series.map((i) => i.label),
-    stroke: {
-      colors: [theme.palette.background.paper],
-    },
-    fill: {
-      opacity: 0.8,
-    },
-    legend: {
-      position: 'right',
-      itemMargin: {
-        horizontal: 10,
-        vertical: 7,
-      },
-    },
-    tooltip: {
-      fillSeriesColor: false,
-    },
-    responsive: [
-      {
-        breakpoint: theme.breakpoints.values.sm,
-        options: {
-          legend: {
-            position: 'bottom',
-            horizontalAlign: 'left',
-          },
+    const chartOptions = useChart({
+        colors,
+        labels: series.map((i) => i.label),
+        stroke: {
+            colors: [theme.palette.background.paper],
         },
-      },
-    ],
-    ...options,
-  });
+        fill: {
+            opacity: 0.8,
+        },
+        legend: {
+            position: 'right',
+            itemMargin: {
+                horizontal: 10,
+                vertical: 7,
+            },
+        },
+        tooltip: {
+            fillSeriesColor: false,
+        },
+        responsive: [
+            {
+                breakpoint: theme.breakpoints.values.sm,
+                options: {
+                    legend: {
+                        position: 'bottom',
+                        horizontalAlign: 'left',
+                    },
+                },
+            },
+        ],
+        ...options,
+    });
 
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} />
 
-      <Box
-        sx={{
-          my: 5,
-          '& .apexcharts-legend': {
-            m: 'auto',
-            height: { sm: 160 },
-            flexWrap: { sm: 'wrap' },
-            width: { xs: 240, sm: '50%' },
-          },
-          '& .apexcharts-datalabels-group': {
-            display: 'none',
-          },
-        }}
-      >
-        <Chart
-          dir="ltr"
-          type="polarArea"
-          series={chartSeries}
-          options={chartOptions}
-          width="100%"
-          height={smUp ? 240 : 360}
-        />
-      </Box>
+            <Box
+                sx={{
+                    my: 5,
+                    '& .apexcharts-legend': {
+                        m: 'auto',
+                        height: { sm: 160 },
+                        flexWrap: { sm: 'wrap' },
+                        width: { xs: 240, sm: '50%' },
+                    },
+                    '& .apexcharts-datalabels-group': {
+                        display: 'none',
+                    },
+                }}
+            >
+                <Chart
+                    dir="ltr"
+                    type="polarArea"
+                    series={chartSeries}
+                    options={chartOptions}
+                    width="100%"
+                    height={smUp ? 240 : 360}
+                />
+            </Box>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+            <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(2, 1fr)"
-        sx={{ textAlign: 'center', typography: 'h4' }}
-      >
-        <Stack sx={{ py: 2, borderRight: `dashed 1px ${theme.palette.divider}` }}>
-          <Box component="span" sx={{ mb: 1, typography: 'body2', color: 'text.secondary' }}>
+            <Box
+                display="grid"
+                gridTemplateColumns="repeat(2, 1fr)"
+                sx={{ textAlign: 'center', typography: 'h4' }}
+            >
+                <Stack sx={{ py: 2, borderRight: `dashed 1px ${theme.palette.divider}` }}>
+                    <Box component="span" sx={{ mb: 1, typography: 'body2', color: 'text.secondary' }}>
             Categories
-          </Box>
+                    </Box>
           9
-        </Stack>
+                </Stack>
 
-        <Stack sx={{ py: 2 }}>
-          <Box component="span" sx={{ mb: 1, typography: 'body2', color: 'text.secondary' }}>
+                <Stack sx={{ py: 2 }}>
+                    <Box component="span" sx={{ mb: 1, typography: 'body2', color: 'text.secondary' }}>
             Categories
-          </Box>
+                    </Box>
           $18,765
-        </Stack>
-      </Box>
-    </Card>
-  );
+                </Stack>
+            </Box>
+        </Card>
+    );
 }

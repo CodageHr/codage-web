@@ -31,7 +31,7 @@ module.exports = {
     ];
 
     // Ako niste u produkciji, uklonite redirekciju
-    if (!isProd) {
+    if (isProd) {
       return [];
     }
 

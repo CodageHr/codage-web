@@ -32,49 +32,49 @@ interface Props extends CardProps {
 }
 
 export default function BookingCustomerReviews({ title, subheader, list, ...other }: Props) {
-  const carousel = useCarousel({
-    adaptiveHeight: true,
-  });
+    const carousel = useCarousel({
+        adaptiveHeight: true,
+    });
 
-  const customerInfo = list.find((_, index) => index === carousel.currentIndex);
+    const customerInfo = list.find((_, index) => index === carousel.currentIndex);
 
-  return (
-    <Card {...other}>
-      <CardHeader
-        title={title}
-        subheader={subheader}
-        action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
-      />
+    return (
+        <Card {...other}>
+            <CardHeader
+                title={title}
+                subheader={subheader}
+                action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+            />
 
-      <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-        {list.map((item) => (
-          <ReviewItem key={item.id} item={item} />
-        ))}
-      </Carousel>
+            <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+                {list.map((item) => (
+                    <ReviewItem key={item.id} item={item} />
+                ))}
+            </Carousel>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+            <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <Stack spacing={2} direction="row" alignItems="center" sx={{ p: 3 }}>
-        <Button
-          fullWidth
-          color="error"
-          variant="soft"
-          onClick={() => console.info('ACCEPT', customerInfo?.id)}
-        >
+            <Stack spacing={2} direction="row" alignItems="center" sx={{ p: 3 }}>
+                <Button
+                    fullWidth
+                    color="error"
+                    variant="soft"
+                    onClick={() => console.info('ACCEPT', customerInfo?.id)}
+                >
           Reject
-        </Button>
+                </Button>
 
-        <Button
-          fullWidth
-          color="inherit"
-          variant="contained"
-          onClick={() => console.info('REJECT', customerInfo?.id)}
-        >
+                <Button
+                    fullWidth
+                    color="inherit"
+                    variant="contained"
+                    onClick={() => console.info('REJECT', customerInfo?.id)}
+                >
           Accept
-        </Button>
-      </Stack>
-    </Card>
-  );
+                </Button>
+            </Stack>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -84,40 +84,40 @@ type ReviewItemProps = {
 };
 
 function ReviewItem({ item }: ReviewItemProps) {
-  const { avatarUrl, name, description, rating, postedAt, tags } = item;
+    const { avatarUrl, name, description, rating, postedAt, tags } = item;
 
-  return (
-    <Stack
-      spacing={2}
-      sx={{
-        p: 3,
-        position: 'relative',
-      }}
-    >
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <Avatar alt={name} src={avatarUrl} sx={{ width: 48, height: 48 }} />
+    return (
+        <Stack
+            spacing={2}
+            sx={{
+                p: 3,
+                position: 'relative',
+            }}
+        >
+            <Stack direction="row" alignItems="center" spacing={2}>
+                <Avatar alt={name} src={avatarUrl} sx={{ width: 48, height: 48 }} />
 
-        <ListItemText
-          primary={name}
-          secondary={`Posted ${fDateTime(postedAt)}`}
-          secondaryTypographyProps={{
-            component: 'span',
-            typography: 'caption',
-            mt: 0.5,
-            color: 'text.disabled',
-          }}
-        />
-      </Stack>
+                <ListItemText
+                    primary={name}
+                    secondary={`Posted ${fDateTime(postedAt)}`}
+                    secondaryTypographyProps={{
+                        component: 'span',
+                        typography: 'caption',
+                        mt: 0.5,
+                        color: 'text.disabled',
+                    }}
+                />
+            </Stack>
 
-      <Rating value={rating} size="small" readOnly precision={0.5} />
+            <Rating value={rating} size="small" readOnly precision={0.5} />
 
-      <Typography variant="body2">{description}</Typography>
+            <Typography variant="body2">{description}</Typography>
 
-      <Stack direction="row" flexWrap="wrap" spacing={1}>
-        {tags.map((tag) => (
-          <Chip size="small" variant="soft" key={tag} label={tag} />
-        ))}
-      </Stack>
-    </Stack>
-  );
+            <Stack direction="row" flexWrap="wrap" spacing={1}>
+                {tags.map((tag) => (
+                    <Chip size="small" variant="soft" key={tag} label={tag} />
+                ))}
+            </Stack>
+        </Stack>
+    );
 }

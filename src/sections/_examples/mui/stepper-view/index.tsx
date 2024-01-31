@@ -19,73 +19,73 @@ import LinearAlternativeLabel from './linear-alternative-label-stepper';
 // ----------------------------------------------------------------------
 
 export default function StepperView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Stepper"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Stepper' },
-          ]}
-          moreLink={['https://mui.com/components/steppers']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Stepper"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Stepper' },
+                    ]}
+                    moreLink={['https://mui.com/components/steppers']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={3}>
-          <ComponentBlock title="Horizontal Linear Stepper">
-            <Paper
-              variant="outlined"
-              sx={{
-                p: 3,
-                width: 1,
-              }}
-            >
-              <HorizontalLinearStepper />
-            </Paper>
-          </ComponentBlock>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={3}>
+                    <ComponentBlock title="Horizontal Linear Stepper">
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                p: 3,
+                                width: 1,
+                            }}
+                        >
+                            <HorizontalLinearStepper />
+                        </Paper>
+                    </ComponentBlock>
 
-          <ComponentBlock title="Linear Alternative Label">
-            <Paper
-              variant="outlined"
-              sx={{
-                p: 3,
-                width: 1,
-              }}
-            >
-              <LinearAlternativeLabel />
-            </Paper>
-          </ComponentBlock>
+                    <ComponentBlock title="Linear Alternative Label">
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                p: 3,
+                                width: 1,
+                            }}
+                        >
+                            <LinearAlternativeLabel />
+                        </Paper>
+                    </ComponentBlock>
 
-          <ComponentBlock title="Vertical Linear Stepper">
-            <Paper
-              variant="outlined"
-              sx={{
-                p: 3,
-                width: 1,
-              }}
-            >
-              <VerticalLinearStepper />
-            </Paper>
-          </ComponentBlock>
+                    <ComponentBlock title="Vertical Linear Stepper">
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                p: 3,
+                                width: 1,
+                            }}
+                        >
+                            <VerticalLinearStepper />
+                        </Paper>
+                    </ComponentBlock>
 
-          <ComponentBlock title="Customized Stepper">
-            <Paper
-              variant="outlined"
-              sx={{
-                p: 3,
-                width: 1,
-              }}
-            >
-              <CustomizedStepper />
-            </Paper>
-          </ComponentBlock>
-        </Stack>
-      </Container>
-    </>
-  );
+                    <ComponentBlock title="Customized Stepper">
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                p: 3,
+                                width: 1,
+                            }}
+                        >
+                            <CustomizedStepper />
+                        </Paper>
+                    </ComponentBlock>
+                </Stack>
+            </Container>
+        </>
+    );
 }

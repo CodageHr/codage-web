@@ -18,31 +18,31 @@ type Props = {
 };
 
 export default function JobEditView({ id }: Props) {
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const currentJob = _jobs.find((job) => job.id === id);
+    const currentJob = _jobs.find((job) => job.id === id);
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          {
-            name: 'Dashboard',
-            href: paths.dashboard.root,
-          },
-          {
-            name: 'Job',
-            href: paths.dashboard.job.root,
-          },
-          { name: currentJob?.title },
-        ]}
-        sx={{
-          mb: { xs: 3, md: 5 },
-        }}
-      />
+    return (
+        <Container maxWidth={settings.themeStretch ? false : 'lg'}>
+            <CustomBreadcrumbs
+                heading="Edit"
+                links={[
+                    {
+                        name: 'Dashboard',
+                        href: paths.dashboard.root,
+                    },
+                    {
+                        name: 'Job',
+                        href: paths.dashboard.job.root,
+                    },
+                    { name: currentJob?.title },
+                ]}
+                sx={{
+                    mb: { xs: 3, md: 5 },
+                }}
+            />
 
-      <JobNewEditForm currentJob={currentJob} />
-    </Container>
-  );
+            <JobNewEditForm currentJob={currentJob} />
+        </Container>
+    );
 }

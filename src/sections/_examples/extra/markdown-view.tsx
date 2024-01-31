@@ -166,35 +166,35 @@ ReactDOM.render(
 `;
 
 export default function MarkdownView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Markdown"
-          links={[{ name: 'Components', href: paths.components }, { name: 'Markdown' }]}
-          moreLink={['https://www.npmjs.com/package/react-markdown']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Markdown"
+                    links={[{ name: 'Components', href: paths.components }, { name: 'Markdown' }]}
+                    moreLink={['https://www.npmjs.com/package/react-markdown']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
-          <Card>
-            <CardHeader title="Html content" sx={{ pb: 3 }} />
-            <Divider sx={{ borderStyle: 'dashed' }} />
-            <CardContent>
-              <Markdown children={htmlContent} />
-            </CardContent>
-          </Card>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
+                    <Card>
+                        <CardHeader title="Html content" sx={{ pb: 3 }} />
+                        <Divider sx={{ borderStyle: 'dashed' }} />
+                        <CardContent>
+                            <Markdown children={htmlContent} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Mardown content" sx={{ pb: 3 }} />
-            <Divider sx={{ borderStyle: 'dashed' }} />
-            <CardContent>
-              <Markdown children={mardownContent} />
-            </CardContent>
-          </Card>
-        </Stack>
-      </Container>
-    </>
-  );
+                    <Card>
+                        <CardHeader title="Mardown content" sx={{ pb: 3 }} />
+                        <Divider sx={{ borderStyle: 'dashed' }} />
+                        <CardContent>
+                            <Markdown children={mardownContent} />
+                        </CardContent>
+                    </Card>
+                </Stack>
+            </Container>
+        </>
+    );
 }

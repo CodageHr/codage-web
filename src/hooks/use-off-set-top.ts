@@ -11,27 +11,27 @@ interface UseScrollOptions extends Omit<ScrollOptions, 'container' | 'target'> {
 }
 
 export function useOffSetTop(top = 0, options?: UseScrollOptions): ReturnType {
-  const { scrollY } = useScroll(options);
+    const { scrollY } = useScroll(options);
 
-  const [value, setValue] = useState(false);
+    const [value, setValue] = useState(false);
 
-  const onOffSetTop = useCallback(() => {
-    scrollY.on('change', (scrollHeight) => {
-      if (scrollHeight > top) {
-        setValue(true);
-      } else {
-        setValue(false);
-      }
-    });
-  }, [scrollY, top]);
+    const onOffSetTop = useCallback(() => {
+        scrollY.on('change', (scrollHeight) => {
+            if (scrollHeight > top) {
+                setValue(true);
+            } else {
+                setValue(false);
+            }
+        });
+    }, [scrollY, top]);
 
-  useEffect(() => {
-    onOffSetTop();
-  }, [onOffSetTop]);
+    useEffect(() => {
+        onOffSetTop();
+    }, [onOffSetTop]);
 
-  const memoizedValue = useMemo(() => value, [value]);
+    const memoizedValue = useMemo(() => value, [value]);
 
-  return memoizedValue;
+    return memoizedValue;
 }
 
 // Usage

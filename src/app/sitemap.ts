@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: 'https://codage.hr',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    }
-  ]
+    return [
+        {
+            url: 'https://codage.hr',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 1,
+        }
+    ]
 }

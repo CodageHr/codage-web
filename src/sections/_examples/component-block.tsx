@@ -12,32 +12,32 @@ type BlockProps = StackProps & {
 };
 
 export default function ComponentBlock({ title, sx, children, ...other }: BlockProps) {
-  return (
-    <Paper
-      variant="outlined"
-      sx={{
-        borderRadius: 1.5,
-        borderStyle: 'dashed',
-        bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
-      }}
-    >
-      {title && <CardHeader title={title} />}
+    return (
+        <Paper
+            variant="outlined"
+            sx={{
+                borderRadius: 1.5,
+                borderStyle: 'dashed',
+                bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
+            }}
+        >
+            {title && <CardHeader title={title} />}
 
-      <Stack
-        spacing={3}
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-        flexWrap="wrap"
-        sx={{
-          p: 5,
-          minHeight: 180,
-          ...sx,
-        }}
-        {...other}
-      >
-        {children}
-      </Stack>
-    </Paper>
-  );
+            <Stack
+                spacing={3}
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                flexWrap="wrap"
+                sx={{
+                    p: 5,
+                    minHeight: 180,
+                    ...sx,
+                }}
+                {...other}
+            >
+                {children}
+            </Stack>
+        </Paper>
+    );
 }

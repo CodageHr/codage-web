@@ -34,153 +34,153 @@ type Props = {
 };
 
 export default function InvoiceTableRow({
-  row,
-  selected,
-  onSelectRow,
-  onViewRow,
-  onEditRow,
-  onDeleteRow,
+    row,
+    selected,
+    onSelectRow,
+    onViewRow,
+    onEditRow,
+    onDeleteRow,
 }: Props) {
-  const { sent, invoiceNumber, createDate, dueDate, status, invoiceTo, totalAmount } = row;
+    const { sent, invoiceNumber, createDate, dueDate, status, invoiceTo, totalAmount } = row;
 
-  const confirm = useBoolean();
+    const confirm = useBoolean();
 
-  const popover = usePopover();
+    const popover = usePopover();
 
-  return (
-    <>
-      <TableRow hover selected={selected}>
-        <TableCell padding="checkbox">
-          <Checkbox checked={selected} onClick={onSelectRow} />
-        </TableCell>
+    return (
+        <>
+            <TableRow hover selected={selected}>
+                <TableCell padding="checkbox">
+                    <Checkbox checked={selected} onClick={onSelectRow} />
+                </TableCell>
 
-        <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar alt={invoiceTo.name} sx={{ mr: 2 }}>
-            {invoiceTo.name.charAt(0).toUpperCase()}
-          </Avatar>
+                <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar alt={invoiceTo.name} sx={{ mr: 2 }}>
+                        {invoiceTo.name.charAt(0).toUpperCase()}
+                    </Avatar>
 
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography variant="body2" noWrap>
-                {invoiceTo.name}
-              </Typography>
-            }
-            secondary={
-              <Link
-                noWrap
-                variant="body2"
-                onClick={onViewRow}
-                sx={{ color: 'text.disabled', cursor: 'pointer' }}
-              >
-                {invoiceNumber}
-              </Link>
-            }
-          />
-        </TableCell>
+                    <ListItemText
+                        disableTypography
+                        primary={
+                            <Typography variant="body2" noWrap>
+                                {invoiceTo.name}
+                            </Typography>
+                        }
+                        secondary={
+                            <Link
+                                noWrap
+                                variant="body2"
+                                onClick={onViewRow}
+                                sx={{ color: 'text.disabled', cursor: 'pointer' }}
+                            >
+                                {invoiceNumber}
+                            </Link>
+                        }
+                    />
+                </TableCell>
 
-        <TableCell>
-          <ListItemText
-            primary={fDate(createDate)}
-            secondary={fTime(createDate)}
-            primaryTypographyProps={{ typography: 'body2', noWrap: true }}
-            secondaryTypographyProps={{
-              mt: 0.5,
-              component: 'span',
-              typography: 'caption',
-            }}
-          />
-        </TableCell>
+                <TableCell>
+                    <ListItemText
+                        primary={fDate(createDate)}
+                        secondary={fTime(createDate)}
+                        primaryTypographyProps={{ typography: 'body2', noWrap: true }}
+                        secondaryTypographyProps={{
+                            mt: 0.5,
+                            component: 'span',
+                            typography: 'caption',
+                        }}
+                    />
+                </TableCell>
 
-        <TableCell>
-          <ListItemText
-            primary={fDate(dueDate)}
-            secondary={fTime(dueDate)}
-            primaryTypographyProps={{ typography: 'body2', noWrap: true }}
-            secondaryTypographyProps={{
-              mt: 0.5,
-              component: 'span',
-              typography: 'caption',
-            }}
-          />
-        </TableCell>
+                <TableCell>
+                    <ListItemText
+                        primary={fDate(dueDate)}
+                        secondary={fTime(dueDate)}
+                        primaryTypographyProps={{ typography: 'body2', noWrap: true }}
+                        secondaryTypographyProps={{
+                            mt: 0.5,
+                            component: 'span',
+                            typography: 'caption',
+                        }}
+                    />
+                </TableCell>
 
-        <TableCell>{fCurrency(totalAmount)}</TableCell>
+                <TableCell>{fCurrency(totalAmount)}</TableCell>
 
-        <TableCell align="center">{sent}</TableCell>
+                <TableCell align="center">{sent}</TableCell>
 
-        <TableCell>
-          <Label
-            variant="soft"
-            color={
-              (status === 'paid' && 'success') ||
+                <TableCell>
+                    <Label
+                        variant="soft"
+                        color={
+                            (status === 'paid' && 'success') ||
               (status === 'pending' && 'warning') ||
               (status === 'overdue' && 'error') ||
               'default'
-            }
-          >
-            {status}
-          </Label>
-        </TableCell>
+                        }
+                    >
+                        {status}
+                    </Label>
+                </TableCell>
 
-        <TableCell align="right" sx={{ px: 1 }}>
-          <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
-            <Iconify icon="eva:more-vertical-fill" />
-          </IconButton>
-        </TableCell>
-      </TableRow>
+                <TableCell align="right" sx={{ px: 1 }}>
+                    <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+                        <Iconify icon="eva:more-vertical-fill" />
+                    </IconButton>
+                </TableCell>
+            </TableRow>
 
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="right-top"
-        sx={{ width: 160 }}
-      >
-        <MenuItem
-          onClick={() => {
-            onViewRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:eye-bold" />
+            <CustomPopover
+                open={popover.open}
+                onClose={popover.onClose}
+                arrow="right-top"
+                sx={{ width: 160 }}
+            >
+                <MenuItem
+                    onClick={() => {
+                        onViewRow();
+                        popover.onClose();
+                    }}
+                >
+                    <Iconify icon="solar:eye-bold" />
           View
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem
-          onClick={() => {
-            onEditRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:pen-bold" />
+                <MenuItem
+                    onClick={() => {
+                        onEditRow();
+                        popover.onClose();
+                    }}
+                >
+                    <Iconify icon="solar:pen-bold" />
           Edit
-        </MenuItem>
+                </MenuItem>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+                <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem
-          onClick={() => {
-            confirm.onTrue();
-            popover.onClose();
-          }}
-          sx={{ color: 'error.main' }}
-        >
-          <Iconify icon="solar:trash-bin-trash-bold" />
+                <MenuItem
+                    onClick={() => {
+                        confirm.onTrue();
+                        popover.onClose();
+                    }}
+                    sx={{ color: 'error.main' }}
+                >
+                    <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
-      </CustomPopover>
+                </MenuItem>
+            </CustomPopover>
 
-      <ConfirmDialog
-        open={confirm.value}
-        onClose={confirm.onFalse}
-        title="Delete"
-        content="Are you sure want to delete?"
-        action={
-          <Button variant="contained" color="error" onClick={onDeleteRow}>
+            <ConfirmDialog
+                open={confirm.value}
+                onClose={confirm.onFalse}
+                title="Delete"
+                content="Are you sure want to delete?"
+                action={
+                    <Button variant="contained" color="error" onClick={onDeleteRow}>
             Delete
-          </Button>
-        }
-      />
-    </>
-  );
+                    </Button>
+                }
+            />
+        </>
+    );
 }

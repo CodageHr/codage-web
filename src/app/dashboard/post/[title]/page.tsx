@@ -6,7 +6,7 @@ import { PostDetailsView } from 'src/sections/blog/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Post Details',
+    title: 'Dashboard: Post Details',
 };
 
 type Props = {
@@ -16,15 +16,15 @@ type Props = {
 };
 
 export default function PostDetailsPage({ params }: Props) {
-  const { title } = params;
+    const { title } = params;
 
-  return <PostDetailsView title={title} />;
+    return <PostDetailsView title={title} />;
 }
 
 export async function generateStaticParams() {
-  const res = await axios.get(endpoints.post.list);
+    const res = await axios.get(endpoints.post.list);
 
-  return res.data.posts.map((post: { title: string }) => ({
-    title: paramCase(post.title),
-  }));
+    return res.data.posts.map((post: { title: string }) => ({
+        title: paramCase(post.title),
+    }));
 }

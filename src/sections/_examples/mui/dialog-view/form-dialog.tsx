@@ -11,42 +11,42 @@ import { useBoolean } from 'src/hooks/use-boolean';
 // ----------------------------------------------------------------------
 
 export default function FormDialog() {
-  const dialog = useBoolean();
+    const dialog = useBoolean();
 
-  return (
-    <div>
-      <Button variant="outlined" color="warning" onClick={dialog.onTrue}>
+    return (
+        <div>
+            <Button variant="outlined" color="warning" onClick={dialog.onTrue}>
         Form Dialogs
-      </Button>
+            </Button>
 
-      <Dialog open={dialog.value} onClose={dialog.onFalse}>
-        <DialogTitle>Subscribe</DialogTitle>
+            <Dialog open={dialog.value} onClose={dialog.onFalse}>
+                <DialogTitle>Subscribe</DialogTitle>
 
-        <DialogContent>
-          <Typography sx={{ mb: 3 }}>
+                <DialogContent>
+                    <Typography sx={{ mb: 3 }}>
             To subscribe to this website, please enter your email address here. We will send updates
             occasionally.
-          </Typography>
+                    </Typography>
 
-          <TextField
-            autoFocus
-            fullWidth
-            type="email"
-            margin="dense"
-            variant="outlined"
-            label="Email Address"
-          />
-        </DialogContent>
+                    <TextField
+                        autoFocus
+                        fullWidth
+                        type="email"
+                        margin="dense"
+                        variant="outlined"
+                        label="Email Address"
+                    />
+                </DialogContent>
 
-        <DialogActions>
-          <Button onClick={dialog.onFalse} variant="outlined" color="inherit">
+                <DialogActions>
+                    <Button onClick={dialog.onFalse} variant="outlined" color="inherit">
             Cancel
-          </Button>
-          <Button onClick={dialog.onFalse} variant="contained">
+                    </Button>
+                    <Button onClick={dialog.onFalse} variant="contained">
             Subscribe
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
 }

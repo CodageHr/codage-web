@@ -21,61 +21,61 @@ type ReturnType = {
 };
 
 export default function useCarousel(props?: Settings): ReturnType {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const carouselRef = useRef<Carousel | null>(null);
+    const carouselRef = useRef<Carousel | null>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(props?.initialSlide || 0);
+    const [currentIndex, setCurrentIndex] = useState(props?.initialSlide || 0);
 
-  const [nav, setNav] = useState<Carousel | undefined>(undefined);
+    const [nav, setNav] = useState<Carousel | undefined>(undefined);
 
-  const rtl = theme.direction === 'rtl';
+    const rtl = theme.direction === 'rtl';
 
-  const carouselSettings = {
-    arrows: false,
-    dots: !!props?.customPaging,
-    rtl,
-    beforeChange: (current: number, next: number) => setCurrentIndex(next),
-    ...props,
-    fade: !!(props?.fade && !rtl),
-  };
+    const carouselSettings = {
+        arrows: false,
+        dots: !!props?.customPaging,
+        rtl,
+        beforeChange: (current: number, next: number) => setCurrentIndex(next),
+        ...props,
+        fade: !!(props?.fade && !rtl),
+    };
 
-  const onSetNav = useCallback(() => {
-    if (carouselRef.current) {
-      setNav(carouselRef.current);
-    }
-  }, []);
+    const onSetNav = useCallback(() => {
+        if (carouselRef.current) {
+            setNav(carouselRef.current);
+        }
+    }, []);
 
-  const onPrev = useCallback(() => {
-    if (carouselRef.current) {
-      carouselRef.current.slickPrev();
-    }
-  }, []);
+    const onPrev = useCallback(() => {
+        if (carouselRef.current) {
+            carouselRef.current.slickPrev();
+        }
+    }, []);
 
-  const onNext = useCallback(() => {
-    if (carouselRef.current) {
-      carouselRef.current.slickNext();
-    }
-  }, []);
+    const onNext = useCallback(() => {
+        if (carouselRef.current) {
+            carouselRef.current.slickNext();
+        }
+    }, []);
 
-  const onTogo = useCallback((index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.slickGoTo(index);
-    }
-  }, []);
+    const onTogo = useCallback((index: number) => {
+        if (carouselRef.current) {
+            carouselRef.current.slickGoTo(index);
+        }
+    }, []);
 
-  return {
-    nav,
-    carouselRef,
-    currentIndex,
-    carouselSettings,
-    //
-    onPrev,
-    onNext,
-    onTogo,
-    onSetNav,
-    //
-    setNav,
-    setCurrentIndex,
-  };
+    return {
+        nav,
+        carouselRef,
+        currentIndex,
+        carouselSettings,
+        //
+        onPrev,
+        onNext,
+        onTogo,
+        onSetNav,
+        //
+        setNav,
+        setCurrentIndex,
+    };
 }

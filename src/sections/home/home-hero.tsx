@@ -21,162 +21,163 @@ import { bgGradient, textGradient } from '@theme/css';
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
-  ...bgGradient({
-    color: alpha(theme.palette.background.default, theme.palette.mode === 'light' ? 0.9 : 0.94),
-    imgUrl: '/assets/background/overlay_3.jpg',
-  }),
-  width: '100%',
-  height: '100vh',
-  position: 'relative',
-  [theme.breakpoints.up('md')]: {
-    top: 0,
-    left: 0,
-    position: 'fixed',
-  },
+    ...bgGradient({
+        color: alpha(theme.palette.background.default, theme.palette.mode === 'light' ? 0.9 : 0.94),
+        imgUrl: '/assets/background/overlay_3.jpg',
+    }),
+    width: '100%',
+    height: '100vh',
+    position: 'relative',
+    [theme.breakpoints.up('md')]: {
+        top: 0,
+        left: 0,
+        position: 'fixed',
+    },
 }));
 
 const StyledWrapper = styled('div')(({ theme }) => ({
-  height: '100%',
-  overflow: 'hidden',
-  position: 'relative',
-  [theme.breakpoints.up('md')]: {
-    marginTop: HEADER.H_DESKTOP_OFFSET,
-  },
+    height: '100%',
+    overflow: 'hidden',
+    position: 'relative',
+    [theme.breakpoints.up('md')]: {
+        marginTop: HEADER.H_DESKTOP_OFFSET,
+    },
 }));
 
 const StyledTextGradient = styled(m.h1)(({ theme }) => ({
-  ...textGradient(
-    `300deg, ${theme.palette.primary.main} 0%, ${theme.palette.info.light} 25%, ${theme.palette.primary.main} 50%, ${theme.palette.info.light} 75%, ${theme.palette.primary.main} 100%`
-  ),
-  padding: 0,
-  marginTop: 8,
-  lineHeight: 1,
-  fontWeight: 900,
-  marginBottom: 24,
-  letterSpacing: 8,
-  textAlign: 'center',
-  backgroundSize: '400%',
-  fontSize: '3rem',
-  fontFamily: theme.typography.fontSecondaryFamily,
-  [theme.breakpoints.up('md')]: {
-    fontSize: '3.5rem',
-  },
+    ...textGradient(
+        `300deg, ${theme.palette.primary.main} 0%, ${theme.palette.info.light} 25%, ${theme.palette.primary.main} 50%, ${theme.palette.info.light} 75%, ${theme.palette.primary.main} 100%`
+    ),
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 8,
+    lineHeight: 1,
+    fontWeight: 900,
+    marginBottom: 24,
+    letterSpacing: 8,
+    textAlign: 'center',
+    backgroundSize: '400%',
+    fontSize: '2.75rem',
+    fontFamily: theme.typography.fontSecondaryFamily,
+    [theme.breakpoints.up('md')]: {
+        fontSize: '3.5rem',
+    },
 }));
 
 // ----------------------------------------------------------------------
 
 export default function HomeHero() {
 
-  const mdUp = useResponsive('up', 'md');
+    const mdUp = useResponsive('up', 'md');
 
-  const { translate } = useTranslate();
+    const { translate } = useTranslate();
 
-  const heroRef = useRef<HTMLDivElement | null>(null);
+    const heroRef = useRef<HTMLDivElement | null>(null);
 
-  const { scrollY } = useScroll();
+    const { scrollY } = useScroll();
 
-  const [ percent, setPercent ] = useState(0);
+    const [ percent, setPercent ] = useState(0);
 
-  const getScroll = useCallback(() => {
+    const getScroll = useCallback(() => {
 
-    let heroHeight = 0;
+        let heroHeight = 0;
 
-    if (heroRef.current) {
+        if (heroRef.current) {
 
-      heroHeight = heroRef.current.offsetHeight;
+            heroHeight = heroRef.current.offsetHeight;
 
-    }
+        }
 
-    scrollY.on('change', (scrollHeight) => {
+        scrollY.on('change', (scrollHeight) => {
 
-      const scrollPercent = (scrollHeight * 100) / heroHeight;
+            const scrollPercent = (scrollHeight * 100) / heroHeight;
 
-      setPercent(Math.floor(scrollPercent));
+            setPercent(Math.floor(scrollPercent));
 
-    });
+        });
 
-  }, [ scrollY ]);
+    }, [ scrollY ]);
 
-  useEffect(() => {
+    useEffect(() => {
 
-    getScroll();
+        getScroll();
 
-  }, [ getScroll ]);
+    }, [ getScroll ]);
 
-  const opacity = 1 - percent / 100;
+    const opacity = 1 - percent / 100;
 
-  const hide = percent > 120;
+    const hide = percent > 120;
 
-  const renderDescription = (
-    <Stack
-      alignItems="center"
-      justifyContent="center"
-      sx={{
-        height: 1,
-        mx: 'auto',
-        maxWidth: 480,
-        opacity: opacity > 0 ? opacity : 0,
-        mt: {
-          md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
-        },
-      }}
-    >
-
-      <m.div variants={varFade().in}>
-        <StyledTextGradient
-          animate={{ backgroundPosition: '200% center' }}
-          transition={{
-            repeatType: 'reverse',
-            ease: 'linear',
-            duration: 20,
-            repeat: Infinity,
-          }}
+    const renderDescription = (
+        <Stack
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+                height: 1,
+                mx: 'auto',
+                maxWidth: 480,
+                opacity: opacity > 0 ? opacity : 0,
+                mt: {
+                    md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
+                },
+            }}
         >
-          {translate('home_hero_title')}
-        </StyledTextGradient>
-      </m.div>
 
-      <m.div variants={varFade().in}>
-        <Typography variant="body1" sx={{ textAlign: 'center' }}>
-          {translate('home_hero_caption')}
-        </Typography>
-      </m.div>
-    </Stack>
-  );
+            <m.div variants={varFade().in}>
+                <StyledTextGradient
+                    animate={{ backgroundPosition: '200% center' }}
+                    transition={{
+                        repeatType: 'reverse',
+                        ease: 'linear',
+                        duration: 20,
+                        repeat: Infinity,
+                    }}
+                >
+                    {translate('home_hero_title')}
+                </StyledTextGradient>
+            </m.div>
 
-  const renderHeroImage = (
-    <Image
+            <m.div variants={varFade().in}>
+                <Typography variant="body1" sx={{ textAlign: 'center' }}>
+                    {translate('home_hero_caption')}
+                </Typography>
+            </m.div>
+        </Stack>
+    );
 
-        alt={'development image'}
-        src={'/assets/images/home/hero/development_hero_no_bg.png'}
-        ratio="1/1"
-      />
-  );
+    const renderHeroImage = (
+        <Image
 
-  return (
-    <>
-      <StyledRoot
-        ref={heroRef}
-        sx={{
-          ...(hide && {
-            opacity: 0,
-          }),
-        }}
-      >
-        <StyledWrapper>
-          <Container component={MotionContainer} sx={{ height: 1 }}>
-            <Grid container columnSpacing={{ md: 10 }} sx={{ height: 1 }}>
-              <Grid xs={12} md={6}>
-                {renderDescription}
-              </Grid>
+            alt={'development image'}
+            src={'/assets/images/home/hero/development_hero_no_bg.png'}
+            ratio="1/1"
+        />
+    );
 
-              {mdUp && <Grid md={6} pt={8}>{renderHeroImage}</Grid>}
-            </Grid>
-          </Container>
-        </StyledWrapper>
-      </StyledRoot>
-      <Box sx={{ height: { md: '100vh' }}} />
-    </>
-  );
+    return (
+        <>
+            <StyledRoot
+                ref={heroRef}
+                sx={{
+                    ...(hide && {
+                        opacity: 0,
+                    }),
+                }}
+            >
+                <StyledWrapper>
+                    <Container component={MotionContainer} sx={{ height: 1 }}>
+                        <Grid container columnSpacing={{ md: 10 }} sx={{ height: 1 }}>
+                            <Grid xs={12} md={6}>
+                                {renderDescription}
+                            </Grid>
+
+                            {mdUp && <Grid md={6} pt={8}>{renderHeroImage}</Grid>}
+                        </Grid>
+                    </Container>
+                </StyledWrapper>
+            </StyledRoot>
+            <Box sx={{ height: { md: '100vh' }}} />
+        </>
+    );
 
 }

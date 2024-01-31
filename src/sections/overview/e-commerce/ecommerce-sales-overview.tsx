@@ -21,17 +21,17 @@ interface Props extends CardProps {
 }
 
 export default function EcommerceSalesOverview({ title, subheader, data, ...other }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} />
 
-      <Stack spacing={4} sx={{ px: 3, pt: 3, pb: 5 }}>
-        {data.map((progress) => (
-          <ProgressItem key={progress.label} progress={progress} />
-        ))}
-      </Stack>
-    </Card>
-  );
+            <Stack spacing={4} sx={{ px: 3, pt: 3, pb: 5 }}>
+                {data.map((progress) => (
+                    <ProgressItem key={progress.label} progress={progress} />
+                ))}
+            </Stack>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -41,29 +41,29 @@ type ProgressItemProps = {
 };
 
 function ProgressItem({ progress }: ProgressItemProps) {
-  return (
-    <Stack spacing={1}>
-      <Stack direction="row" alignItems="center">
-        <Typography variant="subtitle2" sx={{ flexGrow: 1 }}>
-          {progress.label}
-        </Typography>
+    return (
+        <Stack spacing={1}>
+            <Stack direction="row" alignItems="center">
+                <Typography variant="subtitle2" sx={{ flexGrow: 1 }}>
+                    {progress.label}
+                </Typography>
 
-        <Typography variant="subtitle2">{fCurrency(progress.totalAmount)}</Typography>
+                <Typography variant="subtitle2">{fCurrency(progress.totalAmount)}</Typography>
 
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           &nbsp;({fPercent(progress.value)})
-        </Typography>
-      </Stack>
+                </Typography>
+            </Stack>
 
-      <LinearProgress
-        variant="determinate"
-        value={progress.value}
-        color={
-          (progress.label === 'Total Income' && 'info') ||
+            <LinearProgress
+                variant="determinate"
+                value={progress.value}
+                color={
+                    (progress.label === 'Total Income' && 'info') ||
           (progress.label === 'Total Expenses' && 'warning') ||
           'primary'
-        }
-      />
-    </Stack>
-  );
+                }
+            />
+        </Stack>
+    );
 }

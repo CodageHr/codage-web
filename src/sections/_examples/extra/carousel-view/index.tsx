@@ -26,96 +26,96 @@ import CarouselCenterMode from './carousel-center-mode';
 // ----------------------------------------------------------------------
 
 const _carouselsExample = [...Array(20)].map((_, index) => ({
-  id: _mock.id(index),
-  title: _mock.postTitle(index),
-  coverUrl: _mock.image.cover(index),
-  description: _mock.description(index),
+    id: _mock.id(index),
+    title: _mock.postTitle(index),
+    coverUrl: _mock.image.cover(index),
+    description: _mock.description(index),
 }));
 
 // ----------------------------------------------------------------------
 
 export default function CarouselView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Carousel"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Carousel' },
-          ]}
-          moreLink={['https://react-slick.neostack.com']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Carousel"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Carousel' },
+                    ]}
+                    moreLink={['https://react-slick.neostack.com']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Box
-          gap={3}
-          display="grid"
-          gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
-            md: 'repeat(2, 1fr)',
-          }}
-          sx={{
-            mb: 3,
-            alignItems: 'flex-start',
-          }}
-        >
-          <Card>
-            <CardHeader title="Carousel Basic 1" />
-            <CardContent>
-              <CarouselBasic1 data={_carouselsExample.slice(0, 4)} />
-            </CardContent>
-          </Card>
+            <Container sx={{ my: 10 }}>
+                <Box
+                    gap={3}
+                    display="grid"
+                    gridTemplateColumns={{
+                        xs: 'repeat(1, 1fr)',
+                        md: 'repeat(2, 1fr)',
+                    }}
+                    sx={{
+                        mb: 3,
+                        alignItems: 'flex-start',
+                    }}
+                >
+                    <Card>
+                        <CardHeader title="Carousel Basic 1" />
+                        <CardContent>
+                            <CarouselBasic1 data={_carouselsExample.slice(0, 4)} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Carousel Basic 2" />
-            <CardContent>
-              <CarouselBasic2 data={_carouselsExample.slice(4, 8)} />
-            </CardContent>
-          </Card>
+                    <Card>
+                        <CardHeader title="Carousel Basic 2" />
+                        <CardContent>
+                            <CarouselBasic2 data={_carouselsExample.slice(4, 8)} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Carousel Basic 3" />
-            <CardContent>
-              <CarouselBasic3 data={_carouselsExample.slice(8, 12)} />
-            </CardContent>
-          </Card>
+                    <Card>
+                        <CardHeader title="Carousel Basic 3" />
+                        <CardContent>
+                            <CarouselBasic3 data={_carouselsExample.slice(8, 12)} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Carousel Basic 4" />
-            <CardContent>
-              <CarouselBasic4 data={_carouselsExample.slice(12, 16)} />
-            </CardContent>
-          </Card>
-        </Box>
+                    <Card>
+                        <CardHeader title="Carousel Basic 4" />
+                        <CardContent>
+                            <CarouselBasic4 data={_carouselsExample.slice(12, 16)} />
+                        </CardContent>
+                    </Card>
+                </Box>
 
-        <Stack spacing={3}>
-          <Card>
-            <CardHeader title="Carousel Thumbnail" />
-            <CardContent>
-              <CarouselThumbnail data={_carouselsExample.slice(0, 8)} />
-            </CardContent>
-          </Card>
+                <Stack spacing={3}>
+                    <Card>
+                        <CardHeader title="Carousel Thumbnail" />
+                        <CardContent>
+                            <CarouselThumbnail data={_carouselsExample.slice(0, 8)} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Carousel Center Mode" subheader="Customs shape & icon button" />
-            <CardContent>
-              <CarouselCenterMode data={_carouselsExample.slice(8, 16)} />
-            </CardContent>
-          </Card>
+                    <Card>
+                        <CardHeader title="Carousel Center Mode" subheader="Customs shape & icon button" />
+                        <CardContent>
+                            <CarouselCenterMode data={_carouselsExample.slice(8, 16)} />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Carousel Animation" />
-            <CardContent>
-              <CarouselAnimation data={_carouselsExample.slice(12, 16)} />
-            </CardContent>
-          </Card>
-        </Stack>
-      </Container>
-    </>
-  );
+                    <Card>
+                        <CardHeader title="Carousel Animation" />
+                        <CardContent>
+                            <CarouselAnimation data={_carouselsExample.slice(12, 16)} />
+                        </CardContent>
+                    </Card>
+                </Stack>
+            </Container>
+        </>
+    );
 }

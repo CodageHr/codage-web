@@ -1,4 +1,4 @@
-import { format, getTime, formatDistanceToNow, setHours, setMinutes } from 'date-fns';
+import { format, getTime, setHours, setMinutes, formatDistanceToNow } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
@@ -6,53 +6,53 @@ type InputValue = Date | string | number | null | undefined;
 type HourOrMinuteValue = number | undefined;
 
 export function fDate(date: InputValue, newFormat?: string) {
-  const fm = newFormat || 'dd MMM yyyy';
+    const fm = newFormat || 'dd MMM yyyy';
 
-  return date ? format(new Date(date), fm) : '';
+    return date ? format(new Date(date), fm) : '';
 }
 
 export function fTime(date: InputValue, newFormat?: string) {
-  const fm = newFormat || 'p';
+    const fm = newFormat || 'p';
 
-  return date ? format(new Date(date), fm) : '';
+    return date ? format(new Date(date), fm) : '';
 }
 export function fTimeOnly(hour: HourOrMinuteValue = 1, minutes: HourOrMinuteValue = 0, newFormat?: string) {
-  const fm = newFormat || 'HH:mm';
+    const fm = newFormat || 'HH:mm';
 
-  return hour ? format(setMinutes(setHours(new Date(),hour),minutes), fm) : '';
+    return hour ? format(setMinutes(setHours(new Date(),hour),minutes), fm) : '';
 }
 
 export function fDateTime(date: InputValue, newFormat?: string) {
-  const fm = newFormat || 'dd MMM yyyy p';
+    const fm = newFormat || 'dd MMM yyyy p';
 
-  return date ? format(new Date(date), fm) : '';
+    return date ? format(new Date(date), fm) : '';
 }
 
 export function fTimestamp(date: InputValue) {
-  return date ? getTime(new Date(date)) : '';
+    return date ? getTime(new Date(date)) : '';
 }
 
 export function fToNow(date: InputValue) {
-  return date
-    ? formatDistanceToNow(new Date(date), {
-        addSuffix: true,
-      })
-    : '';
+    return date
+        ? formatDistanceToNow(new Date(date), {
+            addSuffix: true,
+        })
+        : '';
 }
 
 export function isBetween(inputDate: Date | string | number, startDate: Date, endDate: Date) {
-  const date = new Date(inputDate);
+    const date = new Date(inputDate);
 
-  const results =
+    const results =
     new Date(date.toDateString()) >= new Date(startDate.toDateString()) &&
     new Date(date.toDateString()) <= new Date(endDate.toDateString());
 
-  return results;
+    return results;
 }
 
 export function isAfter(startDate: Date | null, endDate: Date | null) {
-  const results =
+    const results =
     startDate && endDate ? new Date(startDate).getTime() > new Date(endDate).getTime() : false;
 
-  return results;
+    return results;
 }

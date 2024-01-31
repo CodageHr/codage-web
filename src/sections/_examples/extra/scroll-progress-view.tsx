@@ -19,39 +19,39 @@ import ComponentHero from 'src/sections/_examples/component-hero';
 // ----------------------------------------------------------------------
 
 export default function ScrollProgressView() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollDocument = useScroll();
+    const scrollDocument = useScroll();
 
-  const scrollContainer = useScroll({ container: containerRef });
+    const scrollContainer = useScroll({ container: containerRef });
 
-  return (
-    <>
-      <ScrollProgress scrollYProgress={scrollDocument.scrollYProgress} />
+    return (
+        <>
+            <ScrollProgress scrollYProgress={scrollDocument.scrollYProgress} />
 
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Scroll Progress"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Scroll Progress' },
-          ]}
-        />
-      </ComponentHero>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Scroll Progress"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Scroll Progress' },
+                    ]}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Card>
-          <CardHeader title="Scroll Container" sx={{ pb: 3 }} />
-          <ScrollProgress
-            scrollYProgress={scrollContainer.scrollYProgress}
-            color="error"
-            sx={{ position: 'unset', height: 6 }}
-          />
+            <Container sx={{ my: 10 }}>
+                <Card>
+                    <CardHeader title="Scroll Container" sx={{ pb: 3 }} />
+                    <ScrollProgress
+                        scrollYProgress={scrollContainer.scrollYProgress}
+                        color="error"
+                        sx={{ position: 'unset', height: 6 }}
+                    />
 
-          <CardContent ref={containerRef} sx={{ height: 320, overflow: 'auto' }}>
+                    <CardContent ref={containerRef} sx={{ height: 320, overflow: 'auto' }}>
             Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Quisque ut nisi.
             Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Vestibulum eu
             odio. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Cras ultricies mi eu
@@ -114,20 +114,20 @@ export default function ScrollProgressView() {
             pharetra condimentum. Morbi mattis ullamcorper velit. Vivamus consectetuer hendrerit
             lacus. Nullam quis ante. Praesent turpis. Praesent porttitor, nulla vitae posuere
             iaculis, arcu nisl dignissim dolor, a pretium mi sem ut ipsum.
-          </CardContent>
-        </Card>
+                    </CardContent>
+                </Card>
 
-        <Box
-          sx={{
-            minHeight: 2000,
-            textAlign: 'center',
-            typography: 'h6',
-            my: 10,
-          }}
-        >
+                <Box
+                    sx={{
+                        minHeight: 2000,
+                        textAlign: 'center',
+                        typography: 'h6',
+                        my: 10,
+                    }}
+                >
           👇 Scroll Down Document
-        </Box>
-      </Container>
-    </>
-  );
+                </Box>
+            </Container>
+        </>
+    );
 }

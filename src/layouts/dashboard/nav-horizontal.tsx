@@ -18,48 +18,48 @@ import HeaderShadow from '../common/header-shadow';
 // ----------------------------------------------------------------------
 
 function NavHorizontal() {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const { user } = useMockedUser();
+    const { user } = useMockedUser();
 
-  const navData = useNavData();
+    const navData = useNavData();
 
-  return (
-    <AppBar
-      component="div"
-      sx={{
-        top: HEADER.H_DESKTOP_OFFSET,
-      }}
-    >
-      <Toolbar
-        sx={{
-          ...bgBlur({
-            color: theme.palette.background.default,
-          }),
-        }}
-      >
-        <Scrollbar
-          sx={{
-            '& .simplebar-content': {
-              display: 'flex',
-            },
-          }}
-        >
-          <NavSectionHorizontal
-            data={navData}
-            slotProps={{
-              currentRole: user?.role,
-            }}
+    return (
+        <AppBar
+            component="div"
             sx={{
-              ...theme.mixins.toolbar,
+                top: HEADER.H_DESKTOP_OFFSET,
             }}
-          />
-        </Scrollbar>
-      </Toolbar>
+        >
+            <Toolbar
+                sx={{
+                    ...bgBlur({
+                        color: theme.palette.background.default,
+                    }),
+                }}
+            >
+                <Scrollbar
+                    sx={{
+                        '& .simplebar-content': {
+                            display: 'flex',
+                        },
+                    }}
+                >
+                    <NavSectionHorizontal
+                        data={navData}
+                        slotProps={{
+                            currentRole: user?.role,
+                        }}
+                        sx={{
+                            ...theme.mixins.toolbar,
+                        }}
+                    />
+                </Scrollbar>
+            </Toolbar>
 
-      <HeaderShadow />
-    </AppBar>
-  );
+            <HeaderShadow />
+        </AppBar>
+    );
 }
 
 export default memo(NavHorizontal);

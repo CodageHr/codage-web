@@ -18,25 +18,25 @@ type Props = {
 };
 
 function ControlPanel({ themes, selectTheme, onChangeTheme }: Props) {
-  return (
-    <StyledControlPanel>
-      <Typography gutterBottom variant="subtitle2" sx={{ color: 'common.white' }}>
+    return (
+        <StyledControlPanel>
+            <Typography gutterBottom variant="subtitle2" sx={{ color: 'common.white' }}>
         Select Theme:
-      </Typography>
+            </Typography>
 
-      <RadioGroup value={selectTheme} onChange={(event, newValue) => onChangeTheme(newValue)}>
-        {Object.keys(themes).map((item) => (
-          <FormControlLabel
-            key={item}
-            value={item}
-            control={<Radio size="small" />}
-            label={item}
-            sx={{ color: 'common.white', textTransform: 'capitalize' }}
-          />
-        ))}
-      </RadioGroup>
-    </StyledControlPanel>
-  );
+            <RadioGroup value={selectTheme} onChange={(event, newValue) => onChangeTheme(newValue)}>
+                {Object.keys(themes).map((item) => (
+                    <FormControlLabel
+                        key={item}
+                        value={item}
+                        control={<Radio size="small" />}
+                        label={item}
+                        sx={{ color: 'common.white', textTransform: 'capitalize' }}
+                    />
+                ))}
+            </RadioGroup>
+        </StyledControlPanel>
+    );
 }
 
 export default memo(ControlPanel);

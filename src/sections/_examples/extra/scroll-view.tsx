@@ -16,35 +16,35 @@ import ComponentHero from 'src/sections/_examples/component-hero';
 // ----------------------------------------------------------------------
 
 export default function ScrollView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Scrollbar"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Scrollbar' },
-          ]}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Scrollbar"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Scrollbar' },
+                    ]}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Box
-          gap={3}
-          display="grid"
-          alignItems="flex-start"
-          gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
-            md: 'repeat(2, 1fr)',
-          }}
-        >
-          <Card>
-            <CardHeader title="Vertical" />
-            <CardContent sx={{ height: 320 }}>
-              <Scrollbar>
+            <Container sx={{ my: 10 }}>
+                <Box
+                    gap={3}
+                    display="grid"
+                    alignItems="flex-start"
+                    gridTemplateColumns={{
+                        xs: 'repeat(1, 1fr)',
+                        md: 'repeat(2, 1fr)',
+                    }}
+                >
+                    <Card>
+                        <CardHeader title="Vertical" />
+                        <CardContent sx={{ height: 320 }}>
+                            <Scrollbar>
                 Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Quisque ut nisi.
                 Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam.
                 Vestibulum eu odio. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Cras
@@ -67,15 +67,15 @@ export default function ScrollView() {
                 mattis ullamcorper velit. Vivamus consectetuer hendrerit lacus. Nullam quis ante.
                 Praesent turpis. Praesent porttitor, nulla vitae posuere iaculis, arcu nisl
                 dignissim dolor, a pretium mi sem ut ipsum.
-              </Scrollbar>
-            </CardContent>
-          </Card>
+                            </Scrollbar>
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Horizontal" />
-            <CardContent>
-              <Scrollbar>
-                <Box sx={{ width: '200%' }}>
+                    <Card>
+                        <CardHeader title="Horizontal" />
+                        <CardContent>
+                            <Scrollbar>
+                                <Box sx={{ width: '200%' }}>
                   Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Quisque ut nisi.
                   Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam.
                   Vestibulum eu odio. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Cras
@@ -99,12 +99,12 @@ export default function ScrollView() {
                   Vivamus consectetuer hendrerit lacus. Nullam quis ante. Praesent turpis. Praesent
                   porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolor, a pretium mi
                   sem ut ipsum.
+                                </Box>
+                            </Scrollbar>
+                        </CardContent>
+                    </Card>
                 </Box>
-              </Scrollbar>
-            </CardContent>
-          </Card>
-        </Box>
-      </Container>
-    </>
-  );
+            </Container>
+        </>
+    );
 }

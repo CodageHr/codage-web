@@ -17,48 +17,48 @@ type Props = {
 };
 
 export default function JobSort({ sort, onSort, sortOptions }: Props) {
-  const popover = usePopover();
+    const popover = usePopover();
 
-  return (
-    <>
-      <Button
-        disableRipple
-        color="inherit"
-        onClick={popover.onOpen}
-        endIcon={
-          <Iconify
-            icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
-          />
-        }
-        sx={{ fontWeight: 'fontWeightSemiBold' }}
-      >
+    return (
+        <>
+            <Button
+                disableRipple
+                color="inherit"
+                onClick={popover.onOpen}
+                endIcon={
+                    <Iconify
+                        icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
+                    />
+                }
+                sx={{ fontWeight: 'fontWeightSemiBold' }}
+            >
         Sort By:
-        <Box
-          component="span"
-          sx={{
-            ml: 0.5,
-            fontWeight: 'fontWeightBold',
-            textTransform: 'capitalize',
-          }}
-        >
-          {sort}
-        </Box>
-      </Button>
+                <Box
+                    component="span"
+                    sx={{
+                        ml: 0.5,
+                        fontWeight: 'fontWeightBold',
+                        textTransform: 'capitalize',
+                    }}
+                >
+                    {sort}
+                </Box>
+            </Button>
 
-      <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 140 }}>
-        {sortOptions.map((option) => (
-          <MenuItem
-            key={option.value}
-            selected={option.value === sort}
-            onClick={() => {
-              popover.onClose();
-              onSort(option.value);
-            }}
-          >
-            {option.label}
-          </MenuItem>
-        ))}
-      </CustomPopover>
-    </>
-  );
+            <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 140 }}>
+                {sortOptions.map((option) => (
+                    <MenuItem
+                        key={option.value}
+                        selected={option.value === sort}
+                        onClick={() => {
+                            popover.onClose();
+                            onSort(option.value);
+                        }}
+                    >
+                        {option.label}
+                    </MenuItem>
+                ))}
+            </CustomPopover>
+        </>
+    );
 }

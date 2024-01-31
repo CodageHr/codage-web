@@ -5,9 +5,9 @@ import ComingSoonView from 'src/sections/coming-soon/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Stižemo uskoro'
+    title: 'Stižemo uskoro'
 };
 
 export default function HomePage() {
-  return <CompactLayout><ComingSoonView /></CompactLayout>;
+    return <CompactLayout><ComingSoonView /></CompactLayout>;
 }

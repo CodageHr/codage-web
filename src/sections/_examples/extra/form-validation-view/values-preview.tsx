@@ -15,73 +15,73 @@ import { bgBlur } from 'src/theme/css';
 // ----------------------------------------------------------------------
 
 export default function ValuesPreview() {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const mdUp = useResponsive('up', 'md');
+    const mdUp = useResponsive('up', 'md');
 
-  const {
-    watch,
-    formState: { errors },
-  } = useFormContext();
+    const {
+        watch,
+        formState: { errors },
+    } = useFormContext();
 
-  const values = watch();
+    const values = watch();
 
-  if (!mdUp) {
-    return null;
-  }
+    if (!mdUp) {
+        return null;
+    }
 
-  return (
-    <Portal>
-      <Stack
-        sx={{
-          p: 3,
-          top: 0,
-          right: 0,
-          height: 1,
-          width: 280,
-          position: 'fixed',
-          overflowX: 'auto',
-          color: 'common.white',
-          zIndex: theme.zIndex.drawer,
-          ...bgBlur({ color: theme.palette.grey[900] }),
-        }}
-      >
-        <Typography variant="overline" sx={{ mb: 2, color: 'success.light' }}>
+    return (
+        <Portal>
+            <Stack
+                sx={{
+                    p: 3,
+                    top: 0,
+                    right: 0,
+                    height: 1,
+                    width: 280,
+                    position: 'fixed',
+                    overflowX: 'auto',
+                    color: 'common.white',
+                    zIndex: theme.zIndex.drawer,
+                    ...bgBlur({ color: theme.palette.grey[900] }),
+                }}
+            >
+                <Typography variant="overline" sx={{ mb: 2, color: 'success.light' }}>
           Values
-        </Typography>
+                </Typography>
 
-        {Object.keys(values).map((value) => (
-          <Stack key={value} sx={{ typography: 'caption', mt: 0.5 }}>
-            <Typography variant="body2" sx={{ color: 'warning.main' }}>
-              {value} :
-            </Typography>
+                {Object.keys(values).map((value) => (
+                    <Stack key={value} sx={{ typography: 'caption', mt: 0.5 }}>
+                        <Typography variant="body2" sx={{ color: 'warning.main' }}>
+                            {value} :
+                        </Typography>
 
-            {parseValue(values, value)}
-          </Stack>
-        ))}
+                        {parseValue(values, value)}
+                    </Stack>
+                ))}
 
-        <Divider sx={{ my: 2 }} />
+                <Divider sx={{ my: 2 }} />
 
-        <Typography variant="overline" sx={{ mb: 2, color: 'error.light' }}>
+                <Typography variant="overline" sx={{ mb: 2, color: 'error.light' }}>
           Errors
-        </Typography>
+                </Typography>
 
-        <Typography variant="caption" sx={{ color: 'error.light' }}>
-          {JSON.stringify(Object.keys(errors), null, 2)}
-        </Typography>
-      </Stack>
-    </Portal>
-  );
+                <Typography variant="caption" sx={{ color: 'error.light' }}>
+                    {JSON.stringify(Object.keys(errors), null, 2)}
+                </Typography>
+            </Stack>
+        </Portal>
+    );
 }
 
 // ----------------------------------------------------------------------
 
 function parseValue(values: FieldValues, value: string) {
-  if (value === 'singleUpload') {
-    return JSON.stringify(values.singleUpload && fileData(values.singleUpload));
-  }
-  if (value === 'multiUpload') {
-    return JSON.stringify(values.multiUpload.map((file: File) => fileData(file)));
-  }
-  return JSON.stringify(values[value]) || '---';
+    if (value === 'singleUpload') {
+        return JSON.stringify(values.singleUpload && fileData(values.singleUpload));
+    }
+    if (value === 'multiUpload') {
+        return JSON.stringify(values.multiUpload.map((file: File) => fileData(file)));
+    }
+    return JSON.stringify(values[value]) || '---';
 }

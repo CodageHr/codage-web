@@ -5,7 +5,7 @@ import { InvoiceEditView } from 'src/sections/invoice/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Invoice Edit',
+    title: 'Dashboard: Invoice Edit',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function InvoiceEditPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <InvoiceEditView id={id} />;
+    return <InvoiceEditView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _invoices.map((invoice) => ({
-    id: invoice.id,
-  }));
+    return _invoices.map((invoice) => ({
+        id: invoice.id,
+    }));
 }

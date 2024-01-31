@@ -31,94 +31,94 @@ interface Props extends CardProps {
 }
 
 export default function BookingStatistics({ title, subheader, chart, ...other }: Props) {
-  const { categories, colors, series, options } = chart;
+    const { categories, colors, series, options } = chart;
 
-  const popover = usePopover();
+    const popover = usePopover();
 
-  const [seriesData, setSeriesData] = useState('Year');
+    const [seriesData, setSeriesData] = useState('Year');
 
-  const chartOptions = useChart({
-    colors,
-    stroke: {
-      show: true,
-      width: 2,
-      colors: ['transparent'],
-    },
-    xaxis: {
-      categories,
-    },
-    tooltip: {
-      y: {
-        formatter: (value: number) => `$${value}`,
-      },
-    },
-    ...options,
-  });
+    const chartOptions = useChart({
+        colors,
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent'],
+        },
+        xaxis: {
+            categories,
+        },
+        tooltip: {
+            y: {
+                formatter: (value: number) => `$${value}`,
+            },
+        },
+        ...options,
+    });
 
-  const handleChangeSeries = useCallback(
-    (newValue: string) => {
-      popover.onClose();
-      setSeriesData(newValue);
-    },
-    [popover]
-  );
+    const handleChangeSeries = useCallback(
+        (newValue: string) => {
+            popover.onClose();
+            setSeriesData(newValue);
+        },
+        [popover]
+    );
 
-  return (
-    <>
-      <Card {...other}>
-        <CardHeader
-          title={title}
-          subheader={subheader}
-          action={
-            <ButtonBase
-              onClick={popover.onOpen}
-              sx={{
-                pl: 1,
-                py: 0.5,
-                pr: 0.5,
-                borderRadius: 1,
-                typography: 'subtitle2',
-                bgcolor: 'background.neutral',
-              }}
-            >
-              {seriesData}
+    return (
+        <>
+            <Card {...other}>
+                <CardHeader
+                    title={title}
+                    subheader={subheader}
+                    action={
+                        <ButtonBase
+                            onClick={popover.onOpen}
+                            sx={{
+                                pl: 1,
+                                py: 0.5,
+                                pr: 0.5,
+                                borderRadius: 1,
+                                typography: 'subtitle2',
+                                bgcolor: 'background.neutral',
+                            }}
+                        >
+                            {seriesData}
 
-              <Iconify
-                width={16}
-                icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
-                sx={{ ml: 0.5 }}
-              />
-            </ButtonBase>
-          }
-        />
+                            <Iconify
+                                width={16}
+                                icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
+                                sx={{ ml: 0.5 }}
+                            />
+                        </ButtonBase>
+                    }
+                />
 
-        {series.map((item) => (
-          <Box key={item.type} sx={{ mt: 3, mx: 3 }}>
-            {item.type === seriesData && (
-              <Chart
-                dir="ltr"
-                type="bar"
-                series={item.data}
-                options={chartOptions}
-                width="100%"
-                height={364}
-              />
-            )}
-          </Box>
-        ))}
-      </Card>
+                {series.map((item) => (
+                    <Box key={item.type} sx={{ mt: 3, mx: 3 }}>
+                        {item.type === seriesData && (
+                            <Chart
+                                dir="ltr"
+                                type="bar"
+                                series={item.data}
+                                options={chartOptions}
+                                width="100%"
+                                height={364}
+                            />
+                        )}
+                    </Box>
+                ))}
+            </Card>
 
-      <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 140 }}>
-        {series.map((option) => (
-          <MenuItem
-            key={option.type}
-            selected={option.type === seriesData}
-            onClick={() => handleChangeSeries(option.type)}
-          >
-            {option.type}
-          </MenuItem>
-        ))}
-      </CustomPopover>
-    </>
-  );
+            <CustomPopover open={popover.open} onClose={popover.onClose} sx={{ width: 140 }}>
+                {series.map((option) => (
+                    <MenuItem
+                        key={option.type}
+                        selected={option.type === seriesData}
+                        onClick={() => handleChangeSeries(option.type)}
+                    >
+                        {option.type}
+                    </MenuItem>
+                ))}
+            </CustomPopover>
+        </>
+    );
 }

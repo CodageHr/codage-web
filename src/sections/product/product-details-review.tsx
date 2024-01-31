@@ -33,115 +33,115 @@ type Props = {
 };
 
 export default function ProductDetailsReview({
-  totalRatings,
-  totalReviews,
-  ratings,
-  reviews,
+    totalRatings,
+    totalReviews,
+    ratings,
+    reviews,
 }: Props) {
-  const review = useBoolean();
+    const review = useBoolean();
 
-  const total = sumBy(ratings, (star) => star.starCount);
+    const total = sumBy(ratings, (star) => star.starCount);
 
-  const renderSummary = (
-    <Stack spacing={1} alignItems="center" justifyContent="center">
-      <Typography variant="subtitle2">Average rating</Typography>
+    const renderSummary = (
+        <Stack spacing={1} alignItems="center" justifyContent="center">
+            <Typography variant="subtitle2">Average rating</Typography>
 
-      <Typography variant="h2">{totalRatings}/5</Typography>
+            <Typography variant="h2">{totalRatings}/5</Typography>
 
-      <Rating readOnly value={totalRatings} precision={0.1} />
+            <Rating readOnly value={totalRatings} precision={0.1} />
 
-      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
         ({fShortenNumber(totalReviews)} reviews)
-      </Typography>
-    </Stack>
-  );
-
-  const renderProgress = (
-    <Stack
-      spacing={1.5}
-      sx={{
-        py: 5,
-        px: { xs: 3, md: 5 },
-        borderLeft: (theme) => ({
-          md: `dashed 1px ${theme.palette.divider}`,
-        }),
-        borderRight: (theme) => ({
-          md: `dashed 1px ${theme.palette.divider}`,
-        }),
-      }}
-    >
-      {ratings
-        .slice(0)
-        .reverse()
-        .map((rating) => (
-          <Stack key={rating.name} direction="row" alignItems="center">
-            <Typography variant="subtitle2" component="span" sx={{ width: 42 }}>
-              {rating.name}
             </Typography>
+        </Stack>
+    );
 
-            <LinearProgress
-              color="inherit"
-              variant="determinate"
-              value={(rating.starCount / total) * 100}
-              sx={{
-                mx: 2,
-                flexGrow: 1,
-              }}
-            />
+    const renderProgress = (
+        <Stack
+            spacing={1.5}
+            sx={{
+                py: 5,
+                px: { xs: 3, md: 5 },
+                borderLeft: (theme) => ({
+                    md: `dashed 1px ${theme.palette.divider}`,
+                }),
+                borderRight: (theme) => ({
+                    md: `dashed 1px ${theme.palette.divider}`,
+                }),
+            }}
+        >
+            {ratings
+                .slice(0)
+                .reverse()
+                .map((rating) => (
+                    <Stack key={rating.name} direction="row" alignItems="center">
+                        <Typography variant="subtitle2" component="span" sx={{ width: 42 }}>
+                            {rating.name}
+                        </Typography>
 
-            <Typography
-              variant="body2"
-              component="span"
-              sx={{
-                minWidth: 48,
-                color: 'text.secondary',
-              }}
+                        <LinearProgress
+                            color="inherit"
+                            variant="determinate"
+                            value={(rating.starCount / total) * 100}
+                            sx={{
+                                mx: 2,
+                                flexGrow: 1,
+                            }}
+                        />
+
+                        <Typography
+                            variant="body2"
+                            component="span"
+                            sx={{
+                                minWidth: 48,
+                                color: 'text.secondary',
+                            }}
+                        >
+                            {fShortenNumber(rating.reviewCount)}
+                        </Typography>
+                    </Stack>
+                ))}
+        </Stack>
+    );
+
+    const renderReviewButton = (
+        <Stack alignItems="center" justifyContent="center">
+            <Button
+                size="large"
+                variant="soft"
+                color="inherit"
+                onClick={review.onTrue}
+                startIcon={<Iconify icon="solar:pen-bold" />}
             >
-              {fShortenNumber(rating.reviewCount)}
-            </Typography>
-          </Stack>
-        ))}
-    </Stack>
-  );
-
-  const renderReviewButton = (
-    <Stack alignItems="center" justifyContent="center">
-      <Button
-        size="large"
-        variant="soft"
-        color="inherit"
-        onClick={review.onTrue}
-        startIcon={<Iconify icon="solar:pen-bold" />}
-      >
         Write your review
-      </Button>
-    </Stack>
-  );
+            </Button>
+        </Stack>
+    );
 
-  return (
-    <>
-      <Box
-        display="grid"
-        gridTemplateColumns={{
-          xs: 'repeat(1, 1fr)',
-          md: 'repeat(3, 1fr)',
-        }}
-        sx={{
-          py: { xs: 5, md: 0 },
-        }}
-      >
-        {renderSummary}
+    return (
+        <>
+            <Box
+                display="grid"
+                gridTemplateColumns={{
+                    xs: 'repeat(1, 1fr)',
+                    md: 'repeat(3, 1fr)',
+                }}
+                sx={{
+                    py: { xs: 5, md: 0 },
+                }}
+            >
+                {renderSummary}
 
-        {renderProgress}
+                {renderProgress}
 
-        {renderReviewButton}
-      </Box>
+                {renderReviewButton}
+            </Box>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+            <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <ProductReviewList reviews={reviews} />
+            <ProductReviewList reviews={reviews} />
 
-      <ProductReviewNewForm open={review.value} onClose={review.onFalse} />
-    </>
-  );
+            <ProductReviewNewForm open={review.value} onClose={review.onFalse} />
+        </>
+    );
 }

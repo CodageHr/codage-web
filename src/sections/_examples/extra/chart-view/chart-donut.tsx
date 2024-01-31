@@ -7,34 +7,34 @@ type Props = {
 };
 
 export default function ChartDonut({ series }: Props) {
-  const chartOptions = useChart({
-    labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
-    stroke: {
-      show: false,
-    },
-    legend: {
-      horizontalAlign: 'center',
-    },
-    tooltip: {
-      fillSeriesColor: false,
-    },
-    plotOptions: {
-      pie: {
-        donut: {
-          size: '90%',
+    const chartOptions = useChart({
+        labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
+        stroke: {
+            show: false,
         },
-      },
-    },
-  });
+        legend: {
+            horizontalAlign: 'center',
+        },
+        tooltip: {
+            fillSeriesColor: false,
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '90%',
+                },
+            },
+        },
+    });
 
-  return (
-    <Chart
-      dir="ltr"
-      type="donut"
-      series={series}
-      options={chartOptions}
-      width={400}
-      height="auto"
-    />
-  );
+    return (
+        <Chart
+            dir="ltr"
+            type="donut"
+            series={series}
+            options={chartOptions}
+            width={400}
+            height="auto"
+        />
+    );
 }

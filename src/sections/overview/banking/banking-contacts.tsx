@@ -23,37 +23,37 @@ interface Props extends CardProps {
 }
 
 export default function BankingContacts({ title, subheader, list, ...other }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader
-        title={title}
-        subheader={subheader}
-        action={
-          <Button
-            size="small"
-            color="inherit"
-            endIcon={<Iconify icon="eva:arrow-ios-forward-fill" width={18} sx={{ ml: -0.5 }} />}
-          >
+    return (
+        <Card {...other}>
+            <CardHeader
+                title={title}
+                subheader={subheader}
+                action={
+                    <Button
+                        size="small"
+                        color="inherit"
+                        endIcon={<Iconify icon="eva:arrow-ios-forward-fill" width={18} sx={{ ml: -0.5 }} />}
+                    >
             View All
-          </Button>
-        }
-      />
+                    </Button>
+                }
+            />
 
-      <Stack spacing={3} sx={{ p: 3 }}>
-        {list.map((contact) => (
-          <Stack direction="row" alignItems="center" key={contact.id}>
-            <Avatar src={contact.avatarUrl} sx={{ width: 48, height: 48, mr: 2 }} />
+            <Stack spacing={3} sx={{ p: 3 }}>
+                {list.map((contact) => (
+                    <Stack direction="row" alignItems="center" key={contact.id}>
+                        <Avatar src={contact.avatarUrl} sx={{ width: 48, height: 48, mr: 2 }} />
 
-            <ListItemText primary={contact.name} secondary={contact.email} />
+                        <ListItemText primary={contact.name} secondary={contact.email} />
 
-            <Tooltip title="Quick Transfer">
-              <IconButton>
-                <Iconify icon="eva:diagonal-arrow-right-up-fill" />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        ))}
-      </Stack>
-    </Card>
-  );
+                        <Tooltip title="Quick Transfer">
+                            <IconButton>
+                                <Iconify icon="eva:diagonal-arrow-right-up-fill" />
+                            </IconButton>
+                        </Tooltip>
+                    </Stack>
+                ))}
+            </Stack>
+        </Card>
+    );
 }

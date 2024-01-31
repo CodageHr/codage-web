@@ -46,43 +46,43 @@ interface Props extends CardProps {
 }
 
 export default function BankingRecentTransitions({
-  title,
-  subheader,
-  tableLabels,
-  tableData,
-  ...other
+    title,
+    subheader,
+    tableLabels,
+    tableData,
+    ...other
 }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} sx={{ mb: 3 }} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} sx={{ mb: 3 }} />
 
-      <TableContainer sx={{ overflow: 'unset' }}>
-        <Scrollbar>
-          <Table sx={{ minWidth: 720 }}>
-            <TableHeadCustom headLabel={tableLabels} />
+            <TableContainer sx={{ overflow: 'unset' }}>
+                <Scrollbar>
+                    <Table sx={{ minWidth: 720 }}>
+                        <TableHeadCustom headLabel={tableLabels} />
 
-            <TableBody>
-              {tableData.map((row) => (
-                <BankingRecentTransitionsRow key={row.id} row={row} />
-              ))}
-            </TableBody>
-          </Table>
-        </Scrollbar>
-      </TableContainer>
+                        <TableBody>
+                            {tableData.map((row) => (
+                                <BankingRecentTransitionsRow key={row.id} row={row} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Scrollbar>
+            </TableContainer>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+            <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button
-          size="small"
-          color="inherit"
-          endIcon={<Iconify icon="eva:arrow-ios-forward-fill" width={18} sx={{ ml: -0.5 }} />}
-        >
+            <Box sx={{ p: 2, textAlign: 'right' }}>
+                <Button
+                    size="small"
+                    color="inherit"
+                    endIcon={<Iconify icon="eva:arrow-ios-forward-fill" width={18} sx={{ ml: -0.5 }} />}
+                >
           View All
-        </Button>
-      </Box>
-    </Card>
-  );
+                </Button>
+            </Box>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -92,142 +92,142 @@ type BankingRecentTransitionsRowProps = {
 };
 
 function BankingRecentTransitionsRow({ row }: BankingRecentTransitionsRowProps) {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const lightMode = theme.palette.mode === 'light';
+    const lightMode = theme.palette.mode === 'light';
 
-  const popover = usePopover();
+    const popover = usePopover();
 
-  const handleDownload = () => {
-    popover.onClose();
-    console.info('DOWNLOAD', row.id);
-  };
+    const handleDownload = () => {
+        popover.onClose();
+        console.info('DOWNLOAD', row.id);
+    };
 
-  const handlePrint = () => {
-    popover.onClose();
-    console.info('PRINT', row.id);
-  };
+    const handlePrint = () => {
+        popover.onClose();
+        console.info('PRINT', row.id);
+    };
 
-  const handleShare = () => {
-    popover.onClose();
-    console.info('SHARE', row.id);
-  };
+    const handleShare = () => {
+        popover.onClose();
+        console.info('SHARE', row.id);
+    };
 
-  const handleDelete = () => {
-    popover.onClose();
-    console.info('DELETE', row.id);
-  };
+    const handleDelete = () => {
+        popover.onClose();
+        console.info('DELETE', row.id);
+    };
 
-  const renderAvatar = (
-    <Box sx={{ position: 'relative', mr: 2 }}>
-      <Badge
-        overlap="circular"
-        color={row.type === 'Income' ? 'success' : 'error'}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeContent={
-          <Iconify
-            icon={
-              row.type === 'Income'
-                ? 'eva:diagonal-arrow-left-down-fill'
-                : 'eva:diagonal-arrow-right-up-fill'
-            }
-            width={16}
-          />
-        }
-        sx={{
-          [`& .${badgeClasses.badge}`]: {
-            p: 0,
-            width: 20,
-          },
-        }}
-      >
-        <Avatar
-          src={row.avatarUrl || ''}
-          sx={{
-            width: 48,
-            height: 48,
-            color: 'text.secondary',
-            bgcolor: 'background.neutral',
-          }}
-        >
-          {row.category === 'Books' && <Iconify icon="eva:book-fill" width={24} />}
-          {row.category === 'Beauty & Health' && <Iconify icon="solar:heart-bold" width={24} />}
-        </Avatar>
-      </Badge>
-    </Box>
-  );
+    const renderAvatar = (
+        <Box sx={{ position: 'relative', mr: 2 }}>
+            <Badge
+                overlap="circular"
+                color={row.type === 'Income' ? 'success' : 'error'}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                badgeContent={
+                    <Iconify
+                        icon={
+                            row.type === 'Income'
+                                ? 'eva:diagonal-arrow-left-down-fill'
+                                : 'eva:diagonal-arrow-right-up-fill'
+                        }
+                        width={16}
+                    />
+                }
+                sx={{
+                    [`& .${badgeClasses.badge}`]: {
+                        p: 0,
+                        width: 20,
+                    },
+                }}
+            >
+                <Avatar
+                    src={row.avatarUrl || ''}
+                    sx={{
+                        width: 48,
+                        height: 48,
+                        color: 'text.secondary',
+                        bgcolor: 'background.neutral',
+                    }}
+                >
+                    {row.category === 'Books' && <Iconify icon="eva:book-fill" width={24} />}
+                    {row.category === 'Beauty & Health' && <Iconify icon="solar:heart-bold" width={24} />}
+                </Avatar>
+            </Badge>
+        </Box>
+    );
 
-  return (
-    <>
-      <TableRow>
-        <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-          {renderAvatar}
-          <ListItemText primary={row.message} secondary={row.category} />
-        </TableCell>
+    return (
+        <>
+            <TableRow>
+                <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                    {renderAvatar}
+                    <ListItemText primary={row.message} secondary={row.category} />
+                </TableCell>
 
-        <TableCell>
-          <ListItemText
-            primary={fDate(new Date(row.date))}
-            secondary={fTime(new Date(row.date))}
-            primaryTypographyProps={{ typography: 'body2' }}
-            secondaryTypographyProps={{
-              mt: 0.5,
-              component: 'span',
-              typography: 'caption',
-            }}
-          />
-        </TableCell>
+                <TableCell>
+                    <ListItemText
+                        primary={fDate(new Date(row.date))}
+                        secondary={fTime(new Date(row.date))}
+                        primaryTypographyProps={{ typography: 'body2' }}
+                        secondaryTypographyProps={{
+                            mt: 0.5,
+                            component: 'span',
+                            typography: 'caption',
+                        }}
+                    />
+                </TableCell>
 
-        <TableCell>{fCurrency(row.amount)}</TableCell>
+                <TableCell>{fCurrency(row.amount)}</TableCell>
 
-        <TableCell>
-          <Label
-            variant={lightMode ? 'soft' : 'filled'}
-            color={
-              (row.status === 'completed' && 'success') ||
+                <TableCell>
+                    <Label
+                        variant={lightMode ? 'soft' : 'filled'}
+                        color={
+                            (row.status === 'completed' && 'success') ||
               (row.status === 'progress' && 'warning') ||
               'error'
-            }
-          >
-            {row.status}
-          </Label>
-        </TableCell>
+                        }
+                    >
+                        {row.status}
+                    </Label>
+                </TableCell>
 
-        <TableCell align="right" sx={{ pr: 1 }}>
-          <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
-            <Iconify icon="eva:more-vertical-fill" />
-          </IconButton>
-        </TableCell>
-      </TableRow>
+                <TableCell align="right" sx={{ pr: 1 }}>
+                    <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+                        <Iconify icon="eva:more-vertical-fill" />
+                    </IconButton>
+                </TableCell>
+            </TableRow>
 
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="right-top"
-        sx={{ width: 160 }}
-      >
-        <MenuItem onClick={handleDownload}>
-          <Iconify icon="eva:cloud-download-fill" />
+            <CustomPopover
+                open={popover.open}
+                onClose={popover.onClose}
+                arrow="right-top"
+                sx={{ width: 160 }}
+            >
+                <MenuItem onClick={handleDownload}>
+                    <Iconify icon="eva:cloud-download-fill" />
           Download
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem onClick={handlePrint}>
-          <Iconify icon="solar:printer-minimalistic-bold" />
+                <MenuItem onClick={handlePrint}>
+                    <Iconify icon="solar:printer-minimalistic-bold" />
           Print
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem onClick={handleShare}>
-          <Iconify icon="solar:share-bold" />
+                <MenuItem onClick={handleShare}>
+                    <Iconify icon="solar:share-bold" />
           Share
-        </MenuItem>
+                </MenuItem>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+                <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
-          <Iconify icon="solar:trash-bin-trash-bold" />
+                <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
+                    <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
-      </CustomPopover>
-    </>
-  );
+                </MenuItem>
+            </CustomPopover>
+        </>
+    );
 }

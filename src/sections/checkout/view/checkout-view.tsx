@@ -18,37 +18,37 @@ import CheckoutBillingAddress from '../checkout-billing-address';
 // ----------------------------------------------------------------------
 
 export default function CheckoutView() {
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const checkout = useCheckoutContext();
+    const checkout = useCheckoutContext();
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'} sx={{ mb: 10 }}>
-      <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
+    return (
+        <Container maxWidth={settings.themeStretch ? false : 'lg'} sx={{ mb: 10 }}>
+            <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
         Checkout
-      </Typography>
+            </Typography>
 
-      <Grid container justifyContent={checkout.completed ? 'center' : 'flex-start'}>
-        <Grid xs={12} md={8}>
-          <CheckoutSteps activeStep={checkout.activeStep} steps={PRODUCT_CHECKOUT_STEPS} />
-        </Grid>
-      </Grid>
+            <Grid container justifyContent={checkout.completed ? 'center' : 'flex-start'}>
+                <Grid xs={12} md={8}>
+                    <CheckoutSteps activeStep={checkout.activeStep} steps={PRODUCT_CHECKOUT_STEPS} />
+                </Grid>
+            </Grid>
 
-      {checkout.completed ? (
-        <CheckoutOrderComplete
-          open={checkout.completed}
-          onReset={checkout.onReset}
-          onDownloadPDF={() => {}}
-        />
-      ) : (
-        <>
-          {checkout.activeStep === 0 && <CheckoutCart />}
+            {checkout.completed ? (
+                <CheckoutOrderComplete
+                    open={checkout.completed}
+                    onReset={checkout.onReset}
+                    onDownloadPDF={() => {}}
+                />
+            ) : (
+                <>
+                    {checkout.activeStep === 0 && <CheckoutCart />}
 
-          {checkout.activeStep === 1 && <CheckoutBillingAddress />}
+                    {checkout.activeStep === 1 && <CheckoutBillingAddress />}
 
-          {checkout.activeStep === 2 && checkout.billing && <CheckoutPayment />}
-        </>
-      )}
-    </Container>
-  );
+                    {checkout.activeStep === 2 && checkout.billing && <CheckoutPayment />}
+                </>
+            )}
+        </Container>
+    );
 }

@@ -3,9 +3,9 @@ import { MailView } from 'src/sections/mail/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Mail',
+    title: 'Dashboard: Mail',
 };
 
 export default function MailPage() {
-  return <MailView />;
+    return <MailView />;
 }

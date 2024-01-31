@@ -22,73 +22,73 @@ type Props = StackProps & {
 };
 
 export default function ProductTableFiltersResult({
-  filters,
-  onFilters,
-  //
-  onResetFilters,
-  //
-  results,
-  ...other
+    filters,
+    onFilters,
+    //
+    onResetFilters,
+    //
+    results,
+    ...other
 }: Props) {
-  const handleRemoveStock = useCallback(
-    (inputValue: string) => {
-      const newValue = filters.stock.filter((item) => item !== inputValue);
+    const handleRemoveStock = useCallback(
+        (inputValue: string) => {
+            const newValue = filters.stock.filter((item) => item !== inputValue);
 
-      onFilters('stock', newValue);
-    },
-    [filters.stock, onFilters]
-  );
+            onFilters('stock', newValue);
+        },
+        [filters.stock, onFilters]
+    );
 
-  const handleRemovePublish = useCallback(
-    (inputValue: string) => {
-      const newValue = filters.publish.filter((item) => item !== inputValue);
+    const handleRemovePublish = useCallback(
+        (inputValue: string) => {
+            const newValue = filters.publish.filter((item) => item !== inputValue);
 
-      onFilters('publish', newValue);
-    },
-    [filters.publish, onFilters]
-  );
+            onFilters('publish', newValue);
+        },
+        [filters.publish, onFilters]
+    );
 
-  return (
-    <Stack spacing={1.5} {...other}>
-      <Box sx={{ typography: 'body2' }}>
-        <strong>{results}</strong>
-        <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
+    return (
+        <Stack spacing={1.5} {...other}>
+            <Box sx={{ typography: 'body2' }}>
+                <strong>{results}</strong>
+                <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
           results found
-        </Box>
-      </Box>
+                </Box>
+            </Box>
 
-      <Stack flexGrow={1} spacing={1} direction="row" flexWrap="wrap" alignItems="center">
-        {!!filters.stock.length && (
-          <Block label="Stock:">
-            {filters.stock.map((item) => (
-              <Chip key={item} label={item} size="small" onDelete={() => handleRemoveStock(item)} />
-            ))}
-          </Block>
-        )}
+            <Stack flexGrow={1} spacing={1} direction="row" flexWrap="wrap" alignItems="center">
+                {!!filters.stock.length && (
+                    <Block label="Stock:">
+                        {filters.stock.map((item) => (
+                            <Chip key={item} label={item} size="small" onDelete={() => handleRemoveStock(item)} />
+                        ))}
+                    </Block>
+                )}
 
-        {!!filters.publish.length && (
-          <Block label="Publish:">
-            {filters.publish.map((item) => (
-              <Chip
-                key={item}
-                label={item}
-                size="small"
-                onDelete={() => handleRemovePublish(item)}
-              />
-            ))}
-          </Block>
-        )}
+                {!!filters.publish.length && (
+                    <Block label="Publish:">
+                        {filters.publish.map((item) => (
+                            <Chip
+                                key={item}
+                                label={item}
+                                size="small"
+                                onDelete={() => handleRemovePublish(item)}
+                            />
+                        ))}
+                    </Block>
+                )}
 
-        <Button
-          color="error"
-          onClick={onResetFilters}
-          startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
-        >
+                <Button
+                    color="error"
+                    onClick={onResetFilters}
+                    startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
+                >
           Clear
-        </Button>
-      </Stack>
-    </Stack>
-  );
+                </Button>
+            </Stack>
+        </Stack>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -98,28 +98,28 @@ type BlockProps = StackProps & {
 };
 
 function Block({ label, children, sx, ...other }: BlockProps) {
-  return (
-    <Stack
-      component={Paper}
-      variant="outlined"
-      spacing={1}
-      direction="row"
-      sx={{
-        p: 1,
-        borderRadius: 1,
-        overflow: 'hidden',
-        borderStyle: 'dashed',
-        ...sx,
-      }}
-      {...other}
-    >
-      <Box component="span" sx={{ typography: 'subtitle2' }}>
-        {label}
-      </Box>
+    return (
+        <Stack
+            component={Paper}
+            variant="outlined"
+            spacing={1}
+            direction="row"
+            sx={{
+                p: 1,
+                borderRadius: 1,
+                overflow: 'hidden',
+                borderStyle: 'dashed',
+                ...sx,
+            }}
+            {...other}
+        >
+            <Box component="span" sx={{ typography: 'subtitle2' }}>
+                {label}
+            </Box>
 
-      <Stack spacing={1} direction="row" flexWrap="wrap">
-        {children}
-      </Stack>
-    </Stack>
-  );
+            <Stack spacing={1} direction="row" flexWrap="wrap">
+                {children}
+            </Stack>
+        </Stack>
+    );
 }

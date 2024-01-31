@@ -15,78 +15,78 @@ import { AddressItem, AddressNewForm } from '../address';
 // ----------------------------------------------------------------------
 
 export default function CheckoutBillingAddress() {
-  const checkout = useCheckoutContext();
+    const checkout = useCheckoutContext();
 
-  const addressForm = useBoolean();
+    const addressForm = useBoolean();
 
-  return (
-    <>
-      <Grid container spacing={3}>
-        <Grid xs={12} md={8}>
-          {_addressBooks.slice(0, 4).map((address) => (
-            <AddressItem
-              key={address.id}
-              address={address}
-              action={
-                <Stack flexDirection="row" flexWrap="wrap" flexShrink={0}>
-                  {!address.primary && (
-                    <Button size="small" color="error" sx={{ mr: 1 }}>
+    return (
+        <>
+            <Grid container spacing={3}>
+                <Grid xs={12} md={8}>
+                    {_addressBooks.slice(0, 4).map((address) => (
+                        <AddressItem
+                            key={address.id}
+                            address={address}
+                            action={
+                                <Stack flexDirection="row" flexWrap="wrap" flexShrink={0}>
+                                    {!address.primary && (
+                                        <Button size="small" color="error" sx={{ mr: 1 }}>
                       Delete
-                    </Button>
-                  )}
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => checkout.onCreateBilling(address)}
-                  >
+                                        </Button>
+                                    )}
+                                    <Button
+                                        variant="outlined"
+                                        size="small"
+                                        onClick={() => checkout.onCreateBilling(address)}
+                                    >
                     Deliver to this Address
-                  </Button>
-                </Stack>
-              }
-              sx={{
-                p: 3,
-                mb: 3,
-                borderRadius: 2,
-                boxShadow: (theme) => theme.customShadows.card,
-              }}
-            />
-          ))}
+                                    </Button>
+                                </Stack>
+                            }
+                            sx={{
+                                p: 3,
+                                mb: 3,
+                                borderRadius: 2,
+                                boxShadow: (theme) => theme.customShadows.card,
+                            }}
+                        />
+                    ))}
 
-          <Stack direction="row" justifyContent="space-between">
-            <Button
-              size="small"
-              color="inherit"
-              onClick={checkout.onBackStep}
-              startIcon={<Iconify icon="eva:arrow-ios-back-fill" />}
-            >
+                    <Stack direction="row" justifyContent="space-between">
+                        <Button
+                            size="small"
+                            color="inherit"
+                            onClick={checkout.onBackStep}
+                            startIcon={<Iconify icon="eva:arrow-ios-back-fill" />}
+                        >
               Back
-            </Button>
+                        </Button>
 
-            <Button
-              size="small"
-              color="primary"
-              onClick={addressForm.onTrue}
-              startIcon={<Iconify icon="mingcute:add-line" />}
-            >
+                        <Button
+                            size="small"
+                            color="primary"
+                            onClick={addressForm.onTrue}
+                            startIcon={<Iconify icon="mingcute:add-line" />}
+                        >
               New Address
-            </Button>
-          </Stack>
-        </Grid>
+                        </Button>
+                    </Stack>
+                </Grid>
 
-        <Grid xs={12} md={4}>
-          <CheckoutSummary
-            total={checkout.total}
-            subTotal={checkout.subTotal}
-            discount={checkout.discount}
-          />
-        </Grid>
-      </Grid>
+                <Grid xs={12} md={4}>
+                    <CheckoutSummary
+                        total={checkout.total}
+                        subTotal={checkout.subTotal}
+                        discount={checkout.discount}
+                    />
+                </Grid>
+            </Grid>
 
-      <AddressNewForm
-        open={addressForm.value}
-        onClose={addressForm.onFalse}
-        onCreate={checkout.onCreateBilling}
-      />
-    </>
-  );
+            <AddressNewForm
+                open={addressForm.value}
+                onClose={addressForm.onFalse}
+                onCreate={checkout.onCreateBilling}
+            />
+        </>
+    );
 }

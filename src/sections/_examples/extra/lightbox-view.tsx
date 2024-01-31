@@ -27,214 +27,214 @@ import ComponentHero from 'src/sections/_examples/component-hero';
 // ----------------------------------------------------------------------
 
 const images = [...Array(4)].map((_, index) => ({
-  src: _mock.image.cover(index + 1),
-  title: 'Flamingo',
-  description: 'Vicko Mozara \n Veliki zali, Dubravica, Croatia',
+    src: _mock.image.cover(index + 1),
+    title: 'Flamingo',
+    description: 'Vicko Mozara \n Veliki zali, Dubravica, Croatia',
 }));
 
 const slides: Slide[] = [
-  ...images,
-  {
-    type: 'video',
-    width: 1280,
-    height: 720,
-    poster:
+    ...images,
+    {
+        type: 'video',
+        width: 1280,
+        height: 720,
+        poster:
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
-    sources: [
-      {
-        src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        type: 'video/mp4',
-      },
-    ],
-  },
+        sources: [
+            {
+                src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                type: 'video/mp4',
+            },
+        ],
+    },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function LightboxView() {
-  const lightbox = useLightBox(slides);
+    const lightbox = useLightBox(slides);
 
-  const [state, setState] = useState({
-    disabledZoom: false,
-    disabledVideo: false,
-    disabledTotal: false,
-    disabledCaptions: false,
-    disabledSlideshow: false,
-    disabledThumbnails: false,
-    disabledFullscreen: false,
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
+    const [state, setState] = useState({
+        disabledZoom: false,
+        disabledVideo: false,
+        disabledTotal: false,
+        disabledCaptions: false,
+        disabledSlideshow: false,
+        disabledThumbnails: false,
+        disabledFullscreen: false,
     });
-  };
 
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Lightbox"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Lightbox' },
-          ]}
-          moreLink={['https://www.npmjs.com/package/yet-another-react-lightbox']}
-        />
-      </ComponentHero>
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setState({
+            ...state,
+            [event.target.name]: event.target.checked,
+        });
+    };
 
-      <Container sx={{ my: 10 }}>
-        <Card sx={{ p: 3 }}>
-          <Grid container spacing={3}>
-            <Grid xs={12} md={9}>
-              <Box
-                gap={1}
-                display="grid"
-                gridTemplateColumns={{
-                  xs: 'repeat(2, 1fr)',
-                  sm: 'repeat(3, 1fr)',
-                  md: 'repeat(4, 1fr)',
-                }}
-              >
-                {slides.map((slide) => {
-                  const thumbnail =
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Lightbox"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Lightbox' },
+                    ]}
+                    moreLink={['https://www.npmjs.com/package/yet-another-react-lightbox']}
+                />
+            </ComponentHero>
+
+            <Container sx={{ my: 10 }}>
+                <Card sx={{ p: 3 }}>
+                    <Grid container spacing={3}>
+                        <Grid xs={12} md={9}>
+                            <Box
+                                gap={1}
+                                display="grid"
+                                gridTemplateColumns={{
+                                    xs: 'repeat(2, 1fr)',
+                                    sm: 'repeat(3, 1fr)',
+                                    md: 'repeat(4, 1fr)',
+                                }}
+                            >
+                                {slides.map((slide) => {
+                                    const thumbnail =
                     slide.type === 'video'
-                      ? (slide as SlideVideo).poster
-                      : (slide as SlideImage).src;
+                        ? (slide as SlideVideo).poster
+                        : (slide as SlideImage).src;
 
-                  return (
-                    <Image
-                      key={thumbnail}
-                      alt={thumbnail}
-                      src={thumbnail}
-                      ratio="1/1"
-                      onClick={() => lightbox.onOpen(`${thumbnail}`)}
-                      sx={{
-                        borderRadius: 1,
-                        cursor: 'pointer',
-                      }}
-                    />
-                  );
-                })}
-              </Box>
-            </Grid>
+                                    return (
+                                        <Image
+                                            key={thumbnail}
+                                            alt={thumbnail}
+                                            src={thumbnail}
+                                            ratio="1/1"
+                                            onClick={() => lightbox.onOpen(`${thumbnail}`)}
+                                            sx={{
+                                                borderRadius: 1,
+                                                cursor: 'pointer',
+                                            }}
+                                        />
+                                    );
+                                })}
+                            </Box>
+                        </Grid>
 
-            <Grid xs={12} md={3}>
-              <Paper sx={{ p: 3, bgcolor: 'background.neutral', borderRadius: 2 }}>
-                <FormControl component="fieldset" variant="standard">
-                  <Stack spacing={2}>
-                    <FormLabel component="legend" sx={{ typography: 'body2' }}>
+                        <Grid xs={12} md={3}>
+                            <Paper sx={{ p: 3, bgcolor: 'background.neutral', borderRadius: 2 }}>
+                                <FormControl component="fieldset" variant="standard">
+                                    <Stack spacing={2}>
+                                        <FormLabel component="legend" sx={{ typography: 'body2' }}>
                       Controls
-                    </FormLabel>
+                                        </FormLabel>
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledZoom"
-                          checked={state.disabledZoom}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Zoom"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledZoom"
+                                                    checked={state.disabledZoom}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Zoom"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledTotal"
-                          checked={state.disabledTotal}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Total"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledTotal"
+                                                    checked={state.disabledTotal}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Total"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledVideo"
-                          checked={state.disabledVideo}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Video"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledVideo"
+                                                    checked={state.disabledVideo}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Video"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledCaptions"
-                          checked={state.disabledCaptions}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Captions"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledCaptions"
+                                                    checked={state.disabledCaptions}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Captions"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledSlideshow"
-                          checked={state.disabledSlideshow}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Slideshow"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledSlideshow"
+                                                    checked={state.disabledSlideshow}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Slideshow"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledThumbnails"
-                          checked={state.disabledThumbnails}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Thumbnails"
-                    />
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledThumbnails"
+                                                    checked={state.disabledThumbnails}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Thumbnails"
+                                        />
 
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          size="small"
-                          name="disabledFullscreen"
-                          checked={state.disabledFullscreen}
-                          onChange={handleChange}
-                        />
-                      }
-                      label="Disabled Fullscreen"
-                    />
-                  </Stack>
-                </FormControl>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Card>
-      </Container>
+                                        <FormControlLabel
+                                            control={
+                                                <Switch
+                                                    size="small"
+                                                    name="disabledFullscreen"
+                                                    checked={state.disabledFullscreen}
+                                                    onChange={handleChange}
+                                                />
+                                            }
+                                            label="Disabled Fullscreen"
+                                        />
+                                    </Stack>
+                                </FormControl>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Card>
+            </Container>
 
-      <Lightbox
-        open={lightbox.open}
-        close={lightbox.onClose}
-        slides={slides}
-        index={lightbox.selected}
-        disabledZoom={state.disabledZoom}
-        disabledTotal={state.disabledTotal}
-        disabledVideo={state.disabledVideo}
-        disabledCaptions={state.disabledCaptions}
-        disabledSlideshow={state.disabledSlideshow}
-        disabledThumbnails={state.disabledThumbnails}
-        disabledFullscreen={state.disabledFullscreen}
-      />
-    </>
-  );
+            <Lightbox
+                open={lightbox.open}
+                close={lightbox.onClose}
+                slides={slides}
+                index={lightbox.selected}
+                disabledZoom={state.disabledZoom}
+                disabledTotal={state.disabledTotal}
+                disabledVideo={state.disabledVideo}
+                disabledCaptions={state.disabledCaptions}
+                disabledSlideshow={state.disabledSlideshow}
+                disabledThumbnails={state.disabledThumbnails}
+                disabledFullscreen={state.disabledFullscreen}
+            />
+        </>
+    );
 }

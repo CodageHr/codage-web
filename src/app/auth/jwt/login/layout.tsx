@@ -10,9 +10,9 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return (
-    <GuestGuard>
-      <AuthClassicLayout>{children}</AuthClassicLayout>
-    </GuestGuard>
-  );
+    return (
+        <GuestGuard>
+            <AuthClassicLayout>{children}</AuthClassicLayout>
+        </GuestGuard>
+    );
 }

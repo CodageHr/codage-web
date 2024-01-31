@@ -26,161 +26,161 @@ import ComponentHero from 'src/sections/_examples/component-hero';
 // ----------------------------------------------------------------------
 
 export default function UploadView() {
-  const preview = useBoolean();
+    const preview = useBoolean();
 
-  const [files, setFiles] = useState<(File | string)[]>([]);
+    const [files, setFiles] = useState<(File | string)[]>([]);
 
-  const [file, setFile] = useState<File | string | null>(null);
+    const [file, setFile] = useState<File | string | null>(null);
 
-  const [avatarUrl, setAvatarUrl] = useState<File | string | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState<File | string | null>(null);
 
-  const handleDropSingleFile = useCallback((acceptedFiles: File[]) => {
-    const newFile = acceptedFiles[0];
-    if (newFile) {
-      setFile(
-        Object.assign(newFile, {
-          preview: URL.createObjectURL(newFile),
-        })
-      );
-    }
-  }, []);
+    const handleDropSingleFile = useCallback((acceptedFiles: File[]) => {
+        const newFile = acceptedFiles[0];
+        if (newFile) {
+            setFile(
+                Object.assign(newFile, {
+                    preview: URL.createObjectURL(newFile),
+                })
+            );
+        }
+    }, []);
 
-  const handleDropAvatar = useCallback((acceptedFiles: File[]) => {
-    const newFile = acceptedFiles[0];
-    if (newFile) {
-      setAvatarUrl(
-        Object.assign(newFile, {
-          preview: URL.createObjectURL(newFile),
-        })
-      );
-    }
-  }, []);
+    const handleDropAvatar = useCallback((acceptedFiles: File[]) => {
+        const newFile = acceptedFiles[0];
+        if (newFile) {
+            setAvatarUrl(
+                Object.assign(newFile, {
+                    preview: URL.createObjectURL(newFile),
+                })
+            );
+        }
+    }, []);
 
-  const handleDropMultiFile = useCallback(
-    (acceptedFiles: File[]) => {
-      setFiles([
-        ...files,
-        ...acceptedFiles.map((newFile) =>
-          Object.assign(newFile, {
-            preview: URL.createObjectURL(newFile),
-          })
-        ),
-      ]);
-    },
-    [files]
-  );
+    const handleDropMultiFile = useCallback(
+        (acceptedFiles: File[]) => {
+            setFiles([
+                ...files,
+                ...acceptedFiles.map((newFile) =>
+                    Object.assign(newFile, {
+                        preview: URL.createObjectURL(newFile),
+                    })
+                ),
+            ]);
+        },
+        [files]
+    );
 
-  const handleRemoveFile = (inputFile: File | string) => {
-    const filesFiltered = files.filter((fileFiltered) => fileFiltered !== inputFile);
-    setFiles(filesFiltered);
-  };
+    const handleRemoveFile = (inputFile: File | string) => {
+        const filesFiltered = files.filter((fileFiltered) => fileFiltered !== inputFile);
+        setFiles(filesFiltered);
+    };
 
-  const handleRemoveAllFiles = () => {
-    setFiles([]);
-  };
+    const handleRemoveAllFiles = () => {
+        setFiles([]);
+    };
 
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Upload"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Upload' },
-          ]}
-          moreLink={['https://react-dropzone.js.org/#section-basic-example']}
-        />
-      </ComponentHero>
-
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={5}>
-          <Card>
-            <CardHeader
-              title="Upload Multi File"
-              action={
-                <FormControlLabel
-                  control={<Switch checked={preview.value} onClick={preview.onToggle} />}
-                  label="Show Thumbnail"
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Upload"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Upload' },
+                    ]}
+                    moreLink={['https://react-dropzone.js.org/#section-basic-example']}
                 />
-              }
-            />
-            <CardContent>
-              <Upload
-                multiple
-                thumbnail={preview.value}
-                files={files}
-                onDrop={handleDropMultiFile}
-                onRemove={handleRemoveFile}
-                onRemoveAll={handleRemoveAllFiles}
-                onUpload={() => console.info('ON UPLOAD')}
-              />
-            </CardContent>
-          </Card>
+            </ComponentHero>
 
-          <Card>
-            <CardHeader title="Upload Single File" />
-            <CardContent>
-              <Upload file={file} onDrop={handleDropSingleFile} onDelete={() => setFile(null)} />
-            </CardContent>
-          </Card>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={5}>
+                    <Card>
+                        <CardHeader
+                            title="Upload Multi File"
+                            action={
+                                <FormControlLabel
+                                    control={<Switch checked={preview.value} onClick={preview.onToggle} />}
+                                    label="Show Thumbnail"
+                                />
+                            }
+                        />
+                        <CardContent>
+                            <Upload
+                                multiple
+                                thumbnail={preview.value}
+                                files={files}
+                                onDrop={handleDropMultiFile}
+                                onRemove={handleRemoveFile}
+                                onRemoveAll={handleRemoveAllFiles}
+                                onUpload={() => console.info('ON UPLOAD')}
+                            />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Upload Avatar" />
-            <CardContent>
-              <UploadAvatar
-                file={avatarUrl}
-                onDrop={handleDropAvatar}
-                validator={(fileData) => {
-                  if (fileData.size > 1000000) {
-                    return {
-                      code: 'file-too-large',
-                      message: `File is larger than ${fData(1000000)}`,
-                    };
-                  }
-                  return null;
-                }}
-                helperText={
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      mt: 3,
-                      mx: 'auto',
-                      display: 'block',
-                      textAlign: 'center',
-                      color: 'text.disabled',
-                    }}
-                  >
+                    <Card>
+                        <CardHeader title="Upload Single File" />
+                        <CardContent>
+                            <Upload file={file} onDrop={handleDropSingleFile} onDelete={() => setFile(null)} />
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader title="Upload Avatar" />
+                        <CardContent>
+                            <UploadAvatar
+                                file={avatarUrl}
+                                onDrop={handleDropAvatar}
+                                validator={(fileData) => {
+                                    if (fileData.size > 1000000) {
+                                        return {
+                                            code: 'file-too-large',
+                                            message: `File is larger than ${fData(1000000)}`,
+                                        };
+                                    }
+                                    return null;
+                                }}
+                                helperText={
+                                    <Typography
+                                        variant="caption"
+                                        sx={{
+                                            mt: 3,
+                                            mx: 'auto',
+                                            display: 'block',
+                                            textAlign: 'center',
+                                            color: 'text.disabled',
+                                        }}
+                                    >
                     Allowed *.jpeg, *.jpg, *.png, *.gif
-                    <br /> max size of {fData(3145728)}
-                  </Typography>
-                }
-              />
-            </CardContent>
-          </Card>
+                                        <br /> max size of {fData(3145728)}
+                                    </Typography>
+                                }
+                            />
+                        </CardContent>
+                    </Card>
 
-          <Card>
-            <CardHeader title="Upload Box" />
-            <CardContent>
-              <Stack direction="row" spacing={2}>
-                <UploadBox />
+                    <Card>
+                        <CardHeader title="Upload Box" />
+                        <CardContent>
+                            <Stack direction="row" spacing={2}>
+                                <UploadBox />
 
-                <UploadBox
-                  placeholder={
-                    <Stack spacing={0.5} alignItems="center">
-                      <Iconify icon="eva:cloud-upload-fill" width={40} />
-                      <Typography variant="body2">Upload file</Typography>
-                    </Stack>
-                  }
-                  sx={{ flexGrow: 1, height: 'auto', py: 2.5, mb: 3 }}
-                />
-              </Stack>
-            </CardContent>
-          </Card>
-        </Stack>
-      </Container>
-    </>
-  );
+                                <UploadBox
+                                    placeholder={
+                                        <Stack spacing={0.5} alignItems="center">
+                                            <Iconify icon="eva:cloud-upload-fill" width={40} />
+                                            <Typography variant="body2">Upload file</Typography>
+                                        </Stack>
+                                    }
+                                    sx={{ flexGrow: 1, height: 'auto', py: 2.5, mb: 3 }}
+                                />
+                            </Stack>
+                        </CardContent>
+                    </Card>
+                </Stack>
+            </Container>
+        </>
+    );
 }

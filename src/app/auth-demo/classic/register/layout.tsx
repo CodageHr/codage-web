@@ -9,9 +9,9 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return (
-    <AuthClassicLayout title="Manage the job more effectively with Minimal">
-      {children}
-    </AuthClassicLayout>
-  );
+    return (
+        <AuthClassicLayout title="Manage the job more effectively with Minimal">
+            {children}
+        </AuthClassicLayout>
+    );
 }

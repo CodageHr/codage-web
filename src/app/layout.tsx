@@ -5,11 +5,9 @@ import 'src/global.css';
 import 'src/locales/i18n';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Analytics } from '@vercel/analytics/react';
-
-
 
 // ----------------------------------------------------------------------
 
@@ -34,66 +32,66 @@ import { APP_NAME } from '@base/config-global';
 // ----------------------------------------------------------------------
 
 export const viewport = {
-  themeColor: '#000000',
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
+    themeColor: '#5C3BA4',
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
 };
 
 export const metadata = {
-  title: {
-    template: `%s | ${APP_NAME}`,
-    default: `${APP_NAME}`, // a default is required when creating a template
-  },
-  description:
-    'Codage je IT tvrtka koja se bavi izradom web stranica, web aplikacija, mobilnih aplikacija, desktop aplikacija, dizajnom i marketingom.',
-  keywords: 'codage, it, startup, web, aplikacije, mobilne, desktop, dizajn, marketing, Split, Hrvatska, web stranice, web aplikacije, mobilne aplikacije, desktop aplikacije',
-  manifest: '/manifest.json',
-  icons: [
-    { rel: 'icon', url: '/favicon/favicon.ico' },
-    { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon/favicon-16x16.png' },
-    { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon/favicon-32x32.png' },
-    { rel: 'apple-touch-icon', sizes: '180x180', url: '/favicon/apple-touch-icon.png' },
-  ],
+    title: {
+        template: `%s | ${APP_NAME}`,
+        default: `${APP_NAME}`, // a default is required when creating a template
+    },
+    description:
+        'Codage je IT tvrtka koja se bavi izradom web stranica, web aplikacija, mobilnih aplikacija, desktop aplikacija i dizajnom korisničkih sučelja.',
+    keywords: 'Codage, IT, Split, web, aplikacije, mobilne, desktop, ui, ux',
+    manifest: '/manifest.json',
+    icons: [
+        { rel: 'icon', url: '/favicon/favicon.ico' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon/favicon-16x16.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon/favicon-32x32.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', url: '/favicon/apple-touch-icon.png' },
+    ],
 };
 
 type Props = {
-  children: React.ReactNode;
+    children: React.ReactNode;
 };
 
 export default function RootLayout({ children }: Props) {
-  return (
-    <html lang="hr" className={primaryFont.className}>
-      <body>
-        <AuthProvider>
-          <LocalizationProvider>
-            <SettingsProvider
-              defaultSettings={{
-                themeMode: 'light', // 'light' | 'dark'
-                themeDirection: 'ltr', //  'rtl' | 'ltr'
-                themeContrast: 'default', // 'default' | 'bold'
-                themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
-                themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-                themeStretch: false,
-              }}
-            >
-              <ThemeProvider>
-                <MotionLazy>
-                  <SnackbarProvider>
-                    <CheckoutProvider>
-                      <SettingsDrawer />
-                      <ProgressBar />
-                      {children}
-                    </CheckoutProvider>
-                  </SnackbarProvider>
-                </MotionLazy>
-              </ThemeProvider>
-            </SettingsProvider>
-          </LocalizationProvider>
-        </AuthProvider>
-        <SpeedInsights />
-        <Analytics />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="hr" className={primaryFont.className}>
+            <body>
+                <AuthProvider>
+                    <LocalizationProvider>
+                        <SettingsProvider
+                            defaultSettings={{
+                                themeMode: 'light', // 'light' | 'dark'
+                                themeDirection: 'ltr', //  'rtl' | 'ltr'
+                                themeContrast: 'default', // 'default' | 'bold'
+                                themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+                                themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+                                themeStretch: false,
+                            }}
+                        >
+                            <ThemeProvider>
+                                <MotionLazy>
+                                    <SnackbarProvider>
+                                        <CheckoutProvider>
+                                            <SettingsDrawer />
+                                            <ProgressBar />
+                                            {children}
+                                        </CheckoutProvider>
+                                    </SnackbarProvider>
+                                </MotionLazy>
+                            </ThemeProvider>
+                        </SettingsProvider>
+                    </LocalizationProvider>
+                </AuthProvider>
+                <SpeedInsights />
+                <Analytics />
+            </body>
+        </html>
+    );
 }

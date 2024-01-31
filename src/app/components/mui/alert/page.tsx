@@ -3,9 +3,9 @@ import AlertView from 'src/sections/_examples/mui/alert-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'MUI: Alert',
+    title: 'MUI: Alert',
 };
 
 export default function AlertPage() {
-  return <AlertView />;
+    return <AlertView />;
 }

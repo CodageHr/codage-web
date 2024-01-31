@@ -38,7 +38,6 @@
       "@sections/*": ["src/sections/*"],
       "@appTypes/*": ["src/types/*"],
       "@theme/*": ["src/theme/*"],
-      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@base/*": ["src/*"]
     }

@@ -34,51 +34,51 @@ interface Props extends BoxProps {
 }
 
 export default function BookingNewest({ title, subheader, list, sx, ...other }: Props) {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  const carousel = useCarousel({
-    slidesToShow: 4,
-    responsive: [
-      {
-        breakpoint: theme.breakpoints.values.lg,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: theme.breakpoints.values.md,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: theme.breakpoints.values.sm,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
+    const carousel = useCarousel({
+        slidesToShow: 4,
+        responsive: [
+            {
+                breakpoint: theme.breakpoints.values.lg,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: theme.breakpoints.values.md,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: theme.breakpoints.values.sm,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    });
 
-  return (
-    <Box sx={{ py: 2, ...sx }} {...other}>
-      <CardHeader
-        title={title}
-        subheader={subheader}
-        action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
-        sx={{
-          p: 0,
-          mb: 3,
-        }}
-      />
+    return (
+        <Box sx={{ py: 2, ...sx }} {...other}>
+            <CardHeader
+                title={title}
+                subheader={subheader}
+                action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+                sx={{
+                    p: 0,
+                    mb: 3,
+                }}
+            />
 
-      <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-        {list.map((item) => (
-          <BookingItem key={item.id} item={item} />
-        ))}
-      </Carousel>
-    </Box>
-  );
+            <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+                {list.map((item) => (
+                    <BookingItem key={item.id} item={item} />
+                ))}
+            </Carousel>
+        </Box>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -88,78 +88,78 @@ type BookingItemProps = {
 };
 
 function BookingItem({ item }: BookingItemProps) {
-  const { avatarUrl, name, duration, bookedAt, guests, coverUrl, price, isHot } = item;
+    const { avatarUrl, name, duration, bookedAt, guests, coverUrl, price, isHot } = item;
 
-  return (
-    <Paper
-      sx={{
-        mr: 3,
-        borderRadius: 2,
-        position: 'relative',
-        bgcolor: 'background.neutral',
-      }}
-    >
-      <Stack
-        spacing={2}
-        sx={{
-          px: 2,
-          pb: 1,
-          pt: 2.5,
-        }}
-      >
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <Avatar alt={name} src={avatarUrl} />
-          <ListItemText
-            primary={name}
-            secondary={fDateTime(bookedAt)}
-            secondaryTypographyProps={{
-              mt: 0.5,
-              component: 'span',
-              typography: 'caption',
-              color: 'text.disabled',
+    return (
+        <Paper
+            sx={{
+                mr: 3,
+                borderRadius: 2,
+                position: 'relative',
+                bgcolor: 'background.neutral',
             }}
-          />
-        </Stack>
-
-        <Stack
-          rowGap={1.5}
-          columnGap={3}
-          flexWrap="wrap"
-          direction="row"
-          alignItems="center"
-          sx={{ color: 'text.secondary', typography: 'caption' }}
         >
-          <Stack direction="row" alignItems="center">
-            <Iconify width={16} icon="solar:calendar-date-bold" sx={{ mr: 0.5, flexShrink: 0 }} />
-            {duration}
-          </Stack>
+            <Stack
+                spacing={2}
+                sx={{
+                    px: 2,
+                    pb: 1,
+                    pt: 2.5,
+                }}
+            >
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <Avatar alt={name} src={avatarUrl} />
+                    <ListItemText
+                        primary={name}
+                        secondary={fDateTime(bookedAt)}
+                        secondaryTypographyProps={{
+                            mt: 0.5,
+                            component: 'span',
+                            typography: 'caption',
+                            color: 'text.disabled',
+                        }}
+                    />
+                </Stack>
 
-          <Stack direction="row" alignItems="center">
-            <Iconify
-              width={16}
-              icon="solar:users-group-rounded-bold"
-              sx={{ mr: 0.5, flexShrink: 0 }}
-            />
-            {guests} Guests
-          </Stack>
-        </Stack>
-      </Stack>
+                <Stack
+                    rowGap={1.5}
+                    columnGap={3}
+                    flexWrap="wrap"
+                    direction="row"
+                    alignItems="center"
+                    sx={{ color: 'text.secondary', typography: 'caption' }}
+                >
+                    <Stack direction="row" alignItems="center">
+                        <Iconify width={16} icon="solar:calendar-date-bold" sx={{ mr: 0.5, flexShrink: 0 }} />
+                        {duration}
+                    </Stack>
 
-      <Label
-        variant="filled"
-        sx={{
-          right: 16,
-          zIndex: 9,
-          bottom: 16,
-          position: 'absolute',
-        }}
-      >
-        {isHot && '🔥'} ${price}
-      </Label>
+                    <Stack direction="row" alignItems="center">
+                        <Iconify
+                            width={16}
+                            icon="solar:users-group-rounded-bold"
+                            sx={{ mr: 0.5, flexShrink: 0 }}
+                        />
+                        {guests} Guests
+                    </Stack>
+                </Stack>
+            </Stack>
 
-      <Box sx={{ p: 1, position: 'relative' }}>
-        <Image alt={coverUrl} src={coverUrl} ratio="1/1" sx={{ borderRadius: 1.5 }} />
-      </Box>
-    </Paper>
-  );
+            <Label
+                variant="filled"
+                sx={{
+                    right: 16,
+                    zIndex: 9,
+                    bottom: 16,
+                    position: 'absolute',
+                }}
+            >
+                {isHot && '🔥'} ${price}
+            </Label>
+
+            <Box sx={{ p: 1, position: 'relative' }}>
+                <Image alt={coverUrl} src={coverUrl} ratio="1/1" sx={{ borderRadius: 1.5 }} />
+            </Box>
+        </Paper>
+    );
 }

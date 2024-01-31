@@ -29,67 +29,67 @@ type Props = {
 };
 
 export default function PostDetailsPreview({
-  title,
-  coverUrl,
-  content,
-  description,
-  //
-  open,
-  isValid,
-  onClose,
-  onSubmit,
-  isSubmitting,
+    title,
+    coverUrl,
+    content,
+    description,
+    //
+    open,
+    isValid,
+    onClose,
+    onSubmit,
+    isSubmitting,
 }: Props) {
-  const hasContent = title || description || content || coverUrl;
+    const hasContent = title || description || content || coverUrl;
 
-  const hasHero = title || coverUrl;
+    const hasHero = title || coverUrl;
 
-  return (
-    <Dialog fullScreen open={open} onClose={onClose}>
-      <DialogActions sx={{ py: 2, px: 3 }}>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+    return (
+        <Dialog fullScreen open={open} onClose={onClose}>
+            <DialogActions sx={{ py: 2, px: 3 }}>
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Preview
-        </Typography>
+                </Typography>
 
-        <Button variant="outlined" color="inherit" onClick={onClose}>
+                <Button variant="outlined" color="inherit" onClick={onClose}>
           Cancel
-        </Button>
+                </Button>
 
-        <LoadingButton
-          type="submit"
-          variant="contained"
-          disabled={!isValid}
-          loading={isSubmitting}
-          onClick={onSubmit}
-        >
+                <LoadingButton
+                    type="submit"
+                    variant="contained"
+                    disabled={!isValid}
+                    loading={isSubmitting}
+                    onClick={onSubmit}
+                >
           Post
-        </LoadingButton>
-      </DialogActions>
+                </LoadingButton>
+            </DialogActions>
 
-      <Divider />
+            <Divider />
 
-      {hasContent ? (
-        <Scrollbar>
-          {hasHero && <PostDetailsHero title={title} coverUrl={coverUrl} />}
+            {hasContent ? (
+                <Scrollbar>
+                    {hasHero && <PostDetailsHero title={title} coverUrl={coverUrl} />}
 
-          <Container sx={{ mt: 5, mb: 10 }}>
-            <Stack
-              sx={{
-                maxWidth: 720,
-                mx: 'auto',
-              }}
-            >
-              <Typography variant="h6" sx={{ mb: 5 }}>
-                {description}
-              </Typography>
+                    <Container sx={{ mt: 5, mb: 10 }}>
+                        <Stack
+                            sx={{
+                                maxWidth: 720,
+                                mx: 'auto',
+                            }}
+                        >
+                            <Typography variant="h6" sx={{ mb: 5 }}>
+                                {description}
+                            </Typography>
 
-              <Markdown children={content} />
-            </Stack>
-          </Container>
-        </Scrollbar>
-      ) : (
-        <EmptyContent filled title="Empty Content!" />
-      )}
-    </Dialog>
-  );
+                            <Markdown children={content} />
+                        </Stack>
+                    </Container>
+                </Scrollbar>
+            ) : (
+                <EmptyContent filled title="Empty Content!" />
+            )}
+        </Dialog>
+    );
 }

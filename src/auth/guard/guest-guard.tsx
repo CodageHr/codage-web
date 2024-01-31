@@ -14,31 +14,31 @@ type Props = {
 };
 
 export default function GuestGuard({ children }: Props) {
-  const { loading } = useAuthContext();
+    const { loading } = useAuthContext();
 
-  return <>{loading ? <SplashScreen /> : <Container>{children}</Container>}</>;
+    return <>{loading ? <SplashScreen /> : <Container>{children}</Container>}</>;
 }
 
 // ----------------------------------------------------------------------
 
 function Container({ children }: Props) {
-  const router = useRouter();
+    const router = useRouter();
 
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
 
-  const returnTo = searchParams.get('returnTo') || paths.dashboard.root;
+    const returnTo = searchParams.get('returnTo') || paths.dashboard.root;
 
-  const { authenticated } = useAuthContext();
+    const { authenticated } = useAuthContext();
 
-  const check = useCallback(() => {
-    if (authenticated) {
-      router.replace(returnTo);
-    }
-  }, [authenticated, returnTo, router]);
+    const check = useCallback(() => {
+        if (authenticated) {
+            router.replace(returnTo);
+        }
+    }, [authenticated, returnTo, router]);
 
-  useEffect(() => {
-    check();
-  }, [check]);
+    useEffect(() => {
+        check();
+    }, [check]);
 
-  return <>{children}</>;
+    return <>{children}</>;
 }

@@ -9,5 +9,5 @@ type Props = {
 };
 
 export default function Layout({ children }: Props) {
-  return <AuthModernLayout>{children}</AuthModernLayout>;
+    return <AuthModernLayout>{children}</AuthModernLayout>;
 }

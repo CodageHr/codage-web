@@ -33,6 +33,8 @@
     }
   },
   "rules": {
+    "indent": [ 2, 4, { "MemberExpression": 1, "SwitchCase": 1 }],
+    "quotes": [ 2, "single", "avoid-escape" ],
     "no-alert": 0,
     "camelcase": 0,
     "no-console": 0,

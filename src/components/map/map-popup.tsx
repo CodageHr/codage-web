@@ -13,9 +13,9 @@ interface MapControlPopupProps extends PopupProps {
 // ----------------------------------------------------------------------
 
 export default function MapPopup({ sx, children, ...other }: MapControlPopupProps) {
-  return (
-    <StyledPopup anchor="bottom" sx={sx} {...other}>
-      {children}
-    </StyledPopup>
-  );
+    return (
+        <StyledPopup anchor="bottom" sx={sx} {...other}>
+            {children}
+        </StyledPopup>
+    );
 }

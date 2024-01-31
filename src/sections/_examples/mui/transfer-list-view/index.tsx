@@ -16,33 +16,33 @@ import EnhancedTransferList from './enhanced-transfer-list';
 // ----------------------------------------------------------------------
 
 export default function TransferListView() {
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Transfer List"
-          links={[
-            {
-              name: 'Components',
-              href: paths.components,
-            },
-            { name: 'Transfer List' },
-          ]}
-          moreLink={['https://mui.com/components/transfer-list']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Transfer List"
+                    links={[
+                        {
+                            name: 'Components',
+                            href: paths.components,
+                        },
+                        { name: 'Transfer List' },
+                    ]}
+                    moreLink={['https://mui.com/components/transfer-list']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack spacing={3}>
-          <ComponentBlock title="Simple">
-            <SimpleTransferList />
-          </ComponentBlock>
+            <Container sx={{ my: 10 }}>
+                <Stack spacing={3}>
+                    <ComponentBlock title="Simple">
+                        <SimpleTransferList />
+                    </ComponentBlock>
 
-          <ComponentBlock title="Enhanced">
-            <EnhancedTransferList />
-          </ComponentBlock>
-        </Stack>
-      </Container>
-    </>
-  );
+                    <ComponentBlock title="Enhanced">
+                        <EnhancedTransferList />
+                    </ComponentBlock>
+                </Stack>
+            </Container>
+        </>
+    );
 }

@@ -6,74 +6,15 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
 import { varFade, MotionViewport } from 'src/components/animate';
-import { ContactForm } from '@components/have-an-idea-contact-card';
+import { ContactCard } from '@components/have-an-idea-contact-card';
 
 import { bgGradient } from 'src/theme/css';
 
 // ----------------------------------------------------------------------
 
 export default function HomeAdvertisement() {
-  const theme = useTheme();
 
-  const renderDescription = (
-    <Box
-      sx={{
-        textAlign: {
-          xs: 'center',
-          md: 'left',
-        },
-      }}
-    >
-      <Box
-        component={m.div}
-        variants={varFade().inDown}
-        sx={{ color: 'common.white', mb: 5, typography: 'h2' }}
-      >
-        Imate Ideju?
-        <br /> Javite Se!
-      </Box>
-
-      <ContactForm />
-    </Box>
-  );
-
-  const renderImg = (
-    <Stack component={m.div} variants={varFade().inUp} alignItems="center">
-      <Box
-        component={m.img}
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ duration: 4, repeat: Infinity }}
-        alt="rocket"
-        src="/assets/images/home/person_idea.svg"
-        sx={{ width: '100%' }}
-      />
-    </Stack>
-  );
-
-  return (
-    <Container pt={3} pb={3} component={MotionViewport}>
-      <Stack
-        alignItems="center"
-        justifyContent={{ xs: 'center', md: 'space-evenly' }}
-        spacing={2}
-        direction={{ xs: 'column', md: 'row' }}
-        sx={{
-          ...bgGradient({
-            direction: '180deg',
-            startColor: theme.palette.primary.dark,
-            endColor: theme.palette.primary.light,
-          }),
-          borderRadius: 2,
-          pb: { xs: 5, md: 0 },
-          p:{ xs: 5, md: 5 },
-        }}
-      >
-        {renderImg}
-
-        {renderDescription}
-      </Stack>
-    </Container>
-  );
+    return (
+        <ContactCard />
+    );
 }

@@ -39,272 +39,272 @@ interface Props extends CardProps {
 }
 
 export default function FileManagerFolderItem({
-  folder,
-  selected,
-  onSelect,
-  onDelete,
-  sx,
-  ...other
+    folder,
+    selected,
+    onSelect,
+    onDelete,
+    sx,
+    ...other
 }: Props) {
-  const { enqueueSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
 
-  const { copy } = useCopyToClipboard();
+    const { copy } = useCopyToClipboard();
 
-  const [inviteEmail, setInviteEmail] = useState('');
+    const [inviteEmail, setInviteEmail] = useState('');
 
-  const [folderName, setFolderName] = useState(folder.name);
+    const [folderName, setFolderName] = useState(folder.name);
 
-  const editFolder = useBoolean();
+    const editFolder = useBoolean();
 
-  const checkbox = useBoolean();
+    const checkbox = useBoolean();
 
-  const share = useBoolean();
+    const share = useBoolean();
 
-  const popover = usePopover();
+    const popover = usePopover();
 
-  const confirm = useBoolean();
+    const confirm = useBoolean();
 
-  const details = useBoolean();
+    const details = useBoolean();
 
-  const favorite = useBoolean(folder.isFavorited);
+    const favorite = useBoolean(folder.isFavorited);
 
-  const handleChangeInvite = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setInviteEmail(event.target.value);
-  }, []);
+    const handleChangeInvite = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setInviteEmail(event.target.value);
+    }, []);
 
-  const handleChangeFolderName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setFolderName(event.target.value);
-  }, []);
+    const handleChangeFolderName = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setFolderName(event.target.value);
+    }, []);
 
-  const handleCopy = useCallback(() => {
-    enqueueSnackbar('Copied!');
-    copy(folder.url);
-  }, [copy, enqueueSnackbar, folder.url]);
+    const handleCopy = useCallback(() => {
+        enqueueSnackbar('Copied!');
+        copy(folder.url);
+    }, [copy, enqueueSnackbar, folder.url]);
 
-  const renderAction = (
-    <Stack
-      direction="row"
-      alignItems="center"
-      sx={{
-        top: 8,
-        right: 8,
-        position: 'absolute',
-      }}
-    >
-      <Checkbox
-        color="warning"
-        icon={<Iconify icon="eva:star-outline" />}
-        checkedIcon={<Iconify icon="eva:star-fill" />}
-        checked={favorite.value}
-        onChange={favorite.onToggle}
-      />
+    const renderAction = (
+        <Stack
+            direction="row"
+            alignItems="center"
+            sx={{
+                top: 8,
+                right: 8,
+                position: 'absolute',
+            }}
+        >
+            <Checkbox
+                color="warning"
+                icon={<Iconify icon="eva:star-outline" />}
+                checkedIcon={<Iconify icon="eva:star-fill" />}
+                checked={favorite.value}
+                onChange={favorite.onToggle}
+            />
 
-      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
-        <Iconify icon="eva:more-vertical-fill" />
-      </IconButton>
-    </Stack>
-  );
-
-  const renderIcon =
-    (checkbox.value || selected) && onSelect ? (
-      <Checkbox
-        size="medium"
-        checked={selected}
-        onClick={onSelect}
-        icon={<Iconify icon="eva:radio-button-off-fill" />}
-        checkedIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
-        sx={{ p: 0.75 }}
-      />
-    ) : (
-      <Box component="img" src="/assets/icons/files/ic_folder.svg" sx={{ width: 36, height: 36 }} />
+            <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+                <Iconify icon="eva:more-vertical-fill" />
+            </IconButton>
+        </Stack>
     );
 
-  const renderText = (
-    <ListItemText
-      onClick={details.onTrue}
-      primary={folder.name}
-      secondary={
-        <>
-          {fData(folder.size)}
-          <Box
-            component="span"
-            sx={{
-              mx: 0.75,
-              width: 2,
-              height: 2,
-              borderRadius: '50%',
-              bgcolor: 'currentColor',
+    const renderIcon =
+    (checkbox.value || selected) && onSelect ? (
+        <Checkbox
+            size="medium"
+            checked={selected}
+            onClick={onSelect}
+            icon={<Iconify icon="eva:radio-button-off-fill" />}
+            checkedIcon={<Iconify icon="eva:checkmark-circle-2-fill" />}
+            sx={{ p: 0.75 }}
+        />
+    ) : (
+        <Box component="img" src="/assets/icons/files/ic_folder.svg" sx={{ width: 36, height: 36 }} />
+    );
+
+    const renderText = (
+        <ListItemText
+            onClick={details.onTrue}
+            primary={folder.name}
+            secondary={
+                <>
+                    {fData(folder.size)}
+                    <Box
+                        component="span"
+                        sx={{
+                            mx: 0.75,
+                            width: 2,
+                            height: 2,
+                            borderRadius: '50%',
+                            bgcolor: 'currentColor',
+                        }}
+                    />
+                    {folder.totalFiles} files
+                </>
+            }
+            primaryTypographyProps={{
+                noWrap: true,
+                typography: 'subtitle1',
             }}
-          />
-          {folder.totalFiles} files
-        </>
-      }
-      primaryTypographyProps={{
-        noWrap: true,
-        typography: 'subtitle1',
-      }}
-      secondaryTypographyProps={{
-        mt: 0.5,
-        component: 'span',
-        alignItems: 'center',
-        typography: 'caption',
-        color: 'text.disabled',
-        display: 'inline-flex',
-      }}
-    />
-  );
+            secondaryTypographyProps={{
+                mt: 0.5,
+                component: 'span',
+                alignItems: 'center',
+                typography: 'caption',
+                color: 'text.disabled',
+                display: 'inline-flex',
+            }}
+        />
+    );
 
-  const renderAvatar = (
-    <AvatarGroup
-      max={3}
-      sx={{
-        [`& .${avatarGroupClasses.avatar}`]: {
-          width: 24,
-          height: 24,
-          '&:first-of-type': {
-            fontSize: 12,
-          },
-        },
-      }}
-    >
-      {folder.shared?.map((person) => (
-        <Avatar key={person.id} alt={person.name} src={person.avatarUrl} />
-      ))}
-    </AvatarGroup>
-  );
-
-  return (
-    <>
-      <Stack
-        component={Paper}
-        variant="outlined"
-        spacing={1}
-        alignItems="flex-start"
-        sx={{
-          p: 2.5,
-          maxWidth: 222,
-          borderRadius: 2,
-          bgcolor: 'unset',
-          cursor: 'pointer',
-          position: 'relative',
-          ...((checkbox.value || selected) && {
-            bgcolor: 'background.paper',
-            boxShadow: (theme) => theme.customShadows.z20,
-          }),
-          ...sx,
-        }}
-        {...other}
-      >
-        <Box onMouseEnter={checkbox.onTrue} onMouseLeave={checkbox.onFalse}>
-          {renderIcon}
-        </Box>
-
-        {renderAction}
-
-        {renderText}
-
-        {!!folder?.shared?.length && renderAvatar}
-      </Stack>
-
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="right-top"
-        sx={{ width: 160 }}
-      >
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-            handleCopy();
-          }}
+    const renderAvatar = (
+        <AvatarGroup
+            max={3}
+            sx={{
+                [`& .${avatarGroupClasses.avatar}`]: {
+                    width: 24,
+                    height: 24,
+                    '&:first-of-type': {
+                        fontSize: 12,
+                    },
+                },
+            }}
         >
-          <Iconify icon="eva:link-2-fill" />
+            {folder.shared?.map((person) => (
+                <Avatar key={person.id} alt={person.name} src={person.avatarUrl} />
+            ))}
+        </AvatarGroup>
+    );
+
+    return (
+        <>
+            <Stack
+                component={Paper}
+                variant="outlined"
+                spacing={1}
+                alignItems="flex-start"
+                sx={{
+                    p: 2.5,
+                    maxWidth: 222,
+                    borderRadius: 2,
+                    bgcolor: 'unset',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    ...((checkbox.value || selected) && {
+                        bgcolor: 'background.paper',
+                        boxShadow: (theme) => theme.customShadows.z20,
+                    }),
+                    ...sx,
+                }}
+                {...other}
+            >
+                <Box onMouseEnter={checkbox.onTrue} onMouseLeave={checkbox.onFalse}>
+                    {renderIcon}
+                </Box>
+
+                {renderAction}
+
+                {renderText}
+
+                {!!folder?.shared?.length && renderAvatar}
+            </Stack>
+
+            <CustomPopover
+                open={popover.open}
+                onClose={popover.onClose}
+                arrow="right-top"
+                sx={{ width: 160 }}
+            >
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                        handleCopy();
+                    }}
+                >
+                    <Iconify icon="eva:link-2-fill" />
           Copy Link
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-            share.onTrue();
-          }}
-        >
-          <Iconify icon="solar:share-bold" />
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                        share.onTrue();
+                    }}
+                >
+                    <Iconify icon="solar:share-bold" />
           Share
-        </MenuItem>
+                </MenuItem>
 
-        <MenuItem
-          onClick={() => {
-            popover.onClose();
-            editFolder.onTrue();
-          }}
-        >
-          <Iconify icon="solar:pen-bold" />
+                <MenuItem
+                    onClick={() => {
+                        popover.onClose();
+                        editFolder.onTrue();
+                    }}
+                >
+                    <Iconify icon="solar:pen-bold" />
           Edit
-        </MenuItem>
+                </MenuItem>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
+                <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem
-          onClick={() => {
-            confirm.onTrue();
-            popover.onClose();
-          }}
-          sx={{ color: 'error.main' }}
-        >
-          <Iconify icon="solar:trash-bin-trash-bold" />
+                <MenuItem
+                    onClick={() => {
+                        confirm.onTrue();
+                        popover.onClose();
+                    }}
+                    sx={{ color: 'error.main' }}
+                >
+                    <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
-      </CustomPopover>
+                </MenuItem>
+            </CustomPopover>
 
-      <FileManagerFileDetails
-        item={folder}
-        favorited={favorite.value}
-        onFavorite={favorite.onToggle}
-        onCopyLink={handleCopy}
-        open={details.value}
-        onClose={details.onFalse}
-        onDelete={() => {
-          details.onFalse();
-          onDelete();
-        }}
-      />
+            <FileManagerFileDetails
+                item={folder}
+                favorited={favorite.value}
+                onFavorite={favorite.onToggle}
+                onCopyLink={handleCopy}
+                open={details.value}
+                onClose={details.onFalse}
+                onDelete={() => {
+                    details.onFalse();
+                    onDelete();
+                }}
+            />
 
-      <FileManagerShareDialog
-        open={share.value}
-        shared={folder.shared}
-        inviteEmail={inviteEmail}
-        onChangeInvite={handleChangeInvite}
-        onCopyLink={handleCopy}
-        onClose={() => {
-          share.onFalse();
-          setInviteEmail('');
-        }}
-      />
+            <FileManagerShareDialog
+                open={share.value}
+                shared={folder.shared}
+                inviteEmail={inviteEmail}
+                onChangeInvite={handleChangeInvite}
+                onCopyLink={handleCopy}
+                onClose={() => {
+                    share.onFalse();
+                    setInviteEmail('');
+                }}
+            />
 
-      <FileManagerNewFolderDialog
-        open={editFolder.value}
-        onClose={editFolder.onFalse}
-        title="Edit Folder"
-        onUpdate={() => {
-          editFolder.onFalse();
-          setFolderName(folderName);
-          console.info('UPDATE FOLDER', folderName);
-        }}
-        folderName={folderName}
-        onChangeFolderName={handleChangeFolderName}
-      />
+            <FileManagerNewFolderDialog
+                open={editFolder.value}
+                onClose={editFolder.onFalse}
+                title="Edit Folder"
+                onUpdate={() => {
+                    editFolder.onFalse();
+                    setFolderName(folderName);
+                    console.info('UPDATE FOLDER', folderName);
+                }}
+                folderName={folderName}
+                onChangeFolderName={handleChangeFolderName}
+            />
 
-      <ConfirmDialog
-        open={confirm.value}
-        onClose={confirm.onFalse}
-        title="Delete"
-        content="Are you sure want to delete?"
-        action={
-          <Button variant="contained" color="error" onClick={onDelete}>
+            <ConfirmDialog
+                open={confirm.value}
+                onClose={confirm.onFalse}
+                title="Delete"
+                content="Are you sure want to delete?"
+                action={
+                    <Button variant="contained" color="error" onClick={onDelete}>
             Delete
-          </Button>
-        }
-      />
-    </>
-  );
+                    </Button>
+                }
+            />
+        </>
+    );
 }

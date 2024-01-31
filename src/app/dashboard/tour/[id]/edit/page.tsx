@@ -5,7 +5,7 @@ import { TourEditView } from 'src/sections/tour/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Tour Edit',
+    title: 'Dashboard: Tour Edit',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function TourEditPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <TourEditView id={id} />;
+    return <TourEditView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _tours.map((tour) => ({
-    id: tour.id,
-  }));
+    return _tours.map((tour) => ({
+        id: tour.id,
+    }));
 }

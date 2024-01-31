@@ -17,18 +17,18 @@ import { ICalendarView } from 'src/types/calendar';
 // ----------------------------------------------------------------------
 
 const VIEW_OPTIONS = [
-  {
-    value: 'dayGridMonth',
-    label: 'Month',
-    icon: 'mingcute:calendar-month-line',
-  },
-  { value: 'timeGridWeek', label: 'Week', icon: 'mingcute:calendar-week-line' },
-  { value: 'timeGridDay', label: 'Day', icon: 'mingcute:calendar-day-line' },
-  {
-    value: 'listWeek',
-    label: 'Agenda',
-    icon: 'fluent:calendar-agenda-24-regular',
-  },
+    {
+        value: 'dayGridMonth',
+        label: 'Month',
+        icon: 'mingcute:calendar-month-line',
+    },
+    { value: 'timeGridWeek', label: 'Week', icon: 'mingcute:calendar-week-line' },
+    { value: 'timeGridDay', label: 'Day', icon: 'mingcute:calendar-day-line' },
+    {
+        value: 'listWeek',
+        label: 'Agenda',
+        icon: 'fluent:calendar-agenda-24-regular',
+    },
 ] as const;
 
 // ----------------------------------------------------------------------
@@ -45,97 +45,97 @@ type Props = {
 };
 
 export default function CalendarToolbar({
-  date,
-  view,
-  loading,
-  onToday,
-  onNextDate,
-  onPrevDate,
-  onChangeView,
-  onOpenFilters,
+    date,
+    view,
+    loading,
+    onToday,
+    onNextDate,
+    onPrevDate,
+    onChangeView,
+    onOpenFilters,
 }: Props) {
-  const smUp = useResponsive('up', 'sm');
+    const smUp = useResponsive('up', 'sm');
 
-  const popover = usePopover();
+    const popover = usePopover();
 
-  const selectedItem = VIEW_OPTIONS.filter((item) => item.value === view)[0];
+    const selectedItem = VIEW_OPTIONS.filter((item) => item.value === view)[0];
 
-  return (
-    <>
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ p: 2.5, pr: 2, position: 'relative' }}
-      >
-        {smUp && (
-          <Button
-            size="small"
-            color="inherit"
-            onClick={popover.onOpen}
-            startIcon={<Iconify icon={selectedItem.icon} />}
-            endIcon={<Iconify icon="eva:arrow-ios-downward-fill" sx={{ ml: -0.5 }} />}
-          >
-            {selectedItem.label}
-          </Button>
-        )}
+    return (
+        <>
+            <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ p: 2.5, pr: 2, position: 'relative' }}
+            >
+                {smUp && (
+                    <Button
+                        size="small"
+                        color="inherit"
+                        onClick={popover.onOpen}
+                        startIcon={<Iconify icon={selectedItem.icon} />}
+                        endIcon={<Iconify icon="eva:arrow-ios-downward-fill" sx={{ ml: -0.5 }} />}
+                    >
+                        {selectedItem.label}
+                    </Button>
+                )}
 
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <IconButton onClick={onPrevDate}>
-            <Iconify icon="eva:arrow-ios-back-fill" />
-          </IconButton>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                    <IconButton onClick={onPrevDate}>
+                        <Iconify icon="eva:arrow-ios-back-fill" />
+                    </IconButton>
 
-          <Typography variant="h6">{fDate(date)}</Typography>
+                    <Typography variant="h6">{fDate(date)}</Typography>
 
-          <IconButton onClick={onNextDate}>
-            <Iconify icon="eva:arrow-ios-forward-fill" />
-          </IconButton>
-        </Stack>
+                    <IconButton onClick={onNextDate}>
+                        <Iconify icon="eva:arrow-ios-forward-fill" />
+                    </IconButton>
+                </Stack>
 
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Button size="small" color="error" variant="contained" onClick={onToday}>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                    <Button size="small" color="error" variant="contained" onClick={onToday}>
             Today
-          </Button>
+                    </Button>
 
-          <IconButton onClick={onOpenFilters}>
-            <Iconify icon="ic:round-filter-list" />
-          </IconButton>
-        </Stack>
+                    <IconButton onClick={onOpenFilters}>
+                        <Iconify icon="ic:round-filter-list" />
+                    </IconButton>
+                </Stack>
 
-        {loading && (
-          <LinearProgress
-            color="inherit"
-            sx={{
-              height: 2,
-              width: 1,
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-            }}
-          />
-        )}
-      </Stack>
+                {loading && (
+                    <LinearProgress
+                        color="inherit"
+                        sx={{
+                            height: 2,
+                            width: 1,
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                        }}
+                    />
+                )}
+            </Stack>
 
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="top-left"
-        sx={{ width: 160 }}
-      >
-        {VIEW_OPTIONS.map((viewOption) => (
-          <MenuItem
-            key={viewOption.value}
-            selected={viewOption.value === view}
-            onClick={() => {
-              popover.onClose();
-              onChangeView(viewOption.value);
-            }}
-          >
-            <Iconify icon={viewOption.icon} />
-            {viewOption.label}
-          </MenuItem>
-        ))}
-      </CustomPopover>
-    </>
-  );
+            <CustomPopover
+                open={popover.open}
+                onClose={popover.onClose}
+                arrow="top-left"
+                sx={{ width: 160 }}
+            >
+                {VIEW_OPTIONS.map((viewOption) => (
+                    <MenuItem
+                        key={viewOption.value}
+                        selected={viewOption.value === view}
+                        onClick={() => {
+                            popover.onClose();
+                            onChangeView(viewOption.value);
+                        }}
+                    >
+                        <Iconify icon={viewOption.icon} />
+                        {viewOption.label}
+                    </MenuItem>
+                ))}
+            </CustomPopover>
+        </>
+    );
 }

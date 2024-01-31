@@ -12,27 +12,27 @@ type Props = {
 };
 
 export default function MainLayout({ children }: Props) {
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  const homePage = pathname === '/';
+    const homePage = pathname === '/';
 
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
-      <Header />
+    return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
+            <Header />
 
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          ...(!homePage && {
-            pt: { xs: 8, md: 10 },
-          }),
-        }}
-      >
-        {children}
-      </Box>
+            <Box
+                component="main"
+                sx={{
+                    flexGrow: 1,
+                    ...(!homePage && {
+                        pt: { xs: 8, md: 10 },
+                    }),
+                }}
+            >
+                {children}
+            </Box>
 
-      <Footer />
-    </Box>
-  );
+            <Footer />
+        </Box>
+    );
 }

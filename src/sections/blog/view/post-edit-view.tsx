@@ -18,33 +18,33 @@ type Props = {
 };
 
 export default function PostEditView({ title }: Props) {
-  const settings = useSettingsContext();
+    const settings = useSettingsContext();
 
-  const { post: currentPost } = useGetPost(title);
+    const { post: currentPost } = useGetPost(title);
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          {
-            name: 'Dashboard',
-            href: paths.dashboard.root,
-          },
-          {
-            name: 'Blog',
-            href: paths.dashboard.post.root,
-          },
-          {
-            name: currentPost?.title,
-          },
-        ]}
-        sx={{
-          mb: { xs: 3, md: 5 },
-        }}
-      />
+    return (
+        <Container maxWidth={settings.themeStretch ? false : 'lg'}>
+            <CustomBreadcrumbs
+                heading="Edit"
+                links={[
+                    {
+                        name: 'Dashboard',
+                        href: paths.dashboard.root,
+                    },
+                    {
+                        name: 'Blog',
+                        href: paths.dashboard.post.root,
+                    },
+                    {
+                        name: currentPost?.title,
+                    },
+                ]}
+                sx={{
+                    mb: { xs: 3, md: 5 },
+                }}
+            />
 
-      <PostNewEditForm currentPost={currentPost} />
-    </Container>
-  );
+            <PostNewEditForm currentPost={currentPost} />
+        </Container>
+    );
 }

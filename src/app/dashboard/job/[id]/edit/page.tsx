@@ -5,7 +5,7 @@ import { JobEditView } from 'src/sections/job/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Job Edit',
+    title: 'Dashboard: Job Edit',
 };
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
 };
 
 export default function JobEditPage({ params }: Props) {
-  const { id } = params;
+    const { id } = params;
 
-  return <JobEditView id={id} />;
+    return <JobEditView id={id} />;
 }
 
 export async function generateStaticParams() {
-  return _jobs.map((job) => ({
-    id: job.id,
-  }));
+    return _jobs.map((job) => ({
+        id: job.id,
+    }));
 }

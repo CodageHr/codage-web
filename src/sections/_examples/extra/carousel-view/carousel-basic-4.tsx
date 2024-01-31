@@ -13,18 +13,18 @@ import { bgBlur } from 'src/theme/css';
 // ----------------------------------------------------------------------
 
 const StyledContentItem = styled('div')(({ theme }) => ({
-  ...bgBlur({ color: theme.palette.grey[900] }),
-  bottom: 0,
-  zIndex: 9,
-  width: '100%',
-  display: 'flex',
-  position: 'absolute',
-  alignItems: 'center',
-  padding: theme.spacing(3),
-  borderBottomLeftRadius: 16,
-  borderBottomRightRadius: 16,
-  justifyContent: 'space-between',
-  flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row',
+    ...bgBlur({ color: theme.palette.grey[900] }),
+    bottom: 0,
+    zIndex: 9,
+    width: '100%',
+    display: 'flex',
+    position: 'absolute',
+    alignItems: 'center',
+    padding: theme.spacing(3),
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    justifyContent: 'space-between',
+    flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row',
 }));
 
 // ----------------------------------------------------------------------
@@ -39,22 +39,22 @@ type Props = {
 };
 
 export default function CarouselBasic4({ data }: Props) {
-  const carousel = useCarousel({
-    autoplay: true,
-    fade: true,
-  });
+    const carousel = useCarousel({
+        autoplay: true,
+        fade: true,
+    });
 
-  return (
-    <Card>
-      <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
-        <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-          {data.map((item) => (
-            <CarouselItem key={item.id} item={item} />
-          ))}
-        </Carousel>
-      </CarouselArrows>
-    </Card>
-  );
+    return (
+        <Card>
+            <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
+                <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+                    {data.map((item) => (
+                        <CarouselItem key={item.id} item={item} />
+                    ))}
+                </Carousel>
+            </CarouselArrows>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -66,29 +66,29 @@ type CarouselItemProps = {
 };
 
 function CarouselItem({ item }: { item: CarouselItemProps }) {
-  const { coverUrl, title } = item;
+    const { coverUrl, title } = item;
 
-  return (
-    <Box sx={{ position: 'relative', zIndex: 0 }}>
-      <Image alt={title} src={coverUrl} ratio="1/1" />
+    return (
+        <Box sx={{ position: 'relative', zIndex: 0 }}>
+            <Image alt={title} src={coverUrl} ratio="1/1" />
 
-      <StyledContentItem>
-        <Typography variant="h6" sx={{ color: 'common.white' }}>
-          {item.title}
-        </Typography>
-        <IconButton
-          onClick={() => {}}
-          sx={{
-            color: 'common.white',
-            '&:hover': {
-              bgcolor: (theme) =>
-                alpha(theme.palette.common.white, theme.palette.action.hoverOpacity),
-            },
-          }}
-        >
-          <Iconify icon="eva:more-horizontal-fill" />
-        </IconButton>
-      </StyledContentItem>
-    </Box>
-  );
+            <StyledContentItem>
+                <Typography variant="h6" sx={{ color: 'common.white' }}>
+                    {item.title}
+                </Typography>
+                <IconButton
+                    onClick={() => {}}
+                    sx={{
+                        color: 'common.white',
+                        '&:hover': {
+                            bgcolor: (theme) =>
+                                alpha(theme.palette.common.white, theme.palette.action.hoverOpacity),
+                        },
+                    }}
+                >
+                    <Iconify icon="eva:more-horizontal-fill" />
+                </IconButton>
+            </StyledContentItem>
+        </Box>
+    );
 }

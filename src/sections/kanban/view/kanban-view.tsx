@@ -19,166 +19,166 @@ import { KanbanColumnSkeleton } from '../kanban-skeleton';
 // ----------------------------------------------------------------------
 
 export default function KanbanView() {
-  const { board, boardLoading, boardEmpty } = useGetBoard();
+    const { board, boardLoading, boardEmpty } = useGetBoard();
 
-  const onDragEnd = useCallback(
-    async ({ destination, source, draggableId, type }: DropResult) => {
-      try {
-        if (!destination) {
-          return;
-        }
+    const onDragEnd = useCallback(
+        async ({ destination, source, draggableId, type }: DropResult) => {
+            try {
+                if (!destination) {
+                    return;
+                }
 
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-          return;
-        }
+                if (destination.droppableId === source.droppableId && destination.index === source.index) {
+                    return;
+                }
 
-        // Moving column
-        if (type === 'COLUMN') {
-          const newOrdered = [...board.ordered];
+                // Moving column
+                if (type === 'COLUMN') {
+                    const newOrdered = [...board.ordered];
 
-          newOrdered.splice(source.index, 1);
+                    newOrdered.splice(source.index, 1);
 
-          newOrdered.splice(destination.index, 0, draggableId);
+                    newOrdered.splice(destination.index, 0, draggableId);
 
-          moveColumn(newOrdered);
-          return;
-        }
+                    moveColumn(newOrdered);
+                    return;
+                }
 
-        const sourceColumn = board?.columns[source.droppableId];
+                const sourceColumn = board?.columns[source.droppableId];
 
-        const destinationColumn = board?.columns[destination.droppableId];
+                const destinationColumn = board?.columns[destination.droppableId];
 
-        // Moving task to same list
-        if (sourceColumn.id === destinationColumn.id) {
-          const newTaskIds = [...sourceColumn.taskIds];
+                // Moving task to same list
+                if (sourceColumn.id === destinationColumn.id) {
+                    const newTaskIds = [...sourceColumn.taskIds];
 
-          newTaskIds.splice(source.index, 1);
+                    newTaskIds.splice(source.index, 1);
 
-          newTaskIds.splice(destination.index, 0, draggableId);
+                    newTaskIds.splice(destination.index, 0, draggableId);
 
-          moveTask({
-            ...board?.columns,
-            [sourceColumn.id]: {
-              ...sourceColumn,
-              taskIds: newTaskIds,
-            },
-          });
+                    moveTask({
+                        ...board?.columns,
+                        [sourceColumn.id]: {
+                            ...sourceColumn,
+                            taskIds: newTaskIds,
+                        },
+                    });
 
-          console.info('Moving to same list!');
+                    console.info('Moving to same list!');
 
-          return;
-        }
+                    return;
+                }
 
-        // Moving task to different list
-        const sourceTaskIds = [...sourceColumn.taskIds];
+                // Moving task to different list
+                const sourceTaskIds = [...sourceColumn.taskIds];
 
-        const destinationTaskIds = [...destinationColumn.taskIds];
+                const destinationTaskIds = [...destinationColumn.taskIds];
 
-        // Remove from source
-        sourceTaskIds.splice(source.index, 1);
+                // Remove from source
+                sourceTaskIds.splice(source.index, 1);
 
-        // Insert into destination
-        destinationTaskIds.splice(destination.index, 0, draggableId);
+                // Insert into destination
+                destinationTaskIds.splice(destination.index, 0, draggableId);
 
-        moveTask({
-          ...board?.columns,
-          [sourceColumn.id]: {
-            ...sourceColumn,
-            taskIds: sourceTaskIds,
-          },
-          [destinationColumn.id]: {
-            ...destinationColumn,
-            taskIds: destinationTaskIds,
-          },
-        });
+                moveTask({
+                    ...board?.columns,
+                    [sourceColumn.id]: {
+                        ...sourceColumn,
+                        taskIds: sourceTaskIds,
+                    },
+                    [destinationColumn.id]: {
+                        ...destinationColumn,
+                        taskIds: destinationTaskIds,
+                    },
+                });
 
-        console.info('Moving to different list!');
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [board?.columns, board?.ordered]
-  );
+                console.info('Moving to different list!');
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        [board?.columns, board?.ordered]
+    );
 
-  const renderSkeleton = (
-    <Stack direction="row" alignItems="flex-start" spacing={3}>
-      {[...Array(4)].map((_, index) => (
-        <KanbanColumnSkeleton key={index} index={index} />
-      ))}
-    </Stack>
-  );
+    const renderSkeleton = (
+        <Stack direction="row" alignItems="flex-start" spacing={3}>
+            {[...Array(4)].map((_, index) => (
+                <KanbanColumnSkeleton key={index} index={index} />
+            ))}
+        </Stack>
+    );
 
-  return (
-    <Container
-      maxWidth={false}
-      sx={{
-        height: 1,
-      }}
-    >
-      <Typography
-        variant="h4"
-        sx={{
-          mb: { xs: 3, md: 5 },
-        }}
-      >
-        Kanban
-      </Typography>
-
-      {boardLoading && renderSkeleton}
-
-      {boardEmpty && (
-        <EmptyContent
-          filled
-          title="No Data"
-          sx={{
-            py: 10,
-            maxHeight: { md: 480 },
-          }}
-        />
-      )}
-
-      {!!board?.ordered.length && (
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="board" type="COLUMN" direction="horizontal">
-            {(provided) => (
-              <Scrollbar
+    return (
+        <Container
+            maxWidth={false}
+            sx={{
+                height: 1,
+            }}
+        >
+            <Typography
+                variant="h4"
                 sx={{
-                  height: 1,
-                  minHeight: {
-                    xs: '80vh',
-                    md: 'unset',
-                  },
+                    mb: { xs: 3, md: 5 },
                 }}
-              >
-                <Stack
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                  spacing={3}
-                  direction="row"
-                  alignItems="flex-start"
-                  sx={{
-                    p: 0.25,
-                    height: 1,
-                  }}
-                >
-                  {board?.ordered.map((columnId, index) => (
-                    <KanbanColumn
-                      index={index}
-                      key={columnId}
-                      column={board?.columns[columnId]}
-                      tasks={board?.tasks}
-                    />
-                  ))}
+            >
+        Kanban
+            </Typography>
 
-                  {provided.placeholder}
+            {boardLoading && renderSkeleton}
 
-                  <KanbanColumnAdd />
-                </Stack>
-              </Scrollbar>
+            {boardEmpty && (
+                <EmptyContent
+                    filled
+                    title="No Data"
+                    sx={{
+                        py: 10,
+                        maxHeight: { md: 480 },
+                    }}
+                />
             )}
-          </Droppable>
-        </DragDropContext>
-      )}
-    </Container>
-  );
+
+            {!!board?.ordered.length && (
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="board" type="COLUMN" direction="horizontal">
+                        {(provided) => (
+                            <Scrollbar
+                                sx={{
+                                    height: 1,
+                                    minHeight: {
+                                        xs: '80vh',
+                                        md: 'unset',
+                                    },
+                                }}
+                            >
+                                <Stack
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                    spacing={3}
+                                    direction="row"
+                                    alignItems="flex-start"
+                                    sx={{
+                                        p: 0.25,
+                                        height: 1,
+                                    }}
+                                >
+                                    {board?.ordered.map((columnId, index) => (
+                                        <KanbanColumn
+                                            index={index}
+                                            key={columnId}
+                                            column={board?.columns[columnId]}
+                                            tasks={board?.tasks}
+                                        />
+                                    ))}
+
+                                    {provided.placeholder}
+
+                                    <KanbanColumnAdd />
+                                </Stack>
+                            </Scrollbar>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+            )}
+        </Container>
+    );
 }

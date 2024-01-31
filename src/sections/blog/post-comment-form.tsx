@@ -12,69 +12,69 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export default function PostCommentForm() {
-  const CommentSchema = Yup.object().shape({
-    comment: Yup.string().required('Comment is required'),
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-  });
+    const CommentSchema = Yup.object().shape({
+        comment: Yup.string().required('Comment is required'),
+        name: Yup.string().required('Name is required'),
+        email: Yup.string().required('Email is required').email('Email must be a valid email address'),
+    });
 
-  const defaultValues = {
-    comment: '',
-    name: '',
-    email: '',
-  };
+    const defaultValues = {
+        comment: '',
+        name: '',
+        email: '',
+    };
 
-  const methods = useForm({
-    resolver: yupResolver(CommentSchema),
-    defaultValues,
-  });
+    const methods = useForm({
+        resolver: yupResolver(CommentSchema),
+        defaultValues,
+    });
 
-  const {
-    reset,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+    const {
+        reset,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      reset();
-      console.info('DATA', data);
-    } catch (error) {
-      console.error(error);
-    }
-  });
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            reset();
+            console.info('DATA', data);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
-  return (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
-      <Stack spacing={3}>
-        <RHFTextField
-          name="comment"
-          placeholder="Write some of your comments..."
-          multiline
-          rows={4}
-        />
+    return (
+        <FormProvider methods={methods} onSubmit={onSubmit}>
+            <Stack spacing={3}>
+                <RHFTextField
+                    name="comment"
+                    placeholder="Write some of your comments..."
+                    multiline
+                    rows={4}
+                />
 
-        <Stack direction="row" alignItems="center">
-          <Stack direction="row" alignItems="center" flexGrow={1}>
-            <IconButton>
-              <Iconify icon="solar:gallery-add-bold" />
-            </IconButton>
+                <Stack direction="row" alignItems="center">
+                    <Stack direction="row" alignItems="center" flexGrow={1}>
+                        <IconButton>
+                            <Iconify icon="solar:gallery-add-bold" />
+                        </IconButton>
 
-            <IconButton>
-              <Iconify icon="eva:attach-2-fill" />
-            </IconButton>
+                        <IconButton>
+                            <Iconify icon="eva:attach-2-fill" />
+                        </IconButton>
 
-            <IconButton>
-              <Iconify icon="eva:smiling-face-fill" />
-            </IconButton>
-          </Stack>
+                        <IconButton>
+                            <Iconify icon="eva:smiling-face-fill" />
+                        </IconButton>
+                    </Stack>
 
-          <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                    <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
             Post comment
-          </LoadingButton>
-        </Stack>
-      </Stack>
-    </FormProvider>
-  );
+                    </LoadingButton>
+                </Stack>
+            </Stack>
+        </FormProvider>
+    );
 }

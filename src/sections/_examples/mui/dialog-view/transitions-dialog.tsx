@@ -13,45 +13,45 @@ import { useBoolean } from 'src/hooks/use-boolean';
 // ----------------------------------------------------------------------
 
 const Transition = forwardRef(
-  (
-    props: TransitionProps & {
+    (
+        props: TransitionProps & {
       children: React.ReactElement;
     },
-    ref: React.Ref<unknown>
-  ) => <Slide direction="up" ref={ref} {...props} />
+        ref: React.Ref<unknown>
+    ) => <Slide direction="up" ref={ref} {...props} />
 );
 
 export default function TransitionsDialog() {
-  const dialog = useBoolean();
+    const dialog = useBoolean();
 
-  return (
-    <div>
-      <Button variant="outlined" color="success" onClick={dialog.onTrue}>
+    return (
+        <div>
+            <Button variant="outlined" color="success" onClick={dialog.onTrue}>
         Transitions Dialogs
-      </Button>
+            </Button>
 
-      <Dialog
-        keepMounted
-        open={dialog.value}
-        TransitionComponent={Transition}
-        onClose={dialog.onFalse}
-      >
-        <DialogTitle>{`Use Google's location service?`}</DialogTitle>
+            <Dialog
+                keepMounted
+                open={dialog.value}
+                TransitionComponent={Transition}
+                onClose={dialog.onFalse}
+            >
+                <DialogTitle>{'Use Google\'s location service?'}</DialogTitle>
 
-        <DialogContent sx={{ color: 'text.secondary' }}>
+                <DialogContent sx={{ color: 'text.secondary' }}>
           Let Google help apps determine location. This means sending anonymous location data to
           Google, even when no apps are running.
-        </DialogContent>
+                </DialogContent>
 
-        <DialogActions>
-          <Button variant="outlined" onClick={dialog.onFalse}>
+                <DialogActions>
+                    <Button variant="outlined" onClick={dialog.onFalse}>
             Disagree
-          </Button>
-          <Button variant="contained" onClick={dialog.onFalse} autoFocus>
+                    </Button>
+                    <Button variant="contained" onClick={dialog.onFalse} autoFocus>
             Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    );
 }

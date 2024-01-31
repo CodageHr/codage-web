@@ -20,36 +20,36 @@ import ReactHookForm from './react-hook-form';
 // ----------------------------------------------------------------------
 
 export default function FormValidationView() {
-  const [debug, setDebug] = useState(true);
+    const [debug, setDebug] = useState(true);
 
-  const handleChangeDebug = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDebug(event.target.checked);
-  };
+    const handleChangeDebug = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDebug(event.target.checked);
+    };
 
-  return (
-    <>
-      <ComponentHero>
-        <CustomBreadcrumbs
-          heading="Form Validation"
-          links={[{ name: 'Components', href: paths.components }, { name: 'Form Validation' }]}
-          moreLink={['https://react-hook-form.com/', 'https://github.com/jquense/yup']}
-        />
-      </ComponentHero>
+    return (
+        <>
+            <ComponentHero>
+                <CustomBreadcrumbs
+                    heading="Form Validation"
+                    links={[{ name: 'Components', href: paths.components }, { name: 'Form Validation' }]}
+                    moreLink={['https://react-hook-form.com/', 'https://github.com/jquense/yup']}
+                />
+            </ComponentHero>
 
-      <Container sx={{ my: 10 }}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h4"> React Hook Form + Yup </Typography>
-          <FormControlLabel
-            control={<Switch checked={debug} onChange={handleChangeDebug} />}
-            label="Show Debug"
-            labelPlacement="start"
-          />
-        </Stack>
+            <Container sx={{ my: 10 }}>
+                <Stack direction="row" alignItems="center" justifyContent="space-between">
+                    <Typography variant="h4"> React Hook Form + Yup </Typography>
+                    <FormControlLabel
+                        control={<Switch checked={debug} onChange={handleChangeDebug} />}
+                        label="Show Debug"
+                        labelPlacement="start"
+                    />
+                </Stack>
 
-        <Divider sx={{ my: 5 }} />
+                <Divider sx={{ my: 5 }} />
 
-        <ReactHookForm debug={debug} />
-      </Container>
-    </>
-  );
+                <ReactHookForm debug={debug} />
+            </Container>
+        </>
+    );
 }

@@ -10,46 +10,46 @@ import { UpgradeStorageIllustration } from 'src/assets/illustrations';
 // ----------------------------------------------------------------------
 
 export default function FileUpgrade({ sx, ...other }: StackProps) {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  return (
-    <Stack
-      alignItems="center"
-      sx={{
-        ...bgGradient({
-          direction: '135deg',
-          startColor: alpha(theme.palette.primary.light, 0.2),
-          endColor: alpha(theme.palette.primary.main, 0.2),
-        }),
-        p: 5,
-        borderRadius: 2,
-        backgroundColor: 'common.white',
-        ...sx,
-      }}
-      {...other}
-    >
-      <UpgradeStorageIllustration />
+    return (
+        <Stack
+            alignItems="center"
+            sx={{
+                ...bgGradient({
+                    direction: '135deg',
+                    startColor: alpha(theme.palette.primary.light, 0.2),
+                    endColor: alpha(theme.palette.primary.main, 0.2),
+                }),
+                p: 5,
+                borderRadius: 2,
+                backgroundColor: 'common.white',
+                ...sx,
+            }}
+            {...other}
+        >
+            <UpgradeStorageIllustration />
 
-      <Button
-        size="large"
-        color="inherit"
-        variant="contained"
-        sx={{
-          mt: 5,
-          mb: 2,
-          color: 'common.white',
-          bgcolor: 'grey.800',
-          '&:hover': {
-            bgcolor: 'grey.700',
-          },
-        }}
-      >
+            <Button
+                size="large"
+                color="inherit"
+                variant="contained"
+                sx={{
+                    mt: 5,
+                    mb: 2,
+                    color: 'common.white',
+                    bgcolor: 'grey.800',
+                    '&:hover': {
+                        bgcolor: 'grey.700',
+                    },
+                }}
+            >
         Upgrade Plan
-      </Button>
+            </Button>
 
-      <Typography variant="caption" sx={{ color: 'primary.dark', textAlign: 'center' }}>
+            <Typography variant="caption" sx={{ color: 'primary.dark', textAlign: 'center' }}>
         Upgrade your plan and get more space
-      </Typography>
-    </Stack>
-  );
+            </Typography>
+        </Stack>
+    );
 }

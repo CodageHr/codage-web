@@ -35,31 +35,31 @@ interface Props extends CardProps {
 }
 
 export default function EcommerceBestSalesman({
-  title,
-  subheader,
-  tableData,
-  tableLabels,
-  ...other
+    title,
+    subheader,
+    tableData,
+    tableLabels,
+    ...other
 }: Props) {
-  return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} sx={{ mb: 3 }} />
+    return (
+        <Card {...other}>
+            <CardHeader title={title} subheader={subheader} sx={{ mb: 3 }} />
 
-      <TableContainer sx={{ overflow: 'unset' }}>
-        <Scrollbar>
-          <Table sx={{ minWidth: 640 }}>
-            <TableHeadCustom headLabel={tableLabels} />
+            <TableContainer sx={{ overflow: 'unset' }}>
+                <Scrollbar>
+                    <Table sx={{ minWidth: 640 }}>
+                        <TableHeadCustom headLabel={tableLabels} />
 
-            <TableBody>
-              {tableData.map((row) => (
-                <EcommerceBestSalesmanRow key={row.id} row={row} />
-              ))}
-            </TableBody>
-          </Table>
-        </Scrollbar>
-      </TableContainer>
-    </Card>
-  );
+                        <TableBody>
+                            {tableData.map((row) => (
+                                <EcommerceBestSalesmanRow key={row.id} row={row} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Scrollbar>
+            </TableContainer>
+        </Card>
+    );
 }
 
 // ----------------------------------------------------------------------
@@ -69,35 +69,35 @@ type EcommerceBestSalesmanRowProps = {
 };
 
 function EcommerceBestSalesmanRow({ row }: EcommerceBestSalesmanRowProps) {
-  return (
-    <TableRow>
-      <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar alt={row.name} src={row.avatarUrl} sx={{ mr: 2 }} />
-        {row.name}
-      </TableCell>
+    return (
+        <TableRow>
+            <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                <Avatar alt={row.name} src={row.avatarUrl} sx={{ mr: 2 }} />
+                {row.name}
+            </TableCell>
 
-      <TableCell>{row.category}</TableCell>
+            <TableCell>{row.category}</TableCell>
 
-      <TableCell align="center">
-        <Iconify icon={row.flag} sx={{ borderRadius: 0.65, width: 28 }} />
-      </TableCell>
+            <TableCell align="center">
+                <Iconify icon={row.flag} sx={{ borderRadius: 0.65, width: 28 }} />
+            </TableCell>
 
-      <TableCell align="right">{fCurrency(row.totalAmount)}</TableCell>
+            <TableCell align="right">{fCurrency(row.totalAmount)}</TableCell>
 
-      <TableCell align="right">
-        <Label
-          variant="soft"
-          color={
-            (row.rank === 'Top 1' && 'primary') ||
+            <TableCell align="right">
+                <Label
+                    variant="soft"
+                    color={
+                        (row.rank === 'Top 1' && 'primary') ||
             (row.rank === 'Top 2' && 'info') ||
             (row.rank === 'Top 3' && 'success') ||
             (row.rank === 'Top 4' && 'warning') ||
             'error'
-          }
-        >
-          {row.rank}
-        </Label>
-      </TableCell>
-    </TableRow>
-  );
+                    }
+                >
+                    {row.rank}
+                </Label>
+            </TableCell>
+        </TableRow>
+    );
 }
