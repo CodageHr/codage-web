@@ -11,8 +11,8 @@ import ScrollProgress from 'src/components/scroll-progress';
 import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
 import HomeHowItWorks from '../home-how-it-works';
+import HomeTestimonials from '../home-testimonials';
 import HomeAdvertisement from '../home-advertisement';
-import HomeTestimonals from '../home-testimonials';
 
 // ----------------------------------------------------------------------
 
@@ -36,21 +36,8 @@ export default function HomeView() {
             >
                 <HomeMinimal />
                 <HomeHowItWorks />
-                <HomeTestimonals />
+                <HomeTestimonials />
                 <HomeAdvertisement />
-
-
-                {/* <HomeDarkMode />
-
-        <HomeColorPresets />
-
-        <HomeCleanInterfaces />
-
-        <HomePricing />
-
-        <HomeLookingFor />
-
-        <HomeAdvertisement /> */ }
             </Box>
         </MainLayout>
     );

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { HOST_API } from 'src/config-global';
+import { HOST_API, BACKEND_HOST_API } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
@@ -10,6 +10,15 @@ axiosInstance.interceptors.response.use(
     (res) => res,
     (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
 );
+
+const axiosBackendInstance = axios.create({ baseURL: `${BACKEND_HOST_API}/api` });
+
+axiosBackendInstance.interceptors.response.use(
+    (res) => res,
+    (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+);
+
+
 
 export default axiosInstance;
 
@@ -51,3 +60,4 @@ export const endpoints = {
         search: '/api/product/search',
     },
 };
+export { axiosBackendInstance };

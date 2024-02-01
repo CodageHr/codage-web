@@ -1,5 +1,6 @@
 const isProd = process.env.NODE_ENV === 'production';
 
+
 module.exports = {
   trailingSlash: true,
   modularizeImports: {
@@ -20,20 +21,6 @@ module.exports = {
     });
     return config;
   },
-  async headers() {
-    return [
-      {
-        // matching all  routes
-        source: "/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Credentials", value: "true" },
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-          { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
-        ]
-      }
-    ]
-  },
   async redirects() {
 
     const redirects = [
@@ -45,7 +32,7 @@ module.exports = {
     ];
 
     // Ako niste u produkciji, uklonite redirekciju
-    if (isProd) {
+    if (!isProd) {
       return [];
     }
 

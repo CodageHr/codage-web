@@ -5,13 +5,16 @@ import { capitalize } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { enqueueSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ContactFormValues } from '@appTypes/contact-form';
 
 import Stack from '@mui/material/Stack';
-import { alpha, styled } from '@mui/material/styles';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { inputLabelClasses } from '@mui/material/InputLabel';
+import { alpha, styled } from '@mui/material/styles';
 import { inputBaseClasses } from '@mui/material/InputBase';
+import { inputLabelClasses } from '@mui/material/InputLabel';
 import { formHelperTextClasses } from '@mui/material/FormHelperText';
+
+import { sendContactFormToAdmin } from '@utils/email';
 
 import { useTranslate } from '@base/locales';
 
@@ -19,8 +22,6 @@ import { RHFTextField } from '@components/hook-form';
 import { varFade, MotionViewport } from '@components/animate';
 // rhf
 import FormProvider from '@components/hook-form/form-provider';
-import { sendContactFormToAdmin } from '@utils/email';
-import { ContactFormValues } from '@appTypes/contact-form';
 // ----------------------------------------------------------------------
 
 

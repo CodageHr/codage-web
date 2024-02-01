@@ -5,8 +5,6 @@ import { useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 
 import { RouterLink } from '@routes/components';
-
-import { useResponsive } from '@hooks/use-responsive';
 // ----------------------------------------------------------------------
 
 export interface LogoProps extends BoxProps {

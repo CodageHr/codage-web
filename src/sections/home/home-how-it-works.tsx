@@ -7,8 +7,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
-import { useResponsive } from '@hooks/use-responsive';
-
 import { useTranslate } from '@base/locales';
 
 import SvgColor from '@components/svg-color';
@@ -41,8 +39,6 @@ type HowWeWorkT = {
 }
 
 export default function HomeHowItWorks() {
-
-    const mdUp = useResponsive('up', 'md');
 
     const { translate } = useTranslate();
 

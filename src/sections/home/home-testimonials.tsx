@@ -28,7 +28,7 @@ type IPromoSlide = {
     position: string;
     company: string;
     comment: string;
-    image: string;
+    image?: string;
 };
 
 type CarouselItemProps = {
@@ -48,9 +48,9 @@ const promoSlides :IPromoSlide[] = [
     {
         id: 2,
         name: 'Brian Kulman',
-        position: 'CTO ',
+        position: 'CTO',
         company: 'Nearpeer',
-        comment: 'Petar iz tvrtke Codage se pokazao kao izuzetno vrijedan član tima tijekom suradnje na našem projektu za Nearpeer. Njegovo stručno znanje iz područja web i mobilnog razvoja bilo je ključno u stvaranju inovativne web i mobilne aplikacije. Njegova predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji projekta. Raditi s Petrom bila je iznimno pozitivna i produktivna suradnja koja je rezultirala visokokvalitetnim proizvodom.',
+        comment: 'Petar Vrkić is a coding expert. Over two years, Petar’s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases. He had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar’s experience and knowledge would be a great asset to any team or project!',
         image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg'
     },
     {
@@ -58,8 +58,7 @@ const promoSlides :IPromoSlide[] = [
         name: 'Bruno Batarelo',
         position:'CEO',
         company: 'Quantum-bit',
-        comment: 'Raditi s Petrom iz tvrtke Codage bio je apsolutni užitak! Njegova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Petar je briljirao u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću, Petar je znatno doprinio uspjehu našeg projekta. Rad s njim preporučujemo svima koji traže stručnjaka u području web razvoja!',
-        image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg'
+        comment: 'Petar se pokazao kao izuzetno vrijedan član tima tijekom suradnje na našim zajedničkim projektima. Njegovo stručno znanje iz područja web i mobilnog razvoja bilo je ključno u stvaranju inovativne web i mobilne aplikacije. Njegova predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji projekta.',
     },
 ];
 
@@ -78,7 +77,7 @@ export default function HomeServicesPresentation() {
                 py:5
             }} >
                 <Stack>
-                    <Typography variant={'overline'} textAlign={'center'}>Testimonals</Typography>
+                    <Typography variant={'overline'} textAlign={'center'}>Iskustva</Typography>
                     <Typography variant={'h3'} textAlign={'center'}>Tko Cijeni Naš Rad</Typography>
                 </Stack>
 
@@ -142,7 +141,7 @@ function CarouselItem({ item, active }: CarouselItemProps) {
                     spacing={1}
                     mt={6}
                 >
-                    <Avatar src={image} alt={name} sx={{ width: 96, height: 96 }}>
+                    <Avatar src={image} alt={name} sx={{ width: 96, height: 96, fontSize:48 }}>
                         {name?.charAt(0).toUpperCase()}
                     </Avatar>
                     <Typography variant={'h5'}  >

@@ -1,4 +1,4 @@
-import { Barlow, Inter, Fira_Sans } from 'next/font/google';
+import { Inter, Fira_Sans } from 'next/font/google';
 
 // ----------------------------------------------------------------------
 

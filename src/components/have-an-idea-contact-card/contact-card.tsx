@@ -24,6 +24,12 @@ export default function ContactCard() {
                     xs: 'center',
                     md: 'left',
                 },
+                width: {
+                    xs: '100%',
+                    sm: '60%',
+                    md: '30%',
+                }
+
             }}
         >
             <Box
@@ -31,7 +37,7 @@ export default function ContactCard() {
                 variants={varFade().inDown}
                 sx={{ color: 'common.white', mb: 5, typography: 'h2' }}
             >
-        Imate Ideju?
+                Imate Ideju?
                 <br /> Javite Se!
             </Box>
 

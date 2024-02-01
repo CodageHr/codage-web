@@ -24,10 +24,10 @@ const LINKS = (translate: TFunction) => ([
     {
         headline: translate('appMenu'),
         children: [
-            { name: translate('newHome'), href: paths.home, icon:undefined },
-            { name: translate('services'), href: paths.services, icon:undefined },
+            { name: translate('home'), href: paths.home, icon:undefined }
+            /*  { name: translate('services'), href: paths.services, icon:undefined },
             { name: translate('aboutUs'), href: paths.about, icon:undefined },
-            { name: translate('contact'), href: paths.contact, icon:undefined },
+            { name: translate('contact'), href: paths.contact, icon:undefined }, */
         ],
     },
     {
