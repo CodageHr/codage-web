@@ -33,7 +33,7 @@ const _mapContacts = [
 
 export default function ComingSoonView() {
 
-    const { days, hours, minutes, seconds } = useCountdownDate(new Date('02/07/2024 21:30'));
+    const { days, hours, minutes, seconds } = useCountdownDate(new Date('02/25/2024 21:30'));
 
     return (
         <>
