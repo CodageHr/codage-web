@@ -9,6 +9,9 @@ export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 export const BACKEND_HOST_API = process.env.NEXT_PUBLIC_BACKEND_HOST_API;
 export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API;
 
+export const COOKIE_NAME = process.env.NEXT_PUBLIC_COOKIE_NAME || 'codage-web-cookie';
+
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-YHXCF8V5F5';
 
 export const FIREBASE_API = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

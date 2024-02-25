@@ -42,7 +42,7 @@ const promoSlides :IPromoSlide[] = [
         name: 'Slobodan Jović',
         position: 'CEO i osnivač',
         company: 'Selekcija.hr',
-        comment: 'Raditi s Petrom iz tvrtke Codage bio je apsolutni užitak! Njegova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Petar je briljirao u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću, Petar je znatno doprinio uspjehu našeg projekta. Rad s njim preporučujemo svima koji traže stručnjaka u području web razvoja!',
+        comment: 'Raditi s Petrom iz tvrtke Codage bio je apsolutni užitak! Njegova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Petar je briljirao u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću u radu s našim programerima Petar je znatno doprinio uspjehu našeg projekta. Rad s njim preporučujemo svima koji traže stručnjaka u području web razvoja!',
         image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg'
     },
     {

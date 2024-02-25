@@ -7,6 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 
 import Logo from 'src/components/logo';
+import { ThemeSwitch } from '@components/theme-switch';
 
 import { bgBlur } from 'src/theme/css';
 
@@ -44,6 +45,7 @@ export default function HeaderSimple() {
                 }}
             >
                 <Logo />
+                <ThemeSwitch />
             </Toolbar>
 
             {offsetTop && <HeaderShadow />}

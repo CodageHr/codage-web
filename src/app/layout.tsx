@@ -9,6 +9,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Analytics } from '@vercel/analytics/react';
 
+import { cookies } from 'next/headers'
+
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
@@ -21,7 +23,11 @@ import SnackbarProvider from 'src/components/snackbar/snackbar-provider';
 import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context/jwt';
-import { APP_NAME } from '@base/config-global';
+import { APP_NAME, COOKIE_NAME, GA_TRACKING_ID } from '@base/config-global';
+import { CookieBanner } from '@components/cookie-banner';
+
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 // import { AuthProvider } from 'src/auth/context/auth0';
 // import { AuthProvider } from 'src/auth/context/amplify';
 // import { AuthProvider } from 'src/auth/context/firebase';
@@ -58,6 +64,9 @@ type Props = {
 };
 
 export default function RootLayout({ children }: Props) {
+
+    const showCookieBanner = !cookies().has(COOKIE_NAME);
+
     return (
         <html lang="hr" className={primaryFont.className}>
             <body>
@@ -86,7 +95,8 @@ export default function RootLayout({ children }: Props) {
                     </LocalizationProvider>
                 </AuthProvider>
                 <SpeedInsights />
-                <Analytics />
+                <GoogleAnalytics gaId={GA_TRACKING_ID} />
+                {showCookieBanner && <CookieBanner />}
             </body>
         </html>
     );

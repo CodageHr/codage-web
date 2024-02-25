@@ -39,6 +39,18 @@ const LINKS = (translate: TFunction) => ([
     },
 ]);
 
+const LEGAL_INFO_LINK = (translate: TFunction) => ([
+    {
+        title: translate('cookies'),
+        path: paths.cookies,
+    },{
+        title: translate('privacy_policy'),
+        path: paths.privacyPolicy,
+    },{
+        title: translate('terms_of_use'),
+        path: paths.termsOfUse,
+    }
+]);
 // ----------------------------------------------------------------------
 
 export default function Footer() {
@@ -187,9 +199,40 @@ export default function Footer() {
                     </Grid>
                 </Grid>
 
-                <Typography variant="body2" sx={{ mt: 10 }}>
-          © {currentYear}. {translate('allRightsReserved')}
-                </Typography>
+                <Grid
+                    container
+                    justifyContent={{
+                        xs: 'center',
+                        md: 'space-between',
+                    }}
+                    sx={{ mt: 10 }}
+                    spacing={2}
+                >
+                    <Grid>
+                        <Typography variant="body2" >
+                            © {currentYear}. {translate('allRightsReserved')}
+                        </Typography>
+                    </Grid>
+                    <Grid >
+                        <Stack
+                            direction={'row'}
+                            spacing={2}
+                            alignItems={'center'}>
+                            {LEGAL_INFO_LINK(translate).map((link) => (
+                                <Link
+                                    key={link.title}
+                                    component={RouterLink}
+                                    href={link.path}
+                                    color="inherit"
+                                    variant="body2"
+                                >
+                                    {link.title}
+                                </Link>
+                            ))}
+                        </Stack>
+                    </Grid>
+                </Grid>
+
             </Container>
         </Box>
     );
