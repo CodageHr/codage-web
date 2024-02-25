@@ -23,7 +23,7 @@ module.exports = {
   },
   async redirects() {
 
-    const redirects = [
+    /* const redirects = [
       {
         source: "/((?!sitemap|robots|_next|assets|manifest|script|favicon|$).*)",
         destination: '/',
@@ -34,7 +34,7 @@ module.exports = {
     // Ako niste u produkciji, uklonite redirekciju
     if (!isProd) {
       return [];
-    }
+    } */
 
     return redirects;
   },
