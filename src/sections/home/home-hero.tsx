@@ -13,10 +13,11 @@ import { useResponsive } from '@hooks/use-responsive';
 
 import { useTranslate } from '@base/locales';
 
-import Image from '@components/image';
 import { varFade, MotionContainer } from '@components/animate';
 
-import { bgGradient, textGradient } from '@theme/css';
+import { bgGradient } from '@theme/css';
+
+import { SoftwareEngineerIllustration } from '@assets/illustrations';
 
 // ----------------------------------------------------------------------
 
@@ -26,8 +27,11 @@ const StyledRoot = styled('div')(({ theme }) => ({
         imgUrl: '/assets/background/overlay_3.jpg',
     }),
     width: '100%',
-    height: '100vh',
+    height: '50vh',
     position: 'relative',
+    [theme.breakpoints.up('sm')]: {
+        height: '100vh',
+    },
     [theme.breakpoints.up('md')]: {
         top: 0,
         left: 0,
@@ -41,26 +45,6 @@ const StyledWrapper = styled('div')(({ theme }) => ({
     position: 'relative',
     [theme.breakpoints.up('md')]: {
         marginTop: HEADER.H_DESKTOP_OFFSET,
-    },
-}));
-
-const StyledTextGradient = styled(m.h1)(({ theme }) => ({
-    ...textGradient(
-        `300deg, ${theme.palette.primary.main} 0%, ${theme.palette.info.light} 25%, ${theme.palette.primary.main} 50%, ${theme.palette.info.light} 75%, ${theme.palette.primary.main} 100%`
-    ),
-    paddingLeft: 30,
-    paddingRight: 30,
-    marginTop: 8,
-    lineHeight: 1,
-    fontWeight: 900,
-    marginBottom: 24,
-    letterSpacing: 8,
-    textAlign: 'center',
-    backgroundSize: '400%',
-    fontSize: '2.75rem',
-    fontFamily: theme.typography.fontSecondaryFamily,
-    [theme.breakpoints.up('md')]: {
-        fontSize: '3.5rem',
     },
 }));
 
@@ -110,12 +94,10 @@ export default function HomeHero() {
 
     const renderDescription = (
         <Stack
-            alignItems="center"
+            alignItems="flex-start"
             justifyContent="center"
             sx={{
                 height: 1,
-                mx: 'auto',
-                maxWidth: 480,
                 opacity: opacity > 0 ? opacity : 0,
                 mt: {
                     md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
@@ -124,34 +106,41 @@ export default function HomeHero() {
         >
 
             <m.div variants={varFade().in}>
-                <StyledTextGradient
-                    animate={{ backgroundPosition: '200% center' }}
-                    transition={{
-                        repeatType: 'reverse',
-                        ease: 'linear',
-                        duration: 20,
-                        repeat: Infinity,
-                    }}
-                >
-                    {translate('home_hero_title')}
-                </StyledTextGradient>
-            </m.div>
-
-            <m.div variants={varFade().in}>
-                <Typography variant="body1" sx={{ textAlign: 'center' }}>
+                <Typography variant="h5" sx={{ textAlign: 'left', mb: 3 }}>
                     {translate('home_hero_caption')}
                 </Typography>
+            </m.div>
+            <m.div variants={varFade().in}>
+                <Typography variant="h2" sx={{ color: 'text.disabled' }}>
+                    Vaša <Typography variant={'h1'} sx={{ display: 'inline-block', color: 'primary.main' }}>Digitalna
+                    transformacija</Typography>
+
+                    Započinje ovdje
+                </Typography>
+
             </m.div>
         </Stack>
     );
 
     const renderHeroImage = (
-        <Image
-
-            alt={'development image'}
-            src={'/assets/images/home/hero/development_hero_no_bg.png'}
-            ratio="1/1"
-        />
+        <Stack
+            alignItems="flex-start"
+            justifyContent="center"
+            sx={{
+                height: 1,
+                opacity: opacity > 0 ? opacity : 0,
+                mt: {
+                    md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
+                },
+            }}
+        >
+            <SoftwareEngineerIllustration
+                sx={{
+                    my: 2,
+                    height: 500,
+                }}
+            />
+        </Stack>
     );
 
     return (
@@ -167,11 +156,11 @@ export default function HomeHero() {
                 <StyledWrapper>
                     <Container component={MotionContainer} sx={{ height: 1 }}>
                         <Grid container columnSpacing={{ md: 10 }} sx={{ height: 1 }}>
-                            <Grid xs={12} md={6}>
+                            <Grid xs={12} md={7}>
                                 {renderDescription}
                             </Grid>
 
-                            {mdUp && <Grid md={6} pt={8}>{renderHeroImage}</Grid>}
+                            {mdUp && <Grid md={5} pt={8}>{renderHeroImage}</Grid>}
                         </Grid>
                     </Container>
                 </StyledWrapper>

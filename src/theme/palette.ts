@@ -45,10 +45,10 @@ export const secondary = {
 
 export const primary = {
     lighter: '#d0c5e5',
-    light: '#9278c3',
-    main: '#5C3BA4',
-    dark: '#452d92',
-    darker: '#342282',
+    light: '#776bff',
+    main: '#5D51F2',
+    dark: '#4e45ce',
+    darker: '#362e8a',
     contrastText: '#FFFFFF',
 };
 
