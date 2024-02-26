@@ -1,5 +1,3 @@
-import SimpleLayout from '@layouts/simple';
-
 import { PrivacyPolicyView } from '@sections/legal/privacy-policy/view';
 
 // ----------------------------------------------------------------------
@@ -9,6 +7,6 @@ export const metadata = {
 };
 export default function PrivacyPolicyPage() {
 
-    return <SimpleLayout><PrivacyPolicyView /></SimpleLayout>;
+    return <PrivacyPolicyView />;
 
 }

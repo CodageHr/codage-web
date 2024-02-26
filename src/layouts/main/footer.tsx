@@ -9,7 +9,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@routes/paths';
-import { usePathname } from '@routes/hooks';
 import { RouterLink } from '@routes/components';
 
 import { useTranslate } from '@base/locales';
@@ -24,7 +23,8 @@ const LINKS = (translate: TFunction) => ([
     {
         headline: translate('appMenu'),
         children: [
-            { name: translate('home'), href: paths.home, icon:undefined }
+            { name: translate('home'), href: paths.home, icon:undefined },
+            { name: translate('services'), href: paths.services, icon:undefined }
             /*  { name: translate('services'), href: paths.services, icon:undefined },
             { name: translate('aboutUs'), href: paths.about, icon:undefined },
             { name: translate('contact'), href: paths.contact, icon:undefined }, */
@@ -41,6 +41,9 @@ const LINKS = (translate: TFunction) => ([
 
 const LEGAL_INFO_LINK = (translate: TFunction) => ([
     {
+        title: translate('legal_info'),
+        path: paths.legalInfo,
+    },{
         title: translate('cookies'),
         path: paths.cookies,
     },{
@@ -55,15 +58,15 @@ const LEGAL_INFO_LINK = (translate: TFunction) => ([
 
 export default function Footer() {
 
-    const pathname = usePathname();
+    // const pathname = usePathname();
 
     const { translate } = useTranslate();
 
     const currentYear = new Date().getFullYear();
 
-    const homePage = pathname === '/';
+    // const homePage = pathname === '/';
 
-    const simpleFooter = (
+    /* const simpleFooter = (
         <Box
             component="footer"
             sx={{
@@ -86,7 +89,7 @@ export default function Footer() {
                 </Typography>
             </Container>
         </Box>
-    );
+    ); */
 
     const mainFooter = (
         <Box
@@ -237,6 +240,6 @@ export default function Footer() {
         </Box>
     );
 
-    return homePage ? simpleFooter : mainFooter;
+    return mainFooter;
 
 }

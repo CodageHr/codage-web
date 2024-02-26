@@ -60,6 +60,10 @@ const StyledNavItem = styled(ListItemButton, {
 })<NavItemStateProps>(({ open, active, subItem, theme }) => {
     const opened = open && !active;
 
+    const themeMode = theme.palette.mode;
+    console.log({
+        mode: theme.palette.mode
+    })
     const dotStyles = {
         width: 6,
         height: 6,
@@ -70,7 +74,7 @@ const StyledNavItem = styled(ListItemButton, {
         position: 'absolute',
         backgroundColor: 'currentColor',
         ...(active && {
-            color: theme.palette.primary.main,
+            color: themeMode === 'light' ? theme.palette.primary.main : theme.palette.primary.light,
         }),
     };
 
@@ -92,7 +96,7 @@ const StyledNavItem = styled(ListItemButton, {
                 },
             },
             ...(active && {
-                color: theme.palette.primary.main,
+                color: themeMode === 'light' ? theme.palette.primary.main : theme.palette.primary.light,
                 fontWeight: theme.typography.fontWeightSemiBold,
                 '&:before': {
                     ...dotStyles,

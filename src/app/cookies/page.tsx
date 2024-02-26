@@ -9,6 +9,6 @@ export const metadata = {
 }
 export default function CookiePolicy() {
 
-    return <SimpleLayout><CookiePolicyView /></SimpleLayout>;
+    return <CookiePolicyView />;
 
 }

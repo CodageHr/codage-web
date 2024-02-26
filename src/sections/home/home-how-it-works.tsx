@@ -50,7 +50,7 @@ export default function HomeHowItWorks() {
             title:translate('how_we_work_step_1'),
             iconPath: '/assets/icons/home/ic_analysis.svg',
             bgColor: '#FDAB76',
-            iconColor: '#bb5110',
+            iconColor: '#80370A',
         },
         {
             title:translate('how_we_work_step_2'),
@@ -68,7 +68,7 @@ export default function HomeHowItWorks() {
             title:translate('how_we_work_step_4'),
             iconPath: '/assets/icons/home/ic_optimization.svg',
             bgColor: '#86E8AB',
-            iconColor: '#06933c',
+            iconColor: '#06652A',
         }
     ]),[ translate ]);
 

@@ -35,11 +35,11 @@ export const grey = {
 };
 
 export const secondary = {
-    lighter: '#C8FAD6',
-    light: '#5BE49B',
-    main: '#00A76F',
-    dark: '#007867',
-    darker: '#004B50',
+    lighter: '#f88c3c',
+    light: '#de7726',
+    main: '#d56d18',
+    dark: '#a65313',
+    darker: '#864b13',
     contrastText: '#FFFFFF',
 };
 
@@ -144,8 +144,8 @@ export function palette(mode: 'light' | 'dark') {
         mode: 'dark',
         text: {
             primary: '#FFFFFF',
-            secondary: grey[500],
-            disabled: grey[600],
+            secondary: grey[400],
+            disabled: grey[500],
         },
         background: {
             paper: grey[800],

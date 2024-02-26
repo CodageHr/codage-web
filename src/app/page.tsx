@@ -1,13 +1,10 @@
-// import { HomeView } from 'src/sections/home/view';
-import CompactLayout from 'src/layouts/compact';
-
-import ComingSoonView from 'src/sections/coming-soon/view';
+import { HomeView } from '@sections/home/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-    title: 'Stižemo uskoro'
+    title: 'Početna'
 };
 
 export default function HomePage() {
-    return <CompactLayout><ComingSoonView /></CompactLayout>;
+    return <HomeView />;
 }

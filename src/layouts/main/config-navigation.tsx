@@ -11,6 +11,11 @@ export const navConfig = (translate:TFunction) => [
         title: translate('home'),
         icon: <Iconify icon="material-symbols:home-rounded" />,
         path: paths.home,
+    },
+    {
+        title: translate('services'),
+        icon: <Iconify icon="carbon:development" />,
+        path: paths.services,
     }/* ,
     {
         title: translate('services'),

@@ -22,7 +22,7 @@ export const paths = {
     pricing: '/pricing',
     payment: '/payment',
     about: '/about-us',
-    home: '/home',
+    home: '/',
     legalInfo: '/legal-info',
     privacyPolicy: '/privacy-policy',
     cookies: '/cookies',
