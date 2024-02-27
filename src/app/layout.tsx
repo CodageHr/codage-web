@@ -7,8 +7,6 @@ import 'src/locales/i18n';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { SpeedInsights } from '@vercel/speed-insights/next';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Analytics } from '@vercel/analytics/react';
-
 import { cookies } from 'next/headers'
 
 // ----------------------------------------------------------------------

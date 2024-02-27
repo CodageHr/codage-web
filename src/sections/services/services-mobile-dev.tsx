@@ -9,6 +9,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { useResponsive } from '@hooks/use-responsive';
+
 import { useTranslate } from '@base/locales';
 
 import Image from '@components/image';
@@ -21,9 +23,11 @@ import { bgGradient } from '@theme/css';
 
 export default function ServicesWebDev() {
 
+    const mdUp = useResponsive('up', 'md');
+
     return (
         <Container component={MotionViewport} sx={{ my:10 }}>
-            <Grid container spacing={5} sx={{ height: 1 }}>
+            <Grid container direction={mdUp ? 'row' : 'column-reverse'} spacing={5} sx={{ height: 1 }}>
                 <Grid item xs={12} md={6} >
                     <Content />
                 </Grid>
