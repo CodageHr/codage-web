@@ -1,41 +1,15 @@
-const isProd = process.env.NODE_ENV === 'production';
-
-
-module.exports = {
-  trailingSlash: true,
-  modularizeImports: {
-    '@mui/icons-material': {
-      transform: '@mui/icons-material/{{member}}',
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    trailingSlash: true,
+    // Enable the React Compiler (automatic memoization). Matches the psihometar
+    // reference; requires babel-plugin-react-compiler (in devDependencies).
+    reactCompiler: true,
+    // mui-one-time-password-input ships untranspiled ESM and must be transpiled
+    // by Next (required under Turbopack / React Server Components).
+    transpilePackages: ['mui-one-time-password-input'],
+    async redirects() {
+        return [];
     },
-    '@mui/material': {
-      transform: '@mui/material/{{member}}',
-    },
-    '@mui/lab': {
-      transform: '@mui/lab/{{member}}',
-    },
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    return config;
-  },
-  async redirects() {
-
-    /* const redirects = [
-      {
-        source: "/((?!sitemap|robots|_next|assets|manifest|script|favicon|$).*)",
-        destination: '/',
-        permanent: true,
-      },
-    ];
-
-    // Ako niste u produkciji, uklonite redirekciju
-    if (!isProd) {
-      return [];
-    } */
-
-    return [];
-  },
 };
+
+module.exports = nextConfig;

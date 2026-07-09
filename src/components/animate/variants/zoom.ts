@@ -4,6 +4,7 @@ import { varTranExit, varTranEnter } from './transition';
 // ----------------------------------------------------------------------
 
 export const varZoom = (props?: VariantsType) => {
+
     const distance = props?.distance || 720;
     const durationIn = props?.durationIn;
     const durationOut = props?.durationOut;
@@ -132,4 +133,5 @@ export const varZoom = (props?: VariantsType) => {
             },
         },
     };
+
 };

@@ -11,10 +11,10 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] === null) {
         return -1;
     }
-    if (b[orderBy] < a[orderBy]) {
+    if ((b[orderBy] as any) < (a[orderBy] as any)) {
         return -1;
     }
-    if (b[orderBy] > a[orderBy]) {
+    if ((b[orderBy] as any) > (a[orderBy] as any)) {
         return 1;
     }
     return 0;

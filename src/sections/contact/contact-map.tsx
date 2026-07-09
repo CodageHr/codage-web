@@ -1,4 +1,4 @@
-import Map from 'react-map-gl';
+import Map from 'react-map-gl/mapbox';
 import { useState } from 'react';
 
 import Typography from '@mui/material/Typography';

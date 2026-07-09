@@ -26,11 +26,6 @@ import { CookieBanner } from '@components/cookie-banner';
 
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-// import { AuthProvider } from 'src/auth/context/auth0';
-// import { AuthProvider } from 'src/auth/context/amplify';
-// import { AuthProvider } from 'src/auth/context/firebase';
-// import { AuthProvider } from 'src/auth/context/supabase';
-
 // ----------------------------------------------------------------------
 
 export const viewport = {
@@ -61,9 +56,10 @@ type Props = {
     children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }: Props) {
 
-    const showCookieBanner = !cookies().has(COOKIE_NAME);
+    const cookieStore = await cookies();
+    const showCookieBanner = !cookieStore.has(COOKIE_NAME);
 
     return (
         <html lang="hr" className={primaryFont.className}>

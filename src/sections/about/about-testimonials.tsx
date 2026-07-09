@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -116,14 +116,12 @@ export default function AboutTestimonials() {
                     justifyContent={{ xs: 'center', md: 'space-between' }}
                     sx={{ height: 1 }}
                 >
-                    <Grid xs={10} md={4}>
+                    <Grid size={{ xs: 10, md: 4 }}>
                         {renderDescription}
                     </Grid>
 
                     <Grid
-                        xs={12}
-                        md={7}
-                        lg={6}
+                        size={{ xs: 12, md: 7, lg: 6 }}
                         alignItems="center"
                         sx={{
                             height: 1,

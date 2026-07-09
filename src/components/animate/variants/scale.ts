@@ -4,6 +4,7 @@ import { varTranExit, varTranEnter } from './transition';
 // ----------------------------------------------------------------------
 
 export const varScale = (props?: VariantsType) => {
+
     const durationIn = props?.durationIn;
     const durationOut = props?.durationOut;
     const easeIn = props?.easeIn;
@@ -56,4 +57,5 @@ export const varScale = (props?: VariantsType) => {
             },
         },
     };
+
 };

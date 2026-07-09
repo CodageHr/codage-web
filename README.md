@@ -1,14 +1,17 @@
 # Codage Web Aplikacija
 
-Dobrodošli u Codage web aplikaciju, izgrađenu pomoću Next.js i Node.js 18.19.0.
+Dobrodošli u Codage web aplikaciju, izgrađenu pomoću Next.js 16, React 19, MUI 7 i Node.js 22.
+
+> Backend (Laravel) je u **zasebnom repozitoriju**. Ovaj frontend komunicira s njim
+> preko HTTP-a putem `NEXT_PUBLIC_BACKEND_HOST_API` varijable (vidi `.env.example`).
 
 ## Instalacija
 
-1. Prvo, instalirajte Node.js verziju 18.19.0. Preporučljivo je koristiti [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) za upravljanje verzijama Node.js-a.
+1. Prvo, instalirajte Node.js verziju 22 (vidi `.nvmrc`). Preporučljivo je koristiti [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) za upravljanje verzijama Node.js-a.
 
 ```bash
-nvm install 18.19.0
-nvm use 18.19.0
+nvm install 22
+nvm use 22
 ```
 
 2. Klonirajte repozitorij:
@@ -33,6 +36,31 @@ npm run dev
 ```
 
 Aplikacija će biti dostupna na `http://localhost:8082`.
+
+## Pokretanje putem Dockera
+
+Alternativno, aplikaciju možete pokrenuti u Dockeru (Next.js dev server u kontejneru,
+s hot-reloadom). Backend se **ne** pokreće ovdje — on je u zasebnom repozitoriju.
+
+1. Kopirajte primjer okolišnih varijabli i popunite ih:
+
+```bash
+cp .env.example .env
+```
+
+2. Pokrenite kontejner:
+
+```bash
+./docker-start            # pokretanje
+./docker-start --build    # prisilni rebuild
+./docker-stop             # zaustavljanje
+```
+
+Aplikacija će biti dostupna na `http://localhost:8082` (port se može promijeniti
+putem `APP_FRONT_PORT` u `.env`).
+
+Za lokalni razvoj protiv Laravel backenda koji se vrti iz svog repozitorija, pogledajte
+zakomentirane `networks` upute u `docker-compose.yml`.
 
 ## Struktura Projekta
 

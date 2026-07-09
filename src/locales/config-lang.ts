@@ -18,10 +18,10 @@ import { setDefaultOptions } from 'date-fns';
 
 import {
     enUS as enUSDate,
-} from '@mui/x-date-pickers';
+} from '@mui/x-date-pickers/locales';
 import {
     enUS as enUSDataGrid,
-} from '@mui/x-data-grid';
+} from '@mui/x-data-grid/locales';
 
 import hrDataGrid from '@theme/locale/hr-data-grid';
 import hrHrDate from '@theme/locale/hr-x-date-pickers';

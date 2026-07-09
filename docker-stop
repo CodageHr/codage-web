@@ -1,0 +1,20 @@
+#!/bin/bash
+
+j=$#;
+
+# Make sure no arguments are passed.
+if [ $j -gt 0 ]
+then
+    echo "No arguments allowed.";
+    exit;
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Mac OSX
+    echo "MacOSX detected. Shutting down the Codage frontend container.";
+    docker-compose down;
+else
+    # Linux and others
+    echo "Linux or other OS detected. Shutting down the Codage frontend container.";
+    docker compose down;
+fi

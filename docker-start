@@ -1,0 +1,39 @@
+#!/bin/bash
+
+j=$#;
+
+# Make sure only one argument is passed.
+if [ $j -gt 1 ]
+then
+    echo "Too many arguments. Only '--build' allowed in order to rebuild the containers.";
+    exit;
+fi
+
+# If the '--build' argument is passed, rebuild the containers.
+if [ "$1" = "--build" ]
+then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+        echo "MacOSX detected. Rebuilding the Codage frontend container.";
+        docker-compose up --build -d;
+    else
+        # Linux and others
+        echo "Linux or other OS detected. Rebuilding the Codage frontend container.";
+        docker compose up --build -d;
+    fi
+# If the argument is empty, regularly start the containers.
+elif [ -z "$1" ]
+then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac OSX
+        echo "MacOSX detected. Starting the Codage frontend container.";
+        docker-compose up -d;
+    else
+        # Linux and others
+        echo "Linux or other OS detected. Starting the Codage frontend container.";
+        docker compose up -d;
+    fi
+# If something else is given as the argument, abort the script.
+else
+    echo "Incorrect argument. Either provide no arguments or '--build' as the single argument in order to rebuild the containers."
+fi

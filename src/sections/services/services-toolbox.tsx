@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
@@ -134,7 +134,7 @@ export default function ServicesToolbox() {
                         }}
                     >
                         <Grid container spacing={10} justifyContent={'center'}>
-                            <Grid xs={12} md={10}>
+                            <Grid size={{ xs: 12, md: 10 }}>
                                 <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
                                     {promoSlides.map((item,index) => (
                                         <CarouselItem key={`presentation_item_${item.id}`}  item={item} active={index === carousel.currentIndex} />

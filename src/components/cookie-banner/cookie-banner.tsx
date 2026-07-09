@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { hasCookie, setCookie } from 'cookies-next';
+import { hasCookie, setCookie } from 'cookies-next/client';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';

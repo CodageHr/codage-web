@@ -4,6 +4,7 @@ import { varTranExit, varTranEnter } from './transition';
 // ----------------------------------------------------------------------
 
 export const varRotate = (props?: VariantsType) => {
+
     const durationIn = props?.durationIn;
     const durationOut = props?.durationOut;
     const easeIn = props?.easeIn;
@@ -35,4 +36,5 @@ export const varRotate = (props?: VariantsType) => {
             },
         },
     };
+
 };

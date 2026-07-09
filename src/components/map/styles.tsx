@@ -1,4 +1,4 @@
-import { Popup } from 'react-map-gl';
+import { Popup } from 'react-map-gl/mapbox';
 
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, useTheme } from '@mui/material/styles';

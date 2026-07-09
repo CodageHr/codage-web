@@ -1,0 +1,55 @@
+# Development docker-compose for the Codage Next.js frontend.
+#
+# NOTE: this project is NOT a monorepo. The Laravel backend lives in a SEPARATE
+# repository with its own docker-compose. The frontend talks to the backend over
+# HTTP using the NEXT_PUBLIC_BACKEND_HOST_API env var (see .env / .env.example),
+# so this file only runs the Next.js dev server — no PHP/MySQL/Redis services here.
+#
+# Usage:
+#   ./docker-start            # start (build image layers on first run)
+#   ./docker-start --build    # force a rebuild
+#   ./docker-stop             # stop
+#
+# The app is then served on http://localhost:${APP_FRONT_PORT:-8082}
+
+services:
+    web:
+        image: node:22-slim
+        container_name: codage-web
+        working_dir: /app
+        ports:
+            - "${APP_FRONT_PORT:-8082}:8082"
+        volumes:
+            # Bind-mount the source for hot reload...
+            - ./:/app
+            # ...but keep the container's own node_modules (native binaries differ
+            # from the host; this named volume shadows the host node_modules).
+            - codage_node_modules:/app/node_modules
+        env_file:
+            - .env
+        environment:
+            # Reliable file watching / HMR on bind mounts (Docker Desktop on macOS/Windows).
+            - WATCHPACK_POLLING=true
+            - CHOKIDAR_USEPOLLING=true
+        # Install deps on first boot, then run the dev server bound to 0.0.0.0 so it
+        # is reachable from the host. (node:22-slim has no build toolchain; if a native
+        # dependency ever fails to install, switch the image to `node:22`.)
+        command: sh -c "npm install && npm run dev -- -H 0.0.0.0"
+
+        # --- Optional: develop against a locally-running Laravel backend ---
+        # The backend is in its own repo with its own docker-compose network. To let
+        # this container reach it by service name during local full-stack development:
+        #   1. Start the backend repo's compose, then find its network:  docker network ls
+        #   2. Uncomment the `networks:` block below (service + top-level).
+        #   3. Set NEXT_PUBLIC_BACKEND_HOST_API=http://<backend-service>:<port> in .env
+        # networks:
+        #     - default
+        #     - backend
+
+volumes:
+    codage_node_modules:
+
+# networks:
+#     backend:
+#         external: true
+#         name: <laravel-backend-compose-network-name>

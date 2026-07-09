@@ -9,12 +9,14 @@ import { varContainer } from './variants';
 type IProps = BoxProps & MotionProps;
 
 export interface Props extends IProps {
-  animate?: boolean;
-  action?: boolean;
+    animate?: boolean;
+    action?: boolean;
 }
 
 export default function MotionContainer({ animate, action = false, children, ...other }: Props) {
+
     if (action) {
+
         return (
             <Box
                 component={m.div}
@@ -26,6 +28,7 @@ export default function MotionContainer({ animate, action = false, children, ...
                 {children}
             </Box>
         );
+    
     }
 
     return (
@@ -40,4 +43,5 @@ export default function MotionContainer({ animate, action = false, children, ...
             {children}
         </Box>
     );
+
 }

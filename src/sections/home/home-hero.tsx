@@ -5,7 +5,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 
@@ -112,7 +112,7 @@ export default function HomeHero() {
             </m.div>
             <m.div variants={varFade().in}>
                 <Typography variant="h2" sx={{ color: 'text.disabled' }}>
-                    Vaša <Typography variant={'h1'} sx={{ display: 'inline-block', color: 'primary.main' }}>Digitalna
+                    Vaša <Typography variant={'h1'} component="span" sx={{ display: 'inline-block', color: 'primary.main' }}>Digitalna
                     transformacija</Typography>
 
                     Započinje ovdje
@@ -156,11 +156,11 @@ export default function HomeHero() {
                 <StyledWrapper>
                     <Container component={MotionContainer} sx={{ height: 1 }}>
                         <Grid container columnSpacing={{ md: 10 }} sx={{ height: 1 }}>
-                            <Grid xs={12} md={7}>
+                            <Grid size={{ xs: 12, md: 7 }}>
                                 {renderDescription}
                             </Grid>
 
-                            {mdUp && <Grid md={5} pt={8}>{renderHeroImage}</Grid>}
+                            {mdUp && <Grid size={{ md: 5 }} pt={8}>{renderHeroImage}</Grid>}
                         </Grid>
                     </Container>
                 </StyledWrapper>

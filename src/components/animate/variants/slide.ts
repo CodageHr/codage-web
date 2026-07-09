@@ -4,6 +4,7 @@ import { varTranExit, varTranEnter } from './transition';
 // ----------------------------------------------------------------------
 
 export const varSlide = (props?: VariantsType) => {
+
     const distance = props?.distance || 160;
     const durationIn = props?.durationIn;
     const durationOut = props?.durationOut;
@@ -67,4 +68,5 @@ export const varSlide = (props?: VariantsType) => {
             exit: { x: 0, transition: varTranExit({ durationOut, easeOut }) },
         },
     };
+
 };

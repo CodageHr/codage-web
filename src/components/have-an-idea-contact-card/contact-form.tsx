@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ContactFormValues } from '@appTypes/contact-form';
 
 import Stack from '@mui/material/Stack';
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from '@mui/material/Button';
 import { alpha, styled } from '@mui/material/styles';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputLabelClasses } from '@mui/material/InputLabel';

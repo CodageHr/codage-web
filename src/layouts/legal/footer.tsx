@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@routes/paths';
@@ -130,7 +130,7 @@ export default function Footer() {
                         md: 'space-between',
                     }}
                 >
-                    {/* <Grid xs={8} md={3} mt={4}>
+                    {/* <Grid size={{ xs: 8, md: 3 }} mt={4}>
             <Stack>
               <Typography variant={'subtitle1'}>{translate('socialNetworks')}</Typography>
               <Stack
@@ -161,11 +161,11 @@ export default function Footer() {
             </Stack>
 
           </Grid> */}
-                    <Grid xs={8} md={3} mt={4}>
+                    <Grid size={{ xs: 8, md: 3 }} mt={4}>
                         <WorkingHoursSchedule />
                     </Grid>
 
-                    <Grid xs={12} md={6}>
+                    <Grid size={{ xs: 12, md: 6 }}>
                         <Stack spacing={5} direction={{ xs: 'column', md: 'row' }}>
                             {LINKS(translate).map((list) => (
                                 <Stack

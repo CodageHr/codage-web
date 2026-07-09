@@ -1,4 +1,4 @@
-import { MapProps } from 'react-map-gl';
+import { MapProps } from 'react-map-gl/mapbox';
 
 // ----------------------------------------------------------------------
 

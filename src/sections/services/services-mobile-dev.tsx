@@ -28,10 +28,10 @@ export default function ServicesWebDev() {
     return (
         <Container component={MotionViewport} sx={{ my:10 }}>
             <Grid container direction={mdUp ? 'row' : 'column-reverse'} spacing={5} sx={{ height: 1 }}>
-                <Grid item xs={12} md={6} >
+                <Grid size={{ xs: 12, md: 6 }} >
                     <Content />
                 </Grid>
-                <Grid item xs={12} md={6} sx={{ height: 1 }}>
+                <Grid size={{ xs: 12, md: 6 }} sx={{ height: 1 }}>
                     <Description />
                 </Grid>
             </Grid>

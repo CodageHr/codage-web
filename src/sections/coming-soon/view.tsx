@@ -105,7 +105,7 @@ export default function ComingSoonView() {
 
                 <m.div variants={varFade().inUp}>
                     <Grid container my={3} justifyContent={'space-between'} textAlign={'left'} spacing={2}>
-                        <Grid item xs={12} md={6} lg={5} sx={{ overflowX: 'hidden' }}>
+                        <Grid size={{ xs: 12, md: 6, lg: 5 }} sx={{ overflowX: 'hidden' }}>
                             <m.div variants={varFade().inLeft}>
                                 <Typography variant="h5" >
                   Kontakt podaci i adresa
@@ -176,7 +176,7 @@ export default function ComingSoonView() {
                                 </Typography>
                             </m.div>
                         </Grid>
-                        <Grid item xs={12} md={6} lg={5} sx={{ overflowX: 'hidden' }}>
+                        <Grid size={{ xs: 12, md: 6, lg: 5 }} sx={{ overflowX: 'hidden' }}>
                             <m.div variants={varFade().inRight}>
                                 <ContactMap contacts={_mapContacts} />
                             </m.div>
