@@ -72,10 +72,12 @@ export default function CarouselDots(props?: Props) {
         customPaging: () => (
             <Stack
                 component="div"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ width: 1, height: 1 }}
-            >
+                sx={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 1,
+                    height: 1
+                }}>
                 <StyledDot
                     sx={{
                         bgcolor: 'currentColor',

@@ -25,15 +25,21 @@ const StyledRoot = styled(Box)(({ theme }) => ({
 
 export default function LegalPostHeader({ title, subtitle }:LegalPostHeaderProps) {
 
-    return <StyledRoot
-        display={'flex'}
-        alignItems={'center'}
-        justifyContent={'center'}
-    >
-        <Container >
-            <Typography variant={'h1'} >{title}</Typography>
-            {subtitle && <Typography variant={'body1'} mt={4} >{subtitle}</Typography>}
-        </Container>
-    </StyledRoot>;
+    return (
+        <StyledRoot
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+        >
+            <Container >
+                <Typography variant={'h1'} >{title}</Typography>
+                {subtitle && <Typography variant={'body1'} sx={{
+                    mt: 4
+                }} >{subtitle}</Typography>}
+            </Container>
+        </StyledRoot>
+    );
 
 }

@@ -38,11 +38,6 @@ export default function ResultItem({ title, path, groupLabel, onClickItem }: Pro
             }}
         >
             <ListItemText
-                primaryTypographyProps={{
-                    typography: 'subtitle2',
-                    sx: { textTransform: 'capitalize' },
-                }}
-                secondaryTypographyProps={{ typography: 'caption' }}
                 primary={title.map((part, index) => (
                     <Box
                         key={index}
@@ -65,8 +60,14 @@ export default function ResultItem({ title, path, groupLabel, onClickItem }: Pro
                         {part.text}
                     </Box>
                 ))}
-            />
+                slotProps={{
+                    primary: {
+                        variant: 'subtitle2',
+                        sx: { textTransform: 'capitalize' },
+                    },
 
+                    secondary: { variant: 'caption' }
+                }} />
             {groupLabel && <Label color="info">{groupLabel}</Label>}
         </ListItemButton>
     );

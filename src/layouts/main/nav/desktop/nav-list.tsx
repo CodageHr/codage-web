@@ -102,18 +102,19 @@ function NavSubList({ data, subheader, sx, ...other }: NavSubListProps) {
     return (
         <Stack
             spacing={2}
-            flexGrow={1}
-            alignItems="flex-start"
+            {...other}
             sx={{
+                flexGrow: 1,
+                alignItems: "flex-start",
                 pb: 2,
+
                 ...(dashboard && {
                     pb: 0,
                     maxWidth: { md: 1 / 3, lg: 540 },
                 }),
-                ...sx,
-            }}
-            {...other}
-        >
+
+                ...sx
+            }}>
             <ListSubheader
                 disableSticky
                 sx={{
@@ -125,7 +126,6 @@ function NavSubList({ data, subheader, sx, ...other }: NavSubListProps) {
             >
                 {subheader}
             </ListSubheader>
-
             {data.map((item) =>
                 dashboard ? (
                     <NavItemDashboard key={item.title} path={item.path} />

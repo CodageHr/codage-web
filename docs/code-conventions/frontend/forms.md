@@ -44,5 +44,5 @@ return (
   `RHFTextField` · `RHFSelect` · `RHFCheckbox` · `RHFSwitch` · `RHFRadioGroup`
   · `RHFAutocomplete` · `RHFSlider` · `RHFUpload` · `RHFCode`
 
-- Submit buttons show progress with MUI 7's `<Button loading>` (not `@mui/lab`).
+- Submit buttons show progress with MUI 9's `<Button loading>` (not `@mui/lab`).
 - Label/placeholder text must come from i18n keys (see [i18n](i18n.md)).

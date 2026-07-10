@@ -65,18 +65,19 @@ export default function NavMobile({ data }: NavProps) {
             <IconButton onClick={handleOpenMenu} sx={{ ml: 1 }}>
                 <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
             </IconButton>
-
             <Drawer
                 open={openMenu}
                 onClose={handleCloseMenu}
-                PaperProps={{
-                    sx: {
-                        pb: 5,
-                        width: 260,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    },
+                slotProps={{
+                    paper: {
+                        sx: {
+                            pb: 5,
+                            width: 260,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                        },
+                    }
                 }}
             >
                 <Scrollbar>
@@ -89,7 +90,9 @@ export default function NavMobile({ data }: NavProps) {
                 <Stack
                     direction={'column'}
                     spacing={2}
-                    alignItems={'center'}>
+                    sx={{
+                        alignItems: 'center'
+                    }}>
                     {LEGAL_INFO_LINK(translate).map((link) => (
                         <Link
                             key={link.title}

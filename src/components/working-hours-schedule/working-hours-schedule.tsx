@@ -44,28 +44,36 @@ const WorkingHoursSchedule = () => {
         }
     ];
 
-    return <Stack>
-        <Box display={'flex'} gap={1} justifyContent={{ xs: 'center', md: 'flex-start' }}>
-            <Iconify icon={'ic:round-schedule'} color={'primary'} width={24} height={24} />
-            <Typography variant={'subtitle1'}>{translate('working_hours')}</Typography>
-        </Box>
-        <Stack
-            justifyContent={{ xs: 'center', md: 'flex-start' }}
-            sx={{
-                pl:{ xs: 0, md: 4 },
-                mb: { xs: 5, md: 0 },
-            }}
-        >
-            {_workingDays.map((workingDay) => (
-                <Stack spacing={2} key={workingDay.day} direction={'row'}
-                    justifyContent={{ xs: 'center', md: 'flex-start' }}
-                >
-                    <Typography variant={'body2'}>{workingDay.day}:</Typography>
-                    <Typography variant={'body1'}>{`${fTimeOnly(workingDay.startHour)} - ${fTimeOnly(workingDay.endHour)}`}</Typography>
-                </Stack>
-            ))}
+    return (
+        <Stack>
+            <Box
+                sx={{
+                    display: 'flex',
+                    gap: 1,
+                    justifyContent: { xs: 'center', md: 'flex-start' }
+                }}>
+                <Iconify icon={'ic:round-schedule'} color={'primary'} width={24} height={24} />
+                <Typography variant={'subtitle1'}>{translate('working_hours')}</Typography>
+            </Box>
+            <Stack
+                sx={{
+                    justifyContent: { xs: 'center', md: 'flex-start' },
+                    pl:{ xs: 0, md: 4 },
+                    mb: { xs: 5, md: 0 }
+                }}>
+                {_workingDays.map((workingDay) => (
+                    <Stack spacing={2} key={workingDay.day} direction={'row'}
+                        sx={{
+                            justifyContent: { xs: 'center', md: 'flex-start' }
+                        }}
+                    >
+                        <Typography variant={'body2'}>{workingDay.day}:</Typography>
+                        <Typography variant={'body1'}>{`${fTimeOnly(workingDay.startHour)} - ${fTimeOnly(workingDay.endHour)}`}</Typography>
+                    </Stack>
+                ))}
+            </Stack>
         </Stack>
-    </Stack>;
+    );
 
 };
 

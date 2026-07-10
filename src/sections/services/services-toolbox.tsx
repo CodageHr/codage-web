@@ -107,8 +107,12 @@ export default function ServicesToolbox() {
                 py:5
             }} >
                 <Stack>
-                    <Typography variant={'overline'} textAlign={'center'}>Tehnologije koje koristimo</Typography>
-                    <Typography variant={'h3'} textAlign={'center'}>Naši svakodnenvni alati</Typography>
+                    <Typography variant={'overline'} sx={{
+                        textAlign: 'center'
+                    }}>Tehnologije koje koristimo</Typography>
+                    <Typography variant={'h3'} sx={{
+                        textAlign: 'center'
+                    }}>Naši svakodnenvni alati</Typography>
                 </Stack>
 
                 <Box sx={{ position: 'relative', mt:4 }}>
@@ -133,7 +137,9 @@ export default function ServicesToolbox() {
                             },
                         }}
                     >
-                        <Grid container spacing={10} justifyContent={'center'}>
+                        <Grid container spacing={10} sx={{
+                            justifyContent: 'center'
+                        }}>
                             <Grid size={{ xs: 12, md: 10 }}>
                                 <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
                                     {promoSlides.map((item,index) => (
@@ -162,14 +168,13 @@ function CarouselItem({ item, active }: CarouselItemProps) {
         <Stack
             component={MotionContainer}
         >
-
-
             <m.div variants={variants}>
                 <Stack
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    m={1}
-                >
+                    sx={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        m: 1
+                    }}>
                     <Image
                         src={image}
                         alt={title}
@@ -183,12 +188,13 @@ function CarouselItem({ item, active }: CarouselItemProps) {
 
             </m.div>
             <m.div variants={variants}>
-                <Typography variant={'subtitle1'} textAlign={'center'}>
+                <Typography variant={'subtitle1'} sx={{
+                    textAlign: 'center'
+                }}>
                     {title}
                 </Typography>
             </m.div>
         </Stack>
-
     );
 
 }

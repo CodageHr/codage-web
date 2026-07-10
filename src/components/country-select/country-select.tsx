@@ -58,7 +58,7 @@ export default function CountrySelect<
                 );
             }}
             renderInput={(params) => {
-                const country = getCountry(params.inputProps.value as string);
+                const country = getCountry(params.slotProps.htmlInput.value as string);
 
                 const baseField = {
                     ...params,
@@ -67,7 +67,7 @@ export default function CountrySelect<
                     error: !!error,
                     helperText,
                     inputProps: {
-                        ...params.inputProps,
+                        ...params.slotProps.htmlInput,
                         autoComplete: 'new-password',
                     },
                 };
@@ -79,34 +79,36 @@ export default function CountrySelect<
                 return (
                     <TextField
                         {...baseField}
-                        InputProps={{
-                            ...params.InputProps,
-                            startAdornment: (
-                                <InputAdornment
-                                    position="start"
-                                    sx={{
-                                        ...(!country.code && {
-                                            display: 'none',
-                                        }),
-                                    }}
-                                >
-                                    <Iconify
-                                        icon={`circle-flags:${country.code?.toLowerCase()}`}
-                                        sx={{ mr: -0.5, ml: 0.5 }}
-                                    />
-                                </InputAdornment>
-                            ),
+                        slotProps={{
+                            input: {
+                                ...params.slotProps.input,
+                                startAdornment: (
+                                    <InputAdornment
+                                        position="start"
+                                        sx={{
+                                            ...(!country.code && {
+                                                display: 'none',
+                                            }),
+                                        }}
+                                    >
+                                        <Iconify
+                                            icon={`circle-flags:${country.code?.toLowerCase()}`}
+                                            sx={{ mr: -0.5, ml: 0.5 }}
+                                        />
+                                    </InputAdornment>
+                                ),
+                            }
                         }}
                     />
                 );
             }}
-            renderTags={(selected, getTagProps) =>
-                selected.map((option, index) => {
+            renderValue={(selected, getItemProps) =>
+                (selected as string[]).map((option, index) => {
                     const country = getCountry(option as string);
 
                     return (
                         <Chip
-                            {...getTagProps({ index })}
+                            {...getItemProps({ index })}
                             key={country.label}
                             label={country.label}
                             icon={<Iconify icon={`circle-flags:${country.code?.toLowerCase()}`} />}

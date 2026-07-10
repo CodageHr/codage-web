@@ -7,9 +7,12 @@ import { IconifyProps } from './types';
 
 // ----------------------------------------------------------------------
 
-interface Props extends BoxProps {
+// `width` is no longer a MUI system prop in v9, so it is declared explicitly and
+// applied via `sx`. Props are typed for the underlying @iconify/react `Icon`.
+type Props = BoxProps<typeof Icon> & {
   icon: IconifyProps;
-}
+  width?: number | string;
+};
 
 const Iconify = forwardRef<SVGElement, Props>(({ icon, width = 20, sx, ...other }, ref) => (
     <Box
@@ -17,7 +20,7 @@ const Iconify = forwardRef<SVGElement, Props>(({ icon, width = 20, sx, ...other 
         component={Icon}
         className="component-iconify"
         icon={icon}
-        sx={{ width, height: width, ...sx }}
+        sx={[{ width, height: width, flexShrink: 0, display: 'inline-flex' }, ...(Array.isArray(sx) ? sx : [sx])]}
         {...other}
     />
 ));

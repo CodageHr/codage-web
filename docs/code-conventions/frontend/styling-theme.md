@@ -1,6 +1,6 @@
 # Styling & Theme
 
-Styling is **MUI 7 + Emotion** (CSS-in-JS). No Tailwind, no CSS modules. The theme
+Styling is **MUI 9 + Emotion** (CSS-in-JS). No Tailwind, no CSS modules. The theme
 lives in `src/theme/`.
 
 ## Theme structure
@@ -17,7 +17,7 @@ lives in `src/theme/`.
 SSR styling uses the custom cache in `theme/next-emotion-cache.tsx`
 (`useServerInsertedHTML`). Do **not** replace it with `AppRouterCacheProvider`.
 
-## MUI 7 gotchas (respect these)
+## MUI 9 gotchas (respect these)
 
 - **Palette augmentation** targets the public module — `declare module
   '@mui/material/styles'` — not the internal `@mui/material/styles/createPalette`

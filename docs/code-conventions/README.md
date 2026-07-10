@@ -11,7 +11,7 @@ the same rules.
 ## Stack
 
 - **Next.js 16** (App Router) · **React 19** · **TypeScript 6**
-- **MUI 7** (`@mui/material`, `@mui/x-*`) + **Emotion** (CSS-in-JS, custom App Router cache)
+- **MUI 9** (`@mui/material`, `@mui/x-*`) + **Emotion** (CSS-in-JS, custom App Router cache)
 - **SWR** + **Axios** for data fetching · **React Context** for global state (no Redux)
 - **react-hook-form** + **Yup** for forms · **i18next** for localization (`hr`, `en`)
 - **ESLint 9** flat config (`eslint.config.mjs`) · **Prettier 3**
@@ -23,9 +23,9 @@ the same rules.
 - [Git Workflow](git-workflow.md) — branches, commits, pre-push checklist
 
 ### Frontend
-- [Components](frontend/components.md) — sections vs components, MUI 7 patterns, App Router
+- [Components](frontend/components.md) — sections vs components, MUI 9 patterns, App Router
 - [Forms](frontend/forms.md) — react-hook-form + Yup, `FormProvider`, RHF wrappers
 - [Data Fetching](frontend/data-fetching.md) — SWR, Axios instances, the separate backend
 - [TypeScript](frontend/typescript.md) — type organization, path aliases, lint/format
 - [i18n](frontend/i18n.md) — `useTranslate`, locale files, SSR-safe init
-- [Styling & Theme](frontend/styling-theme.md) — MUI 7 theme, palette augmentation, Emotion cache
+- [Styling & Theme](frontend/styling-theme.md) — MUI 9 theme, palette augmentation, Emotion cache

@@ -77,8 +77,12 @@ export default function HomeServicesPresentation() {
                 py:5
             }} >
                 <Stack>
-                    <Typography variant={'overline'} textAlign={'center'}>Iskustva</Typography>
-                    <Typography variant={'h3'} textAlign={'center'}>Tko Cijeni Naš Rad</Typography>
+                    <Typography variant={'overline'} sx={{
+                        textAlign: 'center'
+                    }}>Iskustva</Typography>
+                    <Typography variant={'h3'} sx={{
+                        textAlign: 'center'
+                    }}>Tko Cijeni Naš Rad</Typography>
                 </Stack>
 
                 <Box sx={{ position: 'relative', mt:4 }}>
@@ -97,7 +101,9 @@ export default function HomeServicesPresentation() {
                             },
                         }}
                     >
-                        <Grid container spacing={10} justifyContent={'center'}>
+                        <Grid container spacing={10} sx={{
+                            justifyContent: 'center'
+                        }}>
                             <Grid size={{ xs: 12, md: 8 }}>
                                 <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
                                     {promoSlides.map((item,index) => (
@@ -128,19 +134,21 @@ function CarouselItem({ item, active }: CarouselItemProps) {
             animate={active}
             action
         >
-
             <m.div variants={variants}>
-                <Typography variant={'body1'} textAlign={'center'} >
+                <Typography variant={'body1'} sx={{
+                    textAlign: 'center'
+                }} >
                     {comment}
                 </Typography>
             </m.div>
             <m.div variants={variants}>
                 <Stack
-                    justifyContent={'center'}
-                    alignItems={'center'}
                     spacing={1}
-                    mt={6}
-                >
+                    sx={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        mt: 6
+                    }}>
                     <Avatar src={image} alt={name} sx={{ width: 96, height: 96, fontSize:48 }}>
                         {name?.charAt(0).toUpperCase()}
                     </Avatar>
@@ -157,7 +165,6 @@ function CarouselItem({ item, active }: CarouselItemProps) {
 
             </m.div>
         </Stack>
-
     );
 
 }

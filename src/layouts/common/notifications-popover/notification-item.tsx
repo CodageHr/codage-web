@@ -33,15 +33,14 @@ export default function NotificationItem({ notification }: NotificationItemProps
                 <Avatar src={notification.avatarUrl} sx={{ bgcolor: 'background.neutral' }} />
             ) : (
                 <Stack
-                    alignItems="center"
-                    justifyContent="center"
                     sx={{
+                        alignItems: "center",
+                        justifyContent: "center",
                         width: 40,
                         height: 40,
                         borderRadius: '50%',
-                        bgcolor: 'background.neutral',
-                    }}
-                >
+                        bgcolor: 'background.neutral'
+                    }}>
                     <Box
                         component="img"
                         src={`/assets/icons/notification/${
@@ -64,8 +63,6 @@ export default function NotificationItem({ notification }: NotificationItemProps
             secondary={
                 <Stack
                     direction="row"
-                    alignItems="center"
-                    sx={{ typography: 'caption', color: 'text.disabled' }}
                     divider={
                         <Box
                             sx={{
@@ -77,7 +74,11 @@ export default function NotificationItem({ notification }: NotificationItemProps
                             }}
                         />
                     }
-                >
+                    sx={{
+                        alignItems: "center",
+                        typography: 'caption',
+                        color: 'text.disabled'
+                    }}>
                     {fToNow(notification.createdAt)}
                     {notification.category}
                 </Stack>
@@ -111,7 +112,9 @@ export default function NotificationItem({ notification }: NotificationItemProps
     );
 
     const projectAction = (
-        <Stack alignItems="flex-start">
+        <Stack sx={{
+            alignItems: "flex-start"
+        }}>
             <Box
                 sx={{
                     p: 1.5,
@@ -149,7 +152,13 @@ export default function NotificationItem({ notification }: NotificationItemProps
                 sx={{ width: 40, height: 40 }}
             />
 
-            <Stack spacing={1} direction={{ xs: 'column', sm: 'row' }} flexGrow={1} sx={{ minWidth: 0 }}>
+            <Stack
+                spacing={1}
+                direction={{ xs: 'column', sm: 'row' }}
+                sx={{
+                    flexGrow: 1,
+                    minWidth: 0
+                }}>
                 <ListItemText
                     disableTypography
                     primary={
@@ -160,8 +169,6 @@ export default function NotificationItem({ notification }: NotificationItemProps
                     secondary={
                         <Stack
                             direction="row"
-                            alignItems="center"
-                            sx={{ typography: 'caption', color: 'text.disabled' }}
                             divider={
                                 <Box
                                     sx={{
@@ -173,7 +180,11 @@ export default function NotificationItem({ notification }: NotificationItemProps
                                     }}
                                 />
                             }
-                        >
+                            sx={{
+                                alignItems: "center",
+                                typography: 'caption',
+                                color: 'text.disabled'
+                            }}>
                             <span>2.3 GB</span>
                             <span>30 min ago</span>
                         </Stack>
@@ -188,7 +199,13 @@ export default function NotificationItem({ notification }: NotificationItemProps
     );
 
     const tagsAction = (
-        <Stack direction="row" spacing={0.75} flexWrap="wrap" sx={{ mt: 1.5 }}>
+        <Stack
+            direction="row"
+            spacing={0.75}
+            sx={{
+                flexWrap: "wrap",
+                mt: 1.5
+            }}>
             <Label variant="outlined" color="info">
         Design
             </Label>

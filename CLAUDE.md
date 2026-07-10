@@ -6,7 +6,7 @@
 Minimal UI template.
 
 - **Framework:** Next.js 16 (App Router) + React 19 + TypeScript 6
-- **UI:** MUI 7 (`@mui/material`, `@mui/x-*`) + Emotion (custom App Router cache)
+- **UI:** MUI 9 (`@mui/material`, `@mui/x-*`) + Emotion (custom App Router cache)
 - **Data:** SWR + Axios · **State:** React Context (no Redux)
 - **Forms:** react-hook-form + Yup · **i18n:** i18next (`hr` default, `en`)
 - **Package manager:** npm · **Node:** 22 (see `.nvmrc`) · **Dev port:** 8082
@@ -41,7 +41,7 @@ Docker (dev, frontend only — backend runs from its own repo):
   `src/locales/langs/hr.json` and `en.json`.
 - **Do NOT hardcode API URLs** — use `src/config-global.ts` / `src/utils/axios.ts`
   (env: `NEXT_PUBLIC_BACKEND_HOST_API`).
-- **MUI 7 Grid** uses the `size` prop, never `item` / `xs=` (see conventions).
+- **MUI 9 Grid** uses the `size` prop, never `item` / `xs=` (see conventions).
 - **Icons** come from Iconify (`@components/iconify`), not `@mui/icons-material`.
 - **No Redux** — global state is React Context; scoped data is SWR.
 - Preserve **SSR i18n parity** (`initImmediate: false` + the `localStorageGetItem`

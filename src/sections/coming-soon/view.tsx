@@ -40,15 +40,15 @@ export default function ComingSoonView() {
             <Typography variant="h3" sx={{ mb: 2 }}>
         Stižemo uskoro!
             </Typography>
-
             <ComingSoonIllustration sx={{ my: 2, height: 240 }} />
             <MotionContainer action animate={!!parseInt(seconds, 10) || !!parseInt(minutes,10) || !!parseInt(hours,10) || !!parseInt(days,10)} sx={{ position: 'relative' }}>
                 <m.div variants={varFade().inDown}><Stack
                     direction="row"
-                    justifyContent="center"
                     divider={<Box sx={{ mx: { xs: 1, sm: 2.5 } }}>:</Box>}
-                    sx={{ typography: 'h2' }}
-                >
+                    sx={{
+                        justifyContent: "center",
+                        typography: 'h2'
+                    }}>
                     <m.div variants={varFade().inDown}>
                         <TimeBlock label={parseInt(days, 10) > 1 ? 'Dana' : 'Dan'} value={days} />
                     </m.div>
@@ -66,7 +66,6 @@ export default function ComingSoonView() {
             <Typography sx={{ color: 'text.secondary' }}>
         Vrijedno radimo na novoj stranici!
             </Typography>
-
             <Typography sx={{ color: 'text.secondary' }}>
         Za sva pitanja i informacije kontaktirajte nas putem <Button
                     disableRipple
@@ -100,17 +99,27 @@ export default function ComingSoonView() {
         telefona
                 </Button>.
             </Typography>
-
             <Container component={MotionViewport} sx={{ mt: 2 }}>
 
                 <m.div variants={varFade().inUp}>
-                    <Grid container my={3} justifyContent={'space-between'} textAlign={'left'} spacing={2}>
+                    <Grid
+                        container
+                        spacing={2}
+                        sx={{
+                            my: 3,
+                            justifyContent: 'space-between',
+                            textAlign: 'left'
+                        }}>
                         <Grid size={{ xs: 12, md: 6, lg: 5 }} sx={{ overflowX: 'hidden' }}>
                             <m.div variants={varFade().inLeft}>
                                 <Typography variant="h5" >
                   Kontakt podaci i adresa
                                 </Typography>
-                                <Stack justifyContent={'flex-start'} alignItems={'flex-start'}>
+                                <Stack
+                                    sx={{
+                                        justifyContent: 'flex-start',
+                                        alignItems: 'flex-start'
+                                    }}>
                                     <Button
                                         disableRipple
                                         variant={'text'}

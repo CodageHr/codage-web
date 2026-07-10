@@ -46,7 +46,9 @@ export default function ContactCard() {
     );
 
     const renderImg = (
-        <Stack component={m.div} variants={varFade().inUp} alignItems="center">
+        <Stack component={m.div} variants={varFade().inUp} sx={{
+            alignItems: "center"
+        }}>
             <Box
                 component={m.img}
                 animate={{
@@ -61,23 +63,24 @@ export default function ContactCard() {
     );
 
     return (
-        <Container pt={3} pb={3} component={MotionViewport} id={CONTACT_CARD_ID} >
+        <Container component={MotionViewport} id={CONTACT_CARD_ID} sx={{ pt: 3, pb: 3 }} >
             <Stack
-                alignItems="center"
-                justifyContent={{ xs: 'center', md: 'space-evenly' }}
                 spacing={2}
                 direction={{ xs: 'column', md: 'row' }}
                 sx={{
+                    alignItems: "center",
+                    justifyContent: { xs: 'center', md: 'space-evenly' },
+
                     ...bgGradient({
                         direction: '180deg',
                         startColor: theme.palette.primary.main,
                         endColor: theme.palette.primary.light,
                     }),
+
                     borderRadius: 2,
                     pb: { xs: 5, md: 0 },
-                    p:{ xs: 5, md: 5 },
-                }}
-            >
+                    p:{ xs: 5, md: 5 }
+                }}>
                 {renderImg}
 
                 {renderDescription}

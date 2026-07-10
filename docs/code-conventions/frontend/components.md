@@ -15,12 +15,12 @@
   browser APIs, MUI interactivity, `useTranslate`, or Emotion `styled`.
 - Server components (route `page.tsx`, `layout.tsx`) must not import client-only hooks.
 
-## MUI 7 patterns
+## MUI 9 patterns
 
 - **Grid** uses the `size` prop — the old `item` / `xs` / `md` props were removed:
 
   ```tsx
-  // ✅ MUI 7
+  // ✅ MUI 9
   <Grid container spacing={2}>
     <Grid size={{ xs: 12, md: 6 }}>…</Grid>
   </Grid>
@@ -29,9 +29,19 @@
   <Grid item xs={12} md={6}>…</Grid>
   ```
 
+- **System props are removed in v9.** `mt`, `mb`, `p`, `px`, `display`, `alignItems`,
+  `color`, `bgcolor`, etc. are no longer accepted directly on `Box`, `Typography`,
+  `Stack`, `Grid`, or `Link` — put them in `sx`:
+
+  ```tsx
+  <Box sx={{ display: 'flex', mt: 2 }}>…</Box>   // ✅   not <Box display="flex" mt={2}>
+  ```
+
+  For component slots (e.g. `ListItemText` `slotProps.primary`), use `variant` for the
+  typography variant and `sx` for spacing/color — not the old `typography`/`mb` shorthands.
 - Prefer the **`sx`** prop over inline `style`, using theme tokens (`p: 3`, `mb: 1`,
-  `color: 'primary.main'`). For wrapper components, spread the caller's `sx` **last**
-  so it can override: `sx={{ ...base, ...sx }}`.
+  `color: 'primary.main'`). When a wrapper forwards a caller `sx`, use the array form
+  so an array/function `sx` still merges: `sx={[base, ...(Array.isArray(sx) ? sx : [sx])]}`.
 - Access the theme via `useTheme()` + `alpha()` for opacity.
 - Component-wide customisation goes in `theme/overrides/components/*` (keyed on
   `ownerState`), not ad-hoc `sx` repeated across call sites. See
@@ -50,4 +60,4 @@ import Iconify from '@components/iconify';
 
 - Type props as `Readonly<{ … }>` or a named `type {Component}Props`.
 - Wrapper components should accept `sx?: SxProps<Theme>` and forward it.
-- Loading buttons use MUI 7's `<Button loading>` — `@mui/lab/LoadingButton` is deprecated.
+- Loading buttons use MUI 9's `<Button loading>` — `@mui/lab/LoadingButton` is deprecated.

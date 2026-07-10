@@ -12,7 +12,7 @@ the frontend.
 | `sections/` | Page-level feature blocks that **compose components and own data fetching / business logic** (e.g. `sections/home`, `sections/services`, `sections/contact`). |
 | `components/` | Generic, reusable UI with **no domain logic** (e.g. `iconify`, `hook-form`, `carousel`, `settings`, `snackbar`). |
 | `layouts/` | Page shells: `main`, `legal`, `compact`, `simple`, `auth`, `dashboard`. |
-| `theme/` | MUI 7 theme — palette, typography, shadows, `overrides/`, `options/`, Emotion cache. |
+| `theme/` | MUI 9 theme — palette, typography, shadows, `overrides/`, `options/`, Emotion cache. |
 | `auth/` | JWT auth context + guards + hooks (only the `jwt` provider is wired). |
 | `hooks/`, `utils/`, `locales/`, `routes/`, `types/`, `assets/` | Custom hooks, utilities (incl. `utils/axios.ts`), i18n, routing, shared types, static assets. |
 | `api/` | SWR data hooks per domain, built on `utils/axios.ts` (`fetcher` + `endpoints`). |

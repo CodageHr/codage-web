@@ -47,9 +47,17 @@ export default function AboutWhat() {
                 textAlign: { xs: 'center', md: 'unset' },
             }}
         >
-            <Grid container columnSpacing={{ md: 3 }} alignItems="flex-start">
+            <Grid container columnSpacing={{ md: 3 }} sx={{
+                alignItems: "flex-start"
+            }}>
                 {mdUp && (
-                    <Grid size={{ xs: 12, md: 6, lg: 7 }} container alignItems="center" sx={{ pr: { md: 7 } }}>
+                    <Grid
+                        size={{ xs: 12, md: 6, lg: 7 }}
+                        container
+                        sx={{
+                            alignItems: "center",
+                            pr: { md: 7 }
+                        }}>
                         <Grid size={{ xs: 6 }}>
                             <m.div variants={varFade().inUp}>
                                 <Image
@@ -97,7 +105,12 @@ export default function AboutWhat() {
                     <Stack spacing={3} sx={{ my: 5 }}>
                         {SKILLS.map((progress, index) => (
                             <Box component={m.div} key={progress.label} variants={varFade().inRight}>
-                                <Stack direction="row" alignItems="center" sx={{ mb: 1 }}>
+                                <Stack
+                                    direction="row"
+                                    sx={{
+                                        alignItems: "center",
+                                        mb: 1
+                                    }}>
                                     <Typography variant="subtitle2" sx={{ flexGrow: 1, textAlign: 'left' }}>
                                         {progress.label}
                                     </Typography>

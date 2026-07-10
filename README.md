@@ -1,6 +1,6 @@
 # Codage Web Aplikacija
 
-Dobrodošli u Codage web aplikaciju, izgrađenu pomoću Next.js 16, React 19, MUI 7 i Node.js 22.
+Dobrodošli u Codage web aplikaciju, izgrađenu pomoću Next.js 16, React 19, MUI 9 i Node.js 22.
 
 > Backend (Laravel) je u **zasebnom repozitoriju**. Ovaj frontend komunicira s njim
 > preko HTTP-a putem `NEXT_PUBLIC_BACKEND_HOST_API` varijable (vidi `.env.example`).

@@ -75,7 +75,6 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
             }}
         >
             <NavToggleButton />
-
             {lgUp ? (
                 <Stack
                     sx={{
@@ -91,10 +90,12 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
                 <Drawer
                     open={openNav}
                     onClose={onCloseNav}
-                    PaperProps={{
-                        sx: {
-                            width: NAV.W_VERTICAL,
-                        },
+                    slotProps={{
+                        paper: {
+                            sx: {
+                                width: NAV.W_VERTICAL,
+                            },
+                        }
                     }}
                 >
                     {renderContent}

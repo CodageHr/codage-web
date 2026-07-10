@@ -102,11 +102,15 @@ export default function JwtRegisterView() {
             }}
         >
             {'By signing up, I agree to '}
-            <Link underline="always" color="text.primary">
+            <Link underline="always" sx={{
+                color: "text.primary"
+            }}>
         Terms of Service
             </Link>
             {' and '}
-            <Link underline="always" color="text.primary">
+            <Link underline="always" sx={{
+                color: "text.primary"
+            }}>
         Privacy Policy
             </Link>
       .
@@ -126,14 +130,16 @@ export default function JwtRegisterView() {
                 name="password"
                 label="Password"
                 type={password.value ? 'text' : 'password'}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton onClick={password.onToggle} edge="end">
-                                <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
-                            </IconButton>
-                        </InputAdornment>
-                    ),
+                slotProps={{
+                    input: {
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton onClick={password.onToggle} edge="end">
+                                    <Iconify icon={password.value ? 'solar:eye-bold' : 'solar:eye-closed-bold'} />
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    },
                 }}
             />
 

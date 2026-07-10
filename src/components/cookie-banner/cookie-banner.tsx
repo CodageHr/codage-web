@@ -53,33 +53,58 @@ const CookieBanner = () => {
 
     if(!showConsent) return null;
 
-    return <StyledRoot>
-        <Box
-            display={'flex'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            sx={{
-                maxWidth: theme.breakpoints.values.lg,
-            }}
-        >
-            <Typography variant={'body1'}>
-                {translate('cookie_text')}
-                <Link component={RouterLink}  target={'_blank'} rel="noopener" href={paths.cookies} mx={1} color="primary.main">
-                    {translate('cookie_policy_banner')}.
-                </Link>,
-                <Link component={RouterLink}  target={'_blank'} rel="noopener" href={paths.privacyPolicy} mx={1} color="primary.main">
-                    {translate('privacy_policy_banner')}.
-                </Link>
-                {translate('and')}
-                <Link component={RouterLink}  target={'_blank'} rel="noopener" href={paths.termsOfUse} mx={1} color="primary.main">
-                    {translate('terms_of_use_banner')}.
-                </Link>
-            </Typography>
-            <Button sx={{ ml:2}} variant={'contained'} color={'primary'} onClick={setCookieVal} size= {'large'} startIcon={<Iconify icon={'material-symbols:keyboard-arrow-right'} />}>
-                OK
-            </Button>
-        </Box>
-    </StyledRoot>
+    return (
+        <StyledRoot>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    maxWidth: theme.breakpoints.values.lg
+                }}>
+                <Typography variant={'body1'}>
+                    {translate('cookie_text')}
+                    <Link
+                        component={RouterLink}
+                        target={'_blank'}
+                        rel="noopener"
+                        href={paths.cookies}
+                        sx={{
+                            mx: 1,
+                            color: "primary.main"
+                        }}>
+                        {translate('cookie_policy_banner')}.
+                    </Link>,
+                    <Link
+                        component={RouterLink}
+                        target={'_blank'}
+                        rel="noopener"
+                        href={paths.privacyPolicy}
+                        sx={{
+                            mx: 1,
+                            color: "primary.main"
+                        }}>
+                        {translate('privacy_policy_banner')}.
+                    </Link>
+                    {translate('and')}
+                    <Link
+                        component={RouterLink}
+                        target={'_blank'}
+                        rel="noopener"
+                        href={paths.termsOfUse}
+                        sx={{
+                            mx: 1,
+                            color: "primary.main"
+                        }}>
+                        {translate('terms_of_use_banner')}.
+                    </Link>
+                </Typography>
+                <Button sx={{ ml:2}} variant={'contained'} color={'primary'} onClick={setCookieVal} size= {'large'} startIcon={<Iconify icon={'material-symbols:keyboard-arrow-right'} />}>
+                    OK
+                </Button>
+            </Box>
+        </StyledRoot>
+    );
 }
 
 export default CookieBanner;

@@ -49,11 +49,11 @@ export default function UploadAvatar({
 
     const renderPlaceholder = (
         <Stack
-            alignItems="center"
-            justifyContent="center"
             spacing={1}
             className="upload-placeholder"
             sx={{
+                alignItems: "center",
+                justifyContent: "center",
                 top: 0,
                 left: 0,
                 width: 1,
@@ -63,25 +63,28 @@ export default function UploadAvatar({
                 position: 'absolute',
                 color: 'text.disabled',
                 bgcolor: (theme) => alpha(theme.palette.grey[500], 0.08),
+
                 transition: (theme) =>
                     theme.transitions.create(['opacity'], {
                         duration: theme.transitions.duration.shorter,
                     }),
+
                 '&:hover': {
                     opacity: 0.72,
                 },
+
                 ...(hasError && {
                     color: 'error.main',
                     bgcolor: (theme) => alpha(theme.palette.error.main, 0.08),
                 }),
+
                 ...(hasFile && {
                     zIndex: 9,
                     opacity: 0,
                     color: 'common.white',
                     bgcolor: (theme) => alpha(theme.palette.grey[900], 0.64),
-                }),
-            }}
-        >
+                })
+            }}>
             <Iconify icon="solar:camera-add-bold" width={32} />
 
             <Typography variant="caption">{file ? 'Update photo' : 'Upload photo'}</Typography>

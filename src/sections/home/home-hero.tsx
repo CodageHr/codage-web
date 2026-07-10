@@ -94,16 +94,16 @@ export default function HomeHero() {
 
     const renderDescription = (
         <Stack
-            alignItems="flex-start"
-            justifyContent="center"
             sx={{
+                alignItems: "flex-start",
+                justifyContent: "center",
                 height: 1,
                 opacity: opacity > 0 ? opacity : 0,
+
                 mt: {
                     md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
-                },
-            }}
-        >
+                }
+            }}>
 
             <m.div variants={varFade().in}>
                 <Typography variant="h5" sx={{ textAlign: 'left', mb: 3 }}>
@@ -124,16 +124,16 @@ export default function HomeHero() {
 
     const renderHeroImage = (
         <Stack
-            alignItems="flex-start"
-            justifyContent="center"
             sx={{
+                alignItems: "flex-start",
+                justifyContent: "center",
                 height: 1,
                 opacity: opacity > 0 ? opacity : 0,
+
                 mt: {
                     md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
-                },
-            }}
-        >
+                }
+            }}>
             <SoftwareEngineerIllustration
                 sx={{
                     my: 2,
@@ -160,7 +160,9 @@ export default function HomeHero() {
                                 {renderDescription}
                             </Grid>
 
-                            {mdUp && <Grid size={{ md: 5 }} pt={8}>{renderHeroImage}</Grid>}
+                            {mdUp && <Grid size={{ md: 5 }} sx={{
+                                pt: 8
+                            }}>{renderHeroImage}</Grid>}
                         </Grid>
                     </Container>
                 </StyledWrapper>

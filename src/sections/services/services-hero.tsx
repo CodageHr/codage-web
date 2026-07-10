@@ -21,26 +21,32 @@ export default function ServicesHero() {
 
     const { translate } = useTranslate();
 
-    return <Stack
-        spacing={1.5}
-        direction={'row'}
-        sx={{
-            // eslint-disable-next-line no-nested-ternary
-            height: xlUp ? 600 : (smUp ? 400 : 300),
-            ...bgGradient({
-                startColor: alpha(palette.primary.light, 0.45),
-                endColor: alpha(palette.primary.dark, 0.55),
-                imgUrl: '/assets/images/services/services_background_2.webp'
-            })
-        }}
-    >
-        <Container component={MotionContainer} sx={{ height: 1 }}>
-            <Stack justifyContent={'center'} sx={{ height: '100%' }}>
-                <TextAnimate text={translate('services_hero_title_1')}  sx={{ color:'primary.contrastText' }}/>
-                <TextAnimate text={translate('services_hero_title_2')} sx={{ color:'primary.contrastText' }} />
-            </Stack>
-        </Container>
-    </Stack>;
+    return (
+        <Stack
+            spacing={1.5}
+            direction={'row'}
+            sx={{
+                // eslint-disable-next-line no-nested-ternary
+                height: xlUp ? 600 : (smUp ? 400 : 300),
+                ...bgGradient({
+                    startColor: alpha(palette.primary.light, 0.45),
+                    endColor: alpha(palette.primary.dark, 0.55),
+                    imgUrl: '/assets/images/services/services_background_2.webp'
+                })
+            }}
+        >
+            <Container component={MotionContainer} sx={{ height: 1 }}>
+                <Stack
+                    sx={{
+                        justifyContent: 'center',
+                        height: '100%'
+                    }}>
+                    <TextAnimate text={translate('services_hero_title_1')}  sx={{ color:'primary.contrastText' }}/>
+                    <TextAnimate text={translate('services_hero_title_2')} sx={{ color:'primary.contrastText' }} />
+                </Stack>
+            </Container>
+        </Stack>
+    );
 
 }
 

@@ -10,13 +10,13 @@ function SoftwareEngineer({ ...other }: BoxProps) {
     return (
         <Box
             component="svg"
-            width="100%"
-            height="100%"
             viewBox="0 0 457.82 451.14"
             xmlns="http://www.w3.org/2000/svg"
             {...other}
-        >
-
+            sx={{
+                width: "100%",
+                height: "100%"
+            }}>
             <g id="freepik--Floor--inject-4">
                 <ellipse cx="228.91" cy="318.98" rx="228.91" ry="132.16" style={{ fill:'#f5f5f5' }} />
             </g>

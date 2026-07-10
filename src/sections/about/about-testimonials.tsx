@@ -112,21 +112,21 @@ export default function AboutTestimonials() {
                 <Grid
                     container
                     spacing={3}
-                    alignItems="center"
-                    justifyContent={{ xs: 'center', md: 'space-between' }}
-                    sx={{ height: 1 }}
-                >
+                    sx={{
+                        alignItems: "center",
+                        justifyContent: { xs: 'center', md: 'space-between' },
+                        height: 1
+                    }}>
                     <Grid size={{ xs: 10, md: 4 }}>
                         {renderDescription}
                     </Grid>
 
                     <Grid
                         size={{ xs: 12, md: 7, lg: 6 }}
-                        alignItems="center"
                         sx={{
-                            height: 1,
-                        }}
-                    >
+                            alignItems: "center",
+                            height: 1
+                        }}>
                         {renderContent}
                     </Grid>
                 </Grid>
@@ -178,27 +178,26 @@ function TestimonialCard({ testimonial, sx, ...other }: TestimonialCardProps) {
             {...other}
         >
             <Iconify icon="mingcute:quote-left-fill" width={40} sx={{ opacity: 0.48 }} />
-
             <Typography variant="body2">{content}</Typography>
-
             <Rating value={ratingNumber} readOnly size="small" />
-
             <Stack direction="row">
                 <Avatar alt={name} src={avatarUrl} sx={{ mr: 2 }} />
 
                 <ListItemText
                     primary={name}
                     secondary={fDate(postedDate)}
-                    primaryTypographyProps={{
-                        typography: 'subtitle2',
-                        mb: 0.5,
-                    }}
-                    secondaryTypographyProps={{
-                        typography: 'caption',
-                        color: 'inherit',
-                        sx: { opacity: 0.64 },
-                    }}
-                />
+                    slotProps={{
+                        primary: {
+                            variant: 'subtitle2',
+                            sx: { mb: 0.5 },
+                        },
+
+                        secondary: {
+                            variant: 'caption',
+                            color: 'inherit',
+                            sx: { opacity: 0.64 },
+                        }
+                    }} />
             </Stack>
         </Stack>
     );

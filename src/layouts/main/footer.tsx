@@ -110,13 +110,15 @@ export default function Footer() {
             >
                 <Grid
                     container
-                    alignItems={'center'}
-                    justifyContent={{
-                        xs: 'center',
-                        md:'flex-start'
-                    }}
                     spacing={2}
-                >
+                    sx={{
+                        alignItems: 'center',
+
+                        justifyContent: {
+                            xs: 'center',
+                            md:'flex-start'
+                        }
+                    }}>
                     <Grid >
                         <Logo />
                     </Grid>
@@ -125,9 +127,11 @@ export default function Footer() {
 
                 <Grid
                     container
-                    justifyContent={{
-                        xs: 'center',
-                        md: 'space-between',
+                    sx={{
+                        justifyContent: {
+                            xs: 'center',
+                            md: 'space-between',
+                        }
                     }}
                 >
                     {/* <Grid size={{ xs: 8, md: 3 }} mt={4}>
@@ -161,7 +165,9 @@ export default function Footer() {
             </Stack>
 
           </Grid> */}
-                    <Grid size={{ xs: 8, md: 3 }} mt={4}>
+                    <Grid size={{ xs: 8, md: 3 }} sx={{
+                        mt: 4
+                    }}>
                         <WorkingHoursSchedule />
                     </Grid>
 
@@ -171,9 +177,10 @@ export default function Footer() {
                                 <Stack
                                     key={list.headline}
                                     spacing={2}
-                                    alignItems={{ xs: 'center', md: 'flex-start' }}
-                                    sx={{ width: 1 }}
-                                >
+                                    sx={{
+                                        alignItems: { xs: 'center', md: 'flex-start' },
+                                        width: 1
+                                    }}>
                                     <Typography component="div" variant="overline">
                                         {list.headline}
                                     </Typography>
@@ -204,13 +211,15 @@ export default function Footer() {
 
                 <Grid
                     container
-                    justifyContent={{
-                        xs: 'center',
-                        md: 'space-between',
-                    }}
-                    sx={{ mt: 10 }}
                     spacing={2}
-                >
+                    sx={{
+                        justifyContent: {
+                            xs: 'center',
+                            md: 'space-between',
+                        },
+
+                        mt: 10
+                    }}>
                     <Grid>
                         <Typography variant="body2" >
                             © {currentYear}. {translate('allRightsReserved')}
@@ -220,7 +229,9 @@ export default function Footer() {
                         <Stack
                             direction={'row'}
                             spacing={2}
-                            alignItems={'center'}>
+                            sx={{
+                                alignItems: 'center'
+                            }}>
                             {LEGAL_INFO_LINK(translate).map((link) => (
                                 <Link
                                     key={link.title}

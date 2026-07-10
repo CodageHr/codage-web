@@ -27,7 +27,7 @@ export default function ServicesWebDev() {
 
     return (
         <Container component={MotionViewport} sx={{ my:10}}>
-            <Grid container direction={mdUp ? 'row' : 'column'} spacing={5} sx={{ height: 1 }}>
+            <Grid container spacing={5} sx={{ height: 1, flexDirection: mdUp ? 'row' : 'column' }}>
                 <Grid size={{ xs: 12, md: 6 }} sx={{ height: 1 }}>
                     <Description />
                 </Grid>
@@ -66,24 +66,30 @@ function Description() {
         >
             <m.div variants={varFade().inLeft}>
                 <Stack
-                    flexGrow={1}
                     direction={'column'}
                     spacing={2}
+                    sx={{
+                        flexGrow: 1
+                    }}
                 >
                     <Typography
                         variant={'h3'}
                     >
                         {`${translate('service_web_dev_title')}`}
                     </Typography>
-                    <Typography variant={'body1'} mt={1} color={'contrastText'}>{`${translate('service_web_dev_text')}`}</Typography>
+                    <Typography variant={'body1'} color={'contrastText'} sx={{
+                        mt: 1
+                    }}>{`${translate('service_web_dev_text')}`}</Typography>
                     <Box
-                        gap={2}
-                        display="grid"
-                        gridTemplateColumns={{
-                            xs: 'repeat(4, 1fr)',
-                            sm: 'repeat(4, 1fr)'
-                        }}
-                    >
+                        sx={{
+                            gap: 2,
+                            display: "grid",
+
+                            gridTemplateColumns: {
+                                xs: 'repeat(4, 1fr)',
+                                sm: 'repeat(4, 1fr)'
+                            }
+                        }}>
                         {TECH_LIST.map((pain) => <Chip key={pain} label={pain} variant="filled" color={'primary'} />)}
                     </Box>
                 </Stack>

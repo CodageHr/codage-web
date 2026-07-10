@@ -75,17 +75,18 @@ export default function HomeHowItWorks() {
     const renderSteps = (
         <Container>
             <Box
-                gap={2}
-                display="grid"
-                gridTemplateColumns={{
-                    xs: 'repeat(1, 1fr)',
-                    sm: 'repeat(2, 1fr)',
-                    md: 'repeat(4, 1fr)',
-                }}
                 sx={{
+                    gap: 2,
+                    display: "grid",
+
+                    gridTemplateColumns: {
+                        xs: 'repeat(1, 1fr)',
+                        sm: 'repeat(2, 1fr)',
+                        md: 'repeat(4, 1fr)',
+                    },
+
                     alignItems: 'flex-end'
-                }}
-            >
+                }}>
                 {HOW_WE_WORK_LIST.map((step, index) => (
                     <m.div key={`how_we_work${index}`} variants={varFade().inDown}>
                         <Card  sx={{
@@ -97,7 +98,13 @@ export default function HomeHowItWorks() {
                             p: theme.spacing(4,2)
                         }}>
                             <SvgColor src={step.iconPath} sx={{ color: step.iconColor, width: 64, height: 64 }} />
-                            <Typography variant={'h4'} color={step.iconColor} mt={5} textAlign={'right'} >{step.title}</Typography>
+                            <Typography
+                                variant={'h4'}
+                                color={step.iconColor}
+                                sx={{
+                                    mt: 5,
+                                    textAlign: 'right'
+                                }}>{step.title}</Typography>
                         </Card>
                     </m.div>
                 ))}
@@ -117,9 +124,15 @@ export default function HomeHowItWorks() {
                         sm: 'left'
                     }
                 }}>
-                <Typography variant={'overline'} color={'primary.contrastText'} >Work Flow</Typography>
-                <Typography variant={'h2'} color={'primary.contrastText'} >Princip rada</Typography>
-                <Typography variant={'subtitle2'} color={'primary.contrastText'} >Kratki opis načina rada</Typography>
+                <Typography variant={'overline'} sx={{
+                    color: 'primary.contrastText'
+                }} >Work Flow</Typography>
+                <Typography variant={'h2'} sx={{
+                    color: 'primary.contrastText'
+                }} >Princip rada</Typography>
+                <Typography variant={'subtitle2'} sx={{
+                    color: 'primary.contrastText'
+                }} >Kratki opis načina rada</Typography>
             </Box>
             <Box
                 component={MotionViewport}
