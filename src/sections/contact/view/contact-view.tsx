@@ -100,9 +100,9 @@ export default function ContactView() {
                             </Card>
                         </Grid>
 
-                        {/* info column */}
+                        {/* info column — fills the form's height so tops & bottoms align */}
                         <Grid size={{ xs: 12, md: 5 }}>
-                            <Stack spacing={2.5}>
+                            <Stack spacing={2.5} sx={{ height: 1, justifyContent: 'space-between' }}>
                                 <InfoRow icon="fa6-solid:envelope" label={t('contact_info_email_label')}>
                                     <Link href="mailto:kontakt@codage.hr" underline="hover" sx={contactLinkSx}>
                                         kontakt@codage.hr
