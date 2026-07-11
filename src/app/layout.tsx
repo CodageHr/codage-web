@@ -55,14 +55,24 @@ export const metadata = {
         url: APP_HOST,
         title: `${APP_NAME} — Softver po mjeri`,
         description,
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: APP_NAME }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `${APP_NAME} — Softver po mjeri`,
+        description,
+        images: ['/og-image.png'],
     },
     manifest: '/manifest.json',
-    icons: [
-        { rel: 'icon', url: '/favicon/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon/favicon-16x16.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon/favicon-32x32.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', url: '/favicon/apple-touch-icon.png' },
-    ],
+    icons: {
+        icon: [
+            { url: '/favicon/codage-mark.svg', type: 'image/svg+xml' },
+            { url: '/favicon/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+            { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+            { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        ],
+        apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+    },
 };
 
 type Props = {
