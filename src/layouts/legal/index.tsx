@@ -1,6 +1,7 @@
-import Footer from '@layouts/legal/footer';
+import Box from '@mui/material/Box';
 
-import Header from '../common/header-simple';
+import Header from '@layouts/main/header';
+import Footer from '@layouts/legal/footer';
 
 // ----------------------------------------------------------------------
 
@@ -10,11 +11,12 @@ type Props = {
 
 export default function LegalLayout({ children }: Props) {
     return (
-        <>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-
-            {children}
+            <Box component="main" sx={{ flexGrow: 1 }}>
+                {children}
+            </Box>
             <Footer />
-        </>
+        </Box>
     );
 }

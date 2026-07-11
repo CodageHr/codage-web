@@ -21,7 +21,8 @@ import SnackbarProvider from 'src/components/snackbar/snackbar-provider';
 import { SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context/jwt';
-import { APP_NAME, COOKIE_NAME, GA_TRACKING_ID } from '@base/config-global';
+import StructuredData from '@components/structured-data';
+import { APP_HOST, APP_NAME, COOKIE_NAME, GA_TRACKING_ID } from '@base/config-global';
 import { CookieBanner } from '@components/cookie-banner';
 
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -35,14 +36,26 @@ export const viewport = {
     maximumScale: 5,
 };
 
+const description =
+    'Codage je softverski studio iz Splita koji izrađuje web i mobilne aplikacije po mjeri — od prve skice do produkcije.';
+
 export const metadata = {
+    metadataBase: new URL(APP_HOST),
     title: {
         template: `%s | ${APP_NAME}`,
-        default: `${APP_NAME}`, // a default is required when creating a template
+        default: `${APP_NAME} — Softver po mjeri`,
     },
-    description:
-        'Codage je IT tvrtka koja se bavi izradom web stranica, web aplikacija, mobilnih aplikacija, desktop aplikacija i dizajnom korisničkih sučelja.',
-    keywords: 'Codage, IT, Split, web, aplikacije, mobilne, desktop, ui, ux',
+    description,
+    keywords: 'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Next.js, Laravel, ui, ux',
+    alternates: { canonical: '/' },
+    openGraph: {
+        type: 'website',
+        locale: 'hr_HR',
+        siteName: APP_NAME,
+        url: APP_HOST,
+        title: `${APP_NAME} — Softver po mjeri`,
+        description,
+    },
     manifest: '/manifest.json',
     icons: [
         { rel: 'icon', url: '/favicon/favicon.ico' },
@@ -89,6 +102,7 @@ export default async function RootLayout({ children }: Props) {
                 </AuthProvider>
                 <SpeedInsights />
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />
+                <StructuredData />
                 {showCookieBanner && <CookieBanner />}
             </body>
         </html>

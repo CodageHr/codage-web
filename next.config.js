@@ -5,7 +5,12 @@ const nextConfig = {
     // reference; requires babel-plugin-react-compiler (in devDependencies).
     reactCompiler: true,
     async redirects() {
-        return [];
+        return [
+            // Redundant duplicate of the landing page.
+            { source: '/home', destination: '/', permanent: true },
+            // Services content now lives on the landing page ("Što radimo").
+            { source: '/services', destination: '/#usluge', permanent: true },
+        ];
     },
 };
 

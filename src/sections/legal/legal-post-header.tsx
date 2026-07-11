@@ -1,45 +1,25 @@
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
+'use client';
 
-import { bgGradient } from '@theme/css';
+import { useTranslate } from '@base/locales';
+
+import PageHeaderBand from '@components/_ui/page-header-band';
+
+// ----------------------------------------------------------------------
 
 type LegalPostHeaderProps = {
-    title:string
-    subtitle?:string
-}
+    title: string;
+    subtitle?: string;
+};
 
-const StyledRoot = styled(Box)(({ theme }) => ({
-    ...bgGradient({
-        startColor: alpha(theme.palette.background.neutral, theme.palette.mode === 'light' ? 0.65 : 1),
-        endColor: alpha(theme.palette.background.default, theme.palette.mode === 'light' ? 0.65 : 1)
-    }),
-    height: '20rem',
-    [theme.breakpoints.up('md')]: {
-        height: '30 rem'
-    },
-    textAlign: 'center',
-
-}));
-
-export default function LegalPostHeader({ title, subtitle }:LegalPostHeaderProps) {
+export default function LegalPostHeader({ title, subtitle }: LegalPostHeaderProps) {
+    const { t } = useTranslate();
 
     return (
-        <StyledRoot
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <Container >
-                <Typography variant={'h1'} >{title}</Typography>
-                {subtitle && <Typography variant={'body1'} sx={{
-                    mt: 4
-                }} >{subtitle}</Typography>}
-            </Container>
-        </StyledRoot>
+        <PageHeaderBand
+            eyebrow={t('legal_eyebrow')}
+            title={title}
+            lead={subtitle}
+            meta={t('legal_updated')}
+        />
     );
-
 }

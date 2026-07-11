@@ -8,17 +8,15 @@ import { RouterLink } from '@routes/components';
 
 import { useTranslate } from '@base/locales';
 
+import { proseSx } from '@components/_ui/prose-legal';
+
 export default function TermsOfUseContent() {
 
     const { translate } = useTranslate();
 
     return (
-        <Container >
-            <Box sx={{
-                maxWidth: '40rem',
-                padding: 4,
-                margin: 'auto'
-            }}>
+        <Container>
+            <Box sx={proseSx}>
                 <Box sx={{
                     mb: 2
                 }}>
