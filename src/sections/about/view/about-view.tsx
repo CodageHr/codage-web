@@ -145,7 +145,7 @@ export default function AboutView() {
             </Box>
 
             {/* Photo slot (placeholder) */}
-            <Box component="section" sx={{ bgcolor: 'background.default', pb: { xs: 6, md: 13 } }}>
+            <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
                 <SectionContainer>
                     <Stack
                         sx={{
@@ -187,7 +187,7 @@ export default function AboutView() {
             </Box>
 
             {/* CTA */}
-            <Box component="section" sx={{ bgcolor: 'background.default', pb: { xs: 6, md: 13 } }}>
+            <Box component="section" sx={{  bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
                 <SectionContainer>
                     <DarkCtaCard
                         title={t('about_cta_title')}

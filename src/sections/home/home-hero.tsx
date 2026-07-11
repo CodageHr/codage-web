@@ -20,7 +20,7 @@ import { sand, cream, onDark } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-const TECH = ['React', 'Next.js', 'Laravel', 'Node.js', 'AWS', 'Firebase'];
+const TECH = ['React', 'Next.js', 'Laravel', 'Node.js', 'AWS', 'Spring Boot', 'Scala'];
 
 export default function HomeHero() {
     const { t } = useTranslate();
