@@ -1,170 +1,154 @@
-import { m } from 'framer-motion';
+'use client';
+
+import { useState } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import { alpha } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { alpha, styled, useTheme } from '@mui/material/styles';
 
-import { varFade, MotionContainer } from '@components/animate';
-import Carousel, { useCarousel, CarouselArrows } from '@components/carousel';
+import { useTranslate } from '@base/locales';
 
-import { bgGradient } from '@theme/css';
+import Iconify from '@components/iconify';
+import { Eyebrow, SectionContainer } from '@components/_ui/section';
+
+import { sand, brand, cream, onDark } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-const StyledRoot = styled(Box)(({ theme }) => ({
-    ...bgGradient({
-        color: alpha(theme.palette.mode === 'light' ? theme.palette.background.paper : theme.palette.background.default, theme.palette.mode === 'light' ? 0.70 : 1),
-        imgUrl: '/assets/background/overlay_4.jpg',
-    }),
-}));
+type Testimonial = { name: string; role: string; quote: string; image?: string };
 
-type IPromoSlide = {
-    id: number;
-    name: string;
-    position: string;
-    company: string;
-    comment: string;
-    image?: string;
-};
-
-type CarouselItemProps = {
-    item: IPromoSlide;
-    active: boolean;
-};
-
-const promoSlides :IPromoSlide[] = [
+const DATA: Testimonial[] = [
     {
-        id: 1,
         name: 'Slobodan Jović',
-        position: 'CEO i osnivač',
-        company: 'Selekcija.hr',
-        comment: 'Raditi s Petrom iz tvrtke Codage bio je apsolutni užitak! Njegova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Petar je briljirao u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću u radu s našim programerima Petar je znatno doprinio uspjehu našeg projekta. Rad s njim preporučujemo svima koji traže stručnjaka u području web razvoja!',
-        image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg'
+        role: 'CEO i osnivač · Selekcija.hr',
+        quote:
+      'Stručnost tima Codage bila je ključna za postizanje visokih standarda. Inovativna rješenja i besprijekorno korisničko iskustvo — suradnju preporučujemo svima.',
+        image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg',
     },
     {
-        id: 2,
         name: 'Brian Kulman',
-        position: 'CTO',
-        company: 'Nearpeer',
-        comment: 'Petar Vrkić is a coding expert. Over two years, Petar’s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases. He had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar’s experience and knowledge would be a great asset to any team or project!',
-        image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg'
+        role: 'CTO · Nearpeer',
+        quote:
+      'Petar’s enhancements consistently raised our EdTech app to new levels of excellence. From front-end to back-end, he had us covered.',
+        image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg',
     },
     {
-        id: 3,
         name: 'Bruno Batarelo',
-        position:'CEO',
-        company: 'Quantum-bit',
-        comment: 'Petar se pokazao kao izuzetno vrijedan član tima tijekom suradnje na našim zajedničkim projektima. Njegovo stručno znanje iz područja web i mobilnog razvoja bilo je ključno u stvaranju inovativne web i mobilne aplikacije. Njegova predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji projekta.',
+        role: 'CEO · Quantum-bit',
+        quote:
+      'Predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji našeg projekta.',
     },
 ];
 
-export default function HomeServicesPresentation() {
+const ARROW_SX = {
+    width: 44,
+    height: 44,
+    borderRadius: 1.5,
+    color: cream,
+    border: `1px solid ${onDark.hairlineStrong}`,
+    '&:hover': { borderColor: cream, backgroundColor: alpha(cream, 0.06) },
+};
 
-    const carousel = useCarousel({
-        autoplay: true,
-        speed: 800,
-        autoplaySpeed: 6000,
-        dots: true
-    });
+export default function HomeTestimonials() {
+    const { t } = useTranslate();
+
+    const [index, setIndex] = useState(0);
+
+    const count = DATA.length;
+    const go = (next: number) => setIndex((next + count) % count);
+    const active = DATA[index];
 
     return (
-        <StyledRoot>
-            <Container sx={{
-                py:5
-            }} >
-                <Stack>
-                    <Typography variant={'overline'} sx={{
-                        textAlign: 'center'
-                    }}>Iskustva</Typography>
-                    <Typography variant={'h3'} sx={{
-                        textAlign: 'center'
-                    }}>Tko Cijeni Naš Rad</Typography>
-                </Stack>
+        <Box component="section" sx={{ bgcolor: sand[900], color: cream, py: { xs: 7, md: 12 } }}>
+            <SectionContainer>
+                <Eyebrow onDark sx={{ mb: 4 }}>
+                    {t('testimonials_eyebrow')}
+                </Eyebrow>
 
-                <Box sx={{ position: 'relative', mt:4 }}>
-                    <CarouselArrows
-                        shape="rounded"
-                        onNext={carousel.onNext}
-                        onPrev={carousel.onPrev}
-                        leftButtonProps={{
-                            sx: {
-                                left: 24,
-                            },
-                        }}
-                        rightButtonProps={{
-                            sx: {
-                                right: 24,
-                            },
-                        }}
-                    >
-                        <Grid container spacing={10} sx={{
-                            justifyContent: 'center'
-                        }}>
-                            <Grid size={{ xs: 12, md: 8 }}>
-                                <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-                                    {promoSlides.map((item,index) => (
-                                        <CarouselItem key={`presentation_item_${item.id}`}  item={item} active={index === carousel.currentIndex} />
-                                    ))}
-                                </Carousel>
-                            </Grid>
-                        </Grid>
-                    </CarouselArrows>
+                <Box sx={{ minHeight: { xs: 220, md: 200 } }}>
+                    <AnimatePresence mode="wait">
+                        <m.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeOut' }}
+                        >
+                            <Typography
+                                component="blockquote"
+                                sx={{
+                                    m: 0,
+                                    maxWidth: 900,
+                                    fontFamily: (theme) => theme.typography.fontSecondaryFamily,
+                                    fontWeight: 500,
+                                    fontSize: { xs: 22, md: 30 },
+                                    lineHeight: 1.45,
+                                    color: cream,
+                                }}
+                            >
+                                “{active.quote}”
+                            </Typography>
+
+                            <Stack direction="row" spacing={2} sx={{ alignItems: 'center', mt: 4 }}>
+                                <Avatar
+                                    src={active.image}
+                                    alt={active.name}
+                                    sx={{ width: 52, height: 52, bgcolor: brand[100], color: brand[600], fontWeight: 700 }}
+                                >
+                                    {active.name.charAt(0)}
+                                </Avatar>
+                                <Box>
+                                    <Typography sx={{ fontWeight: 700, color: cream }}>{active.name}</Typography>
+                                    <Typography variant="body2" sx={{ color: onDark.textSecondary }}>
+                                        {active.role}
+                                    </Typography>
+                                </Box>
+                            </Stack>
+                        </m.div>
+                    </AnimatePresence>
                 </Box>
-            </Container>
-        </StyledRoot>
-    );
 
-}
-
-function CarouselItem({ item, active }: CarouselItemProps) {
-
-    const theme = useTheme();
-
-    const { company,comment, name, image, position } = item;
-
-    const variants = theme.direction === 'rtl' ? varFade().inLeft : varFade().inRight;
-
-    return (
-        <Stack
-            component={MotionContainer}
-            animate={active}
-            action
-        >
-            <m.div variants={variants}>
-                <Typography variant={'body1'} sx={{
-                    textAlign: 'center'
-                }} >
-                    {comment}
-                </Typography>
-            </m.div>
-            <m.div variants={variants}>
                 <Stack
-                    spacing={1}
-                    sx={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        mt: 6
-                    }}>
-                    <Avatar src={image} alt={name} sx={{ width: 96, height: 96, fontSize:48 }}>
-                        {name?.charAt(0).toUpperCase()}
-                    </Avatar>
-                    <Typography variant={'h5'}  >
-                        {name}
-                    </Typography>
-                    <Typography variant={'body2'}  >
-                        {company}
-                    </Typography>
-                    <Typography variant={'body2'}  >
-                        {position}
-                    </Typography>
+                    direction="row"
+                    sx={{ alignItems: 'center', justifyContent: 'space-between', mt: { xs: 4, md: 6 } }}
+                >
+                    {/* dots */}
+                    <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                        {DATA.map((item, i) => (
+                            <Box
+                                key={item.name}
+                                component="button"
+                                aria-label={item.name}
+                                onClick={() => setIndex(i)}
+                                sx={{
+                                    p: 0,
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    height: 8,
+                                    width: i === index ? 24 : 8,
+                                    borderRadius: 4,
+                                    bgcolor: i === index ? brand[500] : alpha(cream, 0.3),
+                                    transition: (theme) => theme.transitions.create(['width', 'background-color'], { duration: 200 }),
+                                }}
+                            />
+                        ))}
+                    </Stack>
+
+                    {/* arrows */}
+                    <Stack direction="row" spacing={1.5}>
+                        <IconButton aria-label={t('prev')} onClick={() => go(index - 1)} sx={ARROW_SX}>
+                            <Iconify icon="mingcute:left-line" width={22} />
+                        </IconButton>
+                        <IconButton aria-label={t('next')} onClick={() => go(index + 1)} sx={ARROW_SX}>
+                            <Iconify icon="mingcute:right-line" width={22} />
+                        </IconButton>
+                    </Stack>
                 </Stack>
-
-            </m.div>
-        </Stack>
+            </SectionContainer>
+        </Box>
     );
-
 }

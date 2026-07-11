@@ -1,145 +1,78 @@
-import { useMemo } from 'react';
+'use client';
+
+import { useState } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { alpha, styled, useTheme } from '@mui/material/styles';
 
 import { useTranslate } from '@base/locales';
 
-import SvgColor from '@components/svg-color';
+import { SectionContainer } from '@components/_ui/section';
 import { varFade, MotionViewport } from '@components/animate';
 
-import { bgGradient } from '@theme/css';
+import { brand } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-const StyledRoot = styled('div')(({ theme }) => ({
-    ...bgGradient({
-        startColor: alpha(theme.palette.primary.main, theme.palette.mode === 'light' ? 0.8 : 0.84),
-        endColor: alpha(theme.palette.primary.light, theme.palette.mode === 'light' ? 0.9 : 0.84),
-        /* imgUrl: '/assets/background/overlay_5.jpg', */
-    }),
-    padding:theme.spacing(8,0),
-    [theme.breakpoints.up('md')]: {
-        padding:theme.spacing(10,0)
-    },
+const INACTIVE_NUMBER = '#EBDDD2';
 
-}));
+export default function HomeProcess() {
+    const { t } = useTranslate();
 
-// ----------------------------------------------------------------------
+    // First step is coloured by default; hovering a step colours that one.
+    const [activeStep, setActiveStep] = useState(0);
 
-type HowWeWorkT = {
-    bgColor: string,
-    iconColor: string,
-    iconPath: string,
-    title: string
-}
-
-export default function HomeHowItWorks() {
-
-    const { translate } = useTranslate();
-
-    const theme = useTheme();
-
-
-    const HOW_WE_WORK_LIST: HowWeWorkT[]  = useMemo(() => ([
-        {
-            title:translate('how_we_work_step_1'),
-            iconPath: '/assets/icons/home/ic_analysis.svg',
-            bgColor: '#FDAB76',
-            iconColor: '#80370A',
-        },
-        {
-            title:translate('how_we_work_step_2'),
-            iconPath: '/assets/icons/home/ic_sketch_design.svg',
-            bgColor: '#31abf5',
-            iconColor: '#0e496c',
-        },
-        {
-            title:translate('how_we_work_step_3'),
-            iconPath: '/assets/icons/home/ic_development.svg',
-            bgColor: '#FFD666',
-            iconColor: '#83691f',
-        },
-        {
-            title:translate('how_we_work_step_4'),
-            iconPath: '/assets/icons/home/ic_optimization.svg',
-            bgColor: '#86E8AB',
-            iconColor: '#06652A',
-        }
-    ]),[ translate ]);
-
-    const renderSteps = (
-        <Container>
-            <Box
-                sx={{
-                    gap: 2,
-                    display: "grid",
-
-                    gridTemplateColumns: {
-                        xs: 'repeat(1, 1fr)',
-                        sm: 'repeat(2, 1fr)',
-                        md: 'repeat(4, 1fr)',
-                    },
-
-                    alignItems: 'flex-end'
-                }}>
-                {HOW_WE_WORK_LIST.map((step, index) => (
-                    <m.div key={`how_we_work${index}`} variants={varFade().inDown}>
-                        <Card  sx={{
-                            backgroundColor: step.bgColor,
-                            marginBottom:{
-                                xs: 0,
-                                md: index === 0 ? 0 : theme.spacing(index * 3),
-                            },
-                            p: theme.spacing(4,2)
-                        }}>
-                            <SvgColor src={step.iconPath} sx={{ color: step.iconColor, width: 64, height: 64 }} />
-                            <Typography
-                                variant={'h4'}
-                                color={step.iconColor}
-                                sx={{
-                                    mt: 5,
-                                    textAlign: 'right'
-                                }}>{step.title}</Typography>
-                        </Card>
-                    </m.div>
-                ))}
-
-            </Box>
-        </Container>
-    );
+    const steps = [
+        { num: '1', title: t('home_step_1_title'), desc: t('home_step_1_desc') },
+        { num: '2', title: t('home_step_2_title'), desc: t('home_step_2_desc') },
+        { num: '3', title: t('home_step_3_title'), desc: t('home_step_3_desc') },
+        { num: '4', title: t('home_step_4_title'), desc: t('home_step_4_desc') },
+    ];
 
     return (
-        <StyledRoot>
-            <Box
-                component={Container}
-                sx={{
-                    mb:10,
-                    textAlign: {
-                        xs: 'center',
-                        sm: 'left'
-                    }
-                }}>
-                <Typography variant={'overline'} sx={{
-                    color: 'primary.contrastText'
-                }} >Work Flow</Typography>
-                <Typography variant={'h2'} sx={{
-                    color: 'primary.contrastText'
-                }} >Princip rada</Typography>
-                <Typography variant={'subtitle2'} sx={{
-                    color: 'primary.contrastText'
-                }} >Kratki opis načina rada</Typography>
-            </Box>
-            <Box
-                component={MotionViewport}
-            >
-                {renderSteps}
-            </Box>
-        </StyledRoot>
-    );
+        <Box component="section" id="proces" sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 13 } }}>
+            <SectionContainer component={MotionViewport}>
+                <m.div variants={varFade().inUp}>
+                    <Typography variant="h2" sx={{ mb: { xs: 4, md: 8 } }}>
+                        {t('home_process_title')}
+                    </Typography>
+                </m.div>
 
+                <Grid container spacing={{ xs: 4, md: 3 }} onMouseLeave={() => setActiveStep(0)}>
+                    {steps.map((step, i) => (
+                        <Grid
+                            key={step.num}
+                            size={{ xs: 6, md: 3 }}
+                            onMouseEnter={() => setActiveStep(i)}
+                        >
+                            <m.div variants={varFade().inUp}>
+                                <Stack spacing={{ xs: 1, md: 2 }}>
+                                    <Typography
+                                        sx={{
+                                            fontFamily: (theme) => theme.typography.fontSecondaryFamily,
+                                            fontWeight: 700,
+                                            fontSize: { xs: 48, md: 72 },
+                                            lineHeight: 1,
+                                            color: i === activeStep ? brand[500] : INACTIVE_NUMBER,
+                                            transition: (theme) =>
+                                                theme.transitions.create('color', { duration: 180 }),
+                                        }}
+                                    >
+                                        {step.num}
+                                    </Typography>
+                                    <Typography variant="h4">{step.title}</Typography>
+                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                        {step.desc}
+                                    </Typography>
+                                </Stack>
+                            </m.div>
+                        </Grid>
+                    ))}
+                </Grid>
+            </SectionContainer>
+        </Box>
+    );
 }

@@ -1,121 +1,196 @@
+'use client';
+
 import * as Yup from 'yup';
-import { m } from 'framer-motion';
 import { useCallback } from 'react';
-import { capitalize } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { enqueueSnackbar } from 'notistack';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ContactFormValues } from '@appTypes/contact-form';
 
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import LoadingButton from '@mui/material/Button';
-import { alpha, styled } from '@mui/material/styles';
-import { inputBaseClasses } from '@mui/material/InputBase';
-import { inputLabelClasses } from '@mui/material/InputLabel';
-import { formHelperTextClasses } from '@mui/material/FormHelperText';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+import { paths } from '@routes/paths';
+import { RouterLink } from '@routes/components';
 
 import { sendContactFormToAdmin } from '@utils/email';
 
 import { useTranslate } from '@base/locales';
 
 import { RHFTextField } from '@components/hook-form';
-import { varFade, MotionViewport } from '@components/animate';
-// rhf
 import FormProvider from '@components/hook-form/form-provider';
+
+import { ContactFormValues } from '@appTypes/contact-form';
+
 // ----------------------------------------------------------------------
 
+type Props = {
+  variant?: 'mini' | 'full';
+};
 
+function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
+    return (
+        <Typography
+            component="label"
+            htmlFor={htmlFor}
+            sx={{
+                display: 'block',
+                mb: 0.75,
+                fontSize: 13.5,
+                fontWeight: 700,
+                color: 'text.primary',
+            }}
+        >
+            {children}
+        </Typography>
+    );
+}
 
-const StyledRHFTextField = styled(RHFTextField)(({ theme }) => ({
-    [`& .${inputLabelClasses.root}`]: {
-        color: `${alpha(theme.palette.primary.contrastText,0.6)} !important`,
-    },
-    [`& .${inputLabelClasses.focused}`]: {
-        color: `${theme.palette.primary.contrastText} !important`,
-    },
-    [`& .${inputBaseClasses.root}`]: {
-        color: `${theme.palette.primary.contrastText} !important`,
-        '&::before,&::after': {
-            borderBottomColor: `${alpha(theme.palette.primary.contrastText,0.6)} !important`,
-        }
-    },
-    [`& .${inputBaseClasses.focused}`]: {
-        '&::before,&::after': {
-            borderBottomColor: `${theme.palette.primary.contrastText} !important`,
-        }
-    },
-    [`& .${formHelperTextClasses.root}`]: {
-        color: `${theme.palette.error.dark} !important`,
-    }
+export default function ContactForm({ variant = 'mini' }: Props) {
+    const { t } = useTranslate();
 
-
-}));
-
-
-export default function ContactForm() {
-
-    const { translate } = useTranslate();
+    const isFull = variant === 'full';
 
     const defaultValues: ContactFormValues = {
-        email:'',
-        projectInfo: ''
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        projectInfo: '',
     };
 
-    const ContactFormDataSchema = Yup.object().shape({
-        email: Yup.string().required(`${translate('emailRequired')}`).email(`${translate('invalidEmailFormat')}`),
-        projectInfo: Yup.string().required(`${translate('projectInfoRequired')}`),
+    const schema = Yup.object().shape({
+        name: isFull ? Yup.string().required(`${t('nameRequired')}`) : Yup.string(),
+        company: Yup.string(),
+        email: Yup.string().required(`${t('emailRequired')}`).email(`${t('invalidEmailFormat')}`),
+        phone: Yup.string(),
+        projectInfo: Yup.string().required(`${t('projectInfoRequired')}`),
     });
 
     const methods = useForm<ContactFormValues>({
-        resolver: yupResolver(ContactFormDataSchema),
+        // schema optionals (company/phone) widen yup's inferred type; the runtime shape matches.
+        resolver: yupResolver(schema) as never,
         defaultValues,
     });
 
-    const { handleSubmit, reset, formState: { isSubmitting }} = methods;
+    const {
+        handleSubmit,
+        reset,
+        formState: { isSubmitting },
+    } = methods;
 
-    const onSubmit = useCallback( async (data: ContactFormValues) => {
+    const onSubmit = useCallback(
+        async (data: ContactFormValues) => {
+            try {
+                await sendContactFormToAdmin({ data });
+                reset();
+                enqueueSnackbar(`${t('messageSuccessfullySent')}`, { variant: 'success' });
+            } catch (error) {
+                enqueueSnackbar(`${t('messageFailedToSend')}`, { variant: 'error' });
+            }
+        },
+        [reset, t]
+    );
 
+    const privacyNotice = (
+        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            {t('contact_privacy_notice')}{' '}
+            <Link component={RouterLink} href={paths.privacyPolicy} sx={{ color: 'primary.dark', fontWeight: 700 }}>
+                {t('privacy_policy')}
+            </Link>
+            .
+        </Typography>
+    );
 
-        try {
-            await sendContactFormToAdmin({ data });
-            console.log('Email sent successfully!');
-            reset();
-            enqueueSnackbar(`${translate('messageSuccessfullySent')}`);
-            // Perform any additional actions after successful email sending
-        } catch (error) {
-            console.error('Error sending email:', error);
-            // Handle error case
-        }
+    // ---- MINI (landing CTA) ----
+    if (!isFull) {
+        return (
+            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <Stack spacing={2.5}>
+                    <Box>
+                        <FieldLabel htmlFor="cf-email">{t('contact_email_mini_label')}</FieldLabel>
+                        <RHFTextField id="cf-email" name="email" placeholder={t('emailPlaceholder')} />
+                    </Box>
 
+                    <Box>
+                        <FieldLabel htmlFor="cf-project">{t('contact_project_mini_label')}</FieldLabel>
+                        <RHFTextField
+                            id="cf-project"
+                            name="projectInfo"
+                            placeholder={t('projectInfoPlaceholder')}
+                            multiline
+                            rows={3}
+                        />
+                    </Box>
 
-    }, [reset, translate]);
+                    <Button type="submit" variant="contained" color="secondary" size="large" fullWidth loading={isSubmitting}>
+                        {t('contact_submit_label')}
+                    </Button>
 
+                    <Box sx={{ textAlign: 'center' }}>{privacyNotice}</Box>
+                </Stack>
+            </FormProvider>
+        );
+    }
+
+    // ---- FULL (contact page) ----
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack component={MotionViewport} spacing={5}>
-                <Stack spacing={3}>
-                    <m.div variants={varFade().inUp}>
-                        <StyledRHFTextField name={'email'} variant={'standard'}  fullWidth label={translate('emailLabel')} />
-                    </m.div>
+            <Stack spacing={3}>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {t('contact_form_note')}
+                </Typography>
 
-                    <m.div variants={varFade().inUp}>
-                        <StyledRHFTextField name={'projectInfo' } variant={'standard'} fullWidth placeholder={translate('projectInfoPlaceholder')} label={translate('projectInfoLabel')} multiline rows={4} />
-                    </m.div>
-                </Stack>
+                <Grid container spacing={2.5}>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                        <FieldLabel htmlFor="cf-name">{t('contact_name_label')}</FieldLabel>
+                        <RHFTextField id="cf-name" name="name" placeholder={t('contact_name_placeholder')} />
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                        <FieldLabel htmlFor="cf-company">{t('contact_company_label')}</FieldLabel>
+                        <RHFTextField id="cf-company" name="company" placeholder={t('contact_company_placeholder')} />
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                        <FieldLabel htmlFor="cf-email-full">{t('emailLabel')}</FieldLabel>
+                        <RHFTextField id="cf-email-full" name="email" placeholder={t('emailPlaceholder')} />
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                        <FieldLabel htmlFor="cf-phone">{t('contact_phone_label')}</FieldLabel>
+                        <RHFTextField id="cf-phone" name="phone" placeholder={t('contact_phone_placeholder')} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                        <FieldLabel htmlFor="cf-project-full">{t('projectInfoLabel')}</FieldLabel>
+                        <RHFTextField
+                            id="cf-project-full"
+                            name="projectInfo"
+                            placeholder={t('projectInfoPlaceholder')}
+                            multiline
+                            rows={6}
+                        />
+                    </Grid>
+                </Grid>
 
-                <m.div variants={varFade().inUp}>
-                    <LoadingButton
+                <Stack
+                    direction={{ xs: 'column-reverse', sm: 'row' }}
+                    spacing={2}
+                    sx={{ alignItems: { sm: 'center' }, justifyContent: 'space-between' }}
+                >
+                    <Box sx={{ maxWidth: 320 }}>{privacyNotice}</Box>
+                    <Button
                         type="submit"
-                        color={'primary'}
                         variant="contained"
+                        color="primary"
+                        size="large"
                         loading={isSubmitting}
-                        fullWidth
+                        sx={{ width: { xs: 1, sm: 'auto' }, flexShrink: 0 }}
                     >
-                        {capitalize(`${translate('contactUsLabel')}`)}
-                    </LoadingButton>
-                </m.div>
+                        {t('contact_submit_label')}
+                    </Button>
+                </Stack>
             </Stack>
         </FormProvider>
     );
-
 }

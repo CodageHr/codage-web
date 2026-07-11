@@ -1,4 +1,6 @@
-import { alpha,  } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
+
+import { ink, sand, brand, cream, semantic, darkMode } from './tokens';
 
 // ----------------------------------------------------------------------
 
@@ -21,70 +23,72 @@ declare module '@mui/material/styles' {
 
 // SETUP COLORS
 
+// `grey` is remapped onto the warm sand ramp so template components that still
+// reference theme.palette.grey inherit the brand's warm neutrals.
 export const grey = {
-    0: '#FFFFFF',
-    100: '#F9FAFB',
-    200: '#F4F6F8',
-    300: '#DFE3E8',
-    400: '#C4CDD5',
-    500: '#919EAB',
-    600: '#637381',
-    700: '#454F5B',
-    800: '#212B36',
-    900: '#161C24',
+    0: sand[0],
+    100: sand[50],
+    200: sand[100],
+    300: sand[200],
+    400: sand[300],
+    500: sand[400],
+    600: sand[500],
+    700: sand[600],
+    800: sand[800],
+    900: sand[900],
 };
 
 export const secondary = {
-    lighter: '#f88c3c',
-    light: '#de7726',
-    main: '#d56d18',
-    dark: '#a65313',
-    darker: '#864b13',
-    contrastText: '#FFFFFF',
+    lighter: sand[600],
+    light: sand[700],
+    main: sand[900], // #201913 — dark band / dark buttons
+    dark: '#3A2F25', // dark button hover
+    darker: '#000000',
+    contrastText: cream,
 };
 
 export const primary = {
-    lighter: '#d0c5e5',
-    light: '#776bff',
-    main: '#5D51F2',
-    dark: '#4e45ce',
-    darker: '#362e8a',
+    lighter: brand[100],
+    light: brand[400], // #DF8663
+    main: brand[500], // #D96C47
+    dark: brand[600], // #BC4E2C — hover, links (AA on white)
+    darker: brand[800],
     contrastText: '#FFFFFF',
 };
 
 export const info = {
-    lighter: '#CAFDF5',
-    light: '#61F3F3',
-    main: '#00B8D9',
-    dark: '#006C9C',
-    darker: '#003768',
+    lighter: '#D4E9EE',
+    light: '#6FB3C0',
+    main: semantic.info, // #2C7A8C
+    dark: '#1E5A68',
+    darker: '#123A44',
     contrastText: '#FFFFFF',
 };
 
 export const success = {
-    lighter: '#D3FCD2',
-    light: '#77ED8B',
-    main: '#22C55E',
-    dark: '#118D57',
-    darker: '#065E49',
-    contrastText: '#ffffff',
+    lighter: '#D6EBDD',
+    light: '#6BB088',
+    main: semantic.success, // #2E7D4F
+    dark: '#1F5C39',
+    darker: '#123A24',
+    contrastText: '#FFFFFF',
 };
 
 export const warning = {
-    lighter: '#FFF5CC',
-    light: '#FFD666',
-    main: '#FFAB00',
-    dark: '#B76E00',
-    darker: '#7A4100',
-    contrastText: grey[800],
+    lighter: '#F5E6C8',
+    light: '#DDB05A',
+    main: semantic.warning, // #B7791F
+    dark: semantic.warningText, // #8A5A14
+    darker: '#5C3B0D',
+    contrastText: '#FFFFFF',
 };
 
 export const error = {
-    lighter: '#FFE9D5',
-    light: '#FFAC82',
-    main: '#FF5630',
-    dark: '#B71D18',
-    darker: '#7A0916',
+    lighter: '#F3D6D2',
+    light: '#D97B70',
+    main: semantic.error, // #C0392B
+    dark: '#94281D',
+    darker: '#611A12',
     contrastText: '#FFFFFF',
 };
 
@@ -112,7 +116,7 @@ const base = {
     error,
     grey,
     common,
-    divider: alpha(grey[500], 0.2),
+    divider: sand[300], // #D3C8BD
     action,
 };
 
@@ -123,39 +127,42 @@ export function palette(mode: 'light' | 'dark') {
         ...base,
         mode: 'light',
         text: {
-            primary: grey[800],
-            secondary: grey[600],
-            disabled: grey[500],
+            primary: ink, // #211C17
+            secondary: sand[600], // #6B5F53
+            disabled: sand[400], // #A99C8F
         },
         background: {
             paper: '#FFFFFF',
-            default: '#FFFFFF',
-            dropdown: grey[800],
-            neutral: grey[200],
+            default: sand[50], // #F6F1EA
+            dropdown: sand[900],
+            neutral: sand[100], // #EFE8DF
         },
         action: {
             ...base.action,
-            active: grey[600],
+            active: sand[500],
         },
     };
 
     const dark = {
         ...base,
         mode: 'dark',
+        divider: darkMode.border,
         text: {
-            primary: '#FFFFFF',
-            secondary: grey[400],
-            disabled: grey[500],
+            primary: darkMode.text, // #F5EFE8
+            secondary: alpha(cream, 0.65),
+            disabled: alpha(cream, 0.4),
         },
         background: {
-            paper: grey[800],
-            default: grey[900],
-            dropdown: grey[800],
-            neutral: alpha(grey[500], 0.12),
+            paper: darkMode.surface, // #241D16
+            default: darkMode.bg, // #171210
+            dropdown: darkMode.surface,
+            neutral: alpha(cream, 0.06),
         },
         action: {
             ...base.action,
-            active: grey[500],
+            hover: alpha(cream, 0.08),
+            selected: alpha(cream, 0.16),
+            active: alpha(cream, 0.6),
         },
     };
 

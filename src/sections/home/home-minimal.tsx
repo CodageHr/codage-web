@@ -1,115 +1,114 @@
-import { useMemo } from 'react';
+'use client';
+
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import { alpha } from '@mui/material/styles';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { useTranslate } from '@base/locales';
 
-import { varFade, MotionViewport } from 'src/components/animate';
+import Iconify from '@components/iconify';
+import { SectionContainer } from '@components/_ui/section';
+import { varFade, MotionViewport } from '@components/animate';
+
+import { brand } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-export default function HomeMinimal() {
+type ServiceRow = { num: string; title: string; desc: string; tech: string };
 
-
-    const { translate } = useTranslate();
-
-    const CARDS = useMemo(() => [
-        {
-            icon: '/assets/icons/home/ic_design.svg',
-            title: translate('ui_ux_design'),
-            description: translate('ui_ux_design_description'),
-        },
-        {
-            icon: '/assets/icons/home/ic_development.svg',
-            title: translate('web_development'),
-            description: translate('web_development_description'),
-        },
-        {
-            icon: '/assets/icons/home/ic_make_brand.svg',
-            title: translate('consultation_and_custom_solutions'),
-            description: translate('consultation_and_custom_solutions_description'),
-        },
-    ], [translate]);
-
+function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
     return (
-        <Container
-            component={MotionViewport}
-            sx={{
-                py: { xs: 10, md: 15 },
-            }}
-        >
-            <Stack
-                spacing={3}
-                sx={{
-                    textAlign: 'center',
-                    mb: { xs: 5, md: 10 },
-                }}
-            >
-                <m.div variants={varFade().inUp}>
-                    <Typography component="div" variant="overline" sx={{ color: 'text.disabled' }}>
-                        {translate('experience')}
-                    </Typography>
-                </m.div>
-
-                <m.div variants={varFade().inDown}>
-                    <Typography variant="h2">
-                        {translate('digital_experience_title_1')}<br/>
-                        {translate('digital_experience_title_2')}
-                    </Typography>
-                </m.div>
-            </Stack>
+        <m.div variants={varFade().inUp}>
             <Box
                 sx={{
-                    gap: { xs: 3, lg: 10 },
-                    display: "grid",
-                    alignItems: "center",
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '56px 1fr', md: '120px 1.4fr 1fr auto' },
+                    alignItems: { xs: 'start', md: 'center' },
+                    columnGap: { xs: 2, md: 3 },
+                    rowGap: 1,
+                    py: { xs: 3, md: 5 },
+                    px: { md: 3 },
+                    mx: { md: -3 },
+                    borderTop: (theme) => (isFirst ? `1px solid ${theme.palette.divider}` : 'none'),
+                    borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+                    borderRadius: { md: 2 },
+                    transition: (theme) => theme.transitions.create(['background-color'], { duration: 180 }),
+                    '&:hover': { bgcolor: 'background.paper' },
+                }}
+            >
+                <Typography
+                    sx={{
+                        gridRow: { xs: '1 / span 3', md: 'auto' },
+                        fontFamily: (theme) => theme.typography.fontSecondaryFamily,
+                        fontWeight: 700,
+                        fontSize: { xs: 28, md: 40 },
+                        lineHeight: 1,
+                        color: brand[500],
+                    }}
+                >
+                    {row.num}
+                </Typography>
 
-                    gridTemplateColumns: {
-                        xs: 'repeat(1, 1fr)',
-                        md: 'repeat(3, 1fr)',
-                    }
-                }}>
-                {CARDS.map((card, index) => (
-                    <m.div variants={varFade().inUp} key={card.title}>
-                        <Card
-                            sx={{
-                                textAlign: 'center',
-                                boxShadow: { md: 'none' },
-                                bgcolor: 'background.default',
-                                p: (theme) => theme.spacing(10, 5),
-                                ...(index === 1 && {
-                                    boxShadow: (theme) => ({
-                                        md: `-40px 40px 80px ${
-                                            theme.palette.mode === 'light'
-                                                ? alpha(theme.palette.grey[500], 0.16)
-                                                : alpha(theme.palette.common.black, 0.4)
-                                        }`,
-                                    }),
-                                }),
-                            }}
-                        >
-                            <Box
-                                component="img"
-                                src={card.icon}
-                                alt={card.title}
-                                sx={{ mx: 'auto', width: 48, height: 48 }}
-                            />
+                <Typography variant="h3">{row.title}</Typography>
 
-                            <Typography variant="h5" sx={{ mt: 8, mb: 2 }}>
-                                {card.title}
-                            </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 360 }}>
+                    {row.desc}
+                </Typography>
 
-                            <Typography sx={{ color: 'text.secondary' }}>{card.description}</Typography>
-                        </Card>
-                    </m.div>
-                ))}
+                <Stack
+                    direction="row"
+                    sx={{ alignItems: 'center', justifyContent: 'space-between', gridColumn: { xs: '2', md: 'auto' } }}
+                >
+                    <Typography variant="caption" sx={{ color: 'text.disabled', mr: 2 }}>
+                        {row.tech}
+                    </Typography>
+                    <Iconify
+                        icon="material-symbols:arrow-outward-rounded"
+                        width={28}
+                        sx={{ color: 'text.primary', display: { xs: 'none', md: 'block' }, flexShrink: 0 }}
+                    />
+                </Stack>
             </Box>
-        </Container>
+        </m.div>
+    );
+}
+
+export default function HomeServices() {
+    const { t } = useTranslate();
+
+    const rows: ServiceRow[] = [
+        { num: '01', title: t('home_svc_1_title'), desc: t('home_svc_1_desc'), tech: t('home_svc_1_tech') },
+        { num: '02', title: t('home_svc_2_title'), desc: t('home_svc_2_desc'), tech: t('home_svc_2_tech') },
+        { num: '03', title: t('home_svc_3_title'), desc: t('home_svc_3_desc'), tech: t('home_svc_3_tech') },
+    ];
+
+    return (
+        <Box component="section" id="usluge" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>
+            <SectionContainer component={MotionViewport}>
+                <Stack
+                    direction={{ xs: 'column', md: 'row' }}
+                    spacing={2}
+                    sx={{ justifyContent: 'space-between', alignItems: { md: 'flex-end' }, mb: { xs: 4, md: 6 } }}
+                >
+                    <m.div variants={varFade().inUp}>
+                        <Typography variant="h2">{t('home_services_title')}</Typography>
+                    </m.div>
+                    <m.div variants={varFade().inUp}>
+                        <Typography
+                            variant="body1"
+                            sx={{ color: 'text.secondary', maxWidth: 380, textAlign: { md: 'right' } }}
+                        >
+                            {t('home_services_intro')}
+                        </Typography>
+                    </m.div>
+                </Stack>
+
+                {rows.map((row, i) => (
+                    <NumberedRow key={row.num} row={row} isFirst={i === 0} />
+                ))}
+            </SectionContainer>
+        </Box>
     );
 }

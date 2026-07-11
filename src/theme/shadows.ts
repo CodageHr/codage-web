@@ -1,15 +1,17 @@
 import { alpha, Shadows } from '@mui/material/styles';
 
-import { grey, common } from './palette';
+import { sand } from './tokens';
+import { common } from './palette';
 
 // ----------------------------------------------------------------------
 
 export function shadows(mode: 'light' | 'dark'): Shadows {
-    const color = mode === 'light' ? grey[500] : common.black;
+    // Warm, soft shadows keyed off sand-900 (#201913) rather than cool grey.
+    const color = mode === 'light' ? sand[900] : common.black;
 
-    const transparent1 = alpha(color, 0.2);
-    const transparent2 = alpha(color, 0.14);
-    const transparent3 = alpha(color, 0.12);
+    const transparent1 = alpha(color, 0.1);
+    const transparent2 = alpha(color, 0.07);
+    const transparent3 = alpha(color, 0.05);
 
     return [
         'none',

@@ -1,174 +1,166 @@
-import { m, useScroll } from 'framer-motion';
-import { HEADER } from '@layouts/config-layout';
-import { useRef, useState, useEffect, useCallback } from 'react';
+'use client';
+
+import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
 
-import { useResponsive } from '@hooks/use-responsive';
+import { paths } from '@routes/paths';
+import { RouterLink } from '@routes/components';
 
 import { useTranslate } from '@base/locales';
 
-import { varFade, MotionContainer } from '@components/animate';
+import { varFade, MotionViewport } from '@components/animate';
+import { Eyebrow, SectionContainer } from '@components/_ui/section';
 
-import { bgGradient } from '@theme/css';
-
-import { SoftwareEngineerIllustration } from '@assets/illustrations';
-
-// ----------------------------------------------------------------------
-
-const StyledRoot = styled('div')(({ theme }) => ({
-    ...bgGradient({
-        color: alpha(theme.palette.background.default, theme.palette.mode === 'light' ? 0.9 : 0.94),
-        imgUrl: '/assets/background/overlay_3.jpg',
-    }),
-    width: '100%',
-    height: '50vh',
-    position: 'relative',
-    [theme.breakpoints.up('sm')]: {
-        height: '100vh',
-    },
-    [theme.breakpoints.up('md')]: {
-        top: 0,
-        left: 0,
-        position: 'fixed',
-    },
-}));
-
-const StyledWrapper = styled('div')(({ theme }) => ({
-    height: '100%',
-    overflow: 'hidden',
-    position: 'relative',
-    [theme.breakpoints.up('md')]: {
-        marginTop: HEADER.H_DESKTOP_OFFSET,
-    },
-}));
+import { sand, cream, onDark } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
+
+const TECH = ['React', 'Next.js', 'Laravel', 'Node.js', 'AWS', 'Firebase'];
 
 export default function HomeHero() {
-
-    const mdUp = useResponsive('up', 'md');
-
-    const { translate } = useTranslate();
-
-    const heroRef = useRef<HTMLDivElement | null>(null);
-
-    const { scrollY } = useScroll();
-
-    const [ percent, setPercent ] = useState(0);
-
-    const getScroll = useCallback(() => {
-
-        let heroHeight = 0;
-
-        if (heroRef.current) {
-
-            heroHeight = heroRef.current.offsetHeight;
-
-        }
-
-        scrollY.on('change', (scrollHeight) => {
-
-            const scrollPercent = (scrollHeight * 100) / heroHeight;
-
-            setPercent(Math.floor(scrollPercent));
-
-        });
-
-    }, [ scrollY ]);
-
-    useEffect(() => {
-
-        getScroll();
-
-    }, [ getScroll ]);
-
-    const opacity = 1 - percent / 100;
-
-    const hide = percent > 120;
-
-    const renderDescription = (
-        <Stack
-            sx={{
-                alignItems: "flex-start",
-                justifyContent: "center",
-                height: 1,
-                opacity: opacity > 0 ? opacity : 0,
-
-                mt: {
-                    md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
-                }
-            }}>
-
-            <m.div variants={varFade().in}>
-                <Typography variant="h5" sx={{ textAlign: 'left', mb: 3 }}>
-                    {translate('home_hero_caption')}
-                </Typography>
-            </m.div>
-            <m.div variants={varFade().in}>
-                <Typography variant="h2" sx={{ color: 'text.disabled' }}>
-                    Vaša <Typography variant={'h1'} component="span" sx={{ display: 'inline-block', color: 'primary.main' }}>Digitalna
-                    transformacija</Typography>
-
-                    Započinje ovdje
-                </Typography>
-
-            </m.div>
-        </Stack>
-    );
-
-    const renderHeroImage = (
-        <Stack
-            sx={{
-                alignItems: "flex-start",
-                justifyContent: "center",
-                height: 1,
-                opacity: opacity > 0 ? opacity : 0,
-
-                mt: {
-                    md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
-                }
-            }}>
-            <SoftwareEngineerIllustration
-                sx={{
-                    my: 2,
-                    height: 500,
-                }}
-            />
-        </Stack>
-    );
+    const { t } = useTranslate();
 
     return (
-        <>
-            <StyledRoot
-                ref={heroRef}
+        <Box
+            component="section"
+            sx={{
+                position: 'relative',
+                overflow: 'hidden',
+                bgcolor: sand[900],
+                color: cream,
+                pt: { xs: 13, md: 22 },
+                pb: { xs: 8, md: 14 },
+            }}
+        >
+            {/* radial coral glow, top-right */}
+            <Box
+                aria-hidden
                 sx={{
-                    ...(hide && {
-                        opacity: 0,
-                    }),
+                    position: 'absolute',
+                    top: -140,
+                    right: -220,
+                    width: 560,
+                    height: 560,
+                    pointerEvents: 'none',
+                    background: `radial-gradient(circle, ${alpha('#E07E58', 0.25)} 0%, transparent 70%)`,
                 }}
-            >
-                <StyledWrapper>
-                    <Container component={MotionContainer} sx={{ height: 1 }}>
-                        <Grid container columnSpacing={{ md: 10 }} sx={{ height: 1 }}>
-                            <Grid size={{ xs: 12, md: 7 }}>
-                                {renderDescription}
-                            </Grid>
+            />
+            {/* vertical line texture */}
+            <Box
+                aria-hidden
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    pointerEvents: 'none',
+                    backgroundImage: `repeating-linear-gradient(90deg, ${onDark.lineTexture} 0 1px, transparent 1px 120px)`,
+                }}
+            />
 
-                            {mdUp && <Grid size={{ md: 5 }} sx={{
-                                pt: 8
-                            }}>{renderHeroImage}</Grid>}
-                        </Grid>
-                    </Container>
-                </StyledWrapper>
-            </StyledRoot>
-            <Box sx={{ height: { md: '100vh' }}} />
-        </>
+            <SectionContainer sx={{ position: 'relative' }}>
+                <Box component={MotionViewport}>
+                    <m.div variants={varFade().inUp}>
+                        <Eyebrow onDark>{t('home_hero_eyebrow')}</Eyebrow>
+                    </m.div>
+
+                    <m.div variants={varFade().inUp}>
+                        <Typography
+                            component="h1"
+                            sx={{
+                                my: 2,
+                                maxWidth: 900,
+                                fontFamily: (theme) => theme.typography.fontSecondaryFamily,
+                                fontWeight: 700,
+                                letterSpacing: '-0.02em',
+                                lineHeight: 1.03,
+                                fontSize: { xs: 44, sm: 60, md: 76, lg: 84 },
+                            }}
+                        >
+                            <Box component="span" sx={{ color: cream }}>
+                                {t('home_hero_title_line1')}
+                            </Box>
+                            <br />
+                            <Box component="span" sx={{ color: onDark.accent }}>
+                                {t('home_hero_title_line2')}
+                            </Box>
+                        </Typography>
+                    </m.div>
+
+                    <m.div variants={varFade().inUp}>
+                        <Typography
+                            sx={{ maxWidth: 560, fontSize: { xs: 16.5, md: 19 }, lineHeight: 1.6, color: onDark.textLead }}
+                        >
+                            {t('home_hero_lead')}
+                        </Typography>
+                    </m.div>
+
+                    <m.div variants={varFade().inUp}>
+                        <Stack
+                            direction={{ xs: 'column', sm: 'row' }}
+                            spacing={2}
+                            sx={{ mt: 5, width: { xs: 1, sm: 'auto' } }}
+                        >
+                            <Button
+                                component={RouterLink}
+                                href={paths.contact}
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                sx={{ width: { xs: 1, sm: 'auto' } }}
+                            >
+                                {t('home_hero_cta_primary')}
+                            </Button>
+                            <Button
+                                component={RouterLink}
+                                href="/#usluge"
+                                variant="outlined"
+                                size="large"
+                                sx={{
+                                    width: { xs: 1, sm: 'auto' },
+                                    color: cream,
+                                    borderColor: alpha(cream, 0.3),
+                                    '&:hover': { borderColor: cream, backgroundColor: alpha(cream, 0.06) },
+                                }}
+                            >
+                                {t('home_hero_cta_secondary')}
+                            </Button>
+                        </Stack>
+                    </m.div>
+
+                    {/* tech strip */}
+                    <m.div variants={varFade().inUp}>
+                        <Stack
+                            direction="row"
+                            useFlexGap
+                            sx={{ mt: { xs: 6, md: 10 }, flexWrap: 'wrap', alignItems: 'center', columnGap: 2, rowGap: 1.5 }}
+                        >
+                            {TECH.map((tech, i) => (
+                                <Stack key={tech} direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+                                    {i > 0 && (
+                                        <Box sx={{ width: 5, height: 5, borderRadius: '50%', bgcolor: onDark.accent }} />
+                                    )}
+                                    <Typography
+                                        sx={{
+                                            fontFamily: (theme) => theme.typography.fontSecondaryFamily,
+                                            fontWeight: 700,
+                                            fontSize: 13,
+                                            letterSpacing: '0.12em',
+                                            textTransform: 'uppercase',
+                                            color: alpha(cream, 0.55),
+                                        }}
+                                    >
+                                        {tech}
+                                    </Typography>
+                                </Stack>
+                            ))}
+                        </Stack>
+                    </m.div>
+                </Box>
+            </SectionContainer>
+        </Box>
     );
-
 }

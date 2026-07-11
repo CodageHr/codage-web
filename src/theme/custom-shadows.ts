@@ -1,6 +1,7 @@
 import { alpha } from '@mui/material/styles';
 
-import { grey, info, error, common, primary, success, warning, secondary } from './palette';
+import { sand, softShadows } from './tokens';
+import { info, error, common, primary, success, warning, secondary } from './palette';
 
 // ----------------------------------------------------------------------
 
@@ -37,12 +38,13 @@ declare module '@mui/material/styles' {
 // ----------------------------------------------------------------------
 
 export function customShadows(mode: 'light' | 'dark') {
-    const color = mode === 'light' ? grey[500] : common.black;
+    // Warm base (sand-900) for light; black for dark surfaces.
+    const color = mode === 'light' ? sand[900] : common.black;
 
-    const transparent = alpha(color, 0.16);
+    const transparent = alpha(color, 0.12);
 
     return {
-        z1: `0 1px 2px 0 ${transparent}`,
+        z1: `0 1px 2px 0 ${alpha(color, 0.05)}`,
         z4: `0 4px 8px 0 ${transparent}`,
         z8: `0 8px 16px 0 ${transparent}`,
         z12: `0 12px 24px -4px ${transparent}`,
@@ -50,9 +52,9 @@ export function customShadows(mode: 'light' | 'dark') {
         z20: `0 20px 40px -4px ${transparent}`,
         z24: `0 24px 48px 0 ${transparent}`,
         //
-        card: `0 0 2px 0 ${alpha(color, 0.2)}, 0 12px 24px -4px ${alpha(color, 0.12)}`,
-        dropdown: `0 0 2px 0 ${alpha(color, 0.24)}, -20px 20px 40px -4px ${alpha(color, 0.24)}`,
-        dialog: `-40px 40px 80px -8px ${alpha(common.black, 0.24)}`,
+        card: softShadows.md, // 0 8px 24px -8px rgba(32,25,19,.12)
+        dropdown: `0 0 2px 0 ${alpha(color, 0.2)}, -20px 20px 40px -8px ${alpha(color, 0.16)}`,
+        dialog: softShadows.lg, // 0 24px 48px -24px rgba(32,25,19,.18)
         //
         primary: `0 8px 16px 0 ${alpha(primary.main, 0.24)}`,
         info: `0 8px 16px 0 ${alpha(info.main, 0.24)}`,

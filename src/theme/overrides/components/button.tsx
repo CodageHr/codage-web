@@ -1,6 +1,8 @@
 import { alpha, Theme } from '@mui/material/styles';
 import { ButtonProps, buttonClasses } from '@mui/material/Button';
 
+import { brand, softShadows } from '../../tokens';
+
 // ----------------------------------------------------------------------
 
 const COLORS = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const;
@@ -34,21 +36,37 @@ export function button(theme: Theme) {
 
         const largeSize = ownerState.size === 'large';
 
+        const baseStyle = {
+            borderRadius: 12,
+            fontWeight: 700,
+            transition: theme.transitions.create(
+                ['background-color', 'box-shadow', 'border-color', 'color'],
+                { duration: 180, easing: 'ease-out' }
+            ),
+            '&:focus-visible': {
+                outline: `2px solid ${theme.palette.primary.dark}`,
+                outlineOffset: 2,
+            },
+        };
+
         const defaultStyle = {
             ...(inheritColor && {
-                // CONTAINED
+                // CONTAINED (dark button on light surfaces)
                 ...(containedVariant && {
                     color: lightMode ? theme.palette.common.white : theme.palette.grey[800],
-                    backgroundColor: lightMode ? theme.palette.grey[800] : theme.palette.common.white,
+                    backgroundColor: lightMode ? theme.palette.grey[900] : theme.palette.common.white,
                     '&:hover': {
-                        backgroundColor: lightMode ? theme.palette.grey[700] : theme.palette.grey[400],
+                        backgroundColor: lightMode ? '#3A2F25' : theme.palette.grey[400],
                     },
                 }),
-                // OUTLINED
+                // OUTLINED / GHOST — 1.5px sand-300, ink text → hover brand-600
                 ...(outlinedVariant && {
-                    borderColor: alpha(theme.palette.grey[500], 0.32),
+                    border: `1.5px solid ${theme.palette.divider}`,
+                    color: theme.palette.text.primary,
                     '&:hover': {
-                        backgroundColor: theme.palette.action.hover,
+                        borderColor: theme.palette.primary.dark,
+                        color: theme.palette.primary.dark,
+                        backgroundColor: 'transparent',
                     },
                 }),
                 // TEXT
@@ -67,9 +85,9 @@ export function button(theme: Theme) {
                 }),
             }),
             ...(outlinedVariant && {
+                borderWidth: 1.5,
                 '&:hover': {
-                    borderColor: 'currentColor',
-                    boxShadow: '0 0 0 0.5px currentColor',
+                    borderWidth: 1.5,
                 },
             }),
         };
@@ -79,7 +97,22 @@ export function button(theme: Theme) {
                 // CONTAINED
                 ...(containedVariant && {
                     '&:hover': {
-                        boxShadow: theme.customShadows[color],
+                        backgroundColor: theme.palette[color].dark,
+                        boxShadow: color === 'primary' ? softShadows.primaryGlow : theme.customShadows[color],
+                    },
+                    ...(color === 'primary' && {
+                        [`&.${buttonClasses.disabled}`]: {
+                            backgroundColor: brand[200],
+                            color: theme.palette.common.white,
+                        },
+                    }),
+                }),
+                // OUTLINED
+                ...(outlinedVariant && {
+                    border: `1.5px solid ${alpha(theme.palette[color].main, 0.5)}`,
+                    '&:hover': {
+                        borderColor: theme.palette[color].main,
+                        backgroundColor: alpha(theme.palette[color].main, 0.08),
                     },
                 }),
                 // SOFT
@@ -104,36 +137,38 @@ export function button(theme: Theme) {
 
         const size = {
             ...(smallSize && {
-                height: 30,
-                fontSize: 13,
-                paddingLeft: 8,
-                paddingRight: 8,
-                ...(textVariant && {
-                    paddingLeft: 4,
-                    paddingRight: 4,
-                }),
-            }),
-            ...(mediumSize && {
-                paddingLeft: 12,
-                paddingRight: 12,
+                height: 40,
+                fontSize: 15,
+                paddingLeft: 16,
+                paddingRight: 16,
                 ...(textVariant && {
                     paddingLeft: 8,
                     paddingRight: 8,
                 }),
             }),
-            ...(largeSize && {
+            ...(mediumSize && {
                 height: 48,
-                fontSize: 15,
-                paddingLeft: 16,
-                paddingRight: 16,
+                fontSize: 15.5,
+                paddingLeft: 20,
+                paddingRight: 20,
                 ...(textVariant && {
                     paddingLeft: 10,
                     paddingRight: 10,
                 }),
             }),
+            ...(largeSize && {
+                height: 56,
+                fontSize: 16.5,
+                paddingLeft: 28,
+                paddingRight: 28,
+                ...(textVariant && {
+                    paddingLeft: 12,
+                    paddingRight: 12,
+                }),
+            }),
         };
 
-        return [defaultStyle, ...colorStyle, disabledState, size];
+        return [baseStyle, defaultStyle, ...colorStyle, disabledState, size];
     };
 
     return {

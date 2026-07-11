@@ -33,7 +33,7 @@ export default function ThemeProvider({ children }: Props) {
 
     const settings = useSettingsContext();
 
-    const presets = createPresets(settings.themeColorPresets);
+    const presets = createPresets(settings.themeColorPresets, settings.themeMode);
 
     const contrast = createContrast(settings.themeContrast, settings.themeMode);
 
@@ -50,7 +50,7 @@ export default function ThemeProvider({ children }: Props) {
             },
             direction: settings.themeDirection,
             shadows: shadows(settings.themeMode),
-            shape: { borderRadius: 8 },
+            shape: { borderRadius: 12 },
             typography,
         }),
         [

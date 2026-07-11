@@ -1,11 +1,13 @@
+'use client';
+
 import { TFunction } from 'i18next';
 
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@routes/paths';
@@ -14,243 +16,139 @@ import { RouterLink } from '@routes/components';
 import { useTranslate } from '@base/locales';
 
 import Logo from '@components/logo';
-import Iconify from '@components/iconify';
-import WorkingHoursSchedule from '@components/working-hours-schedule';
 
 // ----------------------------------------------------------------------
 
-const LINKS = (translate: TFunction) => ([
-    {
-        headline: translate('appMenu'),
-        children: [
-            { name: translate('home'), href: paths.home, icon:undefined },
-            { name: translate('services'), href: paths.services, icon:undefined }
-            /*  { name: translate('services'), href: paths.services, icon:undefined },
-            { name: translate('aboutUs'), href: paths.about, icon:undefined },
-            { name: translate('contact'), href: paths.contact, icon:undefined }, */
-        ],
-    },
-    {
-        headline: translate('contact'),
-        children: [
-            { name: 'kontakt@codage.hr', href: 'mailto:kontakt@codage.hr', icon: 'fa6-solid:envelope' },
-            { name: '+385 98 403 330', href: 'tel:+38598403330', icon: 'ic:round-phone' }
-        ]
-    },
-]);
+const MENU_LINKS = (t: TFunction) => [
+    { name: t('home'), href: paths.home },
+    { name: t('nav_services'), href: '/#usluge' },
+    { name: t('aboutUs'), href: paths.about },
+    { name: t('contact'), href: paths.contact },
+];
 
-const LEGAL_INFO_LINK = (translate: TFunction) => ([
-    {
-        title: translate('legal_info'),
-        path: paths.legalInfo,
-    },{
-        title: translate('cookies'),
-        path: paths.cookies,
-    },{
-        title: translate('privacy_policy'),
-        path: paths.privacyPolicy,
-    },{
-        title: translate('terms_of_use'),
-        path: paths.termsOfUse,
-    }
-]);
+const LEGAL_LINKS = (t: TFunction) => [
+    { name: t('legal_info'), href: paths.legalInfo },
+    { name: t('privacy_policy'), href: paths.privacyPolicy },
+    { name: t('cookies'), href: paths.cookies },
+    { name: t('terms_of_use'), href: paths.termsOfUse },
+];
+
 // ----------------------------------------------------------------------
+
+function ColumnHeading({ children }: { children: React.ReactNode }) {
+    return (
+        <Typography
+            variant="overline"
+            component="h2"
+            sx={{ color: 'text.secondary', fontSize: 12, letterSpacing: '0.16em', mb: 2.5 }}
+        >
+            {children}
+        </Typography>
+    );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+    return (
+        <Link
+            component={RouterLink}
+            href={href}
+            underline="none"
+            variant="body2"
+            sx={{
+                color: 'text.secondary',
+                transition: (theme) => theme.transitions.create('color', { duration: 150 }),
+                '&:hover': { color: 'primary.dark' },
+            }}
+        >
+            {children}
+        </Link>
+    );
+}
 
 export default function Footer() {
-
-    // const pathname = usePathname();
-
-    const { translate } = useTranslate();
+    const { t } = useTranslate();
 
     const currentYear = new Date().getFullYear();
 
-    // const homePage = pathname === '/';
+    return (
+        <Box component="footer" sx={{ position: 'relative', bgcolor: 'background.default' }}>
+            <Divider />
 
-    /* const simpleFooter = (
-        <Box
-            component="footer"
-            sx={{
-                py: 5,
-                textAlign: 'center',
-                position: 'relative',
-                bgcolor: 'background.default',
-            }}
-        >
-            <Container>
-                <Grid container alignItems={'center'}  spacing={2}>
-                    <Grid >
-                        <Logo />
+            <Container sx={{ pt: { xs: 6, md: 10 }, pb: 5 }}>
+                <Grid container spacing={{ xs: 5, md: 4 }}>
+                    {/* Brand */}
+                    <Grid size={{ xs: 12, md: 4 }}>
+                        <Stack spacing={2.5} sx={{ maxWidth: 300 }}>
+                            <Logo height={28} />
+                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                {t('footer_blurb')}
+                            </Typography>
+                            <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                                {t('company_address')}
+                            </Typography>
+                        </Stack>
                     </Grid>
 
+                    {/* Menu */}
+                    <Grid size={{ xs: 6, md: 2 }}>
+                        <ColumnHeading>{t('menu_heading')}</ColumnHeading>
+                        <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
+                            {MENU_LINKS(t).map((link) => (
+                                <FooterLink key={link.name} href={link.href}>
+                                    {link.name}
+                                </FooterLink>
+                            ))}
+                        </Stack>
+                    </Grid>
+
+                    {/* Legal */}
+                    <Grid size={{ xs: 6, md: 3 }}>
+                        <ColumnHeading>{t('legal_heading')}</ColumnHeading>
+                        <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
+                            {LEGAL_LINKS(t).map((link) => (
+                                <FooterLink key={link.name} href={link.href}>
+                                    {link.name}
+                                </FooterLink>
+                            ))}
+                        </Stack>
+                    </Grid>
+
+                    {/* Contact */}
+                    <Grid size={{ xs: 12, md: 3 }}>
+                        <ColumnHeading>{t('contact')}</ColumnHeading>
+                        <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
+                            <Link
+                                href="mailto:kontakt@codage.hr"
+                                underline="none"
+                                variant="body2"
+                                sx={{ color: 'text.primary', fontWeight: 700, '&:hover': { color: 'primary.dark' } }}
+                            >
+                                kontakt@codage.hr
+                            </Link>
+                            <Link
+                                href="tel:+38598403330"
+                                underline="none"
+                                variant="body2"
+                                sx={{ color: 'text.primary', fontWeight: 700, '&:hover': { color: 'primary.dark' } }}
+                            >
+                                +385 98 403 330
+                            </Link>
+                            <Typography variant="caption" sx={{ color: 'text.disabled', mt: 0.5 }}>
+                                {t('working_hours')}
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                {t('working_hours_value')}
+                            </Typography>
+                        </Stack>
+                    </Grid>
                 </Grid>
 
-                <Typography variant="caption" component="div">
-          © {currentYear}. {translate('allRightsReserved')} by Codage d.o.o.
+                <Divider sx={{ mt: { xs: 5, md: 8 }, mb: 3 }} />
+
+                <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                    © {currentYear} Codage d.o.o. {t('allRightsReserved')}
                 </Typography>
             </Container>
         </Box>
-    ); */
-
-    const mainFooter = (
-        <Box
-            component="footer"
-            sx={{
-                position: 'relative',
-                bgcolor: 'background.default',
-            }}
-        >
-            <Divider />
-
-            <Container
-                sx={{
-                    pt: 10,
-                    pb: 5,
-                    textAlign: { xs: 'center', md: 'unset' },
-                }}
-            >
-                <Grid
-                    container
-                    spacing={2}
-                    sx={{
-                        alignItems: 'center',
-
-                        justifyContent: {
-                            xs: 'center',
-                            md:'flex-start'
-                        }
-                    }}>
-                    <Grid >
-                        <Logo />
-                    </Grid>
-
-                </Grid>
-
-                <Grid
-                    container
-                    sx={{
-                        justifyContent: {
-                            xs: 'center',
-                            md: 'space-between',
-                        }
-                    }}
-                >
-                    {/* <Grid size={{ xs: 8, md: 3 }} mt={4}>
-            <Stack>
-              <Typography variant={'subtitle1'}>{translate('socialNetworks')}</Typography>
-              <Stack
-                direction="row"
-                justifyContent={{ xs: 'center', md: 'flex-start' }}
-                sx={{
-                  mb: { xs: 5, md: 0 },
-                }}
-              >
-                {_socials.map((social) => (
-                  <IconButton
-                    key={social.name}
-                    href={social.path}
-                    target="_blank"
-                    rel="noopener"
-                    component={Link}
-                    aria-label={`${social.name} stranica`}
-                    sx={{
-                      '&:hover': {
-                        bgcolor: alpha(social.color, 0.08),
-                      },
-                    }}
-                  >
-                    <Iconify color={social.color} icon={social.icon} />
-                  </IconButton>
-                ))}
-              </Stack>
-            </Stack>
-
-          </Grid> */}
-                    <Grid size={{ xs: 8, md: 3 }} sx={{
-                        mt: 4
-                    }}>
-                        <WorkingHoursSchedule />
-                    </Grid>
-
-                    <Grid size={{ xs: 12, md: 6 }}>
-                        <Stack spacing={5} direction={{ xs: 'column', md: 'row' }}>
-                            {LINKS(translate).map((list) => (
-                                <Stack
-                                    key={list.headline}
-                                    spacing={2}
-                                    sx={{
-                                        alignItems: { xs: 'center', md: 'flex-start' },
-                                        width: 1
-                                    }}>
-                                    <Typography component="div" variant="overline">
-                                        {list.headline}
-                                    </Typography>
-
-                                    {list.children.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            component={RouterLink}
-                                            href={link.href}
-                                            color="inherit"
-                                            variant="body2"
-                                            sx={{
-                                                display: 'flex',
-                                                columnGap: 2,
-                                                alignItems: 'center'
-                                            }}
-
-                                        >
-                                            {link.icon && <Iconify width={'1rem'} icon={link?.icon} sx={{ color:'primary.main' }}  />}
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </Stack>
-                            ))}
-                        </Stack>
-                    </Grid>
-                </Grid>
-
-                <Grid
-                    container
-                    spacing={2}
-                    sx={{
-                        justifyContent: {
-                            xs: 'center',
-                            md: 'space-between',
-                        },
-
-                        mt: 10
-                    }}>
-                    <Grid>
-                        <Typography variant="body2" >
-                            © {currentYear}. {translate('allRightsReserved')}
-                        </Typography>
-                    </Grid>
-                    <Grid >
-                        <Stack
-                            direction={'row'}
-                            spacing={2}
-                            sx={{
-                                alignItems: 'center'
-                            }}>
-                            {LEGAL_INFO_LINK(translate).map((link) => (
-                                <Link
-                                    key={link.title}
-                                    component={RouterLink}
-                                    href={link.path}
-                                    color="inherit"
-                                    variant="body2"
-                                >
-                                    {link.title}
-                                </Link>
-                            ))}
-                        </Stack>
-                    </Grid>
-                </Grid>
-
-            </Container>
-        </Box>
     );
-
-    return mainFooter;
-
 }

@@ -4,21 +4,21 @@ import 'src/global.css';
 // i18n
 import 'src/locales/i18n';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
+ 
 import { SpeedInsights } from '@vercel/speed-insights/next';
-// eslint-disable-next-line import/no-extraneous-dependencies
+ 
 import { cookies } from 'next/headers'
 
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
 import { LocalizationProvider } from 'src/locales';
-import { primaryFont } from 'src/theme/typography';
+import { primaryFont, secondaryFont } from 'src/theme/typography';
 
 import ProgressBar from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import SnackbarProvider from 'src/components/snackbar/snackbar-provider';
-import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
+import { SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context/jwt';
 import { APP_NAME, COOKIE_NAME, GA_TRACKING_ID } from '@base/config-global';
@@ -29,7 +29,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 // ----------------------------------------------------------------------
 
 export const viewport = {
-    themeColor: '#5C3BA4',
+    themeColor: '#201913',
     width: 'device-width',
     initialScale: 1,
     maximumScale: 5,
@@ -62,7 +62,7 @@ export default async function RootLayout({ children }: Props) {
     const showCookieBanner = !cookieStore.has(COOKIE_NAME);
 
     return (
-        <html lang="hr" className={primaryFont.className}>
+        <html lang="hr" className={`${primaryFont.className} ${secondaryFont.variable}`}>
             <body>
                 <AuthProvider>
                     <LocalizationProvider>
@@ -79,7 +79,6 @@ export default async function RootLayout({ children }: Props) {
                             <ThemeProvider>
                                 <MotionLazy>
                                     <SnackbarProvider>
-                                        <SettingsDrawer />
                                         <ProgressBar />
                                         {children}
                                     </SnackbarProvider>

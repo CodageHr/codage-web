@@ -1,13 +1,25 @@
 import { alpha } from '@mui/material/styles';
 
+import { sand, brand } from '../tokens';
 import { grey, primary } from '../palette';
 
 // ----------------------------------------------------------------------
 
 type PresetType = 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red';
 
-export function createPresets(preset: PresetType) {
-    const primaryColor = getPrimary(preset);
+// On dark surfaces the brand primary becomes the lighter terracotta accent
+// (#E07E58) with ink text (#201913), per HANDOFF §1 dark-mode mapping.
+const primaryDark = {
+    lighter: brand[200],
+    light: brand[300],
+    main: brand.dark, // #E07E58
+    dark: brand[400], // #DF8663 (hover)
+    darker: brand[600],
+    contrastText: sand[900], // #201913
+};
+
+export function createPresets(preset: PresetType, mode: 'light' | 'dark' = 'light') {
+    const primaryColor = getPrimary(preset, mode);
 
     const theme = {
         palette: {
@@ -79,9 +91,9 @@ export const presetOptions = [
     { name: 'red', value: red.main },
 ];
 
-export function getPrimary(preset: PresetType) {
+export function getPrimary(preset: PresetType, mode: 'light' | 'dark' = 'light') {
     return {
-        default: primary,
+        default: mode === 'dark' ? primaryDark : primary,
         cyan,
         purple,
         blue,

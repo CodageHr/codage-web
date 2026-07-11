@@ -1,44 +1,23 @@
 'use client';
 
-import { useScroll } from 'framer-motion';
-
-import Box from '@mui/material/Box';
-
 import MainLayout from 'src/layouts/main';
 
-import ScrollProgress from 'src/components/scroll-progress';
-
 import HomeHero from '../home-hero';
-import HomeMinimal from '../home-minimal';
-import HomeHowItWorks from '../home-how-it-works';
+import HomeServices from '../home-minimal';
+import HomeCta from '../home-advertisement';
+import HomeProcess from '../home-how-it-works';
 import HomeTestimonials from '../home-testimonials';
-import HomeAdvertisement from '../home-advertisement';
-
-// ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
-    const { scrollYProgress } = useScroll();
-
     return (
         <MainLayout>
-            <ScrollProgress scrollYProgress={scrollYProgress} />
-
             <HomeHero />
-
-            <Box
-                sx={{
-                    overflow: 'hidden',
-                    position: 'relative',
-                    bgcolor: 'background.default',
-                }}
-            >
-                <HomeMinimal />
-                <HomeHowItWorks />
-                <HomeTestimonials />
-                <HomeAdvertisement />
-            </Box>
+            <HomeServices />
+            <HomeProcess />
+            <HomeTestimonials />
+            <HomeCta />
         </MainLayout>
     );
 }
