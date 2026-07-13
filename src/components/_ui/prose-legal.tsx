@@ -1,5 +1,7 @@
 import { SxProps, Theme } from '@mui/material/styles';
 
+import { brand } from 'src/theme/tokens';
+
 // ----------------------------------------------------------------------
 
 // Shared prose styling for the legal content components. Spread onto the
@@ -30,5 +32,5 @@ export const proseSx: SxProps<Theme> = {
         lineHeight: 1.7,
         color: 'text.secondary',
     },
-    '& a': { color: 'primary.dark', fontWeight: 700 },
+    '& a': { color: brand[700], fontWeight: 700 }, // AA on the warm sand bg
 };

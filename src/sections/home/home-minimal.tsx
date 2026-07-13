@@ -61,7 +61,7 @@ function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
                     direction="row"
                     sx={{ alignItems: 'center', justifyContent: 'space-between', gridColumn: { xs: '2', md: 'auto' } }}
                 >
-                    <Typography variant="caption" sx={{ color: 'text.disabled', mr: 2 }}>
+                    <Typography variant="caption" sx={{ color: 'text.secondary', mr: 2 }}>
                         {row.tech}
                     </Typography>
                     <Iconify

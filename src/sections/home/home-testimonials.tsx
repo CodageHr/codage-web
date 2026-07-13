@@ -127,14 +127,26 @@ export default function HomeTestimonials() {
                                 sx={{
                                     p: 0,
                                     border: 'none',
+                                    background: 'none',
                                     cursor: 'pointer',
-                                    height: 8,
-                                    width: i === index ? 24 : 8,
-                                    borderRadius: 4,
-                                    bgcolor: i === index ? brand[500] : alpha(cream, 0.3),
-                                    transition: (theme) => theme.transitions.create(['width', 'background-color'], { duration: 200 }),
+                                    height: 44,
+                                    minWidth: 24,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
                                 }}
-                            />
+                            >
+                                <Box
+                                    sx={{
+                                        height: 8,
+                                        width: i === index ? 24 : 8,
+                                        borderRadius: 4,
+                                        bgcolor: i === index ? brand[500] : alpha(cream, 0.3),
+                                        transition: (theme) =>
+                                            theme.transitions.create(['width', 'background-color'], { duration: 200 }),
+                                    }}
+                                />
+                            </Box>
                         ))}
                     </Stack>
 

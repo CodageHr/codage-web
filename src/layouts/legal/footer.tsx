@@ -71,7 +71,7 @@ export default function Footer() {
                     </Stack>
                 </Stack>
 
-                <Typography variant="caption" sx={{ display: 'block', mt: 3, color: 'text.disabled' }}>
+                <Typography variant="caption" sx={{ display: 'block', mt: 3, color: 'text.secondary' }}>
                     © {currentYear} Codage d.o.o. {t('allRightsReserved')}
                 </Typography>
             </Container>

@@ -96,8 +96,14 @@ export function button(theme: Theme) {
             ...(ownerState.color === color && {
                 // CONTAINED
                 ...(containedVariant && {
+                    // Light mode: brand-600 base keeps white button text at AA contrast (>=4.5:1).
+                    // Dark mode keeps the mode-aware primary (#E07E58 + ink text, already AA).
+                    ...(color === 'primary' && lightMode && {
+                        backgroundColor: brand[600],
+                        color: theme.palette.common.white,
+                    }),
                     '&:hover': {
-                        backgroundColor: theme.palette[color].dark,
+                        backgroundColor: color === 'primary' && lightMode ? brand[700] : theme.palette[color].dark,
                         boxShadow: color === 'primary' ? softShadows.primaryGlow : theme.customShadows[color],
                     },
                     ...(color === 'primary' && {

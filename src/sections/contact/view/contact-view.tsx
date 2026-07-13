@@ -100,7 +100,7 @@ export default function ContactView() {
                         {/* form */}
                         <Grid size={{ xs: 12, md: 7 }}>
                             <Card sx={{ p: { xs: 3, md: 5 }, borderRadius: `${radii.xl}px` }}>
-                                <Typography variant="h3" sx={{ mb: 3 }}>
+                                <Typography variant="h3" component="h2" sx={{ mb: 3 }}>
                                     {t('contact_form_heading')}
                                 </Typography>
                                 <ContactForm variant="full" />
@@ -114,7 +114,7 @@ export default function ContactView() {
                                     <Link href="mailto:kontakt@codage.hr" underline="hover" sx={contactLinkSx}>
                                         kontakt@codage.hr
                                     </Link>
-                                    <Typography variant="caption" sx={{ display: 'block', color: 'text.disabled', mt: 0.5 }}>
+                                    <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary', mt: 0.5 }}>
                                         {t('contact_info_email_note')}
                                     </Typography>
                                 </InfoRow>
@@ -123,7 +123,7 @@ export default function ContactView() {
                                     <Link href="tel:+38598403330" underline="hover" sx={contactLinkSx}>
                                         +385 98 403 330
                                     </Link>
-                                    <Typography variant="caption" sx={{ display: 'block', color: 'text.disabled', mt: 0.5 }}>
+                                    <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary', mt: 0.5 }}>
                                         {t('contact_info_phone_note')}
                                     </Typography>
                                 </InfoRow>
@@ -133,7 +133,7 @@ export default function ContactView() {
                                         <Typography variant="body2">
                                             {t('contact_hours_weekdays')} · {t('working_hours_value_short')}
                                         </Typography>
-                                        <Typography variant="body2" sx={{ color: 'text.disabled' }}>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                             {t('contact_hours_weekend')} · {t('contact_hours_closed')}
                                         </Typography>
                                     </Stack>

@@ -113,7 +113,8 @@ export default function RootLayout({ children }: Props) {
                         </SettingsProvider>
                     </LocalizationProvider>
                 </AuthProvider>
-                <SpeedInsights />
+                {/* Vercel Speed Insights only works on Vercel; skip elsewhere to avoid a 404 */}
+                {process.env.VERCEL ? <SpeedInsights /> : null}
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />
                 <StructuredData />
                 <CookieBanner />

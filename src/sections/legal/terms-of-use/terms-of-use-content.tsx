@@ -20,7 +20,7 @@ export default function TermsOfUseContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('terms_of_use_intro')}</Typography>
                     <Typography variant={'body1'} >{translate('terms_of_use_intro_p1')}</Typography>
@@ -28,7 +28,7 @@ export default function TermsOfUseContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('terms_of_use_website_use')}</Typography>
                     <Typography variant={'body1'} >{translate('terms_of_use_website_use_p1')}</Typography>
@@ -36,7 +36,7 @@ export default function TermsOfUseContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('terms_of_use_content')}</Typography>
                     <Typography variant={'body1'} >{translate('terms_of_use_content_p1')}</Typography>
@@ -44,7 +44,7 @@ export default function TermsOfUseContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('terms_of_use_privacy')}</Typography>
                     <Typography variant={'body1'} >
@@ -65,7 +65,7 @@ export default function TermsOfUseContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('terms_of_use_jurisdiction')}</Typography>
                     <Typography variant={'body1'} >{translate('terms_of_use_jurisdiction_p1')}</Typography>

@@ -83,7 +83,7 @@ export default function Footer() {
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                 {t('footer_blurb')}
                             </Typography>
-                            <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                                 {t('company_address')}
                             </Typography>
                         </Stack>
@@ -133,7 +133,7 @@ export default function Footer() {
                             >
                                 +385 98 403 330
                             </Link>
-                            <Typography variant="caption" sx={{ color: 'text.disabled', mt: 0.5 }}>
+                            <Typography variant="caption" sx={{ color: 'text.secondary', mt: 0.5 }}>
                                 {t('working_hours')}
                             </Typography>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -145,7 +145,7 @@ export default function Footer() {
 
                 <Divider sx={{ mt: { xs: 5, md: 8 }, mb: 3 }} />
 
-                <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                     © {currentYear} Codage d.o.o. {t('allRightsReserved')}
                 </Typography>
             </Container>

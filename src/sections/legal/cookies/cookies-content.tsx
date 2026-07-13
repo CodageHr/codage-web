@@ -28,7 +28,7 @@ export default function CookiesContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('cookie_policy_log_info')}</Typography>
                     <Typography variant={'body1'} >{translate('cookie_policy_log_info_text')}</Typography>
@@ -36,7 +36,7 @@ export default function CookiesContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('cookie_policy_what_are_cookies')}</Typography>
                     <Typography variant={'body1'} sx={{
@@ -56,7 +56,7 @@ export default function CookiesContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('types_of_cookies')}</Typography>
                     <Typography variant={'body1'} sx={{
@@ -82,7 +82,7 @@ export default function CookiesContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('disabling_cookies')}</Typography>
                     <Typography variant={'body1'} sx={{

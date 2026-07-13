@@ -24,13 +24,13 @@ export function ValueCard({ num, title, desc }: { num: string; title: string; de
                     fontFamily: (theme) => theme.typography.fontSecondaryFamily,
                     fontWeight: 700,
                     fontSize: 15,
-                    color: brand[600],
+                    color: brand[700], // AA on the sand-50 card
                     mb: 1.5,
                 }}
             >
                 {num}
             </Typography>
-            <Typography variant="h5" sx={{ mb: 1 }}>
+            <Typography variant="h5" component="h3" sx={{ mb: 1 }}>
                 {title}
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>

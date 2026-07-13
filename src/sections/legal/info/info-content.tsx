@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import { paths } from '@routes/paths';
 import { RouterLink } from '@routes/components';
 
-import { radii } from 'src/theme/tokens';
+import { brand, radii } from 'src/theme/tokens';
 
 import { useTranslate } from '@base/locales';
 
@@ -31,7 +31,7 @@ function DashLine({ children }: { children: React.ReactNode }) {
     );
 }
 
-const linkSx = { color: 'primary.dark', fontWeight: 700 } as const;
+const linkSx = { color: brand[700], fontWeight: 700 } as const; // AA on white + sand-100
 
 export default function InfoContent() {
     const { t } = useTranslate();

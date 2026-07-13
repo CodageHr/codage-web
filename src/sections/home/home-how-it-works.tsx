@@ -63,7 +63,7 @@ export default function HomeProcess() {
                                     >
                                         {step.num}
                                     </Typography>
-                                    <Typography variant="h4">{step.title}</Typography>
+                                    <Typography variant="h4" component="h3">{step.title}</Typography>
                                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                         {step.desc}
                                     </Typography>

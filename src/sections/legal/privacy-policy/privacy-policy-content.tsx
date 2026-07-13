@@ -30,7 +30,7 @@ export default function PrivacyPolicyContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('privacy_policy_intro')}</Typography>
                     <Typography variant={'body1'} sx={{
@@ -49,13 +49,13 @@ export default function PrivacyPolicyContent() {
                 <Box sx={{
                     mb: 2
                 }}>
-                    <Typography variant={'h3'} sx={{
+                    <Typography variant={'h3'} component={'h2'} sx={{
                         mb: 1
                     }}>{translate('privacy_policy_collect_info_title')}</Typography>
                     <Typography variant={'body1'} sx={{
                         mb: 1
                     }} >{translate('privacy_policy_collect_info_p1')}</Typography>
-                    <Typography variant={'h4'} sx={{
+                    <Typography variant={'h4'} component={'h3'} sx={{
                         mb: 1
                     }}>{translate('privacy_policy_collect_info_subtitle_1')}</Typography>
                     <Typography variant={'body1'} sx={{
@@ -70,7 +70,7 @@ export default function PrivacyPolicyContent() {
                     <Typography variant={'body1'}  sx={{
                         mb: 1
                     }}>{translate('privacy_policy_collect_info_subtitle_1_p4')}</Typography>
-                    <Typography variant={'h4'} sx={{
+                    <Typography variant={'h4'} component={'h3'} sx={{
                         mb: 1
                     }}>{translate('privacy_policy_collect_info_subtitle_2')}</Typography>
                     <Typography variant={'body1'} sx={{
@@ -109,7 +109,7 @@ export default function PrivacyPolicyContent() {
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_disclosure')}</Typography>
                         <Typography variant={'body1'} sx={{
@@ -122,7 +122,7 @@ export default function PrivacyPolicyContent() {
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_info_access')}</Typography>
                         <Typography variant={'body1'} sx={{
@@ -138,7 +138,7 @@ export default function PrivacyPolicyContent() {
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_info_retention')}</Typography>
                         <Typography variant={'body1'} sx={{
@@ -155,13 +155,13 @@ export default function PrivacyPolicyContent() {
                         }}>{translate('privacy_policy_info_retention_p4')}</Typography>
                     </Box>
                     {/* <Box mb={2}>
-                        <Typography variant={'h3'} mb={1}>{translate('privacy_policy_child_protection')}</Typography>
+                        <Typography variant={'h3'} component={'h2'} mb={1}>{translate('privacy_policy_child_protection')}</Typography>
                         <Typography variant={'body1'} mb={1} >{translate('privacy_policy_child_protection_p1')}</Typography>
                     </Box> */}
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_info_security')}</Typography>
                         <Typography variant={'body1'} sx={{
@@ -171,7 +171,7 @@ export default function PrivacyPolicyContent() {
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_changes')}</Typography>
                         <Typography variant={'body1'} sx={{
@@ -184,7 +184,7 @@ export default function PrivacyPolicyContent() {
                     <Box sx={{
                         mb: 2
                     }}>
-                        <Typography variant={'h3'} sx={{
+                        <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
                         }}>{translate('privacy_policy_suggestion')}</Typography>
                         <Typography variant={'body1'} sx={{

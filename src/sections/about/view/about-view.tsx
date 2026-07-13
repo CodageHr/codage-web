@@ -67,7 +67,7 @@ function QuoteCard({ item }: { item: Quote }) {
                     </Avatar>
                     <Box>
                         <Typography sx={{ fontWeight: 700 }}>{item.name}</Typography>
-                        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                             {item.role}
                         </Typography>
                     </Box>
