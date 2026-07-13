@@ -16,6 +16,9 @@ out
 dist
 build
 
+# Next.js generated type declarations (regenerated on every build)
+next-env.d.ts
+
 # environment variables
 .env
 .env.local
@@ -30,6 +33,10 @@ build
 .unimportedrc.json
 tsconfig.tsbuildinfo
 .vscode
+
+# Claude Code — per-developer local config (keep a shared .claude/settings.json trackable)
+.claude/settings.local.json
+.claude/launch.json
 
 npm-debug.log*
 yarn-debug.log*
