@@ -16,7 +16,6 @@ import { brand, onDark } from 'src/theme/tokens';
 
 import { useTranslate } from '@base/locales';
 
-import Iconify from '@components/iconify';
 import { ValueCard } from '@components/_ui/cards';
 import DarkCtaCard from '@components/_ui/dark-cta-card';
 import { varFade, MotionViewport } from '@components/animate';
@@ -144,25 +143,23 @@ export default function AboutView() {
                 </SectionContainer>
             </Box>
 
-            {/* Photo slot (placeholder) */}
+            {/* Team / office photo */}
             <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
                 <SectionContainer>
-                    <Stack
+                    <Box
+                        component="img"
+                        src="/assets/images/about/office.jpg"
+                        alt={t('about_photo_alt')}
+                        loading="lazy"
                         sx={{
+                            display: 'block',
+                            width: 1,
                             height: { xs: 280, md: 440 },
+                            objectFit: 'cover',
                             borderRadius: '24px',
                             bgcolor: 'background.neutral',
-                            border: (theme) => `1px dashed ${theme.palette.divider}`,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            textAlign: 'center',
-                            color: 'text.disabled',
-                            gap: 1,
                         }}
-                    >
-                        <Iconify icon="solar:gallery-wide-linear" width={40} />
-                        <Typography variant="body2">{t('about_photo_placeholder')}</Typography>
-                    </Stack>
+                    />
                 </SectionContainer>
             </Box>
 
