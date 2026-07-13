@@ -4,9 +4,9 @@ import 'src/global.css';
 // i18n
 import 'src/locales/i18n';
 
- 
+
 import { SpeedInsights } from '@vercel/speed-insights/next';
- 
+
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
@@ -107,6 +107,7 @@ export default function RootLayout({ children }: Props) {
                                         {children}
                                     </SnackbarProvider>
                                 </MotionLazy>
+                                <CookieBanner />
                             </ThemeProvider>
                         </SettingsProvider>
                     </LocalizationProvider>
@@ -115,7 +116,6 @@ export default function RootLayout({ children }: Props) {
                 {process.env.VERCEL ? <SpeedInsights /> : null}
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />
                 <StructuredData />
-                <CookieBanner />
             </body>
         </html>
     );
