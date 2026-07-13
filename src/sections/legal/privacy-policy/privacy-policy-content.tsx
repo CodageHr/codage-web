@@ -124,6 +124,36 @@ export default function PrivacyPolicyContent() {
                     }}>
                         <Typography variant={'h3'} component={'h2'} sx={{
                             mb: 1
+                        }}>{translate('privacy_policy_recaptcha')}</Typography>
+                        <Typography variant={'body1'} sx={{
+                            mb: 1
+                        }}>{translate('privacy_policy_recaptcha_p1')}</Typography>
+                        <Typography variant={'body1'}>
+                            {translate('privacy_policy_recaptcha_p2')}{' '}
+                            <Link
+                                component={RouterLink}
+                                target={'_blank'}
+                                rel="noopener"
+                                href={'https://policies.google.com/privacy?hl=hr-HR'}
+                                sx={{ color: 'primary.main' }}>
+                                {translate('contact_recaptcha_privacy')}
+                            </Link>
+                            {' '}{translate('contact_recaptcha_and')}{' '}
+                            <Link
+                                component={RouterLink}
+                                target={'_blank'}
+                                rel="noopener"
+                                href={'https://policies.google.com/terms?hl=hr-HR'}
+                                sx={{ color: 'primary.main' }}>
+                                {translate('contact_recaptcha_terms')}
+                            </Link>.
+                        </Typography>
+                    </Box>
+                    <Box sx={{
+                        mb: 2
+                    }}>
+                        <Typography variant={'h3'} component={'h2'} sx={{
+                            mb: 1
                         }}>{translate('privacy_policy_info_access')}</Typography>
                         <Typography variant={'body1'} sx={{
                             mb: 1
