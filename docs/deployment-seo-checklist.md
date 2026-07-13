@@ -31,18 +31,36 @@ meta/canonical, JSON-LD, robots, sitemap, llms.txt, IndexNow) — ovdje su korac
 
 ---
 
-## 1. Deploy na produkciju (Vercel)
+## 1. Deploy na produkciju (Vercel iza Cloudflarea)
 
-Vercel deploya iz GitHuba (push na produkcijsku granu). Bitno je da vrijedi:
+Setup: **Cloudflare** drži DNS (nameserveri `*.ns.cloudflare.com`), proxied (narančasti
+oblak) → origin je **Vercel**. Vercel deploya iz GitHuba (push na produkcijsku granu).
 
 - [ ] Env varijable iz koraka 0 postavljene u **Vercel → Project → Settings →
       Environment Variables** (za *Production*), pa **Redeploy**
-- [ ] `codage.hr` dodan kao domena u **Vercel → Settings → Domains**; Vercel auto-izda
-      HTTPS certifikat
-- [ ] `www.codage.hr` postavljen na **redirect → `codage.hr`** (ili obrnuto — bitno je
-      jedna kanonska verzija; canonical u kodu je bez `www`)
 - [ ] Produkcijski deploy nije iza Vercel **Deployment Protection** (password/preview
       gate) — inače botovi ne mogu do stranice
+
+**⚠️ Kanonski smjer domene — apex, ne www.** Canonical/sitemap/OG/JSON-LD u kodu koriste
+`https://codage.hr` **bez `www`**. Infra MORA slati u istom smjeru, inače canonical
+pokazuje na URL koji se redirecta (proturječan signal → loša indeksacija).
+
+- [ ] **Vercel → Settings → Domains**: `codage.hr` = **Primary (No Redirect)**;
+      `www.codage.hr` = **Redirect → `codage.hr`** (308). *(Redirect radi Vercel — 308
+      na apexu ima `x-vercel-id` — pa se mijenja ovdje, ne u Cloudflareu.)*
+- [ ] **Cloudflare → SSL/TLS → Overview = Full (strict)**. Nikako *Flexible* — s Vercelom
+      Flexible radi beskonačni redirect loop.
+- [ ] **Cloudflare → DNS**: apex + `www` ostaju proxied na Vercel — ništa ne mijenjati.
+- [ ] Ako apex i dalje ide na www: **Cloudflare → Rules → Redirect Rules / Page Rules** →
+      ukloni zaostalo „redirect to www" pravilo.
+- [ ] Nakon deploya: **Cloudflare → Caching → Purge Everything** (izbriši stari HTML/asset cache)
+
+Provjera smjera (nakon flipa):
+
+```bash
+curl -sSI https://www.codage.hr | grep -iE 'HTTP|location'   # → 308 … location: https://codage.hr/
+curl -sSI https://codage.hr     | grep -i  HTTP              # → 200
+```
 
 ---
 
