@@ -19,7 +19,8 @@
     "re:build": "npm run rm:all && npm install && npm run build",
     "dev:ts": "npm run dev & npm run ts:watch",
     "ts": "tsc --noEmit --incremental",
-    "ts:watch": "npm run ts -- --watch"
+    "ts:watch": "npm run ts -- --watch",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "pre-commit": [
     "lint"
