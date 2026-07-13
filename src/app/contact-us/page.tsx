@@ -6,6 +6,7 @@ export const metadata = {
     title: 'Kontakt',
     description:
         'Javite nam se — procjena projekta i prvi razgovor su besplatni. Odgovaramo unutar jednog radnog dana. kontakt@codage.hr, +385 98 403 330.',
+    alternates: { canonical: '/contact-us/' },
 };
 
 export default function ContactPage() {

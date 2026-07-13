@@ -6,6 +6,7 @@ export const metadata = {
     title: 'Politika privatnosti',
     description:
         'Politika privatnosti — kako Codage d.o.o. prikuplja, koristi i štiti vaše osobne podatke u skladu s GDPR-om.',
+    alternates: { canonical: '/privacy-policy/' },
 };
 export default function PrivacyPolicyPage() {
 

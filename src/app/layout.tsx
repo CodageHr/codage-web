@@ -45,20 +45,18 @@ export const metadata = {
     },
     description,
     keywords: 'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Next.js, Laravel, ui, ux',
-    alternates: { canonical: '/' },
+    // canonical is set per page (below) — a root canonical would make every page
+    // look like a duplicate of "/". og/twitter title+description fall back to each
+    // page's own title/description.
     openGraph: {
         type: 'website',
         locale: 'hr_HR',
         siteName: APP_NAME,
         url: APP_HOST,
-        title: `${APP_NAME} — Softver po mjeri`,
-        description,
         images: [{ url: '/og-image.png', width: 1200, height: 630, alt: APP_NAME }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: `${APP_NAME} — Softver po mjeri`,
-        description,
         images: ['/og-image.png'],
     },
     manifest: '/manifest.json',
