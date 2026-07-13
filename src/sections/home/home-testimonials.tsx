@@ -26,21 +26,21 @@ const DATA: Testimonial[] = [
         name: 'Slobodan Jović',
         role: 'CEO i osnivač · Selekcija.hr',
         quote:
-      'Stručnost tima Codage bila je ključna za postizanje visokih standarda. Inovativna rješenja i besprijekorno korisničko iskustvo — suradnju preporučujemo svima.',
+      'Suradnja s timom Codage bila je apsolutni užitak! Njihova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Briljirali su u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću u radu s našim programerima znatno su doprinijeli uspjehu našeg projekta. Suradnju preporučujemo svima koji traže pravog stručnjaka u području web razvoja!',
         image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg',
     },
     {
         name: 'Brian Kulman',
         role: 'CTO · Nearpeer',
         quote:
-      'Petar’s enhancements consistently raised our EdTech app to new levels of excellence. From front-end to back-end, he had us covered.',
+      'Petar Vrkić is a coding expert. Over two years, Petar\'s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases — he had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar\'s experience and knowledge would be a great asset to any team or project!',
         image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg',
     },
     {
         name: 'Bruno Batarelo',
         role: 'CEO · Quantum-bit',
         quote:
-      'Predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji našeg projekta.',
+      'Petar se pokazao kao izuzetno vrijedan član tima tijekom suradnje na našim zajedničkim projektima. Njegovo stručno znanje iz područja web i mobilnog razvoja bilo je ključno u stvaranju inovativne web i mobilne aplikacije. Njegova predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji projekta.',
     },
 ];
 
