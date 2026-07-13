@@ -1,0 +1,22 @@
+name: IndexNow ping
+
+# Vercel creates a GitHub "deployment" for every push and marks it `success`
+# once the deploy is actually live. We react to that so IndexNow pings the real,
+# already-updated production URL (never a build-time / not-yet-live URL).
+on:
+  deployment_status:
+
+jobs:
+  indexnow:
+    # Only for PRODUCTION deploys that finished successfully — skip Preview deploys.
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      contains(github.event.deployment_status.environment, 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # No `npm ci` — scripts/indexnow.mjs is zero-dependency (uses built-in fetch).
+      - run: npm run indexnow

@@ -31,14 +31,18 @@ meta/canonical, JSON-LD, robots, sitemap, llms.txt, IndexNow) — ovdje su korac
 
 ---
 
-## 1. Deploy na produkciju
+## 1. Deploy na produkciju (Vercel)
 
-Deploy onako kako inače pushate (Docker na VPS / hosting). Bitno je da nakon deploya
-**na pravoj domeni** vrijedi:
+Vercel deploya iz GitHuba (push na produkcijsku granu). Bitno je da vrijedi:
 
-- [ ] `https://codage.hr` se otvara preko **HTTPS-a** (valjan certifikat)
-- [ ] `http://` i `www.` rade **301 redirect** na `https://codage.hr` (jedna kanonska verzija)
-- [ ] Nema staging/„coming soon" gatea koji blokira botove
+- [ ] Env varijable iz koraka 0 postavljene u **Vercel → Project → Settings →
+      Environment Variables** (za *Production*), pa **Redeploy**
+- [ ] `codage.hr` dodan kao domena u **Vercel → Settings → Domains**; Vercel auto-izda
+      HTTPS certifikat
+- [ ] `www.codage.hr` postavljen na **redirect → `codage.hr`** (ili obrnuto — bitno je
+      jedna kanonska verzija; canonical u kodu je bez `www`)
+- [ ] Produkcijski deploy nije iza Vercel **Deployment Protection** (password/preview
+      gate) — inače botovi ne mogu do stranice
 
 ---
 
@@ -98,11 +102,22 @@ Bingov indeks koriste Bing, Copilot, ChatGPT Search i dijelom Perplexity — bit
 Trenutno javlja Bing/Yandex/Seznam da su URL-ovi novi/promijenjeni. Ključ već serviramo
 na `/710caab854f648a7d30f6d001181c944.txt`.
 
+> **Vercel napomena:** skripta se **ne izvršava na Vercelu**. Ona samo pročita javni
+> `https://codage.hr/sitemap.xml` i pošalje POST na `api.indexnow.org` — pa ide s bilo
+> kojeg mjesta s Node-om (laptop ili GitHub Action), **nakon** što je deploy live.
+
+**A) Ručno (0 setupa):**
+
 ```bash
 npm run indexnow      # pročita živi sitemap i pingne sve URL-ove
 ```
 
 - [ ] Vrati `200 OK (7 URLs)`
+
+**B) Automatski nakon svakog Vercel deploya** — GitHub Action
+[`.github/workflows/indexnow.yml`](../.github/workflows/indexnow.yml) okida se na
+`deployment_status: success` (tj. kad je Vercel deploy stvarno live) i pozove IndexNow.
+Ništa za postaviti — radi čim je mergean u granu koju Vercel deploya.
 
 ---
 
