@@ -62,6 +62,11 @@ export function cssBaseline(theme: Theme) {
                     backgroundColor: brand[100],
                     color: ink,
                 },
+                // Hide the floating reCAPTCHA v3 badge — the required disclosure text is
+                // rendered inline in the contact form instead (Google ToS-compliant).
+                '.grecaptcha-badge': {
+                    visibility: 'hidden',
+                },
                 // Respect reduced-motion preference
                 '@media (prefers-reduced-motion: reduce)': {
                     '*, *::before, *::after': {

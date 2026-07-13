@@ -19,6 +19,7 @@ import { RouterLink } from '@routes/components';
 import { sendContactFormToAdmin } from '@utils/email';
 
 import { useTranslate } from '@base/locales';
+import { useRecaptcha } from '@hooks/use-recaptcha';
 
 import { RHFTextField } from '@components/hook-form';
 import FormProvider from '@components/hook-form/form-provider';
@@ -51,6 +52,7 @@ function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.Re
 
 export default function ContactForm({ variant = 'mini' }: Props) {
     const { t } = useTranslate();
+    const { executeRecaptcha } = useRecaptcha();
 
     const isFull = variant === 'full';
 
@@ -85,14 +87,15 @@ export default function ContactForm({ variant = 'mini' }: Props) {
     const onSubmit = useCallback(
         async (data: ContactFormValues) => {
             try {
-                await sendContactFormToAdmin({ data });
+                const recaptchaToken = await executeRecaptcha('contact_form');
+                await sendContactFormToAdmin({ data, recaptchaToken });
                 reset();
                 enqueueSnackbar(`${t('messageSuccessfullySent')}`, { variant: 'success' });
             } catch (error) {
                 enqueueSnackbar(`${t('messageFailedToSend')}`, { variant: 'error' });
             }
         },
-        [reset, t]
+        [executeRecaptcha, reset, t]
     );
 
     const privacyNotice = (
@@ -100,6 +103,31 @@ export default function ContactForm({ variant = 'mini' }: Props) {
             {t('contact_privacy_notice')}{' '}
             <Link component={RouterLink} href={paths.privacyPolicy} sx={{ color: 'primary.dark', fontWeight: 700 }}>
                 {t('privacy_policy')}
+            </Link>
+            .
+        </Typography>
+    );
+
+    // Google requires this disclosure when the reCAPTCHA badge is hidden (see css-baseline).
+    const recaptchaNotice = (
+        <Typography variant="caption" sx={{ display: 'block', color: 'text.disabled', lineHeight: 1.5 }}>
+            {t('contact_recaptcha_notice')}{' '}
+            <Link
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ color: 'text.secondary', textDecoration: 'underline' }}
+            >
+                {t('contact_recaptcha_privacy')}
+            </Link>{' '}
+            {t('contact_recaptcha_and')}{' '}
+            <Link
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ color: 'text.secondary', textDecoration: 'underline' }}
+            >
+                {t('contact_recaptcha_terms')}
             </Link>
             .
         </Typography>
@@ -130,7 +158,10 @@ export default function ContactForm({ variant = 'mini' }: Props) {
                         {t('contact_submit_label')}
                     </Button>
 
-                    <Box sx={{ textAlign: 'center' }}>{privacyNotice}</Box>
+                    <Stack spacing={1} sx={{ textAlign: 'center' }}>
+                        {privacyNotice}
+                        {recaptchaNotice}
+                    </Stack>
                 </Stack>
             </FormProvider>
         );
@@ -190,6 +221,8 @@ export default function ContactForm({ variant = 'mini' }: Props) {
                         {t('contact_submit_label')}
                     </Button>
                 </Stack>
+
+                {recaptchaNotice}
             </Stack>
         </FormProvider>
     );
