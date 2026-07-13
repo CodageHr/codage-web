@@ -18,6 +18,7 @@ import { useTranslate } from '@base/locales';
 
 import { ValueCard } from '@components/_ui/cards';
 import DarkCtaCard from '@components/_ui/dark-cta-card';
+import BreadcrumbJsonLd from '@components/breadcrumb-jsonld';
 import { varFade, MotionViewport } from '@components/animate';
 import PageHeaderBand from '@components/_ui/page-header-band';
 import { SectionContainer } from '@components/_ui/section';
@@ -81,6 +82,12 @@ export default function AboutView() {
 
     return (
         <MainLayout>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: t('home'), path: '/' },
+                    { name: t('about_eyebrow'), path: '/about-us' },
+                ]}
+            />
             <PageHeaderBand
                 eyebrow={t('about_eyebrow')}
                 title={

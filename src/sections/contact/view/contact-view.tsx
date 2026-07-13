@@ -16,6 +16,7 @@ import { brand, sand, cream, onDark, radii } from 'src/theme/tokens';
 import { useTranslate } from '@base/locales';
 
 import Iconify from '@components/iconify';
+import BreadcrumbJsonLd from '@components/breadcrumb-jsonld';
 import PageHeaderBand from '@components/_ui/page-header-band';
 import { SectionContainer } from '@components/_ui/section';
 import ContactForm from '@components/have-an-idea-contact-card/contact-form';
@@ -73,6 +74,12 @@ export default function ContactView() {
 
     return (
         <MainLayout>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: t('home'), path: '/' },
+                    { name: t('contact_eyebrow'), path: '/contact-us' },
+                ]}
+            />
             <PageHeaderBand
                 eyebrow={t('contact_eyebrow')}
                 title={

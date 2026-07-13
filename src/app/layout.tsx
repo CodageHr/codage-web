@@ -7,8 +7,6 @@ import 'src/locales/i18n';
  
 import { SpeedInsights } from '@vercel/speed-insights/next';
  
-import { cookies } from 'next/headers'
-
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
@@ -22,7 +20,7 @@ import { SettingsProvider } from 'src/components/settings';
 
 import { AuthProvider } from 'src/auth/context/jwt';
 import StructuredData from '@components/structured-data';
-import { APP_HOST, APP_NAME, COOKIE_NAME, GA_TRACKING_ID } from '@base/config-global';
+import { APP_HOST, APP_NAME, GA_TRACKING_ID } from '@base/config-global';
 import { CookieBanner } from '@components/cookie-banner';
 
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -79,14 +77,19 @@ type Props = {
     children: React.ReactNode;
 };
 
-export default async function RootLayout({ children }: Props) {
-
-    const cookieStore = await cookies();
-    const showCookieBanner = !cookieStore.has(COOKIE_NAME);
-
+export default function RootLayout({ children }: Props) {
     return (
         <html lang="hr" className={`${primaryFont.className} ${secondaryFont.variable}`}>
             <body>
+                {/* No-JS / bot fallback: reveal scroll-in content that framer starts at opacity:0 */}
+                <noscript>
+                    {/* eslint-disable-next-line react/no-danger */}
+                    <style
+                        dangerouslySetInnerHTML={{
+                            __html: '[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}',
+                        }}
+                    />
+                </noscript>
                 <AuthProvider>
                     <LocalizationProvider>
                         <SettingsProvider
@@ -113,7 +116,7 @@ export default async function RootLayout({ children }: Props) {
                 <SpeedInsights />
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />
                 <StructuredData />
-                {showCookieBanner && <CookieBanner />}
+                <CookieBanner />
             </body>
         </html>
     );

@@ -1,0 +1,30 @@
+# Codage
+
+> Softverski studio iz Splita (Hrvatska). Izrađujemo web i mobilne aplikacije po mjeri — od prve skice do produkcije. Mali tim, velika pažnja: dizajn, razvoj i održavanje na jednom mjestu, bez prebacivanja odgovornosti.
+
+## O tvrtki
+- Naziv: Codage d.o.o.
+- Lokacija: Put gaja 6, 21292 Srinjine, Split, Hrvatska
+- Osnivač: Petar Vrkić
+- Kontakt: kontakt@codage.hr, +385 98 403 330
+- Radno vrijeme: Ponedjeljak–Petak, 08:00–16:00
+
+## Usluge
+- Web aplikacije — sigurne i brze, uredan i dokumentiran kod (React, Next.js, Laravel, Node.js, Spring Boot, Scala, AWS)
+- Mobilne aplikacije — nativne i hibridne (iOS, Android, React Native)
+- Dizajn i savjetovanje — UI/UX, prototipovi, tehnički audit
+
+## Kako radimo
+1. Definiranje zahtjeva — slušamo, pitamo i zajedno definiramo cilj
+2. Planiranje i dizajn — struktura i izgled prije prve linije koda
+3. Razvoj i testiranje — kratki ciklusi uz redovite demo sesije
+4. Održavanje — nadzor, podrška i nadogradnje nakon lansiranja
+
+## Stranice
+- Naslovnica: https://codage.hr/
+- O nama: https://codage.hr/about-us
+- Kontakt: https://codage.hr/contact-us
+- Pravni podaci: https://codage.hr/legal-info
+- Politika privatnosti: https://codage.hr/privacy-policy
+- Politika kolačića: https://codage.hr/cookies
+- Uvjeti korištenja: https://codage.hr/terms-of-use
