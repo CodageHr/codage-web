@@ -64,8 +64,11 @@ export default function ContactForm({ variant = 'mini' }: Props) {
         projectInfo: '',
     };
 
+    // One schema for both layouts — matches the backend contract (name/email/projectInfo
+    // required, company/phone optional). Keeping it single-source avoids the mini form
+    // drifting out of sync with the API and silently failing validation.
     const schema = Yup.object().shape({
-        name: isFull ? Yup.string().required(`${t('nameRequired')}`) : Yup.string(),
+        name: Yup.string().required(`${t('nameRequired')}`),
         company: Yup.string(),
         email: Yup.string().required(`${t('emailRequired')}`).email(`${t('invalidEmailFormat')}`),
         phone: Yup.string(),
@@ -133,96 +136,80 @@ export default function ContactForm({ variant = 'mini' }: Props) {
         </Typography>
     );
 
-    // ---- MINI (landing CTA) ----
-    if (!isFull) {
-        return (
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                <Stack spacing={2.5}>
-                    <Box>
-                        <FieldLabel htmlFor="cf-email">{t('contact_email_mini_label')}</FieldLabel>
-                        <RHFTextField id="cf-email" name="email" placeholder={t('emailPlaceholder')} />
-                    </Box>
+    // Same fields in both layouts; `full` lays them out in a 2-column grid (contact page),
+    // `mini` stacks them single-column to fit the narrow landing CTA card.
+    const colSize = isFull ? { xs: 12, sm: 6 } : { xs: 12 };
 
-                    <Box>
-                        <FieldLabel htmlFor="cf-project">{t('contact_project_mini_label')}</FieldLabel>
+    return (
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={isFull ? 3 : 2.5}>
+                {isFull && (
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        {t('contact_form_note')}
+                    </Typography>
+                )}
+
+                <Grid container spacing={2.5}>
+                    <Grid size={colSize}>
+                        <FieldLabel htmlFor="cf-name">{t('contact_name_label')}</FieldLabel>
+                        <RHFTextField id="cf-name" name="name" placeholder={t('contact_name_placeholder')} />
+                    </Grid>
+                    <Grid size={colSize}>
+                        <FieldLabel htmlFor="cf-company">{t('contact_company_label')}</FieldLabel>
+                        <RHFTextField id="cf-company" name="company" placeholder={t('contact_company_placeholder')} />
+                    </Grid>
+                    <Grid size={colSize}>
+                        <FieldLabel htmlFor="cf-email">{t('emailLabel')}</FieldLabel>
+                        <RHFTextField id="cf-email" name="email" placeholder={t('emailPlaceholder')} />
+                    </Grid>
+                    <Grid size={colSize}>
+                        <FieldLabel htmlFor="cf-phone">{t('contact_phone_label')}</FieldLabel>
+                        <RHFTextField id="cf-phone" name="phone" placeholder={t('contact_phone_placeholder')} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                        <FieldLabel htmlFor="cf-project">{t('projectInfoLabel')}</FieldLabel>
                         <RHFTextField
                             id="cf-project"
                             name="projectInfo"
                             placeholder={t('projectInfoPlaceholder')}
                             multiline
-                            rows={3}
-                        />
-                    </Box>
-
-                    <Button type="submit" variant="contained" color="secondary" size="large" fullWidth loading={isSubmitting}>
-                        {t('contact_submit_label')}
-                    </Button>
-
-                    <Stack spacing={1} sx={{ textAlign: 'center' }}>
-                        {privacyNotice}
-                        {recaptchaNotice}
-                    </Stack>
-                </Stack>
-            </FormProvider>
-        );
-    }
-
-    // ---- FULL (contact page) ----
-    return (
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={3}>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {t('contact_form_note')}
-                </Typography>
-
-                <Grid container spacing={2.5}>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <FieldLabel htmlFor="cf-name">{t('contact_name_label')}</FieldLabel>
-                        <RHFTextField id="cf-name" name="name" placeholder={t('contact_name_placeholder')} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <FieldLabel htmlFor="cf-company">{t('contact_company_label')}</FieldLabel>
-                        <RHFTextField id="cf-company" name="company" placeholder={t('contact_company_placeholder')} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <FieldLabel htmlFor="cf-email-full">{t('emailLabel')}</FieldLabel>
-                        <RHFTextField id="cf-email-full" name="email" placeholder={t('emailPlaceholder')} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                        <FieldLabel htmlFor="cf-phone">{t('contact_phone_label')}</FieldLabel>
-                        <RHFTextField id="cf-phone" name="phone" placeholder={t('contact_phone_placeholder')} />
-                    </Grid>
-                    <Grid size={{ xs: 12 }}>
-                        <FieldLabel htmlFor="cf-project-full">{t('projectInfoLabel')}</FieldLabel>
-                        <RHFTextField
-                            id="cf-project-full"
-                            name="projectInfo"
-                            placeholder={t('projectInfoPlaceholder')}
-                            multiline
-                            rows={6}
+                            rows={isFull ? 6 : 4}
                         />
                     </Grid>
                 </Grid>
 
-                <Stack
-                    direction={{ xs: 'column-reverse', sm: 'row' }}
-                    spacing={2}
-                    sx={{ alignItems: { sm: 'center' }, justifyContent: 'space-between' }}
-                >
-                    <Box sx={{ maxWidth: 320 }}>{privacyNotice}</Box>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        loading={isSubmitting}
-                        sx={{ width: { xs: 1, sm: 'auto' }, flexShrink: 0 }}
+                {isFull ? (
+                    <Stack
+                        direction={{ xs: 'column-reverse', sm: 'row' }}
+                        spacing={2}
+                        sx={{ alignItems: { sm: 'center' }, justifyContent: 'space-between' }}
                     >
+                        <Box sx={{ maxWidth: 320 }}>{privacyNotice}</Box>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            loading={isSubmitting}
+                            sx={{ width: { xs: 1, sm: 'auto' }, flexShrink: 0 }}
+                        >
+                            {t('contact_submit_label')}
+                        </Button>
+                    </Stack>
+                ) : (
+                    <Button type="submit" variant="contained" color="secondary" size="large" fullWidth loading={isSubmitting}>
                         {t('contact_submit_label')}
                     </Button>
-                </Stack>
+                )}
 
-                {recaptchaNotice}
+                {isFull ? (
+                    recaptchaNotice
+                ) : (
+                    <Stack spacing={1} sx={{ textAlign: 'center' }}>
+                        {privacyNotice}
+                        {recaptchaNotice}
+                    </Stack>
+                )}
             </Stack>
         </FormProvider>
     );
