@@ -14,15 +14,15 @@ meta/canonical, JSON-LD, robots, sitemap, llms.txt, IndexNow) — ovdje su korac
 
 - [ ] `npm run ts` — bez grešaka
 - [ ] `npm run lint` — bez grešaka
-- [ ] `npm run build` — prolazi; sve rute su `○ (Static)` (naslovnica, about-us,
-      contact-us, 4 pravne, `robots.txt`, `sitemap.xml`)
-- [ ] `redesign` grana mergeana u `main` (ili deployaš direktno `redesign` — po dogovoru)
+- [ ] `npm run build` — prolazi; emitira **14 stranica (7×2 lokala)** kao `● (SSG)`
+      pod `/[lang]/`, plus `robots.txt` + `sitemap.xml`
+- [ ] `feat/i18n-en` grana mergeana u `main` (Vercel deploya `main`)
 
-**Produkcijski env** (postavi na hostu / u CI-ju — NE commitati `.env`):
+**Produkcijski env** (Vercel → Settings → Environment Variables — NE commitati `.env`):
 
 | Varijabla | Vrijednost | Zašto |
 |---|---|---|
-| `NEXT_APP_HOST` | `https://codage.hr` | Baza za canonical, sitemap, OG, JSON-LD. **Mora biti točna** — kriva vrijednost pošalje Google na krivu domenu. |
+| `NEXT_PUBLIC_APP_HOST` | `https://codage.hr` | Baza za canonical/hreflang/sitemap/OG/JSON-LD + prefiks locale linkova. **Preimenovano iz `NEXT_APP_HOST`** — mora imati `NEXT_PUBLIC_` jer se čita i u browseru. Ažuriraj u Vercelu i **redeploy**. |
 | `NEXT_PUBLIC_BACKEND_HOST_API` | `https://api.codage.hr` | Kontakt forma šalje ovamo (Laravel, zaseban repo). |
 | `NEXT_PUBLIC_GA_TRACKING_ID` | `G-YHXCF8V5F5` | Google Analytics (već default u kodu; override po želji). |
 
@@ -76,7 +76,7 @@ done
 
 # robots + sitemap + llms + IndexNow ključ
 curl -sI https://codage.hr/robots.txt   | head -1
-curl -s  https://codage.hr/sitemap.xml  | grep -c '<loc>'          # očekivano: 7
+curl -s  https://codage.hr/sitemap.xml  | grep -c '<loc>'          # očekivano: 10 (7 HR + 3 EN)
 curl -sI https://codage.hr/llms.txt      | head -1
 curl -sI https://codage.hr/710caab854f648a7d30f6d001181c944.txt | head -1   # IndexNow key → 200
 
@@ -84,8 +84,11 @@ curl -sI https://codage.hr/710caab854f648a7d30f6d001181c944.txt | head -1   # In
 curl -s https://codage.hr/ | grep -c 'application/ld+json'         # očekivano: ≥1
 ```
 
-- [ ] Canonical na svakoj stranici pokazuje na **tu** stranicu (`/about-us/` → `…/about-us/`)
-- [ ] `sitemap.xml` vraća **7** URL-ova, svi s završnim `/`
+- [ ] `/` → 308 → `/hr/`; stari URL-ovi (`/about-us/` …) → 308 → `/hr/…/`
+- [ ] Canonical po stranici pokazuje na **tu** locale-verziju (`/hr/about-us/`, `/en/about-us/`)
+- [ ] Marketing stranice imaju `hreflang` hr/en/x-default; **EN pravne** imaju
+      `<meta robots="noindex">` i **nemaju** hreflang
+- [ ] `sitemap.xml` vraća **10** URL-ova (7 HR + 3 EN), svi s završnim `/`
 - [ ] IndexNow ključ (`…944.txt`) vraća **200**
 
 ---
@@ -130,7 +133,7 @@ na `/710caab854f648a7d30f6d001181c944.txt`.
 npm run indexnow      # pročita živi sitemap i pingne sve URL-ove
 ```
 
-- [ ] Vrati `200 OK (7 URLs)`
+- [ ] Vrati `200 OK (10 URLs)`
 
 **B) Automatski nakon svakog Vercel deploya** — GitHub Action
 [`.github/workflows/indexnow.yml`](../.github/workflows/indexnow.yml) okida se na
@@ -168,7 +171,7 @@ Ništa za postaviti — radi čim je mergean u granu koju Vercel deploya.
 |---|---|
 | Nova stranica/ruta | Dodaj u `src/app/sitemap.ts` → deploy → `npm run indexnow` → GSC „Request indexing" |
 | Veća izmjena teksta | `npm run indexnow` (dovoljno) |
-| Promjena domene/URL-ova | Ažuriraj `NEXT_APP_HOST`, canonical, 301 redirecte, pa GSC + Bing sitemap ponovo |
+| Promjena domene/URL-ova | Ažuriraj `NEXT_PUBLIC_APP_HOST`, canonical, 301 redirecte, pa GSC + Bing sitemap ponovo |
 
 ---
 
