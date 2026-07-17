@@ -1,25 +1,16 @@
 'use client';
 
-// Ensure the i18next instance is initialised on the client before any
-// useTranslation() call (a bare side-effect import in the server layout is not
-// guaranteed to run on the client under Next.js App Router).
-import './i18n';
-
-import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { localStorageGetItem } from '@utils/storage-available';
-
-import { useSettingsContext } from '@components/settings';
-
 import { allLangs, defaultLang } from './config-lang';
+import { useCurrentLang } from './i18n-provider';
 
 // ----------------------------------------------------------------------
 
 export function useLocales() {
-    const langStorage = localStorageGetItem('i18nextLng');
+    const lang = useCurrentLang();
 
-    const currentLang = allLangs.find((lang) => lang.value === langStorage) || defaultLang;
+    const currentLang = allLangs.find((item) => item.value === lang) || defaultLang;
 
     return {
         allLangs,
@@ -28,25 +19,18 @@ export function useLocales() {
 }
 
 // ----------------------------------------------------------------------
+// The active language comes from the [lang] route segment via I18nProvider, so
+// there is no onChangeLang(): switching language is a navigation to the other
+// locale's URL (see src/components/locale-switch). That's what makes the English
+// version crawlable — a client-side language toggle is invisible to search engines.
 
 export function useTranslate() {
     const { t, i18n, ready } = useTranslation();
-
-    const settings = useSettingsContext();
-
-    const onChangeLang = useCallback(
-        (newlang: string) => {
-            i18n.changeLanguage(newlang);
-            settings.onChangeDirectionByLang(newlang);
-        },
-        [i18n, settings]
-    );
 
     return {
         t,
         translate: t,
         i18n,
         ready,
-        onChangeLang,
     };
 }

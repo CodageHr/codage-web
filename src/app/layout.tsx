@@ -1,16 +1,12 @@
 /* eslint-disable perfectionist/sort-imports */
 import 'src/global.css';
 
-// i18n
-import 'src/locales/i18n';
-
-
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
-import { LocalizationProvider } from 'src/locales';
+import { I18nProvider, LocalizationProvider } from 'src/locales';
 import { primaryFont, secondaryFont } from 'src/theme/typography';
 
 import ProgressBar from 'src/components/progress-bar';
@@ -88,30 +84,34 @@ export default function RootLayout({ children }: Props) {
                         }}
                     />
                 </noscript>
-                <AuthProvider>
-                    <LocalizationProvider>
-                        <SettingsProvider
-                            defaultSettings={{
-                                themeMode: 'light', // 'light' | 'dark'
-                                themeDirection: 'ltr', //  'rtl' | 'ltr'
-                                themeContrast: 'default', // 'default' | 'bold'
-                                themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
-                                themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-                                themeStretch: false,
-                            }}
-                        >
-                            <ThemeProvider>
-                                <MotionLazy>
-                                    <SnackbarProvider>
-                                        <ProgressBar />
-                                        {children}
-                                    </SnackbarProvider>
-                                </MotionLazy>
-                                <CookieBanner />
-                            </ThemeProvider>
-                        </SettingsProvider>
-                    </LocalizationProvider>
-                </AuthProvider>
+                {/* I18nProvider must stay outermost: LocalizationProvider and
+                    ThemeProvider both call useLocales(), which reads its context. */}
+                <I18nProvider lang="hr">
+                    <AuthProvider>
+                        <LocalizationProvider>
+                            <SettingsProvider
+                                defaultSettings={{
+                                    themeMode: 'light', // 'light' | 'dark'
+                                    themeDirection: 'ltr', //  'rtl' | 'ltr'
+                                    themeContrast: 'default', // 'default' | 'bold'
+                                    themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+                                    themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+                                    themeStretch: false,
+                                }}
+                            >
+                                <ThemeProvider>
+                                    <MotionLazy>
+                                        <SnackbarProvider>
+                                            <ProgressBar />
+                                            {children}
+                                        </SnackbarProvider>
+                                    </MotionLazy>
+                                    <CookieBanner />
+                                </ThemeProvider>
+                            </SettingsProvider>
+                        </LocalizationProvider>
+                    </AuthProvider>
+                </I18nProvider>
                 {/* Vercel Speed Insights only works on Vercel; skip elsewhere to avoid a 404 */}
                 {process.env.VERCEL ? <SpeedInsights /> : null}
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />

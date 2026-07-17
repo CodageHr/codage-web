@@ -14,8 +14,6 @@ import {
 } from '@mui/material/locale';
 // data grid (MUI)
 
-import { setDefaultOptions } from 'date-fns';
-
 import {
     enUS as enUSDate,
 } from '@mui/x-date-pickers/locales';
@@ -27,7 +25,18 @@ import hrDataGrid from '@theme/locale/hr-data-grid';
 import hrHrDate from '@theme/locale/hr-x-date-pickers';
 
 
-// PLEASE REMOVE `LOCAL STORAGE` WHEN YOU CHANGE SETTINGS.
+// ----------------------------------------------------------------------
+
+/** The locales this site is built for. Drives the [lang] route segment. */
+export type Lang = 'hr' | 'en';
+
+export const LANGS: readonly Lang[] = ['hr', 'en'] as const;
+
+export const DEFAULT_LANG: Lang = 'hr';
+
+export const isLang = (value: unknown): value is Lang =>
+    typeof value === 'string' && (LANGS as readonly string[]).includes(value);
+
 // ----------------------------------------------------------------------
 
 export const allLangs = [
@@ -58,9 +67,10 @@ export const allLangs = [
 
 export const defaultLang = allLangs[0]; // Croatian
 
-setDefaultOptions({
-    locale: defaultLang.adapterLocale
-});
+// NOTE: no date-fns setDefaultOptions() here on purpose — it mutates a
+// process-wide global, which would poison the other locale's render during a
+// two-locale build. The per-locale date adapter is supplied by
+// LocalizationProvider instead.
 
 // GET MORE COUNTRY FLAGS
 // https://icon-sets.iconify.design/flagpack/
