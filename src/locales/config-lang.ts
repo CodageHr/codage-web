@@ -25,17 +25,8 @@ import hrDataGrid from '@theme/locale/hr-data-grid';
 import hrHrDate from '@theme/locale/hr-x-date-pickers';
 
 
-// ----------------------------------------------------------------------
-
-/** The locales this site is built for. Drives the [lang] route segment. */
-export type Lang = 'hr' | 'en';
-
-export const LANGS: readonly Lang[] = ['hr', 'en'] as const;
-
-export const DEFAULT_LANG: Lang = 'hr';
-
-export const isLang = (value: unknown): value is Lang =>
-    typeof value === 'string' && (LANGS as readonly string[]).includes(value);
+// NOTE: Lang / LANGS / DEFAULT_LANG / isLang / toLang live in ./langs — this is
+// a client module, and the server must not import values from it.
 
 // ----------------------------------------------------------------------
 

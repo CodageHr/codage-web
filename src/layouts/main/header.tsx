@@ -17,15 +17,19 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { paths } from '@routes/paths';
 import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from '@routes/components';
+import { localizeHref } from '@routes/localize-href';
+import { type Lang } from '@base/locales/langs';
 
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import { useTranslate } from '@base/locales';
+import { useCurrentLang } from '@base/locales/i18n-provider';
 
 import Logo from 'src/components/logo';
 import Iconify from '@components/iconify';
 import { ThemeSwitch } from '@components/theme-switch';
+import { LocaleSwitch } from '@components/locale-switch';
 
 import { sand, onDark } from 'src/theme/tokens';
 
@@ -38,9 +42,12 @@ const HEADER_BG = sand[900];
 
 type NavItem = { title: string; path: string };
 
-function isActive(pathname: string, path: string) {
+// `pathname` is locale-prefixed and trailing-slashed ('/hr/about-us/') while nav
+// paths are locale-free identities ('/about-us'), so the raw path has to be
+// localised before comparing — otherwise every nav item is silently never active.
+function isActive(pathname: string, path: string, lang: Lang) {
     if (path.startsWith('/#')) return false; // landing anchors are not "current page"
-    return pathname === path;
+    return pathname === localizeHref(path, lang);
 }
 
 export default function Header() {
@@ -49,6 +56,8 @@ export default function Header() {
     const mdUp = useResponsive('up', 'md');
 
     const pathname = usePathname();
+
+    const lang = useCurrentLang();
 
     const { t } = useTranslate();
 
@@ -67,7 +76,7 @@ export default function Header() {
     }, [pathname]);
 
     const navLink = (item: NavItem, onClick?: () => void) => {
-        const active = isActive(pathname, item.path);
+        const active = isActive(pathname, item.path, lang);
         return (
             <Link
                 key={item.title}
@@ -124,6 +133,8 @@ export default function Header() {
                             {nav.map((item) => navLink(item))}
                         </Stack>
                     )}
+
+                    <LocaleSwitch sx={{ color: onDark.textSecondary, '&:hover': { color: onDark.text } }} />
 
                     <ThemeSwitch sx={{ color: onDark.textSecondary, '&:hover': { color: onDark.text } }} />
 
@@ -199,6 +210,14 @@ export default function Header() {
                         >
                             {t('header_cta')}
                         </Button>
+                        <LocaleSwitch
+                            sx={{
+                                flexShrink: 0,
+                                border: `1px solid ${onDark.hairline}`,
+                                borderRadius: 1.5,
+                                color: onDark.text,
+                            }}
+                        />
                         <ThemeSwitch
                             sx={{
                                 flexShrink: 0,

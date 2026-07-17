@@ -116,7 +116,7 @@ export default function HomeHero() {
                             </Button>
                             <Button
                                 component={RouterLink}
-                                href="/#usluge"
+                                href="/#services"
                                 variant="outlined"
                                 size="large"
                                 sx={{

@@ -1,6 +1,6 @@
 import { createInstance, type InitOptions, type i18n as I18nType } from 'i18next';
 
-import { type Lang } from './config-lang';
+import { type Lang } from './langs';
 import translationEn from './langs/en.json';
 import translationHr from './langs/hr.json';
 

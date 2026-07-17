@@ -25,7 +25,7 @@ export default function HomeCta() {
     const onCoral = alpha('#FFFFFF', 0.85);
 
     return (
-        <Box component="section" id="kontakt" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>
+        <Box component="section" id="contact" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>
             <SectionContainer component={MotionViewport}>
               <m.div variants={varFade().inUp}>
                 <Box

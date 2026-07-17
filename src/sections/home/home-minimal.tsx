@@ -85,7 +85,7 @@ export default function HomeServices() {
     ];
 
     return (
-        <Box component="section" id="usluge" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>
+        <Box component="section" id="services" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>
             <SectionContainer component={MotionViewport}>
                 <Stack
                     direction={{ xs: 'column', md: 'row' }}

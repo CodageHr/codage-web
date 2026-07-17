@@ -4,7 +4,10 @@ import { paths } from 'src/routes/paths';
 // ----------------------------------------------------------------------
 
 export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'Codage';
-export const APP_HOST = process.env.NEXT_APP_HOST || 'https://codage.hr';
+// Must be NEXT_PUBLIC_: APP_HOST is read in the client bundle too (breadcrumb /
+// locale-switch / JSON-LD build absolute URLs from it). Without the prefix it is
+// undefined on the client and every such URL silently falls back to the literal.
+export const APP_HOST = process.env.NEXT_PUBLIC_APP_HOST || 'https://codage.hr';
 export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 export const BACKEND_HOST_API = process.env.NEXT_PUBLIC_BACKEND_HOST_API;
 export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API;

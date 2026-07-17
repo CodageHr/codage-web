@@ -1,3 +1,4 @@
+import { type Lang } from '@base/locales/langs';
 import { APP_HOST, APP_NAME } from '@base/config-global';
 
 // ----------------------------------------------------------------------
@@ -6,7 +7,7 @@ import { APP_HOST, APP_NAME } from '@base/config-global';
 
 const ORG_ID = `${APP_HOST}/#organization`;
 
-const graph = {
+const buildGraph = (lang: Lang) => ({
     '@context': 'https://schema.org',
     '@graph': [
         {
@@ -34,6 +35,7 @@ const graph = {
                 contactType: 'customer support',
                 email: 'kontakt@codage.hr',
                 telephone: '+385 98 403 330',
+                // A fact about the business, not about the page language — stays 'HR'.
                 areaServed: 'HR',
                 availableLanguage: ['hr', 'en'],
             },
@@ -46,21 +48,26 @@ const graph = {
         },
         {
             '@type': 'WebSite',
+            // One WebSite node for the site, not one per locale.
             '@id': `${APP_HOST}/#website`,
             url: APP_HOST,
             name: APP_NAME,
-            inLanguage: 'hr-HR',
+            inLanguage: lang === 'hr' ? 'hr-HR' : 'en-US',
             publisher: { '@id': ORG_ID },
         },
     ],
+});
+
+type Props = {
+    lang: Lang;
 };
 
-export default function StructuredData() {
+export default function StructuredData({ lang }: Props) {
     return (
         <script
             type="application/ld+json"
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(buildGraph(lang)) }}
         />
     );
 }

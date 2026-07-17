@@ -1,4 +1,4 @@
-import { type Lang } from '../config-lang';
+import { type Lang } from '../langs';
 
 // ----------------------------------------------------------------------
 // Server-side SEO copy. Deliberately SEPARATE from langs/*.json and typed
@@ -36,14 +36,14 @@ export const SITE_SEO: Record<Lang, SiteSeo> = {
         description:
             'Codage je softverski studio iz Splita koji izrađuje web i mobilne aplikacije po mjeri — od prve skice do produkcije.',
         keywords:
-            'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Next.js, Laravel, ui, ux',
+            'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Spring Boot, Java, Next.js, Laravel, ui, ux',
     },
     en: {
         defaultTitle: 'Codage — Custom software',
         description:
             'Codage is a software studio from Split, Croatia, building custom web and mobile apps — from the first sketch to production.',
         keywords:
-            'Codage, software studio, Split, Croatia, web apps, mobile apps, Next.js, Laravel, ui, ux',
+            'Codage, software studio, Split, Croatia, web apps, mobile apps, Spring Boot, Java, Next.js, Laravel, ui, ux',
     },
 };
 

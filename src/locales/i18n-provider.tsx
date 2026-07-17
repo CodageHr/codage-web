@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 import { useMemo, useContext, createContext } from 'react';
 
 import { getI18nInstance } from './i18n-instance';
-import { DEFAULT_LANG, type Lang } from './config-lang';
+import { DEFAULT_LANG, type Lang } from './langs';
 
 // ----------------------------------------------------------------------
 // Supplies the route's locale to the tree. The server layout reads `lang` from

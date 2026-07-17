@@ -1,12 +1,15 @@
 /* eslint-disable perfectionist/sort-imports */
 import 'src/global.css';
 
+import type { Metadata } from 'next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // ----------------------------------------------------------------------
 
 import ThemeProvider from 'src/theme';
 import { I18nProvider, LocalizationProvider } from 'src/locales';
+import { LANGS, toLang } from 'src/locales/langs';
+import { SITE_SEO } from 'src/locales/seo';
 import { primaryFont, secondaryFont } from 'src/theme/typography';
 
 import ProgressBar from 'src/components/progress-bar';
@@ -22,6 +25,17 @@ import { CookieBanner } from '@components/cookie-banner';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 // ----------------------------------------------------------------------
+// This IS the root layout — it owns <html>. Next only lets one layout do that,
+// and <html lang> has to vary per locale, so every page lives under [lang].
+// A page left outside [lang] fails the build with "doesn't have a root layout".
+
+/** Prerender both locales. */
+export function generateStaticParams() {
+    return LANGS.map((lang) => ({ lang }));
+}
+
+/** Anything that isn't a known locale (/fr/, /xyz/) 404s — and stays static. */
+export const dynamicParams = false;
 
 export const viewport = {
     themeColor: '#201913',
@@ -30,50 +44,55 @@ export const viewport = {
     maximumScale: 5,
 };
 
-const description =
-    'Codage je softverski studio iz Splita koji izrađuje web i mobilne aplikacije po mjeri — od prve skice do produkcije.';
-
-export const metadata = {
-    metadataBase: new URL(APP_HOST),
-    title: {
-        template: `%s | ${APP_NAME}`,
-        default: `${APP_NAME} — Softver po mjeri`,
-    },
-    description,
-    keywords: 'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Next.js, Laravel, ui, ux',
-    // canonical is set per page (below) — a root canonical would make every page
-    // look like a duplicate of "/". og/twitter title+description fall back to each
-    // page's own title/description.
-    openGraph: {
-        type: 'website',
-        locale: 'hr_HR',
-        siteName: APP_NAME,
-        url: APP_HOST,
-        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: APP_NAME }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        images: ['/og-image.png'],
-    },
-    manifest: '/manifest.json',
-    icons: {
-        icon: [
-            { url: '/favicon/codage-mark.svg', type: 'image/svg+xml' },
-            { url: '/favicon/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-            { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-            { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-        ],
-        apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
-    },
-};
-
 type Props = {
     children: React.ReactNode;
+    params: Promise<{ lang: string }>;
 };
 
-export default function RootLayout({ children }: Props) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const lang = toLang((await params).lang);
+    const site = SITE_SEO[lang];
+
+    return {
+        metadataBase: new URL(APP_HOST),
+        title: {
+            template: `%s | ${APP_NAME}`,
+            default: site.defaultTitle,
+        },
+        description: site.description,
+        keywords: site.keywords,
+        // canonical + hreflang are set per page (see src/lib/seo). A root canonical
+        // would make every page look like a duplicate of the locale home.
+        openGraph: {
+            type: 'website',
+            locale: lang === 'hr' ? 'hr_HR' : 'en_US',
+            alternateLocale: lang === 'hr' ? 'en_US' : 'hr_HR',
+            siteName: APP_NAME,
+            url: `${APP_HOST}/${lang}/`,
+            images: [{ url: '/og-image.png', width: 1200, height: 630, alt: APP_NAME }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            images: ['/og-image.png'],
+        },
+        manifest: '/manifest.json',
+        icons: {
+            icon: [
+                { url: '/favicon/codage-mark.svg', type: 'image/svg+xml' },
+                { url: '/favicon/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+                { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+                { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+            ],
+            apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+        },
+    };
+}
+
+export default async function RootLayout({ children, params }: Props) {
+    const lang = toLang((await params).lang);
+
     return (
-        <html lang="hr" className={`${primaryFont.className} ${secondaryFont.variable}`}>
+        <html lang={lang} className={`${primaryFont.className} ${secondaryFont.variable}`}>
             <body>
                 {/* No-JS / bot fallback: reveal scroll-in content that framer starts at opacity:0 */}
                 <noscript>
@@ -86,7 +105,7 @@ export default function RootLayout({ children }: Props) {
                 </noscript>
                 {/* I18nProvider must stay outermost: LocalizationProvider and
                     ThemeProvider both call useLocales(), which reads its context. */}
-                <I18nProvider lang="hr">
+                <I18nProvider lang={lang}>
                     <AuthProvider>
                         <LocalizationProvider>
                             <SettingsProvider
@@ -115,7 +134,7 @@ export default function RootLayout({ children }: Props) {
                 {/* Vercel Speed Insights only works on Vercel; skip elsewhere to avoid a 404 */}
                 {process.env.VERCEL ? <SpeedInsights /> : null}
                 <GoogleAnalytics gaId={GA_TRACKING_ID} />
-                <StructuredData />
+                <StructuredData lang={lang} />
             </body>
         </html>
     );

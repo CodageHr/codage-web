@@ -3,17 +3,18 @@ import { TFunction } from 'i18next';
 import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
-// Nav labels are Croatian (i18n); hrefs stay English routes.
-// Usluge / Proces are landing anchors; O nama / Kontakt are pages.
+// Nav labels are localized (i18n); hrefs are locale-free route identities that
+// RouterLink prefixes with the active locale. Services / Process are landing
+// anchors (English ids, shared across locales); About / Contact are pages.
 
 export const navConfig = (translate: TFunction) => [
     {
         title: translate('nav_services'),
-        path: '/#usluge',
+        path: '/#services',
     },
     {
         title: translate('nav_process'),
-        path: '/#proces',
+        path: '/#process',
     },
     {
         title: translate('aboutUs'),

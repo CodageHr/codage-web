@@ -21,7 +21,7 @@ import Logo from '@components/logo';
 
 const MENU_LINKS = (t: TFunction) => [
     { name: t('home'), href: paths.home },
-    { name: t('nav_services'), href: '/#usluge' },
+    { name: t('nav_services'), href: '/#services' },
     { name: t('aboutUs'), href: paths.about },
     { name: t('contact'), href: paths.contact },
 ];

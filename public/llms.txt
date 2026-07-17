@@ -1,30 +1,38 @@
 # Codage
 
-> Softverski studio iz Splita (Hrvatska). Izrađujemo web i mobilne aplikacije po mjeri — od prve skice do produkcije. Mali tim, velika pažnja: dizajn, razvoj i održavanje na jednom mjestu, bez prebacivanja odgovornosti.
+> Software studio from Split, Croatia. We build custom web and mobile apps — from the first sketch to production. Small team, high craft: design, development and maintenance in one place, with no hand-offs.
 
-## O tvrtki
-- Naziv: Codage d.o.o.
-- Lokacija: Put gaja 6, 21292 Srinjine, Split, Hrvatska
-- Osnivač: Petar Vrkić
-- Kontakt: kontakt@codage.hr, +385 98 403 330
-- Radno vrijeme: Ponedjeljak–Petak, 08:00–16:00
+## About
+- Name: Codage d.o.o.
+- Location: Put gaja 6, 21292 Srinjine, Split, Croatia
+- Founder: Petar Vrkić
+- Contact: kontakt@codage.hr, +385 98 403 330
+- Hours: Monday–Friday, 08:00–16:00
 
-## Usluge
-- Web aplikacije — sigurne i brze, uredan i dokumentiran kod (React, Next.js, Laravel, Node.js, Spring Boot, Scala, AWS)
-- Mobilne aplikacije — nativne i hibridne (iOS, Android, React Native)
-- Dizajn i savjetovanje — UI/UX, prototipovi, tehnički audit
+## Services
+- Web apps — secure and fast, clean and documented code (React, Next.js, Laravel, Node.js, Spring Boot, Scala, AWS)
+- Mobile apps — native and hybrid (iOS, Android, React Native)
+- Design & consulting — UI/UX, prototypes, technical audit
 
-## Kako radimo
-1. Definiranje zahtjeva — slušamo, pitamo i zajedno definiramo cilj
-2. Planiranje i dizajn — struktura i izgled prije prve linije koda
-3. Razvoj i testiranje — kratki ciklusi uz redovite demo sesije
-4. Održavanje — nadzor, podrška i nadogradnje nakon lansiranja
+## How we work
+1. Requirements — we listen, ask, and define the goal together
+2. Planning & design — structure and layout before the first line of code
+3. Development & testing — short cycles with regular demo sessions
+4. Maintenance — monitoring, support and upgrades after launch
 
-## Stranice
-- Naslovnica: https://codage.hr/
-- O nama: https://codage.hr/about-us
-- Kontakt: https://codage.hr/contact-us
-- Pravni podaci: https://codage.hr/legal-info
-- Politika privatnosti: https://codage.hr/privacy-policy
-- Politika kolačića: https://codage.hr/cookies
-- Uvjeti korištenja: https://codage.hr/terms-of-use
+## Languages
+The site is available in Croatian (/hr/, default) and English (/en/).
+
+## Pages (English)
+- Home: https://codage.hr/en/
+- About: https://codage.hr/en/about-us/
+- Contact: https://codage.hr/en/contact-us/
+
+## Pages (Croatian)
+- Naslovnica: https://codage.hr/hr/
+- O nama: https://codage.hr/hr/about-us/
+- Kontakt: https://codage.hr/hr/contact-us/
+- Pravni podaci: https://codage.hr/hr/legal-info/
+- Politika privatnosti: https://codage.hr/hr/privacy-policy/
+- Politika kolačića: https://codage.hr/hr/cookies/
+- Uvjeti korištenja: https://codage.hr/hr/terms-of-use/

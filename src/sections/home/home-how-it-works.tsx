@@ -33,7 +33,7 @@ export default function HomeProcess() {
     ];
 
     return (
-        <Box component="section" id="proces" sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 13 } }}>
+        <Box component="section" id="process" sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 13 } }}>
             <SectionContainer component={MotionViewport}>
                 <m.div variants={varFade().inUp}>
                     <Typography variant="h2" sx={{ mb: { xs: 4, md: 8 } }}>
