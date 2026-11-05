@@ -11,6 +11,9 @@ export type RouteKey =
     | 'home'
     | 'about'
     | 'contact'
+    | 'webApps'
+    | 'mobileApps'
+    | 'designConsulting'
     | 'legalInfo'
     | 'privacyPolicy'
     | 'termsOfUse'
@@ -55,14 +58,29 @@ export const SEO: Record<Lang, Record<RouteKey, SeoEntry>> = {
                 'Softverski studio iz Splita. Web i mobilne aplikacije po mjeri — od prve skice do produkcije. React, Next.js, Spring Boot, Java, Scala, Laravel.',
         },
         about: {
-            title: 'O nama',
+            title: 'O nama — softverski studio iz Splita',
             description:
                 'Codage je mali softverski studio iz Splita. Naš pristup radu, vrijednosti i tim koji stoji iza vaših projekata.',
         },
         contact: {
-            title: 'Kontakt',
+            title: 'Kontakt — besplatna procjena projekta',
             description:
                 'Javite nam se — procjena projekta i prvi razgovor su besplatni. Odgovaramo unutar jednog radnog dana. kontakt@codage.hr, +385 98 403 330.',
+        },
+        webApps: {
+            title: 'Izrada web aplikacija po mjeri — Split',
+            description:
+                'Izrada web aplikacija po mjeri: poslovne platforme, SaaS, interni alati i integracije. React, Next.js, Laravel, Spring Boot. Besplatna procjena projekta.',
+        },
+        mobileApps: {
+            title: 'Izrada mobilnih aplikacija za iOS i Android — Split',
+            description:
+                'Izrada nativnih i hibridnih (React Native) mobilnih aplikacija za iOS i Android. Dizajn, razvoj i održavanje na jednom mjestu. Besplatna procjena.',
+        },
+        designConsulting: {
+            title: 'UI/UX dizajn i tehničko savjetovanje — Split',
+            description:
+                'UI/UX dizajn, klikabilni prototipovi i tehnički audit postojećih aplikacija. Definiramo proizvod prije prve linije koda. Besplatan prvi razgovor.',
         },
         legalInfo: {
             title: 'Pravni podaci',
@@ -91,14 +109,29 @@ export const SEO: Record<Lang, Record<RouteKey, SeoEntry>> = {
                 'Software studio from Split, Croatia. Custom web and mobile apps — from the first sketch to production. React, Next.js, Spring Boot, Java, Scala, Laravel.',
         },
         about: {
-            title: 'About us',
+            title: 'About us — software studio in Split, Croatia',
             description:
                 'Codage is a small software studio from Split, Croatia. How we work, what we value, and the team behind your project.',
         },
         contact: {
-            title: 'Contact',
+            title: 'Contact — free project estimate',
             description:
                 'Get in touch — the first call and the project estimate are free. We reply within one business day. kontakt@codage.hr, +385 98 403 330.',
+        },
+        webApps: {
+            title: 'Custom web application development — Split, Croatia',
+            description:
+                'Custom web application development: business platforms, SaaS, internal tools and integrations. React, Next.js, Laravel, Spring Boot. Free project estimate.',
+        },
+        mobileApps: {
+            title: 'Mobile app development for iOS & Android — Croatia',
+            description:
+                'Native and cross-platform (React Native) mobile app development for iOS and Android. Design, development and maintenance in one place. Free estimate.',
+        },
+        designConsulting: {
+            title: 'UI/UX design & technical consulting — Split, Croatia',
+            description:
+                'UI/UX design, clickable prototypes and technical audits of existing apps. We define the product before the first line of code. Free first call.',
         },
         legalInfo: {
             title: 'Legal information',

@@ -16,6 +16,13 @@ export const paths = {
     about: '/about-us',
     contact: '/contact-us',
 
+    // Service landing pages (see src/sections/services/config.ts)
+    services: {
+        webApps: '/services/web-applications',
+        mobileApps: '/services/mobile-applications',
+        designConsulting: '/services/design-consulting',
+    },
+
     // Legal
     legalInfo: '/legal-info',
     privacyPolicy: '/privacy-policy',

@@ -13,6 +13,10 @@ import { localePath, isEnNoindex } from '@base/lib/seo';
 
 const PRIORITY: Record<RouteKey, number> = {
     home: 1,
+    // Service landing pages are the main non-brand entry points.
+    webApps: 0.9,
+    mobileApps: 0.9,
+    designConsulting: 0.9,
     about: 0.8,
     contact: 0.8,
     legalInfo: 0.5,
@@ -23,6 +27,9 @@ const PRIORITY: Record<RouteKey, number> = {
 
 const CHANGE_FREQ: Record<RouteKey, 'monthly' | 'yearly'> = {
     home: 'monthly',
+    webApps: 'monthly',
+    mobileApps: 'monthly',
+    designConsulting: 'monthly',
     about: 'monthly',
     contact: 'monthly',
     legalInfo: 'yearly',

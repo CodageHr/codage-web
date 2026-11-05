@@ -3,10 +3,14 @@
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { RouterLink } from '@routes/components';
+
 import { useTranslate } from '@base/locales';
+import { SERVICES } from '@sections/services/config';
 
 import Iconify from '@components/iconify';
 import { SectionContainer } from '@components/_ui/section';
@@ -16,13 +20,18 @@ import { brand } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-type ServiceRow = { num: string; title: string; desc: string; tech: string };
+type ServiceRow = { num: string; title: string; desc: string; tech: string; href: string };
 
+// Each row links to its service landing page — the main internal link into them.
 function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
     return (
         <m.div variants={varFade().inUp}>
-            <Box
+            <Link
+                component={RouterLink}
+                href={row.href}
+                underline="none"
                 sx={{
+                    color: 'inherit',
                     display: 'grid',
                     gridTemplateColumns: { xs: '56px 1fr', md: '120px 1.4fr 1fr auto' },
                     alignItems: { xs: 'start', md: 'center' },
@@ -70,7 +79,7 @@ function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
                         sx={{ color: 'text.primary', display: { xs: 'none', md: 'block' }, flexShrink: 0 }}
                     />
                 </Stack>
-            </Box>
+            </Link>
         </m.div>
     );
 }
@@ -78,11 +87,13 @@ function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
 export default function HomeServices() {
     const { t } = useTranslate();
 
-    const rows: ServiceRow[] = [
-        { num: '01', title: t('home_svc_1_title'), desc: t('home_svc_1_desc'), tech: t('home_svc_1_tech') },
-        { num: '02', title: t('home_svc_2_title'), desc: t('home_svc_2_desc'), tech: t('home_svc_2_tech') },
-        { num: '03', title: t('home_svc_3_title'), desc: t('home_svc_3_desc'), tech: t('home_svc_3_tech') },
-    ];
+    const rows: ServiceRow[] = SERVICES.map((service, i) => ({
+        num: `0${i + 1}`,
+        title: t(service.titleKey),
+        desc: t(service.descKey),
+        tech: t(`home_svc_${i + 1}_tech`),
+        href: service.path,
+    }));
 
     return (
         <Box component="section" id="services" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 13 } }}>

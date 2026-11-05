@@ -46,7 +46,9 @@ type NavItem = { title: string; path: string };
 // paths are locale-free identities ('/about-us'), so the raw path has to be
 // localised before comparing — otherwise every nav item is silently never active.
 function isActive(pathname: string, path: string, lang: Lang) {
-    if (path.startsWith('/#')) return false; // landing anchors are not "current page"
+    // "Services" is a landing anchor, but it is the current section on a service page.
+    if (path === '/#services') return pathname.startsWith(`/${lang}/services/`);
+    if (path.startsWith('/#')) return false; // other landing anchors are not "current page"
     return pathname === localizeHref(path, lang);
 }
 

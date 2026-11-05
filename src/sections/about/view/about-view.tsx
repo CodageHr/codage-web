@@ -4,15 +4,13 @@ import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@routes/paths';
 
 import MainLayout from 'src/layouts/main';
-import { brand, onDark } from 'src/theme/tokens';
+import { onDark } from 'src/theme/tokens';
 
 import { useTranslate } from '@base/locales';
 
@@ -22,60 +20,9 @@ import BreadcrumbJsonLd from '@components/breadcrumb-jsonld';
 import { varFade, MotionViewport } from '@components/animate';
 import PageHeaderBand from '@components/_ui/page-header-band';
 import { SectionContainer } from '@components/_ui/section';
+import { QuoteCard, TESTIMONIALS } from '@components/testimonials';
 
 // ----------------------------------------------------------------------
-
-type Quote = { name: string; role: string; quote: string; image?: string };
-
-const QUOTES: Quote[] = [
-    {
-        name: 'Slobodan Jović',
-        role: 'CEO i osnivač · Selekcija.hr',
-        quote:
-      'Suradnja s timom Codage bila je apsolutni užitak! Njihova stručnost u razvoju web aplikacije za tvrtku Selekcija bila je ključna za postizanje visokih standarda. Briljirali su u kreiranju inovativnih rješenja, prilagodbi sučelja i osiguravanju besprijekornog korisničkog iskustva. Svojom posvećenošću i preciznošću u radu s našim programerima znatno su doprinijeli uspjehu našeg projekta. Suradnju preporučujemo svima koji traže pravog stručnjaka u području web razvoja!',
-        image: '/assets/images/home/testimonals/slobodan_jovic_selekcija.jpeg',
-    },
-    {
-        name: 'Brian Kulman',
-        role: 'CTO · Nearpeer',
-        quote:
-      'Petar Vrkić is a coding expert. Over two years, Petar\'s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases — he had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar\'s experience and knowledge would be a great asset to any team or project!',
-        image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg',
-    },
-    {
-        name: 'Bruno Batarelo',
-        role: 'CEO · Quantum-bit',
-        quote:
-      'Petar se pokazao kao izuzetno vrijedan član tima tijekom suradnje na našim zajedničkim projektima. Njegovo stručno znanje iz područja web i mobilnog razvoja bilo je ključno u stvaranju inovativne web i mobilne aplikacije. Njegova predanost, brza reakcija na izazove i kreativnost doprinijele su uspješnoj implementaciji projekta.',
-    },
-];
-
-function QuoteCard({ item }: { item: Quote }) {
-    return (
-        <Card sx={{ height: 1, p: { xs: 3, md: 4 } }}>
-            <Stack spacing={3} sx={{ height: 1, justifyContent: 'space-between' }}>
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.7 }}>
-                    “{item.quote}”
-                </Typography>
-                <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-                    <Avatar
-                        src={item.image}
-                        alt={item.name}
-                        sx={{ width: 44, height: 44, bgcolor: brand[100], color: brand[600], fontWeight: 700 }}
-                    >
-                        {item.name.charAt(0)}
-                    </Avatar>
-                    <Box>
-                        <Typography sx={{ fontWeight: 700 }}>{item.name}</Typography>
-                        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                            {item.role}
-                        </Typography>
-                    </Box>
-                </Stack>
-            </Stack>
-        </Card>
-    );
-}
 
 export default function AboutView() {
     const { t } = useTranslate();
@@ -179,8 +126,8 @@ export default function AboutView() {
                         </Typography>
                     </m.div>
                     <Grid container spacing={{ xs: 2.5, md: 3 }}>
-                        {QUOTES.map((item) => (
-                            <Grid key={item.name} size={{ xs: 12, md: 4 }}>
+                        {TESTIMONIALS.map((item) => (
+                            <Grid key={item.id} size={{ xs: 12, md: 4 }}>
                                 <m.div variants={varFade().inUp} style={{ height: '100%' }}>
                                     <QuoteCard item={item} />
                                 </m.div>

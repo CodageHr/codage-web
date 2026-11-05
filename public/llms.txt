@@ -25,11 +25,17 @@ The site is available in Croatian (/hr/, default) and English (/en/).
 
 ## Pages (English)
 - Home: https://codage.hr/en/
+- Web application development: https://codage.hr/en/services/web-applications/
+- Mobile app development (iOS & Android): https://codage.hr/en/services/mobile-applications/
+- UI/UX design & technical consulting: https://codage.hr/en/services/design-consulting/
 - About: https://codage.hr/en/about-us/
 - Contact: https://codage.hr/en/contact-us/
 
 ## Pages (Croatian)
 - Naslovnica: https://codage.hr/hr/
+- Izrada web aplikacija: https://codage.hr/hr/services/web-applications/
+- Izrada mobilnih aplikacija: https://codage.hr/hr/services/mobile-applications/
+- Dizajn i savjetovanje: https://codage.hr/hr/services/design-consulting/
 - O nama: https://codage.hr/hr/about-us/
 - Kontakt: https://codage.hr/hr/contact-us/
 - Pravni podaci: https://codage.hr/hr/legal-info/

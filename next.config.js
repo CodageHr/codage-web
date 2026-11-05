@@ -24,6 +24,10 @@ const nextConfig = {
             { source: '/home', destination: '/hr/', permanent: true },
             // Services content now lives on the landing page ("Što radimo").
             { source: '/services', destination: '/hr/#services', permanent: true },
+            // There is no services index page (only /[lang]/services/[slug]/) — send a
+            // truncated URL to the services section. Temporary, so an index page can
+            // be added later without a cached permanent redirect in the way.
+            { source: '/:lang(hr|en)/services', destination: '/:lang/#services', permanent: false },
         ];
     },
 };
