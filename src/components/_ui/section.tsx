@@ -26,7 +26,7 @@ type EyebrowProps = TypographyProps & {
   onDark?: boolean;
 };
 
-// Space Grotesk 700 caps eyebrow — brand-600 on light, brand-dark on dark bands.
+// Space Grotesk 700 caps eyebrow - brand-600 on light, brand-dark on dark bands.
 export function Eyebrow({ onDark: dark = false, sx, children, ...other }: EyebrowProps) {
     return (
         <Typography

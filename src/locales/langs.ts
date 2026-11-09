@@ -1,9 +1,9 @@
 // ----------------------------------------------------------------------
-// Pure locale constants — deliberately NOT 'use client'.
+// Pure locale constants - deliberately NOT 'use client'.
 //
 // config-lang.ts is a client module (it pulls in MUI locale bundles and
 // date-fns adapters). Importing a *value* from a client module into server code
-// gives you a client-reference proxy, not the real value — generateStaticParams
+// gives you a client-reference proxy, not the real value - generateStaticParams
 // would then blow up with "LANGS.map is not a function". Anything the server
 // needs (route params, metadata, sitemap) lives here instead.
 // ----------------------------------------------------------------------
@@ -20,7 +20,7 @@ export const isLang = (value: unknown): value is Lang =>
 
 /**
  * Narrows the [lang] route param. Next generates it as `string`, while
- * `dynamicParams = false` already guarantees it is a generated locale — the
+ * `dynamicParams = false` already guarantees it is a generated locale - the
  * fallback is only here so an invalid value degrades instead of throwing.
  */
 export const toLang = (value: string): Lang => (isLang(value) ? value : DEFAULT_LANG);

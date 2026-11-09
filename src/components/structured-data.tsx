@@ -5,7 +5,15 @@ import { APP_HOST, APP_NAME } from '@base/config-global';
 // Site-wide JSON-LD @graph: Organization (+ ContactPoint) + WebSite.
 // Company facts from HANDOFF §7.
 
-const ORG_ID = `${APP_HOST}/#organization`;
+/** Referenced by per-page nodes (e.g. Service.provider) so they link to one entity. */
+export const ORG_ID = `${APP_HOST}/#organization`;
+
+/**
+ * Verified public profiles of the company. sameAs ties the brand to them, which
+ * helps Google tell "Codage" the company apart from "codage" (French: coding)
+ * and feeds the knowledge panel. Only add profiles that actually exist.
+ */
+const SAME_AS = ['https://clutch.co/profile/codage-doo', 'https://github.com/CodageHr'];
 
 const buildGraph = (lang: Lang) => ({
     '@context': 'https://schema.org',
@@ -18,6 +26,13 @@ const buildGraph = (lang: Lang) => ({
             url: APP_HOST,
             logo: `${APP_HOST}/logo/codage-mark.svg`,
             image: `${APP_HOST}/og-image.png`,
+            sameAs: SAME_AS,
+            knowsAbout: [
+                'Web application development',
+                'Mobile application development',
+                'UI/UX design',
+                'Technical consulting',
+            ],
             email: 'kontakt@codage.hr',
             telephone: '+385 98 403 330',
             vatID: 'HR49369795577',
@@ -35,7 +50,7 @@ const buildGraph = (lang: Lang) => ({
                 contactType: 'customer support',
                 email: 'kontakt@codage.hr',
                 telephone: '+385 98 403 330',
-                // A fact about the business, not about the page language — stays 'HR'.
+                // A fact about the business, not about the page language - stays 'HR'.
                 areaServed: 'HR',
                 availableLanguage: ['hr', 'en'],
             },

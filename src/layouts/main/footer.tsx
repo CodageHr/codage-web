@@ -14,6 +14,7 @@ import { paths } from '@routes/paths';
 import { RouterLink } from '@routes/components';
 
 import { useTranslate } from '@base/locales';
+import { SERVICES } from '@sections/services/config';
 
 import Logo from '@components/logo';
 
@@ -21,10 +22,13 @@ import Logo from '@components/logo';
 
 const MENU_LINKS = (t: TFunction) => [
     { name: t('home'), href: paths.home },
-    { name: t('nav_services'), href: '/#services' },
     { name: t('aboutUs'), href: paths.about },
     { name: t('contact'), href: paths.contact },
 ];
+
+// Site-wide links into the service landing pages (internal linking for SEO).
+const SERVICE_LINKS = (t: TFunction) =>
+    SERVICES.map((service) => ({ name: t(service.titleKey), href: service.path }));
 
 const LEGAL_LINKS = (t: TFunction) => [
     { name: t('legal_info'), href: paths.legalInfo },
@@ -77,7 +81,7 @@ export default function Footer() {
             <Container sx={{ pt: { xs: 6, md: 10 }, pb: 5 }}>
                 <Grid container spacing={{ xs: 5, md: 4 }}>
                     {/* Brand */}
-                    <Grid size={{ xs: 12, md: 4 }}>
+                    <Grid size={{ xs: 12, md: 3 }}>
                         <Stack spacing={2.5} sx={{ maxWidth: 300 }}>
                             <Logo height={28} />
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -89,8 +93,20 @@ export default function Footer() {
                         </Stack>
                     </Grid>
 
+                    {/* Services */}
+                    <Grid size={{ xs: 6, md: 2.5 }}>
+                        <ColumnHeading>{t('nav_services')}</ColumnHeading>
+                        <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
+                            {SERVICE_LINKS(t).map((link) => (
+                                <FooterLink key={link.href} href={link.href}>
+                                    {link.name}
+                                </FooterLink>
+                            ))}
+                        </Stack>
+                    </Grid>
+
                     {/* Menu */}
-                    <Grid size={{ xs: 6, md: 2 }}>
+                    <Grid size={{ xs: 6, md: 1.5 }}>
                         <ColumnHeading>{t('menu_heading')}</ColumnHeading>
                         <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
                             {MENU_LINKS(t).map((link) => (
@@ -102,7 +118,7 @@ export default function Footer() {
                     </Grid>
 
                     {/* Legal */}
-                    <Grid size={{ xs: 6, md: 3 }}>
+                    <Grid size={{ xs: 6, md: 2.5 }}>
                         <ColumnHeading>{t('legal_heading')}</ColumnHeading>
                         <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
                             {LEGAL_LINKS(t).map((link) => (
@@ -114,7 +130,7 @@ export default function Footer() {
                     </Grid>
 
                     {/* Contact */}
-                    <Grid size={{ xs: 12, md: 3 }}>
+                    <Grid size={{ xs: 6, md: 2.5 }}>
                         <ColumnHeading>{t('contact')}</ColumnHeading>
                         <Stack spacing={1.5} sx={{ alignItems: 'flex-start' }}>
                             <Link

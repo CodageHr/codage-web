@@ -12,7 +12,7 @@ import { localizeHref } from '../localize-href';
 // one place keeps `paths.about` locale-free at ~all call sites.
 //
 // External links (mailto:/tel:/https) and pure #anchors are passed through
-// untouched — see localizeHref.
+// untouched - see localizeHref.
 // ----------------------------------------------------------------------
 
 interface AnchorProps extends LinkProps {

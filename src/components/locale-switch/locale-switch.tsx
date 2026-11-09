@@ -13,7 +13,7 @@ import { LANGS, isLang, type Lang } from '@base/locales/langs';
 // i18next.changeLanguage(). That's the whole point: a JS-only toggle is invisible
 // to crawlers, so the English pages would never be indexed.
 //
-// Shows the language you'd switch TO. Text rather than a flag — a US flag for
+// Shows the language you'd switch TO. Text rather than a flag - a US flag for
 // "English" on a Croatian site is the classic flags-for-languages antipattern.
 // ----------------------------------------------------------------------
 

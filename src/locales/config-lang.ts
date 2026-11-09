@@ -25,7 +25,7 @@ import hrDataGrid from '@theme/locale/hr-data-grid';
 import hrHrDate from '@theme/locale/hr-x-date-pickers';
 
 
-// NOTE: Lang / LANGS / DEFAULT_LANG / isLang / toLang live in ./langs — this is
+// NOTE: Lang / LANGS / DEFAULT_LANG / isLang / toLang live in ./langs - this is
 // a client module, and the server must not import values from it.
 
 // ----------------------------------------------------------------------
@@ -58,7 +58,7 @@ export const allLangs = [
 
 export const defaultLang = allLangs[0]; // Croatian
 
-// NOTE: no date-fns setDefaultOptions() here on purpose — it mutates a
+// NOTE: no date-fns setDefaultOptions() here on purpose - it mutates a
 // process-wide global, which would poison the other locale's render during a
 // two-locale build. The per-locale date adapter is supplied by
 // LocalizationProvider instead.

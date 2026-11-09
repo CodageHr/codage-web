@@ -8,7 +8,7 @@ import { brand, radii } from 'src/theme/tokens';
 
 // ----------------------------------------------------------------------
 
-// Numbered value card (sand-50, flat) — "Kako razmišljamo" on About.
+// Numbered value card (sand-50, flat) - "Kako razmišljamo" on About.
 export function ValueCard({ num, title, desc }: { num: string; title: string; desc: string }) {
     return (
         <Box
@@ -42,7 +42,7 @@ export function ValueCard({ num, title, desc }: { num: string; title: string; de
 
 // ----------------------------------------------------------------------
 
-// Labelled info card (white, soft-md) — legal info + contact info blocks.
+// Labelled info card (white, soft-md) - legal info + contact info blocks.
 export function InfoCard({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <Card sx={{ height: 1, p: { xs: 3, md: 4 } }}>

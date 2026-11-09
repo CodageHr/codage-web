@@ -14,7 +14,7 @@ meta/canonical, JSON-LD, robots, sitemap, llms.txt, IndexNow) — ovdje su korac
 
 - [ ] `npm run ts` — bez grešaka
 - [ ] `npm run lint` — bez grešaka
-- [ ] `npm run build` — prolazi; emitira **14 stranica (7×2 lokala)** kao `● (SSG)`
+- [ ] `npm run build` — prolazi; emitira **20 stranica (10×2 lokala, od toga 3 stranice usluga)** kao `● (SSG)`
       pod `/[lang]/`, plus `robots.txt` + `sitemap.xml`
 - [ ] `feat/i18n-en` grana mergeana u `main` (Vercel deploya `main`)
 
@@ -76,7 +76,7 @@ done
 
 # robots + sitemap + llms + IndexNow ključ
 curl -sI https://codage.hr/robots.txt   | head -1
-curl -s  https://codage.hr/sitemap.xml  | grep -c '<loc>'          # očekivano: 10 (7 HR + 3 EN)
+curl -s  https://codage.hr/sitemap.xml  | grep -c '<loc>'          # očekivano: 16 (10 HR + 6 EN)
 curl -sI https://codage.hr/llms.txt      | head -1
 curl -sI https://codage.hr/710caab854f648a7d30f6d001181c944.txt | head -1   # IndexNow key → 200
 
@@ -88,7 +88,7 @@ curl -s https://codage.hr/ | grep -c 'application/ld+json'         # očekivano:
 - [ ] Canonical po stranici pokazuje na **tu** locale-verziju (`/hr/about-us/`, `/en/about-us/`)
 - [ ] Marketing stranice imaju `hreflang` hr/en/x-default; **EN pravne** imaju
       `<meta robots="noindex">` i **nemaju** hreflang
-- [ ] `sitemap.xml` vraća **10** URL-ova (7 HR + 3 EN), svi s završnim `/`
+- [ ] `sitemap.xml` vraća **16** URL-ova (10 HR + 6 EN; EN pravne su izbačene), svi s završnim `/`
 - [ ] IndexNow ključ (`…944.txt`) vraća **200**
 
 ---
@@ -133,7 +133,7 @@ na `/710caab854f648a7d30f6d001181c944.txt`.
 npm run indexnow      # pročita živi sitemap i pingne sve URL-ove
 ```
 
-- [ ] Vrati `200 OK (10 URLs)`
+- [ ] Vrati `200 OK (16 URLs)`
 
 **B) Automatski nakon svakog Vercel deploya** — GitHub Action
 [`.github/workflows/indexnow.yml`](../.github/workflows/indexnow.yml) okida se na

@@ -10,7 +10,7 @@ import { isLang, type Lang } from '@base/locales/langs';
 // `paths.about` and get the prefix for free.
 //
 // It also normalises the trailing slash. next.config sets trailingSlash:true, so
-// an href of '/about-us' would 308 to '/about-us/' on every single click —
+// an href of '/about-us' would 308 to '/about-us/' on every single click -
 // emitting the final URL here removes that hop and makes hrefs match canonicals.
 // ----------------------------------------------------------------------
 
@@ -23,13 +23,13 @@ const withTrailingSlash = (pathname: string): string =>
     pathname.endsWith('/') ? pathname : `${pathname}/`;
 
 export function localizeHref(href: string, lang: Lang): string {
-    // Absolute / protocol-relative / mailto: / tel: — never ours to prefix.
+    // Absolute / protocol-relative / mailto: / tel: - never ours to prefix.
     if (/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(href)) return href;
 
     // Pure fragment: stays on the current page.
     if (href.startsWith('#')) return href;
 
-    // Relative path — not produced by paths.ts; leave alone.
+    // Relative path - not produced by paths.ts; leave alone.
     if (!href.startsWith('/')) return href;
 
     if (isLocalized(href)) return href;

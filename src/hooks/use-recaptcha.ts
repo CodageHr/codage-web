@@ -8,7 +8,7 @@ import { useCallback, useEffect } from 'react';
 // The script is loaded lazily only where this hook is used (contact form),
 // so no reCAPTCHA badge/script leaks onto pages without a form. When the site
 // key is not configured the hook no-ops and `executeRecaptcha` returns
-// undefined — the backend mirrors this by only requiring the token when its
+// undefined - the backend mirrors this by only requiring the token when its
 // secret is set, so local dev works without any keys.
 // ----------------------------------------------------------------------
 
