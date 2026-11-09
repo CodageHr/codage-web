@@ -6,7 +6,7 @@ const ROOTS = {
 };
 
 // ----------------------------------------------------------------------
-// Route identities — locale-free on purpose. RouterLink prefixes the active
+// Route identities - locale-free on purpose. RouterLink prefixes the active
 // locale at render time (see src/routes/localize-href.ts), so call sites keep
 // using `paths.about` and get `/hr/about-us/` or `/en/about-us/` for free.
 
@@ -29,7 +29,7 @@ export const paths = {
     cookies: '/cookies',
     termsOfUse: '/terms-of-use',
 
-    // Auth — not routed publicly, but still referenced by the AuthProvider
+    // Auth - not routed publicly, but still referenced by the AuthProvider
     // chain (src/auth/context, src/auth/guard) inherited from the template.
     auth: {
         amplify: {

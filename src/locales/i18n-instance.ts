@@ -10,7 +10,7 @@ import translationHr from './langs/hr.json';
 //
 // The i18next package default export is a process-wide singleton. Mutating it
 // would leak the language across routes when /hr/* and /en/* are prerendered in
-// the same `next build` — rendering is interleaved, so a language set for one
+// the same `next build` - rendering is interleaved, so a language set for one
 // page would bleed into another mid-render.
 //
 // initReactI18next is deliberately NOT used: it calls setI18n(), which writes

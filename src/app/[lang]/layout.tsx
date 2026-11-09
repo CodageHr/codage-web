@@ -25,7 +25,7 @@ import { CookieBanner } from '@components/cookie-banner';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 // ----------------------------------------------------------------------
-// This IS the root layout — it owns <html>. Next only lets one layout do that,
+// This IS the root layout - it owns <html>. Next only lets one layout do that,
 // and <html lang> has to vary per locale, so every page lives under [lang].
 // A page left outside [lang] fails the build with "doesn't have a root layout".
 
@@ -34,7 +34,7 @@ export function generateStaticParams() {
     return LANGS.map((lang) => ({ lang }));
 }
 
-/** Anything that isn't a known locale (/fr/, /xyz/) 404s — and stays static. */
+/** Anything that isn't a known locale (/fr/, /xyz/) 404s - and stays static. */
 export const dynamicParams = false;
 
 export const viewport = {

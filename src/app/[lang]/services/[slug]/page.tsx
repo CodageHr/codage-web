@@ -9,7 +9,7 @@ import ServiceView from '@sections/services/view/service-view';
 import { SERVICES, getService } from '@sections/services/config';
 
 // ----------------------------------------------------------------------
-// /[lang]/services/[slug]/ — combined with the [lang] layout's params this
+// /[lang]/services/[slug]/ - combined with the [lang] layout's params this
 // prerenders 3 services × 2 locales = 6 static pages. Unknown slugs 404.
 
 type Params = Promise<{ lang: string; slug: string }>;

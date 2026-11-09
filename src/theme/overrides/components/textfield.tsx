@@ -99,7 +99,7 @@ export function textField(theme: Theme) {
             },
         },
 
-        // OUTLINED — the primary field style (h48, r10, bg sand-50, 1.5px border)
+        // OUTLINED - the primary field style (h48, r10, bg sand-50, 1.5px border)
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {

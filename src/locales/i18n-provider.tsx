@@ -9,7 +9,7 @@ import { DEFAULT_LANG, type Lang } from './langs';
 // ----------------------------------------------------------------------
 // Supplies the route's locale to the tree. The server layout reads `lang` from
 // the [lang] route segment and passes it here, so server and client agree by
-// construction — no storage read, no detection, no hydration mismatch.
+// construction - no storage read, no detection, no hydration mismatch.
 //
 // Must sit ABOVE LocalizationProvider and ThemeProvider: both call useLocales().
 // ----------------------------------------------------------------------

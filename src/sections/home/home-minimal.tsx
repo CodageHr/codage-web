@@ -22,7 +22,7 @@ import { brand } from 'src/theme/tokens';
 
 type ServiceRow = { num: string; title: string; desc: string; tech: string; href: string };
 
-// Each row links to its service landing page — the main internal link into them.
+// Each row links to its service landing page - the main internal link into them.
 function NumberedRow({ row, isFirst }: { row: ServiceRow; isFirst: boolean }) {
     return (
         <m.div variants={varFade().inUp}>

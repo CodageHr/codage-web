@@ -50,7 +50,7 @@ const buildGraph = (lang: Lang) => ({
                 contactType: 'customer support',
                 email: 'kontakt@codage.hr',
                 telephone: '+385 98 403 330',
-                // A fact about the business, not about the page language — stays 'HR'.
+                // A fact about the business, not about the page language - stays 'HR'.
                 areaServed: 'HR',
                 availableLanguage: ['hr', 'en'],
             },

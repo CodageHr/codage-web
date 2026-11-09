@@ -41,7 +41,7 @@ export const grey = {
 export const secondary = {
     lighter: sand[600],
     light: sand[700],
-    main: sand[900], // #201913 — dark band / dark buttons
+    main: sand[900], // #201913 - dark band / dark buttons
     dark: '#3A2F25', // dark button hover
     darker: '#000000',
     contrastText: cream,
@@ -51,7 +51,7 @@ export const primary = {
     lighter: brand[100],
     light: brand[400], // #DF8663
     main: brand[500], // #D96C47
-    dark: brand[600], // #BC4E2C — hover, links (AA on white)
+    dark: brand[600], // #BC4E2C - hover, links (AA on white)
     darker: brand[800],
     contrastText: '#FFFFFF',
 };

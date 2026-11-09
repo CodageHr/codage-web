@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// Client testimonials — single source for the home carousel, the About page and
+// Client testimonials - single source for the home carousel, the About page and
 // the service pages (previously copy-pasted into two components).
 //
 // Quotes stay in the language they were given in (authentic wording); the role
@@ -30,7 +30,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
         name: 'Brian Kulman',
         roleKey: 'testimonial_nearpeer_role',
         quote:
-            'Petar Vrkić is a coding expert. Over two years, Petar\'s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases — he had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar\'s experience and knowledge would be a great asset to any team or project!',
+            'Petar Vrkić is a coding expert. Over two years, Petar\'s enhancements consistently raised our EdTech app to new levels of excellence. Petar is an expert in React, JavaScript, AWS, and databases - he had us covered from front-end to back-end. His love of problem-solving and ability to master new technologies helped us take huge strides with SSO, security, and reliability. His constant positivity and can-do attitude made collaborating a wonderful experience. Petar\'s experience and knowledge would be a great asset to any team or project!',
         image: '/assets/images/home/testimonals/brian_kulman_nearpeer.jpeg',
     },
     {

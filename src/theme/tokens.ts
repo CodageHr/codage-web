@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------
-// Codage — "Studio samopouzdanja" design tokens (single source of truth).
+// Codage - "Studio samopouzdanja" design tokens (single source of truth).
 // Sirove vrijednosti iz design-handoff/HANDOFF.md §1–3. Konzumira ih palette,
-// component overrides i sekcije (preko `sx`). NE hardkodirati hex u sekcijama —
+// component overrides i sekcije (preko `sx`). NE hardkodirati hex u sekcijama -
 // uvijek povuci odavde ili preko theme.palette.
 // ----------------------------------------------------------------------
 
-// Brand (terracotta) — brand-50 … brand-900 + dark accent
+// Brand (terracotta) - brand-50 … brand-900 + dark accent
 export const brand = {
     50: '#FBF4EF',
     100: '#F7E2D8',
@@ -20,7 +20,7 @@ export const brand = {
     dark: '#E07E58', // accent/CTA on dark surfaces & dark mode (use ink text on it)
 };
 
-// Sand (warm neutrals) — sand-0 … sand-900
+// Sand (warm neutrals) - sand-0 … sand-900
 export const sand = {
     0: '#FFFFFF',
     50: '#F6F1EA', // page background, input bg

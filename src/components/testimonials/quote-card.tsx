@@ -14,7 +14,7 @@ import { type Testimonial } from './data';
 
 // ----------------------------------------------------------------------
 
-// White quote card — About ("Tko nam vjeruje") and the service pages.
+// White quote card - About ("Tko nam vjeruje") and the service pages.
 export default function QuoteCard({ item }: { item: Testimonial }) {
     const { t } = useTranslate();
 

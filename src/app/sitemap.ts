@@ -6,10 +6,10 @@ import { type RouteKey } from '@base/locales/seo';
 import { localePath, isEnNoindex } from '@base/lib/seo';
 
 // ----------------------------------------------------------------------
-// Both locales, minus the EN legal pages (noindex — see src/lib/seo). Each entry
+// Both locales, minus the EN legal pages (noindex - see src/lib/seo). Each entry
 // declares its hreflang alternates so the sitemap and the on-page <link rel>s
 // tell Google the same thing. URLs are locale-prefixed and trailing-slashed to
-// match the canonicals (next.config trailingSlash:true) — no 308 on crawl.
+// match the canonicals (next.config trailingSlash:true) - no 308 on crawl.
 
 const PRIORITY: Record<RouteKey, number> = {
     home: 1,

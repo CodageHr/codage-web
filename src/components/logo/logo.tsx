@@ -71,7 +71,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
             <Link
                 component={RouterLink}
                 href="/"
-                aria-label="Codage — početna"
+                aria-label="Codage - početna"
                 sx={{ display: 'contents' }}
             >
                 {logo}

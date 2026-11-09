@@ -6,7 +6,7 @@ import { SEO, type RouteKey } from '@base/locales/seo';
 import { ORG_ID } from './structured-data';
 
 // ----------------------------------------------------------------------
-// schema.org Service node for a service landing page. Server component — the
+// schema.org Service node for a service landing page. Server component - the
 // copy comes from the typed SEO dictionary, so it matches the page <title> and
 // description exactly. `provider` points at the site-wide Organization node.
 

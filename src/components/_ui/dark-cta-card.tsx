@@ -19,7 +19,7 @@ type Props = {
   ctaHref: string;
 };
 
-// Dark rounded CTA card (sand-900) — copy on the left, primary action on the right.
+// Dark rounded CTA card (sand-900) - copy on the left, primary action on the right.
 export default function DarkCtaCard({ title, lead, ctaLabel, ctaHref }: Props) {
     return (
         <Box

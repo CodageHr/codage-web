@@ -26,7 +26,7 @@ const SEGMENT: Record<RouteKey, string> = {
  */
 const EN_NOINDEX: readonly RouteKey[] = ['legalInfo', 'privacyPolicy', 'termsOfUse', 'cookies'];
 
-/** Locale-prefixed, trailing-slashed path — matches next.config trailingSlash:true. */
+/** Locale-prefixed, trailing-slashed path - matches next.config trailingSlash:true. */
 export const localePath = (lang: Lang, key: RouteKey): string =>
     SEGMENT[key] ? `/${lang}/${SEGMENT[key]}/` : `/${lang}/`;
 

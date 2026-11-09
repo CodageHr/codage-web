@@ -59,7 +59,7 @@ export function button(theme: Theme) {
                         backgroundColor: lightMode ? '#3A2F25' : theme.palette.grey[400],
                     },
                 }),
-                // OUTLINED / GHOST — 1.5px sand-300, ink text → hover brand-600
+                // OUTLINED / GHOST - 1.5px sand-300, ink text → hover brand-600
                 ...(outlinedVariant && {
                     border: `1.5px solid ${theme.palette.divider}`,
                     color: theme.palette.text.primary,

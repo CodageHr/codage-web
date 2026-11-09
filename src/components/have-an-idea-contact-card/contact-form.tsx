@@ -64,7 +64,7 @@ export default function ContactForm({ variant = 'mini' }: Props) {
         projectInfo: '',
     };
 
-    // One schema for both layouts — matches the backend contract (name/email/projectInfo
+    // One schema for both layouts - matches the backend contract (name/email/projectInfo
     // required, company/phone optional). Keeping it single-source avoids the mini form
     // drifting out of sync with the API and silently failing validation.
     const schema = Yup.object().shape({

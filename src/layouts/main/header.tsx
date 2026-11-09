@@ -43,7 +43,7 @@ const HEADER_BG = sand[900];
 
 // `pathname` is locale-prefixed and trailing-slashed ('/hr/about-us/') while nav
 // paths are locale-free identities ('/about-us'), so the raw path has to be
-// localised before comparing — otherwise every nav item is silently never active.
+// localised before comparing - otherwise every nav item is silently never active.
 function isActive(pathname: string, path: string, lang: Lang) {
     // "Services" is a landing anchor, but it is the current section on a service page.
     if (path === '/#services') return pathname.startsWith(`/${lang}/services/`);

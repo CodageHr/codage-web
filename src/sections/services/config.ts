@@ -5,7 +5,7 @@ import { type RouteKey } from '@base/locales/seo';
 import { type TestimonialId } from '@components/testimonials/data';
 
 // ----------------------------------------------------------------------
-// Service landing pages. Deliberately NOT 'use client' — the [slug] page imports
+// Service landing pages. Deliberately NOT 'use client' - the [slug] page imports
 // SERVICES on the server for generateStaticParams / generateMetadata.
 //
 // Copy lives in i18n under `${prefix}_*` (see hr.json / en.json):
@@ -18,7 +18,7 @@ export type ServiceSlug = 'web-applications' | 'mobile-applications' | 'design-c
 
 export type ServiceDef = {
     slug: ServiceSlug;
-    /** Locale-free route identity — RouterLink adds /hr or /en. */
+    /** Locale-free route identity - RouterLink adds /hr or /en. */
     path: string;
     /** Key into the SEO dictionary (title/description/canonical/hreflang). */
     routeKey: Extract<RouteKey, 'webApps' | 'mobileApps' | 'designConsulting'>;
@@ -27,7 +27,7 @@ export type ServiceDef = {
     /** Short service name, reused from the homepage rows. */
     titleKey: string;
     descKey: string;
-    /** schema.org Service.serviceType — a machine value, not shown to users. */
+    /** schema.org Service.serviceType - a machine value, not shown to users. */
     serviceType: string;
     /** The most relevant client reference for this service. */
     testimonial: TestimonialId;

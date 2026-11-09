@@ -166,10 +166,10 @@ export default function ServiceView({ slug }: Props) {
                 </SectionContainer>
             </Box>
 
-            {/* How we work — same process as the homepage */}
+            {/* How we work - same process as the homepage */}
             <HomeProcess />
 
-            {/* FAQ — always rendered (not collapsed), so the answers are in the HTML */}
+            {/* FAQ - always rendered (not collapsed), so the answers are in the HTML */}
             <Box component="section" sx={{ bgcolor: 'background.default', py: SECTION_PY }}>
                 <SectionContainer component={MotionViewport}>
                     <Grid container spacing={{ xs: 3, md: 8 }}>
@@ -202,7 +202,7 @@ export default function ServiceView({ slug }: Props) {
                 </SectionContainer>
             </Box>
 
-            {/* Other services — internal links */}
+            {/* Other services - internal links */}
             <Box component="section" sx={{ bgcolor: 'background.paper', py: SECTION_PY }}>
                 <SectionContainer component={MotionViewport}>
                     <m.div variants={varFade().inUp}>

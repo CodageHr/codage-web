@@ -31,7 +31,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Karla — body / UI / buttons (default). Subset latin-ext for HR diacritics.
+// Karla - body / UI / buttons (default). Subset latin-ext for HR diacritics.
 export const primaryFont = Karla({
     weight: ['400', '500', '600', '700', '800'],
     subsets: ['latin', 'latin-ext'],
@@ -40,7 +40,7 @@ export const primaryFont = Karla({
     variable: '--font-karla',
 });
 
-// Space Grotesk — headings / numbers / eyebrows / wordmark.
+// Space Grotesk - headings / numbers / eyebrows / wordmark.
 export const secondaryFont = Space_Grotesk({
     weight: ['400', '500', '600', '700'],
     subsets: ['latin', 'latin-ext'],
@@ -60,7 +60,7 @@ const heading = {
 // https://nextjs.org/docs/basic-features/font-optimization#google-fonts
 
 export const typography = {
-    fontFamily: primaryFont.style.fontFamily, // Karla — body/UI default
+    fontFamily: primaryFont.style.fontFamily, // Karla - body/UI default
     fontSecondaryFamily: secondaryFont.style.fontFamily, // Space Grotesk
     fontWeightRegular: 400,
     fontWeightMedium: 500,

@@ -27,7 +27,7 @@ type SeoEntry = {
 
 /** Site-wide copy that lives on the root layout rather than a page. */
 type SiteSeo = {
-    /** title.default — used when a page sets no title. */
+    /** title.default - used when a page sets no title. */
     defaultTitle: string;
     description: string;
     keywords: string;
@@ -35,16 +35,16 @@ type SiteSeo = {
 
 export const SITE_SEO: Record<Lang, SiteSeo> = {
     hr: {
-        defaultTitle: 'Codage — Softver po mjeri',
+        defaultTitle: 'Codage - Softver po mjeri',
         description:
-            'Codage je softverski studio iz Splita koji izrađuje web i mobilne aplikacije po mjeri — od prve skice do produkcije.',
+            'Codage je softverski studio iz Splita koji izrađuje web i mobilne aplikacije po mjeri - od prve skice do produkcije.',
         keywords:
             'Codage, softverski studio, Split, web aplikacije, mobilne aplikacije, Spring Boot, Java, Next.js, Laravel, ui, ux',
     },
     en: {
-        defaultTitle: 'Codage — Custom software',
+        defaultTitle: 'Codage - Custom software',
         description:
-            'Codage is a software studio from Split, Croatia, building custom web and mobile apps — from the first sketch to production.',
+            'Codage is a software studio from Split, Croatia, building custom web and mobile apps - from the first sketch to production.',
         keywords:
             'Codage, software studio, Split, Croatia, web apps, mobile apps, Spring Boot, Java, Next.js, Laravel, ui, ux',
     },
@@ -53,44 +53,44 @@ export const SITE_SEO: Record<Lang, SiteSeo> = {
 export const SEO: Record<Lang, Record<RouteKey, SeoEntry>> = {
     hr: {
         home: {
-            title: 'Codage — Web i mobilne aplikacije po mjeri | Split',
+            title: 'Codage - Web i mobilne aplikacije po mjeri | Split',
             description:
-                'Softverski studio iz Splita. Web i mobilne aplikacije po mjeri — od prve skice do produkcije. React, Next.js, Spring Boot, Java, Scala, Laravel.',
+                'Softverski studio iz Splita. Web i mobilne aplikacije po mjeri - od prve skice do produkcije. React, Next.js, Spring Boot, Java, Scala, Laravel.',
         },
         about: {
-            title: 'O nama — softverski studio iz Splita',
+            title: 'O nama - softverski studio iz Splita',
             description:
                 'Codage je mali softverski studio iz Splita. Naš pristup radu, vrijednosti i tim koji stoji iza vaših projekata.',
         },
         contact: {
-            title: 'Kontakt — besplatna procjena projekta',
+            title: 'Kontakt - besplatna procjena projekta',
             description:
-                'Javite nam se — procjena projekta i prvi razgovor su besplatni. Odgovaramo unutar jednog radnog dana. kontakt@codage.hr, +385 98 403 330.',
+                'Javite nam se - procjena projekta i prvi razgovor su besplatni. Odgovaramo unutar jednog radnog dana. kontakt@codage.hr, +385 98 403 330.',
         },
         webApps: {
-            title: 'Izrada web aplikacija po mjeri — Split',
+            title: 'Izrada web aplikacija po mjeri - Split',
             description:
                 'Izrada web aplikacija po mjeri: poslovne platforme, SaaS, interni alati i integracije. React, Next.js, Laravel, Spring Boot. Besplatna procjena projekta.',
         },
         mobileApps: {
-            title: 'Izrada mobilnih aplikacija za iOS i Android — Split',
+            title: 'Izrada mobilnih aplikacija za iOS i Android - Split',
             description:
                 'Izrada nativnih i hibridnih (React Native) mobilnih aplikacija za iOS i Android. Dizajn, razvoj i održavanje na jednom mjestu. Besplatna procjena.',
         },
         designConsulting: {
-            title: 'UI/UX dizajn i tehničko savjetovanje — Split',
+            title: 'UI/UX dizajn i tehničko savjetovanje - Split',
             description:
                 'UI/UX dizajn, klikabilni prototipovi i tehnički audit postojećih aplikacija. Definiramo proizvod prije prve linije koda. Besplatan prvi razgovor.',
         },
         legalInfo: {
             title: 'Pravni podaci',
             description:
-                'Pravni podaci tvrtke Codage d.o.o. — adresa, OIB, MBS, temeljni kapital i kontakt informacije.',
+                'Pravni podaci tvrtke Codage d.o.o. - adresa, OIB, MBS, temeljni kapital i kontakt informacije.',
         },
         privacyPolicy: {
             title: 'Politika privatnosti',
             description:
-                'Politika privatnosti — kako Codage d.o.o. prikuplja, koristi i štiti vaše osobne podatke u skladu s GDPR-om.',
+                'Politika privatnosti - kako Codage d.o.o. prikuplja, koristi i štiti vaše osobne podatke u skladu s GDPR-om.',
         },
         termsOfUse: {
             title: 'Uvjeti korištenja',
@@ -99,49 +99,49 @@ export const SEO: Record<Lang, Record<RouteKey, SeoEntry>> = {
         cookies: {
             title: 'Politika kolačića',
             description:
-                'Politika kolačića — koje kolačiće koristi web stranica Codage i kako upravljati postavkama.',
+                'Politika kolačića - koje kolačiće koristi web stranica Codage i kako upravljati postavkama.',
         },
     },
     en: {
         home: {
-            title: 'Codage — Custom web & mobile app development | Split, Croatia',
+            title: 'Codage - Custom web & mobile app development | Split, Croatia',
             description:
-                'Software studio from Split, Croatia. Custom web and mobile apps — from the first sketch to production. React, Next.js, Spring Boot, Java, Scala, Laravel.',
+                'Software studio from Split, Croatia. Custom web and mobile apps - from the first sketch to production. React, Next.js, Spring Boot, Java, Scala, Laravel.',
         },
         about: {
-            title: 'About us — software studio in Split, Croatia',
+            title: 'About us - software studio in Split, Croatia',
             description:
                 'Codage is a small software studio from Split, Croatia. How we work, what we value, and the team behind your project.',
         },
         contact: {
-            title: 'Contact — free project estimate',
+            title: 'Contact - free project estimate',
             description:
-                'Get in touch — the first call and the project estimate are free. We reply within one business day. kontakt@codage.hr, +385 98 403 330.',
+                'Get in touch - the first call and the project estimate are free. We reply within one business day. kontakt@codage.hr, +385 98 403 330.',
         },
         webApps: {
-            title: 'Custom web application development — Split, Croatia',
+            title: 'Custom web application development - Split, Croatia',
             description:
                 'Custom web application development: business platforms, SaaS, internal tools and integrations. React, Next.js, Laravel, Spring Boot. Free project estimate.',
         },
         mobileApps: {
-            title: 'Mobile app development for iOS & Android — Croatia',
+            title: 'Mobile app development for iOS & Android - Croatia',
             description:
                 'Native and cross-platform (React Native) mobile app development for iOS and Android. Design, development and maintenance in one place. Free estimate.',
         },
         designConsulting: {
-            title: 'UI/UX design & technical consulting — Split, Croatia',
+            title: 'UI/UX design & technical consulting - Split, Croatia',
             description:
                 'UI/UX design, clickable prototypes and technical audits of existing apps. We define the product before the first line of code. Free first call.',
         },
         legalInfo: {
             title: 'Legal information',
             description:
-                'Legal information for Codage d.o.o. — registered office, OIB, MBS, share capital and contact details.',
+                'Legal information for Codage d.o.o. - registered office, OIB, MBS, share capital and contact details.',
         },
         privacyPolicy: {
             title: 'Privacy Policy',
             description:
-                'Privacy Policy — how Codage d.o.o. collects, uses and protects your personal data in line with the GDPR.',
+                'Privacy Policy - how Codage d.o.o. collects, uses and protects your personal data in line with the GDPR.',
         },
         termsOfUse: {
             title: 'Terms of Use',
@@ -150,7 +150,7 @@ export const SEO: Record<Lang, Record<RouteKey, SeoEntry>> = {
         cookies: {
             title: 'Cookie Policy',
             description:
-                'Cookie Policy — which cookies the Codage website uses and how to manage your settings.',
+                'Cookie Policy - which cookies the Codage website uses and how to manage your settings.',
         },
     },
 };
