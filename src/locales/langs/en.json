@@ -391,5 +391,6 @@
   "svc_design_faq_3_q": "What is a technical audit?",
   "svc_design_faq_3_a": "A review of an existing application: code quality, architecture, security and performance. You get a clear list of issues and a prioritised plan to fix them.",
   "svc_design_faq_4_q": "When does it make sense to start with design?",
-  "svc_design_faq_4_a": "Before development. A prototype surfaces ambiguities while they're still cheap to fix — and gives everyone a shared picture of what's being built."
+  "svc_design_faq_4_a": "Before development. A prototype surfaces ambiguities while they're still cheap to fix — and gives everyone a shared picture of what's being built.",
+  "nav_services_all": "All services"
 }

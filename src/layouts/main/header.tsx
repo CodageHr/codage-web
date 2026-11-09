@@ -34,13 +34,12 @@ import { LocaleSwitch } from '@components/locale-switch';
 import { sand, onDark } from 'src/theme/tokens';
 
 import { HEADER } from '../config-layout';
-import { navConfig } from './config-navigation';
+import NavDropdown from './nav-dropdown';
+import { navConfig, type NavItem } from './config-navigation';
 
 // ----------------------------------------------------------------------
 
 const HEADER_BG = sand[900];
-
-type NavItem = { title: string; path: string };
 
 // `pathname` is locale-prefixed and trailing-slashed ('/hr/about-us/') while nav
 // paths are locale-free identities ('/about-us'), so the raw path has to be
@@ -131,8 +130,20 @@ export default function Header() {
                     <Box sx={{ flexGrow: 1 }} />
 
                     {mdUp && (
-                        <Stack component="nav" direction="row" spacing={4} sx={{ mr: 3 }}>
-                            {nav.map((item) => navLink(item))}
+                        <Stack component="nav" direction="row" spacing={4} sx={{ mr: 3, alignItems: 'center' }}>
+                            {nav.map((item) =>
+                                item.children ? (
+                                    <NavDropdown
+                                        key={item.title}
+                                        item={item}
+                                        active={isActive(pathname, item.path, lang)}
+                                        isChildActive={(path) => pathname === localizeHref(path, lang)}
+                                        allLabel={t('nav_services_all')}
+                                    />
+                                ) : (
+                                    navLink(item)
+                                )
+                            )}
                         </Stack>
                     )}
 
@@ -193,7 +204,42 @@ export default function Header() {
                     </Stack>
 
                     <Stack component="nav" spacing={3} sx={{ mt: 6 }}>
-                        {nav.map((item) => navLink(item, handleCloseMenu))}
+                        {nav.map((item) => (
+                            <Box key={item.title}>
+                                {navLink(item, handleCloseMenu)}
+
+                                {/* Service pages as an always-visible, indented sub-list */}
+                                {item.children && (
+                                    <Stack
+                                        spacing={1.75}
+                                        sx={{ mt: 1.75, pl: 2, borderLeft: `1px solid ${onDark.hairline}` }}
+                                    >
+                                        {item.children.map((child) => {
+                                            const childActive = pathname === localizeHref(child.path, lang);
+
+                                            return (
+                                                <Link
+                                                    key={child.path}
+                                                    component={RouterLink}
+                                                    href={child.path}
+                                                    onClick={handleCloseMenu}
+                                                    underline="none"
+                                                    aria-current={childActive ? 'page' : undefined}
+                                                    sx={{
+                                                        fontSize: 16,
+                                                        fontWeight: childActive ? 700 : 500,
+                                                        color: childActive ? onDark.accent : onDark.textSecondary,
+                                                        '&:hover': { color: onDark.text },
+                                                    }}
+                                                >
+                                                    {child.title}
+                                                </Link>
+                                            );
+                                        })}
+                                    </Stack>
+                                )}
+                            </Box>
+                        ))}
                     </Stack>
 
                     <Box sx={{ flexGrow: 1 }} />

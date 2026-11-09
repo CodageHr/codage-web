@@ -44,3 +44,6 @@ yarn-error.log*
 
 # Local design reference (not tracked)
 design-handoff/
+
+# Playwright MCP test artifacts (snapshots/screenshots)
+.playwright-mcp/

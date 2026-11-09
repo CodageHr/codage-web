@@ -391,5 +391,6 @@
   "svc_design_faq_3_q": "Što je tehnički audit?",
   "svc_design_faq_3_a": "Pregled postojeće aplikacije: kvalitete koda, arhitekture, sigurnosti i performansi. Dobivate jasan popis problema i plan rješavanja po prioritetima.",
   "svc_design_faq_4_q": "Kada ima smisla krenuti s dizajnom?",
-  "svc_design_faq_4_a": "Prije razvoja. Prototip otkriva nejasnoće dok ih je još jeftino ispraviti — i svima daje zajedničku sliku o tome što se gradi."
+  "svc_design_faq_4_a": "Prije razvoja. Prototip otkriva nejasnoće dok ih je još jeftino ispraviti — i svima daje zajedničku sliku o tome što se gradi.",
+  "nav_services_all": "Sve usluge"
 }
